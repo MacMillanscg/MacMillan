@@ -1,0 +1,57 @@
+.profile{
+    position: absolute;
+    right: 26px;
+    top: 52px;
+}
+.card{
+    width:268px;
+    height: 236px;
+    background-color: white;
+    margin-left: auto;
+    margin-right: 74px;
+    margin-top: -12px;
+    text-align: center;
+    position: relative;
+    z-index: 999;
+}
+.card::before{
+    position: absolute;
+    content: '';
+    left: 0;
+    right: 0;
+    background-image: linear-gradient(to right, blue, green);
+    height: 3px;
+    width: 268px;
+    top: 0px;
+}
+.cardtitle{
+    background-color: #5b71d6;
+    color: #fff !important;
+    border-radius: 3px;
+    width: 52px;
+    height: 40px;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 8px;
+    margin-bottom: 4px;
+}
+.btn{
+    font-size: 15px;
+    text-decoration: none;
+ 
+}
+.theme{
+    background: #e8dfdf !important;
+    color: black !important;
+    width: 73px;
+    margin-right: 7px;
+    height: 35px;
+    border: none;
+
+}
+/* .services{
+    text-align: left;
+} */
+.link{
+    font-size: 15px;
+}

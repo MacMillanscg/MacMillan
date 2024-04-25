@@ -1,0 +1,50 @@
+.profileDetails{
+    padding: 1px;
+}
+.profiletop{
+    background-color: #F1F4F6;
+    padding: 6px 17px;
+}
+.profilename{
+    font-weight:700;
+}
+.subtitle{
+background-color: #5b71d6;
+font-size: 14px;
+padding: 4px;
+color: white;
+}
+.title{
+    font-size: 24px;
+    margin-left: 12px;
+}
+.inner{
+    margin: 10px 0 18px 0;
+    display: flex;
+    justify-content: space-between;
+}
+.img{
+    background-color: #5b71d6;
+    font-size: 19px;
+    padding: 6px;
+    color: white
+}
+.profilebottom{
+    padding: 6px 17px;
+    width: 583px;
+    margin-top: 20px;
+}
+.upload{
+    color: #5b71d6 !important;
+}
+.cancel{ 
+    background-color: transparent !important;
+    color: black !important;
+    border: none !important;
+    margin-right: 15px;
+    opacity: .8;
+}
+.save{
+    background-color: green !important;
+    opacity: .5;
+}

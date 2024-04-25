@@ -1,0 +1,14 @@
+.navlink{
+    background-color: #5b71d6 !important;
+    color: #fff !important;
+    border-radius: 3px;
+    
+    padding: 5px 9px !important;
+}
+.list{
+    max-width: 175px;
+    margin-left: auto;
+}
+.item{
+    width: 52px;
+}

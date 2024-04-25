@@ -1,0 +1,25 @@
+.forgot{
+    width: 400px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 4px;
+    padding: 18px 33px;
+    height: 400px;
+    padding-top: 50px;
+}
+.heading3{
+    margin: 15px 0 !important;
+}
+p{
+    font-size: 14px !important;
+    margin-bottom: 40px;
+}
+input{
+    border: 1px solid #808080;
+}
+.btn{
+    background-color: #153359;
+}
+.para{
+    margin-bottom: 20px !important;
+}

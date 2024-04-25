@@ -1,0 +1,27 @@
+.support{
+    width: 650px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 4px;
+    padding: 18px 33px;
+    height: 555px;
+    padding-top: 54px;
+}
+.textareaField{
+    height: 100px;
+}
+.logo{
+    max-width: 144px;
+    margin: 0 auto;
+}
+.heading3{
+    margin:10px 0px !important
+}
+.btn{
+    max-width: 127px !important;
+    margin: 0 auto !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
