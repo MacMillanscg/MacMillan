@@ -4,5 +4,34 @@
     top: 0;
     height: 100vh;
     background:#1e223a;
-    width: 210px;
+    width: 20%;
+}
+.sidebarLogo{
+    color: #fff !important;
+    font-size: 24px;
+    padding-bottom: 15px;
+}
+.sidebarLink{
+    color: #fff !important;
+    font-size: 15px !important;
+}
+.list{
+    margin-top: 20px;
+ 
+}
+.li{
+    margin-bottom: 24px;
+}
+.icon{
+    margin-right: 7px;
+    font-size: 13px;
+
+}
+.headerlogo{
+    padding-left: 33px;
+    padding-top: 10px;
+}
+.logoicon{
+    margin-left: 32px;
+    font-size: 15px;
 }

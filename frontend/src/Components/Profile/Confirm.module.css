@@ -1,0 +1,28 @@
+.confirm{
+    position: absolute;
+    right: 30%;
+    top: 5px;
+    z-index: 9999;
+    background:#fff;
+    padding: 13px;
+    width: 235px;
+    height: 105px;
+    text-align: center;
+}
+.okay{
+    width: 60px;
+    height: 30px;
+    border: none;
+    border-radius: 2px;
+}
+.cancel{
+    width: 60px;
+    height: 30px;
+    background: #F05B33 !important;
+    margin-left: 10px;
+    border: none;
+    border-radius: 2px;
+}
+.para{
+    font-size: 17px;
+}

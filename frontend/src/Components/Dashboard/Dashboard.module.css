@@ -1,18 +1,6 @@
-.dashboard{
-    background-color: #dee2e6;
-    width: 100%;
-    height: 100vh;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
 
-}
-.heading2{
-    display: flex;
-    justify-content: center;
-    margin-top: 100px;
+.heading1{
+    font-size: 28px;
 }
 
 .btn{
@@ -20,3 +8,77 @@
     margin-left: auto;
     display: flex;
 }
+.home{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 0 40px 0;
+}
+.homeRightBox{
+    display:flex ;
+
+}
+.icon{
+    display: block;
+    color: gray;
+    margin-bottom: 13px;
+    font-size: 19px;
+}
+.card{
+    border: 1px solid rgb(208, 217, 223);
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    margin-right: 16px;
+    max-width: 246px;
+}
+.card:nth-child(2){
+    margin-right: 0;
+}
+.zero{
+    font-size: 54px;
+    color:rgb(46, 206, 149);
+    margin: 0 34px 0 0;
+}
+.cardText{
+    color: #5E5D5D;
+    font-size:18px ;
+    line-height: 24px;
+}
+.details {
+    max-width: 140px;
+}
+.description{
+    color: #5E5D5D;
+}
+.learnMore{
+    color: rgb(96, 120, 226) !important;
+}
+.learnIcon{
+    font-size: 11px;
+    margin-left: 5px;
+}
+.homeBottom{
+    display: flex;
+    justify-content: space-between;
+}
+.heading2{
+    font-size: 21px;
+    font-weight: 500;
+}
+.bottomDetails{
+    border: 1px solid rgb(208, 217, 223);
+    padding: 24px;
+    border-radius: 4px;
+    width: 49%;
+    display: flex;
+    align-items:center;
+}
+.cardIcon{
+    margin-right: 8px;
+    color: #808080;
+    font-size: 19px;
+}
+/* .cardNav:hover{
+    text-decoration: none !important;
+} */

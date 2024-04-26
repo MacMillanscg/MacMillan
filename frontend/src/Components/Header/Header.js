@@ -11,8 +11,8 @@ export const Header = () => {
     setIsProfileVisible(!isProfileVisible);
   };
   return (
-    <div className="header-section">
-      <div className="bg-light py-1">
+    <div className={styles.header}>
+      <div className="py-1">
         <ul className={styles.list}>
           <li className={styles.item}>
             <button

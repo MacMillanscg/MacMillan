@@ -45,7 +45,6 @@ export const ProfileResetPass = () => {
                 type="password"
                 className="form-control"
                 id="exampleInputEmail"
-                placeholder="Mac Millan"
                 // value={email}
                 // onChange={(e) => setEmail(e.target.value)}
               />
