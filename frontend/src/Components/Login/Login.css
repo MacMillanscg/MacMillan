@@ -70,3 +70,9 @@ p a{
     margin-right: 0 !important;
     margin-top: 22px;
 }
+.forgot a{
+    font-size: 15px !important;
+}
+label.form-check-label{
+    font-size: 15px !important;
+}
