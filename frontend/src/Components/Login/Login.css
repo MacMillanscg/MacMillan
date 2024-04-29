@@ -4,13 +4,13 @@
     background: white;
     border-radius: 4px;
     padding: 18px 33px;
-    height: 557px;
-    padding-top: 145px;
+    height:430px;
+    padding-top: 30px;
 }
 
 .form-control{
     margin-bottom: 12px;
-    height: 46px;
+    height: 40px;
 }
 input::placeholder{
     color: #bdb1b1 !important;
@@ -22,7 +22,7 @@ input::placeholder{
 }
 
 .submit{
-    height: 47px;
+    height: 44px !important;
     border: none;
     width: 100%;
     color: white;
@@ -31,7 +31,7 @@ input::placeholder{
 }
 h3{
     font-weight: 400;
-    margin: 20px 0 30px 0 !important;
+    margin: 15px 0 30px 0 !important;
 }
 h4{
     font-size: 16px !important;
@@ -66,5 +66,7 @@ p a{
     margin-left: 4px;
 }
 .para{
-    margin-left: 132px;
+    text-align: right;
+    margin-right: 0 !important;
+    margin-top: 22px;
 }

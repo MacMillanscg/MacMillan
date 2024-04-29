@@ -37,6 +37,12 @@ export const Login = () => {
     }
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      loginUser();
+    }
+  };
+
   return (
     <div className="authenticate">
       <div className="formWrap login">
@@ -83,7 +89,12 @@ export const Login = () => {
             </div>
           </div>
 
-          <button onClick={loginUser} type="submit" className="submit">
+          <button
+            onClick={handleKeyPress}
+            onKeyPress={handleKeyPress}
+            type="submit"
+            className="submit"
+          >
             Log In
           </button>
           <div className="no-account text-end mt-1">

@@ -5,11 +5,14 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import "font-awesome/css/font-awesome.min.css";
 import { Toaster } from "react-hot-toast";
+import { AppProvider } from "./Components/Context/AppContext";
 
 ReactDOM.render(
   <BrowserRouter>
-    <Toaster position="top-center" reverseOrder={false} />
-    <App />
+    <AppProvider>
+      <Toaster position="top-center" reverseOrder={false} />
+      <App />
+    </AppProvider>
   </BrowserRouter>,
   document.getElementById("root")
 );

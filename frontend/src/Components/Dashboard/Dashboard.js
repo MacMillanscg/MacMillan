@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Dashboard.module.css";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,16 +8,18 @@ import {
   faChevronRight,
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
+import { useAppContext } from "../Context/AppContext";
 
 export const Dashboard = () => {
+  const { dashboardWidth } = useAppContext();
+  console.log("dahsbora", dashboardWidth);
+
   return (
-    <div className="dashboard">
+    <div className="dashboard" style={{ width: dashboardWidth }}>
       <div className={styles.home}>
         <div className={styles.homeTitle}>
           <h1 className={styles.heading1}>Welcome back to MacMillan</h1>
-          <p className={styles.description}>
-            Explore these quickstarts to do more with MacMillan
-          </p>
+          <p className={styles.description}>To do more with MacMillan</p>
           <Link to="#" className={styles.learnMore}>
             Learn more{" "}
             <FontAwesomeIcon
