@@ -12,7 +12,6 @@ import { useAppContext } from "../Context/AppContext";
 
 export const Dashboard = () => {
   const { dashboardWidth } = useAppContext();
-  console.log("dahsbora", dashboardWidth);
 
   return (
     <div className="dashboard" style={{ width: dashboardWidth }}>

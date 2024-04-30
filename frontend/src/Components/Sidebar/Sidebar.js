@@ -26,7 +26,6 @@ export const Sidebar = () => {
   const toggleSidebarWidth = () => {
     setSidebarMinimized(!sidebarMinimized);
   };
-  console.log("sidebar ", sidebarMinimized);
 
   const toggleTextVisibility = () => {
     setShowText(!showText);
@@ -42,18 +41,20 @@ export const Sidebar = () => {
       <div className={styles.headerlogo}>
         <div className="sidebar-logo" onClick={toggleTextVisibility}>
           <Link className={styles.sidebarLogo} to="/">
-            {showText ? (
-              <>
-                MacMillan
-                <FontAwesomeIcon
-                  icon={faChevronLeft}
-                  className={styles.logoicon}
-                />
-              </>
-            ) : (
-              <FontAwesomeIcon icon={faBars} className={styles.logoMenuIcon} />
-            )}
+            <span className={styles.logoText}>
+              {showText ? "MacMillan" : ""}
+            </span>
           </Link>
+          {showText ? (
+            <>
+              <FontAwesomeIcon
+                icon={faChevronLeft}
+                className={styles.logoicon}
+              />
+            </>
+          ) : (
+            <FontAwesomeIcon icon={faBars} className={styles.logoMenuIcon} />
+          )}
         </div>
       </div>
       <ul className={styles.list}>

@@ -68,9 +68,10 @@ ul{
   margin-bottom: 0 !important;
 }
 .home-section{
-  margin-left: 209px;
+  margin-left: auto;
   background-color: #F7F8F9;
   height: 100vh;
+  width: 80%;
 }
 .dashboard{
   background:rgb(247, 248, 249);

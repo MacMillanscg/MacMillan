@@ -1,10 +1,12 @@
 import React from "react";
 import styles from "./ProfileDetails.module.css";
 import { Link } from "react-router-dom";
+import { useAppContext } from "../Context/AppContext";
 
 export const ProfileDetails = () => {
+  const { dashboardWidth } = useAppContext();
   return (
-    <div className="home-section">
+    <div className="home-section" style={{ width: dashboardWidth }}>
       <div className={styles.profileDetails}>
         <div className={styles.profiletop}>
           <span className="me-2">Profile</span>/

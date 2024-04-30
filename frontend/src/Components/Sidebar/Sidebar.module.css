@@ -42,6 +42,12 @@
 .logoicon{
     margin-left: 63px;
     font-size: 15px;
+    color: #fff;
+    cursor: pointer;
+}
+.logoMenuIcon{
+    color: #fff;
+    cursor: pointer;
 }
 .active {
     background-color: rgba(101, 212, 217, 0.1);
