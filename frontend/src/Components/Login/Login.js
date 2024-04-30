@@ -11,6 +11,14 @@ export const Login = () => {
 
   const navigate = useNavigate();
   const loginUser = async () => {
+    if (!email.trim()) {
+      toast.error("Please enter your email");
+      return;
+    }
+    if (!password.trim()) {
+      toast.error("Please enter a password");
+      return;
+    }
     const userObj = {
       email,
       password,
@@ -70,6 +78,7 @@ export const Login = () => {
               placeholder="Password*"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              onKeyPress={handleKeyPress}
             />
           </div>
           <div className="remember d-flex justify-content-between my-2">
@@ -90,7 +99,7 @@ export const Login = () => {
           </div>
 
           <button
-            onClick={handleKeyPress}
+            onClick={loginUser}
             onKeyPress={handleKeyPress}
             type="submit"
             className="submit"
