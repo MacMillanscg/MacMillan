@@ -2,6 +2,7 @@ const router = require("express").Router();
 const bcrypt = require("bcrypt");
 let User = require("../Schema/userModel");
 const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer");
 
 router.route("/").get((req, res) => {
   User.find()
@@ -37,42 +38,66 @@ router.route("/register").post(async (req, res) => {
 });
 
 // user login route
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: "rafiullah372@gmail.com", // Your Gmail email address
-    pass: "kgdgqlaudfbngtjs", // Your Gmail password
-  },
-});
-
-route.router("/forgetpass").post(async (req, res) => {
-  try {
-    const { email } = req.body;
-    // Check if user with email exists
-    const user = await User.findOne({ email });
+router.route("/forgot-password").post((req, res) => {
+  const { email } = req.body;
+  User.findOne({ email: email }).then((user) => {
     if (!user) {
       return res
-        .status(404)
-        .json({ error: "User with this email does not exist" });
+        .status(400)
+        .send({ success: false, message: "User does not exist." });
     }
-    // Generate reset token
-    const resetToken = jwt.sign({ email }, "SHEY", { expiresIn: "1h" });
-    // Save reset token in user document
-    user.resetToken = resetToken;
-    user.resetTokenExpiry = Date.now() + 3600000; // 1 hour from now
-    await user.save();
-    // Send reset password email
-    const resetLink = `http://localhost:3000/resetpassword?token=${resetToken}`;
-    await transporter.sendMail({
-      from: "rafiullah372@gmail.com",
-      to: email,
-      subject: "Password Reset",
-      html: `Please click <a href="${resetLink}">here</a> to reset your password.`,
+    const token = jwt.sign({ id: user._id }, "SHEY", {
+      expiresIn: 60 * 60,
     });
-    res.status(200).json({ message: "Password reset email sent" });
-  } catch (error) {
-    res.status(500).json({ error: "Password reset failed" });
-  }
+    var transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "jkfiverr1@gmail.com",
+        pass: "lqwoawlrqxtngdjh",
+      },
+    });
+
+    var mailOptions = {
+      from: "jkfiverr1@gmail.com",
+      to: email,
+      subject: "Reset Password Link",
+      text: `http://localhost:3000/reset-password/${user._id}/${token}`,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        return res
+          .status(200)
+          .send({ success: true, message: "Please check you email" });
+      }
+    });
+  });
+});
+
+router.route("/reset-password/:id/:token").post((req, res) => {
+  const { id, token } = req.params;
+  const { password } = req.body;
+
+  jwt.verify(token, "SHEY", (err, decoded) => {
+    if (err) {
+      return res.json({ Status: "Error with token" });
+    } else {
+      bcrypt
+        .hash(password, 10)
+        .then((hash) => {
+          User.findByIdAndUpdate({ _id: id }, { password: hash })
+            .then((u) =>
+              res
+                .status(200)
+                .send({ success: true, message: "Password updated" })
+            )
+            .catch((err) => res.send({ Status: err }));
+        })
+        .catch((err) => res.send({ Status: err }));
+    }
+  });
 });
 
 router.route("/login").post(async (req, res) => {

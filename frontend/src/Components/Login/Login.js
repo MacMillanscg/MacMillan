@@ -94,7 +94,7 @@ export const Login = () => {
               </label>
             </div>
             <div class="forgot">
-              <Link to="/forgotpass">Forgot password?</Link>
+              <Link to="/forgot-password">Forgot password?</Link>
             </div>
           </div>
 

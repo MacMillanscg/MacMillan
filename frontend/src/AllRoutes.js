@@ -55,9 +55,9 @@ export const AllRoutes = () => {
           }
         />
 
-        <Route path="/forgotpass" element={<ForgotPass />} />
+        <Route path="/forgot-password" element={<ForgotPass />} />
         <Route path="/otpverification" element={<OtpVerification />} />
-        <Route path="/resetpassword" element={<ResetPassword />} />
+        <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
         <Route path="/support" element={<Support />} />
 
         {/* <Route
