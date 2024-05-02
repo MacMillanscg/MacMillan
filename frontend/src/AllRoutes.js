@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { NotFound } from "./Components/NotFound";
 import { Register } from "./Components/Register/Register";
@@ -74,8 +74,9 @@ export const AllRoutes = () => {
 };
 
 export function ProtectedRoutes({ children }) {
-  const user = localStorage.getItem("user");
-  if (user !== "" && user) {
+  const user = sessionStorage.getItem("user");
+  const remember = localStorage.getItem("rememberMe");
+  if (remember || user) {
     return children;
   } else {
     return <Navigate to="/login" />;
@@ -83,8 +84,10 @@ export function ProtectedRoutes({ children }) {
 }
 
 export function PublicRoutes({ children }) {
-  const user = localStorage.getItem("user");
-  if (user !== "" && user) {
+  const user = sessionStorage.getItem("user");
+  console.log("user", user);
+  const remember = localStorage.getItem("rememberMe");
+  if (remember || user) {
     return <Navigate to="/" />;
   } else {
     return children;

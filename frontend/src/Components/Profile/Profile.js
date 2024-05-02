@@ -14,6 +14,7 @@ export const Profile = () => {
   const handleLogout = () => {
     // Clear local storage
     localStorage.clear();
+    sessionStorage.removeItem("user");
     navigate("/login");
   };
   const openDialog = () => {

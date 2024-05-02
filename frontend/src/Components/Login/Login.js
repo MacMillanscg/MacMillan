@@ -8,6 +8,9 @@ import logo from "../../assets/images/logo.jpg";
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
+
+  console.log("reme", rememberMe);
 
   const navigate = useNavigate();
   const loginUser = async () => {
@@ -30,11 +33,16 @@ export const Login = () => {
         userObj
       );
       toast.dismiss();
-      console.log("login response", response.data);
-      if (response.data.success) {
-        toast.success(response.data.message);
+      const { success, data, message } = response.data;
+      if (success) {
+        toast.success(message);
+        if (rememberMe) {
+          localStorage.setItem("rememberMe", response.data.data);
+        } else {
+          localStorage.removeItem("rememberMe");
+        }
         //  in data we have stored token
-        localStorage.setItem("user", response.data.data);
+        sessionStorage.setItem("user", response.data.data);
         navigate("/");
       } else {
         toast.error(response.data.message);
@@ -86,8 +94,9 @@ export const Login = () => {
               <input
                 class="form-check-input"
                 type="checkbox"
-                value=""
                 id="flexCheckIndeterminate"
+                value={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
               />
               <label class="form-check-label" for="flexCheckIndeterminate">
                 Remember Me
