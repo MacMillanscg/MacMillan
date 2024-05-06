@@ -1,16 +1,15 @@
-.sign-up{
+.signUp{
     width: 400px;
     margin: 0 auto;
     background: white;
     border-radius: 4px;
-    padding: 18px 33px;
-    height: 575px;
-    padding-top: 74px !important;
+    padding: 28px 33px;
+    height: 530px;
 }
 
-.form-control{
+.formControl{
     margin-bottom: 12px;
-    height: 46px;
+    height: 43px;
 }
 input::placeholder{
     color: #bdb1b1 !important;
@@ -29,7 +28,7 @@ input::placeholder{
     border-radius: 3px;
     font-size: 15px !important;
 }
-h3{
+.heading3{
     font-weight: 400;
     margin: 20px 0 30px 0 !important;
 }
@@ -48,9 +47,7 @@ h4{
 }
 
 .already span{
-    font-size: 15px;
-    font-style: italic; 
-
+    font-size: 16px;
 }
 p{
     font-size: 15px;
@@ -65,7 +62,11 @@ p img{
     display: flex;
     align-items: center;
 }
-.term label{
+.labelTerm{
     font-size: 13px;
     margin-left: 5px;
+}
+.powerBy{
+    font-size: 15px !important;
+    margin-top: 20px;
 }

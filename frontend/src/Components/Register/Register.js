@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import logo from "../../assets/images/logo.jpg";
-import "./Register.css";
+import styles from "./Register.module.css";
 
 export const Register = () => {
   const [name, setName] = useState("");
@@ -81,17 +81,17 @@ export const Register = () => {
   };
   return (
     <div className="authenticate">
-      <div className="formWrap sign-up">
-        <div className="logo">
+      <div className={styles.signUp}>
+        <div className={styles.logo}>
           <img src={logo} alt="Macmallin logo" />
         </div>
-        <h3 className="text-center">MacMillan</h3>
+        <h3 className={`text-center ${styles.heading3}`}>MacMillan</h3>
 
         <div className="inputFields">
           <div className="form-group">
             <input
               type="text"
-              className="form-control"
+              className={`form-control ${styles.formControl}`}
               id="exampleInputFUllName"
               placeholder="Full Name*"
               value={name}
@@ -101,7 +101,7 @@ export const Register = () => {
           <div className="form-group">
             <input
               type="email"
-              className="form-control"
+              className={`form-control ${styles.formControl}`}
               id="exampleInputEmail"
               placeholder="Email*"
               value={email}
@@ -111,7 +111,7 @@ export const Register = () => {
           <div className="form-group">
             <input
               type="password"
-              className="form-control"
+              className={`form-control ${styles.formControl}`}
               id="exampleInputPassword"
               placeholder="Password*"
               value={password}
@@ -121,31 +121,33 @@ export const Register = () => {
           <div className="form-group">
             <input
               type="password"
-              className="form-control"
+              className={`form-control ${styles.formControl}`}
               id="exampleInputConfirm_Password"
               placeholder="Confirm Password*"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </div>
-          <div className="term">
+          <div className={styles.terms}>
             <input
               type="checkbox"
               checked={agreedToTerms}
               onChange={handleCheckboxChange}
             />
-            <label>I agree to the Terms and condition</label>
+            <label className={styles.labelTerm}>
+              I agree to the Terms and condition
+            </label>
           </div>
           <button
             disabled={!agreedToTerms}
-            className="submit"
+            className={styles.submit}
             onClick={registerUser}
           >
             CREATE ACCOUNT
           </button>
-          <div className="already">
+          <div className={styles.already}>
             <span>Already account?</span> <Link to="/login">Login</Link>
-            <p className="me-3">
+            <p className={`${styles.powerBy}`}>
               Powered by <img src={logo} alt="MacMillan" />
             </p>
           </div>

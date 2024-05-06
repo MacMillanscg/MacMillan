@@ -8,7 +8,7 @@ import {
   faUsers,
   faChevronLeft,
   faBars,
-  faUserCircle,
+  faTh,
 } from "@fortawesome/free-solid-svg-icons";
 import logo from "../../assets/images/logo.jpg";
 import { useAppContext } from "../Context/AppContext";
@@ -111,11 +111,11 @@ export const Sidebar = () => {
           >
             {showText ? (
               <>
-                <FontAwesomeIcon icon={faUsers} className={styles.icon} />
+                <FontAwesomeIcon icon={faTh} className={styles.icon} />
                 Connectors
               </>
             ) : (
-              <FontAwesomeIcon icon={faUsers} className={styles.icon} />
+              <FontAwesomeIcon icon={faTh} className={styles.icon} />
             )}
           </Link>
         </li>
@@ -131,11 +131,11 @@ export const Sidebar = () => {
           >
             {showText ? (
               <>
-                <FontAwesomeIcon icon={faUserCircle} className={styles.icon} />
+                <FontAwesomeIcon icon={faUsers} className={styles.icon} />
                 Clients
               </>
             ) : (
-              <FontAwesomeIcon icon={faUserCircle} className={styles.icon} />
+              <FontAwesomeIcon icon={faUsers} className={styles.icon} />
             )}
           </Link>
         </li>

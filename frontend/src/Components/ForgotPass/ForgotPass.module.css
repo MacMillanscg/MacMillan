@@ -9,11 +9,18 @@
 }
 .heading3{
     margin: 15px 0 !important;
+    font-size: 30px !important;
 }
-p{
-    font-size: 15px !important;
-    margin-bottom: 40px;
+.para{
+    font-size: 16px !important;
+    margin-bottom: 25px !important;
 }
-input{
+.input{
     border: 1px solid #808080;
+}
+.resetPasword{
+    font-size: 18px !important;
+}
+.emailLabel{
+    font-size: 18px;
 }

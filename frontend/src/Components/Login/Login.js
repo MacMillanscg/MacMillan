@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
-import "./Login.css";
 import logo from "../../assets/images/logo.jpg";
+import styles from "./Login.module.css";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -61,17 +61,17 @@ export const Login = () => {
 
   return (
     <div className="authenticate">
-      <div className="formWrap login">
-        <div className="logo">
+      <div className={styles.login}>
+        <div className={styles.logo}>
           <img src={logo} alt="Macmallin logo" />
         </div>
-        <h3 className="text-center">MacMillan</h3>
+        <h3 className={`text-center ${styles.heading3}`}>MacMillan</h3>
         {/* <form> */}
         <div className="inputFields">
           <div className="form-group">
             <input
               type="email"
-              className="form-control"
+              className={`form-control ${styles.formControl}`}
               id="exampleInputEmail"
               placeholder="Email*"
               value={email}
@@ -81,7 +81,7 @@ export const Login = () => {
           <div className="form-group">
             <input
               type="password"
-              className="form-control"
+              className={`form-control ${styles.formControl}`}
               id="exampleInputPassword"
               placeholder="Password*"
               value={password}
@@ -102,8 +102,10 @@ export const Login = () => {
                 Remember Me
               </label>
             </div>
-            <div class="forgot">
-              <Link to="/forgot-password">Forgot password?</Link>
+            <div class={styles.forgot}>
+              <Link className={styles.forgotLink} to="/forgot-password">
+                Forgot password?
+              </Link>
             </div>
           </div>
 
@@ -111,16 +113,16 @@ export const Login = () => {
             onClick={loginUser}
             onKeyPress={handleKeyPress}
             type="submit"
-            className="submit"
+            className={styles.submit}
           >
             Log In
           </button>
           <div className="no-account text-end mt-1">
-            <p>
+            <p className={styles.account}>
               Don't have account <Link to="/register">Sign Up here</Link>
             </p>
           </div>
-          <p className="para me-3">
+          <p className={`me-3 ${styles.para}`}>
             Powered by <img src={logo} alt="MacMillan" />
           </p>
         </div>

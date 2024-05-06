@@ -3,6 +3,7 @@ import styles from "./ResetPassword.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import logo from "../../assets/images/logo.jpg";
 
 export const ResetPassword = () => {
   const [password, setPassword] = useState("");
@@ -52,33 +53,39 @@ export const ResetPassword = () => {
   return (
     <div className="authenticate">
       <div className={styles.forgot}>
-        <h3 className={styles.heading3}>Set a new password.</h3>
-        <p>Please enter your new password.</p>
+        <div className={styles.logo}>
+          <img src={logo} alt="" />
+        </div>
+        <h3 className={styles.heading3}>Reset account password</h3>
+        <p className={styles.para}>
+          Enter a new password for the API Integration application
+        </p>
 
-        <div className="form-group">
-          <label>New Password*</label>
+        <div className={`form-group mt-4 mb-2 ${styles.formGroup}`}>
+          <label className={styles.label}>Password:</label>
           <input
             type="password"
-            className="form-control"
+            className={`form-control ${styles.formControl}`}
             id="exampleInputEmail"
-            placeholder="Re-enter password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <div className="form-group">
-          <label>Confirm Password*</label>
+        <div className={`form-group ${styles.formGroup}`}>
+          <label className={styles.label}>Confirm Password:</label>
           <input
             type="password"
-            className="form-control"
+            className={`form-control ${styles.formControl}`}
             id="exampleInputEmail"
-            placeholder="Re-enter password"
             value={confirmPassword}
             onChange={(e) => setConfimPassword(e.target.value)}
           />
         </div>
-        <button className="btn w-100 submit" onClick={handleSubmit}>
-          Update Password
+        <button
+          className={`btn submit  ${styles.resetBtn} mt-4`}
+          onClick={handleSubmit}
+        >
+          Reset Password
         </button>
       </div>
     </div>

@@ -29,9 +29,12 @@ export const ForgotPass = () => {
     <div className="authenticate">
       <div className={styles.forgot}>
         <h3 className={styles.heading3}>Forgot Password</h3>
-        <p>Please enter your email and reset you password.</p>
+        <p className={styles.para}>
+          Please enter your email and you will receive a link to reset your
+          password.
+        </p>
         <div className="form-group">
-          <label>Your email*</label>
+          <label className={styles.emailLabel}>Email:</label>
           <input
             type="email"
             className="form-control"
@@ -41,7 +44,10 @@ export const ForgotPass = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <button onClick={handleSubmit} className="btn w-100 submit">
+        <button
+          onClick={handleSubmit}
+          className={`btn w-100 submit mt-2 ${styles.resetPasword}`}
+        >
           Reset Password
         </button>
       </div>
