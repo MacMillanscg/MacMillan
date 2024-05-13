@@ -19,6 +19,7 @@ import { DeployedInstances } from "./Components/DeployedInstances/DeployedInstan
 import { AddConnections } from "./Components/Connections/AddConnections";
 import { ConnectionList } from "./Components/Connections/ConnectionList";
 import { ConnectorList } from "./Components/Connectors/ConnectorList";
+import { Terms } from "./Components/Register/Terms";
 
 export const AllRoutes = () => {
   return (

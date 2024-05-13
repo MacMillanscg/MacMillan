@@ -91,6 +91,9 @@ p img{
   .passwordValidation p {
     margin: 5px 0;
   }
+  .terms{
+    margin-bottom: 6px;
+  }
   
   .valid {
     color: green;
@@ -99,3 +102,30 @@ p img{
   .invalid {
     color: red;
   }
+  .labelTerm{
+    display: inline;
+  }
+  .termsHover{
+    color: #153359;
+    text-decoration: underline;
+    cursor: pointer;
+}
+/* .termsHover:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  } */
+  
+  /* .termsText {
+    display: none;
+  }
+  
+  .termsHover:hover + .termsText {
+    display: block;
+  } */
+.eyeIcon{
+    margin-right: 16px;
+    color: gray;
+    font-size: 12px;
+    top: 22px !important;
+}
+

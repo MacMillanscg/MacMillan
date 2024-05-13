@@ -1,0 +1,28 @@
+
+.modalBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    backdrop-filter: blur(4px); /* Apply blur effect to the background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999; /* Ensure modal is on top of everything */
+  }
+  
+  .modalContainer {
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+    z-index: 1000; /* Ensure modal is on top of the background */
+    width: 400px;
+    min-height: 350px;
+    max-height: 100%;
+  }
+  
+  .termsText{
+    margin-bottom: 15px;
+  }

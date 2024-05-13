@@ -4,6 +4,9 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import logo from "../../assets/images/logo.jpg";
 import styles from "./Register.module.css";
+import { Terms } from "./Terms";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 export const Register = () => {
   const [name, setName] = useState("");
@@ -12,6 +15,18 @@ export const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState(0);
+  const [showTerms, setShowTerms] = useState(false); // State to toggle visibility of terms and conditions
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   const navigate = useNavigate();
 
   const handleCheckboxChange = () => {
@@ -157,7 +172,7 @@ export const Register = () => {
           </div>
           <div className="form-group position-relative">
             <input
-              type="password"
+              type={passwordVisible ? "text" : "password"}
               className={`form-control ${styles.formControl}`}
               id="exampleInputPassword"
               placeholder="Password*"
@@ -167,6 +182,16 @@ export const Register = () => {
                 setPasswordStrength(calculatePasswordStrength(e.target.value));
               }}
             />
+            <span
+              className={`position-absolute end-0 top-50 translate-middle-y ${styles.eyeIcon}`}
+              onClick={() => setPasswordVisible(!passwordVisible)} // Toggle password visibility on click
+            >
+              {passwordVisible ? (
+                <FontAwesomeIcon icon={faEye} />
+              ) : (
+                <FontAwesomeIcon icon={faEyeSlash} />
+              )}{" "}
+            </span>
             {password.length > 4 ? (
               <div className={`progress mb-2 ${styles.progressBar}`}>
                 <div
@@ -219,15 +244,25 @@ export const Register = () => {
           </div>
           {/* Password validation messages */}
 
-          <div className="form-group">
+          <div className="form-group position-relative">
             <input
-              type="password"
+              type={passwordVisible ? "text" : "password"}
               className={`form-control ${styles.formControl}`}
               id="exampleInputConfirm_Password"
               placeholder="Confirm Password*"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
+            <span
+              className={`position-absolute end-0 top-50 translate-middle-y ${styles.eyeIcon}`}
+              onClick={() => setPasswordVisible(!passwordVisible)} // Toggle password visibility on click
+            >
+              {passwordVisible ? (
+                <FontAwesomeIcon icon={faEye} />
+              ) : (
+                <FontAwesomeIcon icon={faEyeSlash} />
+              )}{" "}
+            </span>
           </div>
           <div className={styles.terms}>
             <input
@@ -236,7 +271,10 @@ export const Register = () => {
               onChange={handleCheckboxChange}
             />
             <label className={styles.labelTerm}>
-              I agree to the Terms and condition
+              I agree to the{" "}
+              <span className={styles.termsHover} onClick={openModal}>
+                Terms and Conditions
+              </span>
             </label>
           </div>
           <button
@@ -254,6 +292,7 @@ export const Register = () => {
           </div>
         </div>
       </div>
+      {isModalOpen && <Terms closeModal={closeModal} />}
     </div>
   );
 };
