@@ -9,6 +9,16 @@ export const ForgotPass = () => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
+    let errorOccurred = false;
+    if (email.length < 1) {
+      toast.error("Please enter your email");
+      errorOccurred = true;
+    }
+
+    if (errorOccurred) {
+      return;
+    }
+
     axios
       .post("http://localhost:5000/auth/forgot-password", { email })
       .then((res) => {

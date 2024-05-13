@@ -4,7 +4,8 @@
     background: white;
     border-radius: 4px;
     padding: 28px 33px;
-    height: 530px;
+    min-height: 500px;
+    padding-bottom: 10px;
 }
 
 .formControl{
@@ -63,10 +64,38 @@ p img{
     align-items: center;
 }
 .labelTerm{
-    font-size: 13px;
-    margin-left: 5px;
+    font-size: 15px;
+    margin-left: 8px;
 }
 .powerBy{
     font-size: 15px !important;
     margin-top: 20px;
+    margin-bottom: 10px;
 }
+.progressBar{
+    height: 8px;
+    position: absolute;
+    z-index: 9999;
+    width: 100%;
+    bottom: -18px;
+}
+.mediumStrength {
+    color: rgb(237, 237, 7);
+  }
+  .passwordValidation {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+  
+  .passwordValidation p {
+    margin: 5px 0;
+  }
+  
+  .valid {
+    color: green;
+  }
+  
+  .invalid {
+    color: red;
+  }

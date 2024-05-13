@@ -19,7 +19,6 @@ import { DeployedInstances } from "./Components/DeployedInstances/DeployedInstan
 import { AddConnections } from "./Components/Connections/AddConnections";
 import { ConnectionList } from "./Components/Connections/ConnectionList";
 import { ConnectorList } from "./Components/Connectors/ConnectorList";
-import { AddClients } from "./Components/ClientsCom/AddClients";
 
 export const AllRoutes = () => {
   return (
@@ -49,7 +48,7 @@ export const AllRoutes = () => {
             element={<AddConnections />}
           />
           <Route path="/connectors/connectorList" element={<ConnectorList />} />
-          <Route path="/clients/addClient" element={<AddClients />} />
+          {/* <Route path="/clients/addClient" element={<AddClients />} /> */}
         </Route>
 
         <Route

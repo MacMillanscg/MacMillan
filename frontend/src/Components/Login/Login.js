@@ -14,14 +14,28 @@ export const Login = () => {
 
   const navigate = useNavigate();
   const loginUser = async () => {
-    if (!email.trim()) {
-      toast.error("Please enter your email");
+    let errorOccurred = false;
+    if (email.length < 1 && password.length < 1) {
+      toast.error("Please enter your credentials");
+      errorOccurred = true;
+    }
+
+    if (!errorOccurred) {
+      if (email.length < 1) {
+        toast.error("Please enter your email");
+        errorOccurred = true;
+      }
+
+      if (password.length < 1) {
+        toast.error("Please enter your Password");
+        errorOccurred = true;
+      }
+    }
+
+    if (errorOccurred) {
       return;
     }
-    if (!password.trim()) {
-      toast.error("Please enter a password");
-      return;
-    }
+
     const userObj = {
       email,
       password,

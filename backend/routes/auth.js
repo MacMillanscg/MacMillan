@@ -127,7 +127,7 @@ router.route("/login").post(async (req, res) => {
       }
     } else {
       res
-        .status(200)
+        .status(400)
         .send({ success: false, message: "User does not exist", data: null });
     }
   } catch (error) {

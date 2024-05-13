@@ -48,14 +48,13 @@ export const ClientsCom = () => {
               className={styles.filterIcon}
             /> */}
           </div>
-          <Link
-            to="/clients/addClient"
+          <button
             className={`btn btn-success ${styles.addBtn} ms-4`}
             onClick={openModal}
           >
             <FontAwesomeIcon icon={faPlus} className={styles.addIcon} />
             Add Client
-          </Link>
+          </button>
         </div>
       </div>
       <div className={styles.cardSection}>
@@ -109,7 +108,7 @@ export const ClientsCom = () => {
           </Link>
         ))}
       </div>
-      {/* {<AddClients closeModal={closeModal} />} */}
+      {isModalOpen && <AddClients closeModal={closeModal} />}
     </div>
   );
 };
