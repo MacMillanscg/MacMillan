@@ -1,11 +1,95 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../assets/images/logo.jpg";
 import styles from "./Support.module.css";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 export const Support = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [notification, setNotification] = useState(null);
+  console.log("noti ", notification);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    let errorOccurred = false;
+    if (name.length < 1 && email.length < 1 && message.length < 1) {
+      toast.error("Please fill the form");
+      errorOccurred = true;
+    }
+
+    if (!errorOccurred) {
+      if (name.length < 1) {
+        toast.error("Please enter your name");
+        errorOccurred = true;
+      }
+
+      if (email.length < 1) {
+        toast.error("Please enter your email");
+        errorOccurred = true;
+      }
+      if (message.length < 1) {
+        toast.error("Please write something in the box");
+        errorOccurred = true;
+      }
+    }
+
+    if (errorOccurred) {
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/supports/support",
+        {
+          name,
+          email,
+          message,
+        }
+      );
+      console.log("res", response);
+      if (response.status === 200) {
+        setNotification(
+          "Your request has been submitted and our team will reach out to you soon"
+        );
+        // Check response status instead of response.ok
+        // Handle success, e.g., show a success message
+        console.log("Email sent successfully");
+      } else {
+        // Handle error, e.g., show an error message
+        console.error("Error sending email");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  const handleNotificationClose = () => {
+    setNotification(null);
+  };
+
   return (
     <div className="authenticate">
       <div className={styles.support}>
+        {notification && (
+          <div
+            className={`alert alert-success mt-3 d-flex justify-content-between ${styles.notification}`}
+            role="alert"
+          >
+            <div>{notification}</div>
+            <button
+              type="button"
+              className={`close ${styles.closeBtn}`}
+              onClick={handleNotificationClose}
+            >
+              <span className={styles.cross} aria-hidden="true">
+                &times;
+              </span>
+            </button>
+          </div>
+        )}
         <div className={styles.logo}>
           <img src={logo} alt="Macmallin logo" />
         </div>
@@ -18,25 +102,23 @@ export const Support = () => {
           <div className="form-group">
             <label>Name</label>
             <input
-              type="email"
+              type="text"
               className="form-control"
-              id="exampleInputEmail"
               //   placeholder="Email*"
-              //   value={email}
-              //   onChange={(e) => setEmail(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
-          <div className="form-group">
+          <div className="form-group mt-1">
             <label>Email</label>
             <input
               type="text"
               className="form-control"
-              id="exampleInputPassword"
-              //   value={password}
-              //   onChange={(e) => setPassword(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div className="form-group">
+          <div className="form-group mt-1">
             Message
             <textarea
               className={`form-control ${styles.textareaField}`}
@@ -44,10 +126,16 @@ export const Support = () => {
               id=""
               cols="50"
               rows="4"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
             ></textarea>
           </div>
 
-          <button type="submit" className={`submit ${styles.btn}`}>
+          <button
+            type="submit"
+            className={`btn submit ${styles.btn} mt-2`}
+            onClick={handleSubmit}
+          >
             Submit Request
           </button>
         </div>

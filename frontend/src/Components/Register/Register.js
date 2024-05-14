@@ -109,6 +109,7 @@ export const Register = () => {
         "http://localhost:5000/auth/register",
         userObj
       );
+      console.log("register", response);
       toast.dismiss();
       if (response.data.success) {
         toast.success(response.data.message);
