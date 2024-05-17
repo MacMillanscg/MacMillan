@@ -1,15 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Profile.module.css";
-import { Link } from "react-router-dom";
+import { Link, resolvePath } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ConfirmationDialog } from "./ConfirmationDialog";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt, faHeadset } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
+import { useAppContext } from "../Context/AppContext";
 
 export const Profile = () => {
   const navigate = useNavigate();
   const [showDialog, setShowDialog] = useState(false);
   const [showProfile, setShowProfile] = useState(true);
+  const [users, setUsers] = useState({});
+
+  const { name, setName, email } = useAppContext();
+
+  const user = JSON.parse(localStorage.getItem("rememberMeUser"));
+  const userCapitalize = user.name.charAt(0).toUpperCase() + user.name.slice(1);
 
   const handleLogout = () => {
     // Clear local storage
@@ -35,11 +43,14 @@ export const Profile = () => {
       {showProfile && (
         <div className={styles.profile}>
           <div className={`${styles.card}`}>
-            <img src="" alt="" />
+            {/* <img src="" alt="" /> */}
             <div className="card-body">
-              <div className={styles.cardtitle}>MM</div>
-              <div className="title-text">Macmillan@gmail.com</div>
-              <Link className={styles.btn} to="/profiledetails">
+              <div className={styles.cardtitle}>
+                {user.name.slice(0, 2).toUpperCase()}
+              </div>
+              <div>{userCapitalize}</div>
+              <div className="title-text">{email}</div>
+              <Link className={styles.btn} to={"/profiledetails"}>
                 User setting
               </Link>
 

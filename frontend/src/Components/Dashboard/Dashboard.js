@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Dashboard.module.css";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,12 +12,13 @@ import { useAppContext } from "../Context/AppContext";
 
 export const Dashboard = () => {
   const { dashboardWidth } = useAppContext();
+  const user = JSON.parse(localStorage.getItem("rememberMeUser"));
 
   return (
     <div className="dashboard" style={{ width: dashboardWidth }}>
       <div className={styles.home}>
         <div className={styles.homeTitle}>
-          <h1 className={styles.heading1}>Welcome back to MacMillan</h1>
+          <h1 className={styles.heading1}>Welcome back {user.name}</h1>
           <p className={styles.description}>To do more with MacMillan</p>
           <Link to="#" className={styles.learnMore}>
             Learn more{" "}

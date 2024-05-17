@@ -13,6 +13,8 @@ background-color: #5b71d6;
 font-size: 14px;
 padding: 4px;
 color: white;
+min-width: 40px;
+text-align: center;
 }
 .title{
     font-size: 24px;
@@ -27,7 +29,9 @@ color: white;
     background-color: #5b71d6;
     font-size: 19px;
     padding: 6px;
-    color: white
+    color: white;
+    min-width: 44px;
+    text-align: center;
 }
 .profilebottom{
     padding: 6px 17px;

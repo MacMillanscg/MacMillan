@@ -46,14 +46,20 @@ export const Login = () => {
         "http://localhost:5000/auth/login",
         userObj
       );
+
       toast.dismiss();
-      const { success, data, message } = response.data;
+      const { success, data, user, message } = response.data;
+      console.log("user", user);
+      console.log("user", typeof user);
       if (success) {
         toast.success(message);
         if (rememberMe) {
           localStorage.setItem("rememberMe", response.data.data);
+          localStorage.setItem("rememberMeUser", JSON.stringify(user));
+          // localStorage.setItem("user");
         } else {
           localStorage.removeItem("rememberMe");
+          localStorage.removeItem("rememberMeUser");
         }
         //  in data we have stored token
         sessionStorage.setItem("user", response.data.data);

@@ -1,24 +1,68 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./ProfileDetails.module.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useAppContext } from "../Context/AppContext";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 export const ProfileDetails = () => {
-  const { dashboardWidth } = useAppContext();
+  const { dashboardWidth, name, setName, email, phone, setPhone } =
+    useAppContext();
+  const user = JSON.parse(localStorage.getItem("rememberMeUser"));
+  const userCapitalize = user.name.charAt(0).toUpperCase() + user.name.slice(1);
+  // setName(user.name);
+  console.log("user", user._id);
+
+  const handleSave = async () => {
+    let errorOccurred = false;
+    if (!name.trim()) {
+      toast.error("Please enter your name");
+      errorOccurred = true;
+    }
+    if (!phone.trim()) {
+      toast.error("Please enter your phone number");
+      errorOccurred = true;
+    }
+    if (errorOccurred) {
+      return;
+    }
+    const obj = { userId: user._id, name, phone };
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/auth/profiledetails",
+        obj
+      );
+      if (response.data.success) {
+        toast.success(response.data.message);
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      console.error("Error updating user profile:", error);
+    }
+  };
+
   return (
     <div className="home-section" style={{ width: dashboardWidth }}>
       <div className={styles.profileDetails}>
         <div className={styles.profiletop}>
           <span className="me-2">Profile</span>/
-          <span className={`ms-2 ${styles.profilename}`}>MacMillan</span>
+          <span className={`ms-2 ${styles.profilename}`}>{userCapitalize}</span>
           <div className={styles.inner}>
             <div className="inner-left">
-              <span className={styles.subtitle}>MM</span>
-              <span className={styles.title}>MacMillan</span>
+              <span className={styles.subtitle}>
+                {name.slice(0, 2).toUpperCase()}
+              </span>
+              <span className={styles.title}>{userCapitalize}</span>
             </div>
             <div className="inner-right">
               <button className={styles.cancel}>Cancel</button>
-              <button className={`btn btn-success ${styles.save}`}>Save</button>
+              <button
+                onClick={handleSave}
+                className={`btn btn-success ${styles.save}`}
+              >
+                Save
+              </button>
             </div>
           </div>
           <div className="more mb-3">
@@ -31,7 +75,9 @@ export const ProfileDetails = () => {
         <div className={styles.profilebottom}>
           <div className="form-section d-flex">
             <div className="left">
-              <span className={styles.img}>MM</span>
+              <span className={styles.img}>
+                {user.name.slice(0, 2).toUpperCase()}
+              </span>
             </div>
             <div className="avato ms-3">
               <Link className={styles.upload} to="/">
@@ -47,23 +93,24 @@ export const ProfileDetails = () => {
             <div className="form-group mb-2">
               <label>Email</label>
               <input
-                type="text"
+                type="email"
                 className="form-control"
                 id="exampleInputFUllName"
-                placeholder="Macmillan@gmail.com"
-                // value={name}
-                // onChange={(e) => setName(e.target.value)}
+                // placeholder={user.email}
+                disabled
+                value={email}
+                // onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="form-group mb-2">
               <label>Name</label>
               <input
-                type="email"
+                type="text"
                 className="form-control"
                 id="exampleInputEmail"
-                placeholder="Mac Millan"
-                // value={email}
-                // onChange={(e) => setEmail(e.target.value)}
+                // placeholder={user.name}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
             <div className="form-group mb-2">
@@ -78,12 +125,12 @@ export const ProfileDetails = () => {
             <div className="form-group mb-2">
               <label>Phone</label>
               <input
-                type="text"
+                type="number"
                 className="form-control"
                 id="exampleInputConfirm_Password"
                 placeholder="+1"
-                // value={confirmPassword}
-                // onChange={(e) => setConfirmPassword(e.target.value)}
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
               />
             </div>
           </div>

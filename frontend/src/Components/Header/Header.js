@@ -6,6 +6,7 @@ import { Profile } from "../Profile/Profile";
 export const Header = () => {
   const [isProfileVisible, setIsProfileVisible] = useState(false);
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("rememberMeUser"));
 
   const toggleProfile = () => {
     setIsProfileVisible(!isProfileVisible);
@@ -19,7 +20,7 @@ export const Header = () => {
               onClick={toggleProfile}
               className={`${styles.navlink} nav-link`}
             >
-              MM
+              {user.name.slice(0, 2).toUpperCase()}
             </button>
           </li>
         </ul>

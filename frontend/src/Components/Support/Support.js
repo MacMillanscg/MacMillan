@@ -54,8 +54,9 @@ export const Support = () => {
         setNotification(
           "Your request has been submitted and our team will reach out to you soon"
         );
-        // Check response status instead of response.ok
-        // Handle success, e.g., show a success message
+        setName("");
+        setEmail("");
+        setMessage("");
         console.log("Email sent successfully");
       } else {
         // Handle error, e.g., show an error message
