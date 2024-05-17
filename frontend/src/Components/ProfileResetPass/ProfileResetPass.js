@@ -11,8 +11,10 @@ export const ProfileResetPass = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const { dashboardWidth, name } = useAppContext();
-  const user = JSON.parse(localStorage.getItem("rememberMeUser"));
-  const userCapitalize = name.charAt(0).toUpperCase() + name.slice(1);
+  const localStorageUser = JSON.parse(localStorage.getItem("rememberMeUser"));
+  const sessionStorageUser = JSON.parse(sessionStorage.getItem("userRecord"));
+  const user = localStorageUser || sessionStorageUser;
+  const userCapitalize = user.name.charAt(0).toUpperCase() + user.name.slice(1);
 
   const handlePasswordChange = async () => {
     let errorOccurred = false;

@@ -56,6 +56,7 @@ export const Login = () => {
         if (rememberMe) {
           localStorage.setItem("rememberMe", response.data.data);
           localStorage.setItem("rememberMeUser", JSON.stringify(user));
+
           // localStorage.setItem("user");
         } else {
           localStorage.removeItem("rememberMe");
@@ -63,6 +64,7 @@ export const Login = () => {
         }
         //  in data we have stored token
         sessionStorage.setItem("user", response.data.data);
+        sessionStorage.setItem("userRecord", JSON.stringify(user));
         navigate("/");
       } else {
         toast.error(response.data.message);

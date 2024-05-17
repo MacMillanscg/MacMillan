@@ -12,7 +12,10 @@ import { useAppContext } from "../Context/AppContext";
 
 export const Dashboard = () => {
   const { dashboardWidth } = useAppContext();
-  const user = JSON.parse(localStorage.getItem("rememberMeUser"));
+  const localStorageUser = JSON.parse(localStorage.getItem("rememberMeUser"));
+  const sessionStorageUser = JSON.parse(sessionStorage.getItem("userRecord"));
+  const user = localStorageUser || sessionStorageUser;
+  console.log("user1", user);
 
   return (
     <div className="dashboard" style={{ width: dashboardWidth }}>

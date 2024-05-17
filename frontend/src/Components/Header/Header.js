@@ -6,8 +6,9 @@ import { Profile } from "../Profile/Profile";
 export const Header = () => {
   const [isProfileVisible, setIsProfileVisible] = useState(false);
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("rememberMeUser"));
-
+  const localStorageUser = JSON.parse(localStorage.getItem("rememberMeUser"));
+  const sessionStorageUser = JSON.parse(sessionStorage.getItem("userRecord"));
+  const user = localStorageUser || sessionStorageUser;
   const toggleProfile = () => {
     setIsProfileVisible(!isProfileVisible);
   };

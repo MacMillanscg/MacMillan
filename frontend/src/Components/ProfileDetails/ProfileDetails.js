@@ -1,17 +1,27 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ProfileDetails.module.css";
-import { Link, useParams } from "react-router-dom";
+import { Link, resolvePath, useParams } from "react-router-dom";
 import { useAppContext } from "../Context/AppContext";
 import axios from "axios";
 import toast from "react-hot-toast";
 
 export const ProfileDetails = () => {
-  const { dashboardWidth, name, setName, email, phone, setPhone } =
-    useAppContext();
-  const user = JSON.parse(localStorage.getItem("rememberMeUser"));
+  const { dashboardWidth } = useAppContext();
+
+  const localStorageUser = JSON.parse(localStorage.getItem("rememberMeUser"));
+  const sessionStorageUser = JSON.parse(sessionStorage.getItem("userRecord"));
+  const user = localStorageUser || sessionStorageUser;
   const userCapitalize = user.name.charAt(0).toUpperCase() + user.name.slice(1);
-  // setName(user.name);
   console.log("user", user._id);
+
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+
+  useEffect(() => {
+    if (user && user.name) {
+      setName(user.name);
+    }
+  }, [user._id]);
 
   const handleSave = async () => {
     let errorOccurred = false;
@@ -27,13 +37,17 @@ export const ProfileDetails = () => {
       return;
     }
     const obj = { userId: user._id, name, phone };
+    console.log("userId", obj);
     try {
       const response = await axios.post(
         "http://localhost:5000/auth/profiledetails",
         obj
       );
+      const { user } = response.data;
       if (response.data.success) {
         toast.success(response.data.message);
+        localStorage.setItem("rememberMeUser", JSON.stringify(user));
+        sessionStorage.setItem("userRecord", JSON.stringify(user));
       } else {
         toast.error(response.data.message);
       }
@@ -51,7 +65,7 @@ export const ProfileDetails = () => {
           <div className={styles.inner}>
             <div className="inner-left">
               <span className={styles.subtitle}>
-                {name.slice(0, 2).toUpperCase()}
+                {user.name.slice(0, 2).toUpperCase()}
               </span>
               <span className={styles.title}>{userCapitalize}</span>
             </div>
@@ -80,9 +94,15 @@ export const ProfileDetails = () => {
               </span>
             </div>
             <div className="avato ms-3">
-              <Link className={styles.upload} to="/">
-                Upload your Avator
-              </Link>
+              <label htmlFor="profileImage" className={styles.upload}>
+                Upload your photo
+              </label>
+              <input
+                type="file"
+                id="profileImage"
+                style={{ display: "none" }}
+                // onChange={handleImageChange}
+              />
               <p>
                 Your avator makes it easier for team members to recognize
                 accross MacMillan
@@ -98,7 +118,7 @@ export const ProfileDetails = () => {
                 id="exampleInputFUllName"
                 // placeholder={user.email}
                 disabled
-                value={email}
+                value={user.email}
                 // onChange={(e) => setEmail(e.target.value)}
               />
             </div>
@@ -107,7 +127,7 @@ export const ProfileDetails = () => {
               <input
                 type="text"
                 className="form-control"
-                id="exampleInputEmail"
+                id="exampleInputName"
                 // placeholder={user.name}
                 value={name}
                 onChange={(e) => setName(e.target.value)}

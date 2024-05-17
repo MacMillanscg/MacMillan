@@ -16,7 +16,10 @@ export const Profile = () => {
 
   const { name, setName, email } = useAppContext();
 
-  const user = JSON.parse(localStorage.getItem("rememberMeUser"));
+  const { dashboardWidth } = useAppContext();
+  const localStorageUser = JSON.parse(localStorage.getItem("rememberMeUser"));
+  const sessionStorageUser = JSON.parse(sessionStorage.getItem("userRecord"));
+  const user = localStorageUser || sessionStorageUser;
   const userCapitalize = user.name.charAt(0).toUpperCase() + user.name.slice(1);
 
   const handleLogout = () => {
@@ -49,7 +52,7 @@ export const Profile = () => {
                 {user.name.slice(0, 2).toUpperCase()}
               </div>
               <div>{userCapitalize}</div>
-              <div className="title-text">{email}</div>
+              <div className="title-text">{user.email}</div>
               <Link className={styles.btn} to={"/profiledetails"}>
                 User setting
               </Link>
