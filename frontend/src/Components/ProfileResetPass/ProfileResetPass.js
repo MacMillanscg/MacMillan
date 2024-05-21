@@ -85,7 +85,18 @@ export const ProfileResetPass = () => {
           <div className={styles.inner}>
             <div className="inner-left">
               <span className={styles.subtitle}>
-                {user.name.slice(0, 2).toUpperCase()}
+                {user.profileImage ? (
+                  <img
+                    className={styles.profileImage0}
+                    src={`http://localhost:5000/${user.profileImage.replace(
+                      /\\/g,
+                      "/"
+                    )}`}
+                    alt=""
+                  />
+                ) : (
+                  user.name.slice(0, 2).toUpperCase()
+                )}
               </span>
               <span className={styles.title}>{userCapitalize}</span>
             </div>

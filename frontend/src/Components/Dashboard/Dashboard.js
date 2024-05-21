@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Dashboard.module.css";
 import { Link } from "react-router-dom";
+import { url } from "../../api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faExclamationTriangle,
@@ -9,6 +10,7 @@ import {
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
 import { useAppContext } from "../Context/AppContext";
+import { useCustomFetch } from "../../customsHooks/useCustomFetch";
 
 export const Dashboard = () => {
   const { dashboardWidth } = useAppContext();
@@ -16,6 +18,9 @@ export const Dashboard = () => {
   const sessionStorageUser = JSON.parse(sessionStorage.getItem("userRecord"));
   const user = localStorageUser || sessionStorageUser;
   console.log("user1", user);
+  const { data, loading, error } = useCustomFetch(url, user._id);
+
+  console.log("data", data);
 
   return (
     <div className="dashboard" style={{ width: dashboardWidth }}>

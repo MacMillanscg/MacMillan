@@ -5,7 +5,12 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const PORT = 5000;
+const path = require("path");
+
 const cookieParser = require("cookie-parser");
+// Serve static files from the 'public' directory
+app.use("/public", express.static(path.join(__dirname, "public")));
+// app.use(express.static("public"));
 
 const url = "mongodb://127.0.0.1:27017/mernapp";
 mongoose

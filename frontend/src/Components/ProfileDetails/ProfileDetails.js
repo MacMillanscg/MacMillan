@@ -1,27 +1,37 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ProfileDetails.module.css";
-import { Link, resolvePath, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAppContext } from "../Context/AppContext";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useCustomFetch } from "../../customsHooks/useCustomFetch";
+import { url } from "../../api";
 
 export const ProfileDetails = () => {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
+  // const [profileImage, setProfileImage] = useState("");
+  // console.log("proile", profileImage);
+
   const { dashboardWidth } = useAppContext();
 
   const localStorageUser = JSON.parse(localStorage.getItem("rememberMeUser"));
   const sessionStorageUser = JSON.parse(sessionStorage.getItem("userRecord"));
   const user = localStorageUser || sessionStorageUser;
   const userCapitalize = user.name.charAt(0).toUpperCase() + user.name.slice(1);
-  console.log("user", user._id);
-
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
+  const { data, loading, error } = useCustomFetch(url, user._id);
 
   useEffect(() => {
     if (user && user.name) {
       setName(user.name);
     }
   }, [user._id]);
+
+  const handleFileChange = (e) => {
+    setSelectedFile(e.target.files[0]);
+  };
+  console.log("selectedimg", selectedFile);
 
   const handleSave = async () => {
     let errorOccurred = false;
@@ -36,16 +46,26 @@ export const ProfileDetails = () => {
     if (errorOccurred) {
       return;
     }
-    const obj = { userId: user._id, name, phone };
-    console.log("userId", obj);
+
+    const formData = new FormData();
+    formData.append("userId", user._id);
+    formData.append("name", name);
+    formData.append("phone", phone);
+    if (selectedFile) {
+      formData.append("profileImage", selectedFile);
+    }
+
     try {
-      const response = await axios.post(
-        "http://localhost:5000/auth/profiledetails",
-        obj
-      );
+      const response = await axios.post(`${url}/profiledetails`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       const { user } = response.data;
+      console.log("usersssss", user);
       if (response.data.success) {
         toast.success(response.data.message);
+        // setProfileImage(user.profileImage);
         localStorage.setItem("rememberMeUser", JSON.stringify(user));
         sessionStorage.setItem("userRecord", JSON.stringify(user));
       } else {
@@ -65,7 +85,18 @@ export const ProfileDetails = () => {
           <div className={styles.inner}>
             <div className="inner-left">
               <span className={styles.subtitle}>
-                {user.name.slice(0, 2).toUpperCase()}
+                {user.profileImage ? (
+                  <img
+                    className={styles.profileImage0}
+                    src={`http://localhost:5000/${user.profileImage.replace(
+                      /\\/g,
+                      "/"
+                    )}`}
+                    alt=""
+                  />
+                ) : (
+                  user.name.slice(0, 2).toUpperCase()
+                )}
               </span>
               <span className={styles.title}>{userCapitalize}</span>
             </div>
@@ -90,7 +121,18 @@ export const ProfileDetails = () => {
           <div className="form-section d-flex">
             <div className="left">
               <span className={styles.img}>
-                {user.name.slice(0, 2).toUpperCase()}
+                {user.profileImage ? (
+                  <img
+                    className={styles.profileImage}
+                    src={`http://localhost:5000/${user.profileImage.replace(
+                      /\\/g,
+                      "/"
+                    )}`}
+                    alt=""
+                  />
+                ) : (
+                  user.name.slice(0, 2).toUpperCase()
+                )}
               </span>
             </div>
             <div className="avato ms-3">
@@ -101,11 +143,11 @@ export const ProfileDetails = () => {
                 type="file"
                 id="profileImage"
                 style={{ display: "none" }}
-                // onChange={handleImageChange}
+                onChange={handleFileChange}
               />
               <p>
-                Your avator makes it easier for team members to recognize
-                accross MacMillan
+                Your avatar makes it easier for team members to recognize across
+                MacMillan
               </p>
             </div>
           </div>
@@ -116,10 +158,8 @@ export const ProfileDetails = () => {
                 type="email"
                 className="form-control"
                 id="exampleInputFUllName"
-                // placeholder={user.email}
                 disabled
                 value={user.email}
-                // onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="form-group mb-2">
@@ -128,14 +168,16 @@ export const ProfileDetails = () => {
                 type="text"
                 className="form-control"
                 id="exampleInputName"
-                // placeholder={user.name}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
             <div className="form-group mb-2">
               <label>Role</label>
-              <select class="form-select" aria-label="Default select example">
+              <select
+                className="form-select"
+                aria-label="Default select example"
+              >
                 <option selected>Owner</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>

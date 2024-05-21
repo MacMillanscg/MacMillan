@@ -4,6 +4,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import logo from "../../assets/images/logo.jpg";
 import styles from "./Login.module.css";
+import { url } from "../../api";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -42,10 +43,7 @@ export const Login = () => {
     };
     try {
       toast.loading("Loading");
-      const response = await axios.post(
-        "http://localhost:5000/auth/login",
-        userObj
-      );
+      const response = await axios.post(`${url}/login`, userObj);
 
       toast.dismiss();
       const { success, data, user, message } = response.data;

@@ -52,3 +52,9 @@ text-align: center;
     background-color: green !important;
     opacity: .5;
 }
+.profileImage0{
+    width: 35px;
+}
+.profileImage{
+    width: 100px;
+}

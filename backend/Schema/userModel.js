@@ -18,6 +18,9 @@ const userSchema = new mongoose.Schema({
   phone: {
     type: Number,
   },
+  profileImage: {
+    type: String, // Assuming you will store the file path of the uploaded image
+  },
 });
 
 const userModel = mongoose.model("users", userSchema);
