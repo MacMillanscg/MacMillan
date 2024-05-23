@@ -4,7 +4,8 @@ let User = require("../Schema/userModel");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const { route } = require("./usersRoute");
-
+const axios = require("axios");
+const Client = require("../Schema/Client");
 const multer = require("multer");
 const path = require("path");
 
@@ -25,7 +26,7 @@ const upload = multer({
 });
 
 router.route("/").get((req, res) => {
-  User.find()
+  Client.find()
     .then((users) => res.json(users))
     .catch((err) => res.status(400).json("Err:" + err));
 });
@@ -245,6 +246,76 @@ router.route("/profileResetPass").post(async (req, res) => {
     return res
       .status(500)
       .send({ success: false, message: "Internal server error" });
+  }
+});
+
+// router.route("/clients").post(async (req, res) => {
+//   const { clientName, storeUrl, apiKey } = req.body;
+//   console.log("Request body:", req.body);
+
+//   if (!clientName || !storeUrl || !apiKey) {
+//     return res
+//       .status(400)
+//       .json({ success: false, message: "Missing required fields" });
+//   }
+
+//   const formattedStoreUrl = storeUrl
+//     .replace(/^https?:\/\//, "")
+//     .replace(/\/$/, "");
+
+//   try {
+//     const response = await axios.get(
+//       `https://${formattedStoreUrl}/admin/api/2021-07/shop.json`,
+//       {
+//         headers: {
+//           "X-Shopify-Access-Token": apiKey,
+//           "Content-Type": "application/json",
+//         },
+//       }
+//     );
+//     console.log("Shopify response:", response.data);
+
+//     // Save client information to your database
+//     const newClient = new Client({
+//       clientName,
+//       storeUrl: formattedStoreUrl,
+//       apiKey,
+//     });
+//     await newClient.save();
+
+//     res
+//       .status(200)
+//       .json({ success: true, message: "Client created successfully" });
+//   } catch (error) {
+//     console.error(
+//       "Error:",
+//       error.response ? error.response.data : error.message
+//     );
+//     res
+//       .status(400)
+//       .json({ success: false, message: "Invalid Shopify credentials" });
+//   }
+// });
+
+// router.route("/client").get((req, res) => {
+//   Client.find()
+//     .then((client) => res.json(client))
+//     .catch((err) => res.status(400).json("Err:" + err));
+// });
+
+router.route("/clients/addclients").post(async (req, res) => {
+  const { clientName, storeUrl, apiKey } = req.body;
+  console.log(req.body);
+
+  try {
+    const newClient = new Client({ clientName, storeUrl, apiKey });
+    const savedClient = await newClient.save();
+    res
+      .status(201)
+      .json({ message: "Client created successfully", client: savedClient });
+  } catch (error) {
+    console.error("Error creating client:", error);
+    res.status(500).json({ error: "Error creating client" });
   }
 });
 

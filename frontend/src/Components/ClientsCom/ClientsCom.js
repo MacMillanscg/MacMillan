@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./ClientsCom.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -6,11 +6,28 @@ import { useAppContext } from "../Context/AppContext";
 import { Link } from "react-router-dom";
 import clientsData from "./ClientsData";
 import { AddClients } from "./AddClients";
+import { ShopifyData } from "./ShopifyData";
+import axios from "axios";
+import { url } from "../../api";
 
 export const ClientsCom = () => {
   const { dashboardWidth } = useAppContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [clients, setClients] = useState([]);
   console.log("ismodal", isModalOpen);
+
+  useEffect(() => {
+    const fetchAllClients = async () => {
+      try {
+        const response = await axios.get(`${url}`);
+        setClients(response.data);
+        console.log("resss", response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchAllClients();
+  }, [clients]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -58,57 +75,18 @@ export const ClientsCom = () => {
         </div>
       </div>
       <div className={styles.cardSection}>
-        {clientsData.map((client, index) => (
-          <Link
-            to={`/clients/clientList`}
-            className={styles.cardWrap}
-            key={index}
-          >
-            <div className={`card ${styles.clientCard}`}>
-              <div className="card-body pt-4 px-4">
-                {/* <img src={amazonImg} className={styles.clientImg} alt="" /> */}
-                <div className="cardTitle">
-                  <h2 className={styles.title}>T</h2>
-                </div>
-                <h3 className={styles.cardTitle}>{client.title}</h3>
-                <p className={styles.content}> {client.content}</p>
-                <p className={styles.externalId}>External ID: 1234</p>
-                <div className="category">
-                  <div className={styles.list}>
-                    <div className={styles.listItem}>
-                      <div className="listItemLeft">
-                        <div className={styles.listItems}>
-                          <Link to="#" className={styles.listText}>
-                            <span className={styles.enabledClient}>
-                              {client.enabledInstances}{" "}
-                            </span>
-                            <span className={styles.enabled}>
-                              Enabled Instances
-                            </span>
-                          </Link>{" "}
-                        </div>
-                      </div>
-                      <div className="listItemRight">
-                        <div className={styles.listItems}>
-                          <Link to="#" className={styles.listText}>
-                            <span className={styles.enabledClient}>
-                              {client.enabledInstances}{" "}
-                            </span>
-                            <span className={styles.enabled}>
-                              Triggered Monitors
-                            </span>
-                          </Link>{" "}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+        {clients.map((client) => {
+          return (
+            <div className="card me-1 mb-2" style={{ width: "32%" }}>
+              <div className="card-body">
+                <h3>{client.clientName}</h3>
               </div>
             </div>
-          </Link>
-        ))}
+          );
+        })}
       </div>
       {isModalOpen && <AddClients closeModal={closeModal} />}
+      {/* <ShopifyData /> */}
     </div>
   );
 };

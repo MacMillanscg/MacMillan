@@ -37,7 +37,7 @@ export const AllRoutes = () => {
           <Route path="/profileResetPass" element={<ProfileResetPass />} />
           <Route path="/connectors" element={<Connectors />} />
           <Route path="/connections" element={<Connections />} />
-          <Route path="/clients" element={<ClientsCom />} />
+          <Route path="/clients/addclients" element={<ClientsCom />} />
           <Route path="/alertmonitors" element={<AlertMonitors />} />
           <Route path="/deployedinstances" element={<DeployedInstances />} />
           <Route

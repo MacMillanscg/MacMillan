@@ -1,1 +1,1 @@
-export const url = "http://localhost:5000/auth/";
+export const url = "http://localhost:5000/auth";

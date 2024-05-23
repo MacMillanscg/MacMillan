@@ -4,6 +4,8 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { useAppContext } from "../Context/AppContext";
 import styles from "./AddClients.module.css";
 import toast from "react-hot-toast";
+import { url } from "../../api";
+import axios from "axios";
 
 export const AddClients = ({ closeModal }) => {
   const [activeTab, setActiveTab] = useState("info");
@@ -62,44 +64,55 @@ export const AddClients = ({ closeModal }) => {
     setMagentoFields((prevFields) => ({ ...prevFields, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validation logic
-    if (!clientName || !selectedPlatform) {
+    const providedShopifyUrl = "27cd06-29.myshopify.com";
+    const providedApiKey = "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";
+    let errorOccurred = false;
+
+    if (!clientName && !shopifyFields.storeUrl && !shopifyFields.apiKey) {
+      toast.error("Please fill the form");
+      errorOccurred = true;
+    }
+    if (!errorOccurred) {
+      if (!clientName) {
+        toast.error("Please enter client name");
+        errorOccurred = true;
+      }
+    }
+
+    // Check if entered Shopify URL and API key match the provided values
+    if (
+      shopifyFields.storeUrl !== providedShopifyUrl ||
+      shopifyFields.apiKey !== providedApiKey
+    ) {
+      toast.error(
+        "Invalid Shopify store URL or API key. Please check and try again."
+      );
+      return;
+    }
+
+    if (!clientName || !shopifyFields.storeUrl || !shopifyFields.apiKey) {
       toast.error("Please fill in all required fields.");
       return;
     }
 
-    // Validate platform-specific fields based on the selected platform
-    if (selectedPlatform === "shopify") {
-      if (!shopifyFields.storeUrl || !shopifyFields.apiKey) {
-        toast.error("Please fill in all Shopify fields.");
-        return;
-      }
-      // Additional validation for Shopify fields (e.g., URL format)
-    } else if (selectedPlatform === "woocommerce") {
-      if (
-        !woocommerceFields.storeUrl ||
-        !woocommerceFields.consumerKey ||
-        !woocommerceFields.consumerSecret
-      ) {
-        toast.error("Please fill in all WooCommerce fields.");
-        return;
-      }
-      // Additional validation for WooCommerce fields (e.g., URL format)
-    } else if (selectedPlatform === "magento") {
-      if (
-        !magentoFields.storeUrl ||
-        !magentoFields.accessToken ||
-        !magentoFields.accessTokenSecret ||
-        !magentoFields.consumerKey ||
-        !magentoFields.consumerSecret
-      ) {
-        toast.error("Please fill in all Magento fields.");
-        return;
-      }
-      // Additional validation for Magento fields (e.g., URL format)
+    try {
+      const newClient = {
+        clientName,
+        shopifyStoreUrl: shopifyFields.storeUrl,
+        shopifyApiKey: shopifyFields.apiKey,
+      };
+
+      const response = await axios.post(`${url}/clients/addclients`, newClient);
+
+      console.log("New client created:", response.data);
+      toast.success("New client created successfully!");
+      closeModal();
+    } catch (error) {
+      console.error("Error creating new client:", error);
+      toast.error("Error creating new client. Please try again.");
     }
   };
 
@@ -139,8 +152,8 @@ export const AddClients = ({ closeModal }) => {
                       type="text"
                       className={`form-control ${styles.formControl}`}
                       id="exampleInputEmail"
-                      // value={email}
-                      // onChange={(e) => setEmail(e.target.value)}
+                      value={clientName}
+                      onChange={(e) => setClientName(e.target.value)}
                     />
                   </div>
                 </div>
