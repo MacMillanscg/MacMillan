@@ -52,3 +52,9 @@
 .forgotLink{
     font-size: 17px !important;
 }
+.eyeIcon{
+    margin-right: 16px;
+    color: gray;
+    font-size: 12px;
+    top: 22px !important;
+}

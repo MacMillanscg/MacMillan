@@ -5,11 +5,14 @@ import toast from "react-hot-toast";
 import logo from "../../assets/images/logo.jpg";
 import styles from "./Login.module.css";
 import { url } from "../../api";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   console.log("reme", rememberMe);
 
@@ -98,9 +101,9 @@ export const Login = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div className="form-group">
+          <div className="form-group position-relative">
             <input
-              type="password"
+              type={passwordVisible ? "text" : "password"}
               className={`form-control ${styles.formControl}`}
               id="exampleInputPassword"
               placeholder="Password*"
@@ -108,6 +111,16 @@ export const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               onKeyPress={handleKeyPress}
             />
+            <span
+              className={`position-absolute end-0 top-50 translate-middle-y ${styles.eyeIcon}`}
+              onClick={() => setPasswordVisible(!passwordVisible)} // Toggle password visibility on click
+            >
+              {passwordVisible ? (
+                <FontAwesomeIcon icon={faEye} />
+              ) : (
+                <FontAwesomeIcon icon={faEyeSlash} />
+              )}{" "}
+            </span>
           </div>
           <div className="remember d-flex justify-content-between my-2">
             <div class="form-check">

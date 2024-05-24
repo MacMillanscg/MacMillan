@@ -126,7 +126,7 @@ export const Sidebar = () => {
         >
           <Link
             className={styles.sidebarLink}
-            to="/clients"
+            to="/clients/addclients"
             onClick={() => handleItemClick("clients")}
           >
             {showText ? (

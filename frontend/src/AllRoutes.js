@@ -20,6 +20,7 @@ import { AddConnections } from "./Components/Connections/AddConnections";
 import { ConnectionList } from "./Components/Connections/ConnectionList";
 import { ConnectorList } from "./Components/Connectors/ConnectorList";
 import { Terms } from "./Components/Register/Terms";
+import { VerifyEmail } from "./Components/Register/VerifyEmail";
 
 export const AllRoutes = () => {
   return (
@@ -73,6 +74,7 @@ export const AllRoutes = () => {
         <Route path="/otpverification" element={<OtpVerification />} />
         <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
         <Route path="/support" element={<Support />} />
+        <Route path="/verify/:token" element={<VerifyEmail />} />
 
         {/* <Route
           path="*"

@@ -12,6 +12,13 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
   },
+  verified: {
+    type: Boolean,
+    default: false, // Default verification status for new users
+  },
+  verificationToken: {
+    type: String,
+  },
   role: {
     type: String,
   },
