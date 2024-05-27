@@ -8,6 +8,18 @@ const axios = require("axios");
 const Client = require("../Schema/Client");
 const multer = require("multer");
 const path = require("path");
+const authController = require("../Controllers/authController");
+const clientController = require("../Controllers/clientController");
+
+router.post("/register", authController.register);
+router.post("/login", authController.login);
+router.post("/forgot-password", authController.forgotPassword);
+router.post("/reset-password/:id/:token", authController.resetPassword);
+
+// clients route
+router.post("/clients/validate-shopify", clientController.addClientVerify);
+router.post("/clients/addclients", clientController.addClient);
+router.get("/", clientController.getAllClients);
 
 // Configure storage for multer
 const storage = multer.diskStorage({
@@ -25,142 +37,10 @@ const upload = multer({
   limits: { fileSize: 1024 * 1024 * 5 }, // Limit file size to 5MB
 });
 
-router.route("/").get((req, res) => {
-  Client.find()
-    .then((users) => res.json(users))
-    .catch((err) => res.status(400).json("Err:" + err));
-});
-
 router.route("/:id").get((req, res) => {
   User.findById(req.params.id)
     .then((user) => res.json(user))
     .catch((err) => res.status(400).json("Err :") + err);
-});
-
-// register route
-router.route("/register").post(async (req, res) => {
-  try {
-    // checking for user already exist
-    const existingUser = await User.findOne({ email: req.body.email });
-    if (existingUser) {
-      return res
-        .status(200)
-        .send({ success: false, message: "User already registered" });
-    } else {
-      // bcrypt hash password
-      const password = req.body.password;
-      const salt = await bcrypt.genSalt(10);
-      const hashPassword = await bcrypt.hash(password, salt);
-      req.body.password = hashPassword;
-
-      const newUser = new User(req.body);
-      const result = await newUser.save();
-      return res
-        .status(200)
-        .send({ success: true, message: "User Registered successfully" });
-    }
-  } catch (error) {
-    res.status(400).json("Err" + error);
-  }
-});
-
-// user login route
-router.route("/forgot-password").post((req, res) => {
-  const { email } = req.body;
-  User.findOne({ email: email }).then((user) => {
-    if (!user) {
-      return res
-        .status(400)
-        .send({ success: false, message: "User does not exist." });
-    }
-    const token = jwt.sign({ id: user._id }, "SHEY", {
-      expiresIn: 60 * 60,
-    });
-    var transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: "jkfiverr1@gmail.com",
-        pass: "lqwoawlrqxtngdjh",
-      },
-    });
-
-    var mailOptions = {
-      from: "jkfiverr1@gmail.com",
-      to: email,
-      subject: "Reset Password Link",
-      text: `http://localhost:3000/reset-password/${user._id}/${token}`,
-    };
-
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log(error);
-      } else {
-        return res
-          .status(200)
-          .send({ success: true, message: "Please check you email" });
-      }
-    });
-  });
-});
-
-router.route("/reset-password/:id/:token").post((req, res) => {
-  const { id, token } = req.params;
-  const { password } = req.body;
-
-  jwt.verify(token, "SHEY", (err, decoded) => {
-    if (err) {
-      return res.json({ Status: "Error with token" });
-    } else {
-      bcrypt
-        .hash(password, 10)
-        .then((hash) => {
-          User.findByIdAndUpdate({ _id: id }, { password: hash })
-            .then((u) =>
-              res
-                .status(200)
-                .send({ success: true, message: "Password updated" })
-            )
-            .catch((err) => res.send({ Status: err }));
-        })
-        .catch((err) => res.send({ Status: err }));
-    }
-  });
-});
-
-router.route("/login").post(async (req, res) => {
-  try {
-    const user = await User.findOne({ email: req.body.email });
-    if (user) {
-      const passwordsMatched = await bcrypt.compare(
-        req.body.password,
-        user.password
-      );
-      if (passwordsMatched) {
-        const dataToBeSentToFrontend = {
-          _id: user.id,
-          email: user.email,
-          name: user.name,
-        };
-        const token = jwt.sign(dataToBeSentToFrontend, "SHEY", {
-          expiresIn: 60 * 60,
-        });
-        res.status(200).send({
-          success: true,
-          message: "User login successfully",
-          data: token,
-          user: dataToBeSentToFrontend,
-        });
-      } else {
-        res.status(200).send({ success: false, message: "Incorrect password" });
-      }
-    } else {
-      res
-        .status(400)
-        .send({ success: false, message: "User does not exist", data: null });
-    }
-  } catch (error) {
-    res.status(400).send(error);
-  }
 });
 
 // profile details route
@@ -246,76 +126,6 @@ router.route("/profileResetPass").post(async (req, res) => {
     return res
       .status(500)
       .send({ success: false, message: "Internal server error" });
-  }
-});
-
-// router.route("/clients").post(async (req, res) => {
-//   const { clientName, storeUrl, apiKey } = req.body;
-//   console.log("Request body:", req.body);
-
-//   if (!clientName || !storeUrl || !apiKey) {
-//     return res
-//       .status(400)
-//       .json({ success: false, message: "Missing required fields" });
-//   }
-
-//   const formattedStoreUrl = storeUrl
-//     .replace(/^https?:\/\//, "")
-//     .replace(/\/$/, "");
-
-//   try {
-//     const response = await axios.get(
-//       `https://${formattedStoreUrl}/admin/api/2021-07/shop.json`,
-//       {
-//         headers: {
-//           "X-Shopify-Access-Token": apiKey,
-//           "Content-Type": "application/json",
-//         },
-//       }
-//     );
-//     console.log("Shopify response:", response.data);
-
-//     // Save client information to your database
-//     const newClient = new Client({
-//       clientName,
-//       storeUrl: formattedStoreUrl,
-//       apiKey,
-//     });
-//     await newClient.save();
-
-//     res
-//       .status(200)
-//       .json({ success: true, message: "Client created successfully" });
-//   } catch (error) {
-//     console.error(
-//       "Error:",
-//       error.response ? error.response.data : error.message
-//     );
-//     res
-//       .status(400)
-//       .json({ success: false, message: "Invalid Shopify credentials" });
-//   }
-// });
-
-// router.route("/client").get((req, res) => {
-//   Client.find()
-//     .then((client) => res.json(client))
-//     .catch((err) => res.status(400).json("Err:" + err));
-// });
-
-router.route("/clients/addclients").post(async (req, res) => {
-  const { clientName, storeUrl, apiKey } = req.body;
-  console.log(req.body);
-
-  try {
-    const newClient = new Client({ clientName, storeUrl, apiKey });
-    const savedClient = await newClient.save();
-    res
-      .status(201)
-      .json({ message: "Client created successfully", client: savedClient });
-  } catch (error) {
-    console.error("Error creating client:", error);
-    res.status(500).json({ error: "Error creating client" });
   }
 });
 

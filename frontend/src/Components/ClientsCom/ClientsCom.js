@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ClientsCom.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useAppContext } from "../Context/AppContext";
 import { Link } from "react-router-dom";
 import clientsData from "./ClientsData";
@@ -14,6 +14,8 @@ export const ClientsCom = () => {
   const { dashboardWidth } = useAppContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [clients, setClients] = useState([]);
+  const [fetchTrigger, setFetchTrigger] = useState(false); // A state to trigger re-fetching
+
   console.log("ismodal", isModalOpen);
 
   useEffect(() => {
@@ -27,7 +29,7 @@ export const ClientsCom = () => {
       }
     };
     fetchAllClients();
-  }, [clients]);
+  }, [fetchTrigger]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -77,15 +79,24 @@ export const ClientsCom = () => {
       <div className={styles.cardSection}>
         {clients.map((client) => {
           return (
-            <div className="card me-1 mb-2" style={{ width: "32%" }}>
-              <div className="card-body">
-                <h3>{client.clientName}</h3>
+            <Link
+              to={`/clients/addclients/${client._id}`}
+              key={client._id}
+              style={{ width: "32%" }}
+            >
+              <div className="card me-1 mb-2">
+                <div className="card-body">
+                  <h3>{client.clientName}</h3>
+                  <p>This is related</p>
+                </div>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>
-      {isModalOpen && <AddClients closeModal={closeModal} />}
+      {isModalOpen && (
+        <AddClients closeModal={closeModal} setFetchTrigger={setFetchTrigger} />
+      )}
       {/* <ShopifyData /> */}
     </div>
   );

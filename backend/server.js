@@ -33,6 +33,7 @@ app.use(cookieParser());
 // const userRouter = require("./routes/usersRoute");
 const userAuth = require("./routes/auth");
 const support = require("./routes/supportRoute");
+const Client = require("./Schema/Client");
 
 // app.use("/users", userRouter);
 app.use("/auth", userAuth);
@@ -43,23 +44,6 @@ app.use("/supports", support);
 //   res.header("Access-Control-Allow-Methods", "GET, POST");
 //   res.header("Access-Control-Allow-Headers", "Content-Type");
 //   next();
-// });
-
-// app.get("/shopify", async (req, res) => {
-//   try {
-//     const response = await axios.get(
-//       "https://27cd06-29.myshopify.com/admin/api/2024-04/shop.json",
-//       {
-//         headers: {
-//           "Content-Type": "application/json",
-//           "X-Shopify-Access-Token": "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",
-//         },
-//       }
-//     );
-//     res.json(response.data);
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
 // });
 
 app.listen(PORT, () => {

@@ -21,6 +21,7 @@ import { ConnectionList } from "./Components/Connections/ConnectionList";
 import { ConnectorList } from "./Components/Connectors/ConnectorList";
 import { Terms } from "./Components/Register/Terms";
 import { VerifyEmail } from "./Components/Register/VerifyEmail";
+import { ClientDetails } from "./Components/ClientsCom/ClientDetails/ClientDetails";
 
 export const AllRoutes = () => {
   return (
@@ -50,7 +51,8 @@ export const AllRoutes = () => {
             element={<AddConnections />}
           />
           <Route path="/connectors/connectorList" element={<ConnectorList />} />
-          {/* <Route path="/clients/addClient" element={<AddClients />} /> */}
+          <Route path="/clients/addclients/:id" element={<ClientDetails />} />
+          {/* <Route path="/client/:id" component={ClientDetail} /> */}
         </Route>
 
         <Route

@@ -1,23 +1,21 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { useAppContext } from "../Context/AppContext";
 import styles from "./AddClients.module.css";
 import toast from "react-hot-toast";
 import { url } from "../../api";
 import axios from "axios";
 
-export const AddClients = ({ closeModal }) => {
+export const AddClients = ({ closeModal, setFetchTrigger }) => {
   const [activeTab, setActiveTab] = useState("info");
   const [clientName, setClientName] = useState("");
   const { dashboardWidth } = useAppContext();
-
   const [selectedPlatform, setSelectedPlatform] = useState("");
-  console.log("selectedPlateform", selectedPlatform);
   const [shopifyFields, setShopifyFields] = useState({
     storeUrl: "",
     apiKey: "",
   });
+  const [isVerified, setIsVerified] = useState(false);
+
   const [woocommerceFields, setWooCommerceFields] = useState({
     storeUrl: "",
     consumerKey: "",
@@ -52,6 +50,7 @@ export const AddClients = ({ closeModal }) => {
   const handleShopifyFieldChange = (e) => {
     const { name, value } = e.target;
     setShopifyFields((prevFields) => ({ ...prevFields, [name]: value }));
+    setIsVerified(false); // Reset verification status if fields change
   };
 
   const handleWooCommerceFieldChange = (e) => {
@@ -64,48 +63,50 @@ export const AddClients = ({ closeModal }) => {
     setMagentoFields((prevFields) => ({ ...prevFields, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const verifyShopifyCredentials = async () => {
+    const { storeUrl, apiKey } = shopifyFields;
 
-    const providedShopifyUrl = "27cd06-29.myshopify.com";
-    const providedApiKey = "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";
-    let errorOccurred = false;
+    try {
+      const response = await axios.post(`${url}/clients/validate-shopify`, {
+        storeUrl,
+        apiKey,
+      });
 
-    if (!clientName && !shopifyFields.storeUrl && !shopifyFields.apiKey) {
-      toast.error("Please fill the form");
-      errorOccurred = true;
-    }
-    if (!errorOccurred) {
-      if (!clientName) {
-        toast.error("Please enter client name");
-        errorOccurred = true;
+      if (response.status === 200) {
+        toast.success("Shopify credentials verified successfully!");
+        setIsVerified(true);
       }
-    }
-
-    // Check if entered Shopify URL and API key match the provided values
-    if (
-      shopifyFields.storeUrl !== providedShopifyUrl ||
-      shopifyFields.apiKey !== providedApiKey
-    ) {
+    } catch (error) {
+      console.error("Error verifying Shopify credentials:", error);
       toast.error(
         "Invalid Shopify store URL or API key. Please check and try again."
       );
-      return;
+      setIsVerified(false);
     }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
     if (!clientName || !shopifyFields.storeUrl || !shopifyFields.apiKey) {
       toast.error("Please fill in all required fields.");
       return;
     }
 
+    if (!isVerified) {
+      toast.error("Please verify the Shopify credentials before submitting.");
+      return;
+    }
+
     try {
       const newClient = {
         clientName,
-        shopifyStoreUrl: shopifyFields.storeUrl,
-        shopifyApiKey: shopifyFields.apiKey,
+        storeUrl: shopifyFields.storeUrl,
+        apiKey: shopifyFields.apiKey,
       };
 
       const response = await axios.post(`${url}/clients/addclients`, newClient);
+      setFetchTrigger((prev) => !prev); // Toggle fetchTrigger to re-fetch clients
 
       console.log("New client created:", response.data);
       toast.success("New client created successfully!");
@@ -122,7 +123,6 @@ export const AddClients = ({ closeModal }) => {
         <div className={styles.modalContainer}>
           <div className={styles.modalHeader}>
             <h2>Create New Client</h2>
-            {/* <button onClick={closeModal}>Close</button> */}
           </div>
           <div className={styles.tabContainer}>
             <button
@@ -171,7 +171,6 @@ export const AddClients = ({ closeModal }) => {
                     <option value="magento">Magento</option>
                   </select>
                 </div>
-                {/* Render platform-specific fields based on selected platform */}
                 {selectedPlatform === "shopify" && (
                   <div className={styles.platformFields}>
                     <label htmlFor="shopifyStoreUrl">Shopify Store URL:</label>
@@ -192,6 +191,13 @@ export const AddClients = ({ closeModal }) => {
                       value={shopifyFields.apiKey}
                       onChange={handleShopifyFieldChange}
                     />
+                    <button
+                      className="btn btn-primary mt-2"
+                      onClick={verifyShopifyCredentials}
+                      disabled={isVerified}
+                    >
+                      {isVerified ? "Verified" : "Verify Shopify Credentials"}
+                    </button>
                   </div>
                 )}
                 {selectedPlatform === "woocommerce" && (
@@ -290,7 +296,6 @@ export const AddClients = ({ closeModal }) => {
                 )}
               </>
             )}
-            {/* connection tab start here */}
             {activeTab === "connections" && (
               <div className={` ${styles.tabPanel} pt-3`}>
                 <label htmlFor="oauthKey1">OAuth Key:</label>
@@ -299,8 +304,8 @@ export const AddClients = ({ closeModal }) => {
                   type="text"
                   id="oauthKey1"
                   name="oauthKey1"
-                  value={oauthKeys.oauthKey1}
-                  onChange={handleOAuthKeyChange}
+                  // value={oauthKeys.oauthKey1}
+                  // onChange={handleOAuthKeyChange}
                 />
               </div>
             )}

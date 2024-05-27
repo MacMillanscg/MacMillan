@@ -8,7 +8,7 @@ import {
 
 const connectionData = [
   {
-    title: "My Shopify Connection",
+    title: "Shopify",
     versionIcon: faSync,
     categoryIcon: faThLarge,
     lastRunIcon: faClock,
@@ -17,7 +17,7 @@ const connectionData = [
     instances: 0,
   },
   {
-    title: "New Connection",
+    title: "Amazon",
     versionIcon: faSync,
     categoryIcon: faThLarge,
     lastRunIcon: faClock,
@@ -26,7 +26,7 @@ const connectionData = [
     instances: 0,
   },
   {
-    title: "Testing Connection",
+    title: "Eshipper",
     versionIcon: faSync,
     categoryIcon: faThLarge,
     lastRunIcon: faClock,
