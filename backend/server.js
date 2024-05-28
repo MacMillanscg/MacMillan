@@ -33,18 +33,18 @@ app.use(cookieParser());
 // const userRouter = require("./routes/usersRoute");
 const userAuth = require("./routes/auth");
 const support = require("./routes/supportRoute");
-const Client = require("./Schema/Client");
-
+const clientRoute = require("./routes/clientRoutes");
 // app.use("/users", userRouter);
 app.use("/auth", userAuth);
 app.use("/supports", support);
+app.use("/clients", clientRoute);
 
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Methods", "GET, POST");
-//   res.header("Access-Control-Allow-Headers", "Content-Type");
-//   next();
-// });
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
 
 app.listen(PORT, () => {
   console.log("server is running on port:" + PORT);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useAppContext } from "../../Context/AppContext";
 import styles from "./ClientDetail.module.css";
 import { DetailsTab } from "./DetailsTab";
@@ -8,14 +8,32 @@ import { ConnectionsTab } from "./ConnectionsTab";
 import { SummaryTab } from "./SummaryTab";
 import { LogsTabHeader } from "./LogsTabHeader";
 import { ClientDetailTop } from "./ClientDetailTop";
+import { url } from "../../../api";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 export const ClientDetails = () => {
   const [activeTab, setActiveTab] = useState("Summary");
+  const [client, setClient] = useState("");
   const { dashboardWidth } = useAppContext();
+  const { id } = useParams();
 
   const handleTabClick = (tabName) => {
     setActiveTab(tabName);
   };
+
+  useEffect(() => {
+    const fetchClientSingleRecord = async () => {
+      try {
+        const response = await axios.get(`${url}/clients/${id}`);
+        console.log("resawse", response.data);
+        setClient(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchClientSingleRecord();
+  }, []);
 
   return (
     <div className="dashboard" style={{ width: dashboardWidth }}>
@@ -24,7 +42,7 @@ export const ClientDetails = () => {
       </div>
       <div className={styles.tabsHeaderSection}>
         <div className={styles.leftTabSection}>
-          <h2>Test</h2>
+          <h2>{client.clientName}</h2>
         </div>
         <div className={styles.rightSection}>
           {activeTab === "Logs" && <LogsTabHeader />}

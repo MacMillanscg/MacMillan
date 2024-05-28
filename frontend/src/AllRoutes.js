@@ -39,7 +39,7 @@ export const AllRoutes = () => {
           <Route path="/profileResetPass" element={<ProfileResetPass />} />
           <Route path="/connectors" element={<Connectors />} />
           <Route path="/connections" element={<Connections />} />
-          <Route path="/clients/addclients" element={<ClientsCom />} />
+          <Route path="/addclients" element={<ClientsCom />} />
           <Route path="/alertmonitors" element={<AlertMonitors />} />
           <Route path="/deployedinstances" element={<DeployedInstances />} />
           <Route
@@ -51,7 +51,7 @@ export const AllRoutes = () => {
             element={<AddConnections />}
           />
           <Route path="/connectors/connectorList" element={<ConnectorList />} />
-          <Route path="/clients/addclients/:id" element={<ClientDetails />} />
+          <Route path="/addclients/:id" element={<ClientDetails />} />
           {/* <Route path="/client/:id" component={ClientDetail} /> */}
         </Route>
 

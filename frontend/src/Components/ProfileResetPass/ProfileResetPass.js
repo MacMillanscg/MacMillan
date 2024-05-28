@@ -4,11 +4,16 @@ import { Link } from "react-router-dom";
 import { useAppContext } from "../Context/AppContext";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 export const ProfileResetPass = () => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [currentPasswordVisible, setCurrentPasswordVisible] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 
   const { dashboardWidth, name } = useAppContext();
   const localStorageUser = JSON.parse(localStorage.getItem("rememberMeUser"));
@@ -120,36 +125,70 @@ export const ProfileResetPass = () => {
         <div className={styles.profilebottom}>
           <div className="inputFields">
             <h3> Change Password</h3>
-            <div className="form-group mb-2">
+            <div className="form-group mb-2 position-relative">
               <label>Current Password</label>
               <input
-                type="password"
+                type={currentPasswordVisible ? "text" : "password"}
                 className="form-control"
                 id="exampleInputFUllName"
                 value={currentPassword}
                 onChange={(e) => setCurrentPassword(e.target.value)}
               />
+              <span
+                className={`position-absolute end-0 top-50 translate-middle-y ${styles.eyeIcon}`}
+                onClick={() =>
+                  setCurrentPasswordVisible(!currentPasswordVisible)
+                } // Toggle password visibility on click
+              >
+                {currentPasswordVisible ? (
+                  <FontAwesomeIcon icon={faEye} />
+                ) : (
+                  <FontAwesomeIcon icon={faEyeSlash} />
+                )}{" "}
+              </span>
             </div>
-            <div className="form-group mb-2">
+            <div className="form-group mb-2 position-relative">
               <label>New Password</label>
               <input
-                type="password"
+                type={passwordVisible ? "text" : "password"}
                 className="form-control"
                 id="exampleInputEmail"
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
               />
+              <span
+                className={`position-absolute end-0 top-50 translate-middle-y ${styles.eyeIcon}`}
+                onClick={() => setPasswordVisible(!passwordVisible)} // Toggle password visibility on click
+              >
+                {passwordVisible ? (
+                  <FontAwesomeIcon icon={faEye} />
+                ) : (
+                  <FontAwesomeIcon icon={faEyeSlash} />
+                )}{" "}
+              </span>
             </div>
 
-            <div className="form-group mb-2">
+            <div className="form-group mb-2 position-relative">
               <label>Confirm New Password</label>
               <input
-                type="password"
+                type={confirmPasswordVisible ? "text" : "password"}
                 className="form-control"
                 id="exampleInputPassword"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
+              <span
+                className={`position-absolute end-0 top-50 translate-middle-y ${styles.eyeIcon}`}
+                onClick={() =>
+                  setConfirmPasswordVisible(!confirmPasswordVisible)
+                } // Toggle password visibility on click
+              >
+                {confirmPasswordVisible ? (
+                  <FontAwesomeIcon icon={faEye} />
+                ) : (
+                  <FontAwesomeIcon icon={faEyeSlash} />
+                )}{" "}
+              </span>
             </div>
           </div>
         </div>

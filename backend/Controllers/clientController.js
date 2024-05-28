@@ -42,6 +42,13 @@ exports.addClient = async (req, res) => {
   }
 };
 
+// Get User By ID
+exports.getUserById = (req, res) => {
+  Client.findById(req.params.id)
+    .then((user) => res.json(user))
+    .catch((err) => res.status(400).json("Err :" + err));
+};
+
 // Get All Clients
 exports.getAllClients = (req, res) => {
   Client.find()

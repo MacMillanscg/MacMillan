@@ -5,15 +5,12 @@ export const useCustomFetch = (url, id) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [profileImage, setProfileImage] = useState(null);
-
-  console.log("hook dtat", data);
-  console.log("props", id);
+  console.log("data", data);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${url}/${id}`);
+        const response = await axios.get(`${url}/auth/${id}`);
         setData(response.data);
         setLoading(false);
       } catch (err) {

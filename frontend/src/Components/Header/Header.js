@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Header.module.css";
 import { Profile } from "../Profile/Profile";
@@ -8,13 +8,25 @@ import { useCustomFetch } from "../../customsHooks/useCustomFetch";
 export const Header = () => {
   const [isProfileVisible, setIsProfileVisible] = useState(false);
   const navigate = useNavigate();
+  const profileRef = useRef(null);
   const localStorageUser = JSON.parse(localStorage.getItem("rememberMeUser"));
   const sessionStorageUser = JSON.parse(sessionStorage.getItem("userRecord"));
   const user = localStorageUser || sessionStorageUser;
   const toggleProfile = () => {
     setIsProfileVisible(!isProfileVisible);
   };
-  const { data } = useCustomFetch(url, user._id);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setIsProfileVisible(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className={styles.header}>
@@ -41,7 +53,11 @@ export const Header = () => {
           </li>
         </ul>
       </div>
-      {isProfileVisible && <Profile />}
+      {isProfileVisible && (
+        <div ref={profileRef}>
+          <Profile />
+        </div>
+      )}
     </div>
   );
 };

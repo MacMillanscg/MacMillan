@@ -14,8 +14,6 @@ export const Login = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
 
-  console.log("reme", rememberMe);
-
   const navigate = useNavigate();
   const loginUser = async () => {
     let errorOccurred = false;
@@ -46,7 +44,7 @@ export const Login = () => {
     };
     try {
       toast.loading("Loading");
-      const response = await axios.post(`${url}/login`, userObj);
+      const response = await axios.post(`${url}/auth/login`, userObj);
 
       toast.dismiss();
       const { success, data, user, message } = response.data;

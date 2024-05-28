@@ -11,8 +11,6 @@ export const ProfileDetails = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
-  // const [profileImage, setProfileImage] = useState("");
-  // console.log("proile", profileImage);
 
   const { dashboardWidth } = useAppContext();
 
@@ -21,17 +19,18 @@ export const ProfileDetails = () => {
   const user = localStorageUser || sessionStorageUser;
   const userCapitalize = user.name.charAt(0).toUpperCase() + user.name.slice(1);
   const { data, loading, error } = useCustomFetch(url, user._id);
+  console.log("dataaa", data);
 
   useEffect(() => {
     if (user && user.name) {
       setName(user.name);
+      // setPhone(user.phone);
     }
   }, [user._id]);
 
   const handleFileChange = (e) => {
     setSelectedFile(e.target.files[0]);
   };
-  console.log("selectedimg", selectedFile);
 
   const handleSave = async () => {
     let errorOccurred = false;
@@ -56,13 +55,16 @@ export const ProfileDetails = () => {
     }
 
     try {
-      const response = await axios.post(`${url}/profiledetails`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axios.post(
+        `${url}/auth/profiledetails`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       const { user } = response.data;
-      console.log("usersssss", user);
       if (response.data.success) {
         toast.success(response.data.message);
         // setProfileImage(user.profileImage);
@@ -73,6 +75,14 @@ export const ProfileDetails = () => {
       }
     } catch (error) {
       console.error("Error updating user profile:", error);
+    }
+  };
+
+  // Function to restrict non-alphabetic characters in name input field
+  const handleNameKeyPress = (e) => {
+    const char = String.fromCharCode(e.which);
+    if (!/[a-zA-Z]/.test(char)) {
+      e.preventDefault();
     }
   };
 
@@ -170,6 +180,7 @@ export const ProfileDetails = () => {
                 id="exampleInputName"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                onKeyPress={handleNameKeyPress}
               />
             </div>
             <div className="form-group mb-2">

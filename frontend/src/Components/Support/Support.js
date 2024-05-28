@@ -8,8 +8,6 @@ export const Support = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [notification, setNotification] = useState(null);
-  console.log("noti ", notification);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -51,7 +49,7 @@ export const Support = () => {
       );
       console.log("res", response);
       if (response.status === 200) {
-        setNotification(
+        toast.success(
           "Your request has been submitted and our team will reach out to you soon"
         );
         setName("");
@@ -67,30 +65,9 @@ export const Support = () => {
     }
   };
 
-  const handleNotificationClose = () => {
-    setNotification(null);
-  };
-
   return (
     <div className="authenticate">
       <div className={styles.support}>
-        {notification && (
-          <div
-            className={`alert alert-success mt-3 d-flex justify-content-between ${styles.notification}`}
-            role="alert"
-          >
-            <div>{notification}</div>
-            <button
-              type="button"
-              className={`close ${styles.closeBtn}`}
-              onClick={handleNotificationClose}
-            >
-              <span className={styles.cross} aria-hidden="true">
-                &times;
-              </span>
-            </button>
-          </div>
-        )}
         <div className={styles.logo}>
           <img src={logo} alt="Macmallin logo" />
         </div>

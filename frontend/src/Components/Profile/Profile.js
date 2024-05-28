@@ -5,18 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { ConfirmationDialog } from "./ConfirmationDialog";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt, faHeadset } from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
-import { useAppContext } from "../Context/AppContext";
 
 export const Profile = () => {
   const navigate = useNavigate();
   const [showDialog, setShowDialog] = useState(false);
   const [showProfile, setShowProfile] = useState(true);
-  const [users, setUsers] = useState({});
 
-  const { name, setName, email } = useAppContext();
-
-  const { dashboardWidth } = useAppContext();
   const localStorageUser = JSON.parse(localStorage.getItem("rememberMeUser"));
   const sessionStorageUser = JSON.parse(sessionStorage.getItem("userRecord"));
   const user = localStorageUser || sessionStorageUser;

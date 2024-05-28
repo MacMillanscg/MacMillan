@@ -54,3 +54,9 @@ text-align: center;
 .profileImagePass{
     width: 35px;
 }
+.eyeIcon{
+    margin-right: 16px;
+    color: gray;
+    font-size: 12px;
+    top: 43px !important;
+}

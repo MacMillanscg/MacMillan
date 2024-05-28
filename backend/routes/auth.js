@@ -9,17 +9,11 @@ const Client = require("../Schema/Client");
 const multer = require("multer");
 const path = require("path");
 const authController = require("../Controllers/authController");
-const clientController = require("../Controllers/clientController");
 
 router.post("/register", authController.register);
 router.post("/login", authController.login);
 router.post("/forgot-password", authController.forgotPassword);
 router.post("/reset-password/:id/:token", authController.resetPassword);
-
-// clients route
-router.post("/clients/validate-shopify", clientController.addClientVerify);
-router.post("/clients/addclients", clientController.addClient);
-router.get("/", clientController.getAllClients);
 
 // Configure storage for multer
 const storage = multer.diskStorage({

@@ -18,6 +18,7 @@ export const Register = () => {
   const [showTerms, setShowTerms] = useState(false); // State to toggle visibility of terms and conditions
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -142,6 +143,14 @@ export const Register = () => {
     ? "✔️ Password must be 8 characters long"
     : "❌ Password must be 8 characters long";
 
+  // Function to restrict non-alphabetic characters in name input field
+  const handleNameKeyPress = (e) => {
+    const char = String.fromCharCode(e.which);
+    if (!/[a-zA-Z]/.test(char)) {
+      e.preventDefault();
+    }
+  };
+
   return (
     <div className="authenticate">
       <div className={styles.signUp}>
@@ -159,6 +168,7 @@ export const Register = () => {
               placeholder="Full Name*"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              onKeyPress={handleNameKeyPress} // Attach the onKeyPress handler to restrict input
             />
           </div>
           <div className="form-group">
@@ -247,7 +257,7 @@ export const Register = () => {
 
           <div className="form-group position-relative">
             <input
-              type={passwordVisible ? "text" : "password"}
+              type={confirmPasswordVisible ? "text" : "password"}
               className={`form-control ${styles.formControl}`}
               id="exampleInputConfirm_Password"
               placeholder="Confirm Password*"
@@ -256,9 +266,9 @@ export const Register = () => {
             />
             <span
               className={`position-absolute end-0 top-50 translate-middle-y ${styles.eyeIcon}`}
-              onClick={() => setPasswordVisible(!passwordVisible)} // Toggle password visibility on click
+              onClick={() => setConfirmPasswordVisible(!confirmPasswordVisible)} // Toggle password visibility on click
             >
-              {passwordVisible ? (
+              {confirmPasswordVisible ? (
                 <FontAwesomeIcon icon={faEye} />
               ) : (
                 <FontAwesomeIcon icon={faEyeSlash} />

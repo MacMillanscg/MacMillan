@@ -21,7 +21,7 @@ export const ClientsCom = () => {
   useEffect(() => {
     const fetchAllClients = async () => {
       try {
-        const response = await axios.get(`${url}`);
+        const response = await axios.get(`${url}/clients`);
         setClients(response.data);
         console.log("resss", response.data);
       } catch (error) {
@@ -80,7 +80,7 @@ export const ClientsCom = () => {
         {clients.map((client) => {
           return (
             <Link
-              to={`/clients/addclients/${client._id}`}
+              to={`/addclients/${client._id}`}
               key={client._id}
               style={{ width: "32%" }}
             >
