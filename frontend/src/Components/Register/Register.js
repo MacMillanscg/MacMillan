@@ -7,6 +7,7 @@ import styles from "./Register.module.css";
 import { Terms } from "./Terms";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { url } from "../../api";
 
 export const Register = () => {
   const [name, setName] = useState("");
@@ -106,10 +107,7 @@ export const Register = () => {
     };
     try {
       toast.loading("Loading");
-      const response = await axios.post(
-        "http://localhost:5000/auth/register",
-        userObj
-      );
+      const response = await axios.post(`${url}/auth/register`, userObj);
       console.log("register", response);
       toast.dismiss();
       if (response.data.success) {
@@ -146,7 +144,7 @@ export const Register = () => {
   // Function to restrict non-alphabetic characters in name input field
   const handleNameKeyPress = (e) => {
     const char = String.fromCharCode(e.which);
-    if (!/[a-zA-Z]/.test(char)) {
+    if (!/[a-zA-Z ]/.test(char)) {
       e.preventDefault();
     }
   };

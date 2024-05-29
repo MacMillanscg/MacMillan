@@ -9,15 +9,22 @@ export const Header = () => {
   const [isProfileVisible, setIsProfileVisible] = useState(false);
   const navigate = useNavigate();
   const profileRef = useRef(null);
+  const toggleButtonRef = useRef(null);
   const localStorageUser = JSON.parse(localStorage.getItem("rememberMeUser"));
   const sessionStorageUser = JSON.parse(sessionStorage.getItem("userRecord"));
   const user = localStorageUser || sessionStorageUser;
   const toggleProfile = () => {
     setIsProfileVisible(!isProfileVisible);
   };
+
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (profileRef.current && !profileRef.current.contains(event.target)) {
+      if (
+        profileRef.current &&
+        !profileRef.current.contains(event.target) &&
+        toggleButtonRef.current &&
+        !toggleButtonRef.current.contains(event.target)
+      ) {
         setIsProfileVisible(false);
       }
     };
@@ -36,6 +43,7 @@ export const Header = () => {
             <button
               onClick={toggleProfile}
               className={`${styles.navlink} nav-link`}
+              ref={toggleButtonRef}
             >
               {user.profileImage ? (
                 <img

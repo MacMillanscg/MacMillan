@@ -82,12 +82,17 @@ export const ClientsCom = () => {
             <Link
               to={`/addclients/${client._id}`}
               key={client._id}
+              className={styles.cardLink}
               style={{ width: "32%" }}
             >
               <div className="card me-1 mb-2">
                 <div className="card-body">
                   <h3>{client.clientName}</h3>
-                  <p>This is related</p>
+                  <h4 className={styles.heading4}>{client.email}</h4>
+                  <h4 className={styles.heading4}>{client.phone}</h4>
+                  <p className={styles.text}>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  </p>
                 </div>
               </div>
             </Link>

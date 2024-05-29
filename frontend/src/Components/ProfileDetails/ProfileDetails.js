@@ -81,7 +81,7 @@ export const ProfileDetails = () => {
   // Function to restrict non-alphabetic characters in name input field
   const handleNameKeyPress = (e) => {
     const char = String.fromCharCode(e.which);
-    if (!/[a-zA-Z]/.test(char)) {
+    if (!/[a-zA-Z ]/.test(char)) {
       e.preventDefault();
     }
   };

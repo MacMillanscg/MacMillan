@@ -8,12 +8,15 @@ import axios from "axios";
 export const AddClients = ({ closeModal, setFetchTrigger }) => {
   const [activeTab, setActiveTab] = useState("info");
   const [clientName, setClientName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const { dashboardWidth } = useAppContext();
   const [selectedPlatform, setSelectedPlatform] = useState("");
   const [shopifyFields, setShopifyFields] = useState({
     storeUrl: "",
     apiKey: "",
   });
+
   const [isVerified, setIsVerified] = useState(false);
 
   const [woocommerceFields, setWooCommerceFields] = useState({
@@ -63,47 +66,56 @@ export const AddClients = ({ closeModal, setFetchTrigger }) => {
     setMagentoFields((prevFields) => ({ ...prevFields, [name]: value }));
   };
 
-  const verifyShopifyCredentials = async () => {
-    const { storeUrl, apiKey } = shopifyFields;
+  // const verifyShopifyCredentials = async () => {
+  //   const { storeUrl, apiKey } = shopifyFields;
 
-    try {
-      const response = await axios.post(`${url}/clients/validate-shopify`, {
-        storeUrl,
-        apiKey,
-      });
+  //   try {
+  //     const response = await axios.post(`${url}/clients/validate-shopify`, {
+  //       storeUrl,
+  //       apiKey,
+  //     });
 
-      if (response.status === 200) {
-        toast.success("Shopify credentials verified successfully!");
-        setIsVerified(true);
-      }
-    } catch (error) {
-      console.error("Error verifying Shopify credentials:", error);
-      toast.error(
-        "Invalid Shopify store URL or API key. Please check and try again."
-      );
-      setIsVerified(false);
-    }
-  };
+  //     if (response.status === 200) {
+  //       toast.success("Shopify credentials verified successfully!");
+  //       setIsVerified(true);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error verifying Shopify credentials:", error);
+  //     toast.error(
+  //       "Invalid Shopify store URL or API key. Please check and try again."
+  //     );
+  //     setIsVerified(false);
+  //   }
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!clientName || !shopifyFields.storeUrl || !shopifyFields.apiKey) {
+    if (
+      !clientName ||
+      !email ||
+      !phone
+      // !shopifyFields.storeUrl ||
+      // !shopifyFields.apiKey
+    ) {
       toast.error("Please fill in all required fields.");
       return;
     }
 
-    if (!isVerified) {
-      toast.error("Please verify the Shopify credentials before submitting.");
-      return;
-    }
+    // if (!isVerified) {
+    //   toast.error("Please verify the Shopify credentials before submitting.");
+    //   return;
+    // }
 
     try {
       const newClient = {
         clientName,
-        storeUrl: shopifyFields.storeUrl,
-        apiKey: shopifyFields.apiKey,
+        email,
+        phone,
+        // storeUrl: shopifyFields.storeUrl,
+        // apiKey: shopifyFields.apiKey,
       };
+      console.log("newClinet", newClient);
 
       const response = await axios.post(`${url}/clients/addclients`, newClient);
       setFetchTrigger((prev) => !prev); // Toggle fetchTrigger to re-fetch clients
@@ -114,6 +126,13 @@ export const AddClients = ({ closeModal, setFetchTrigger }) => {
     } catch (error) {
       console.error("Error creating new client:", error);
       toast.error("Error creating new client. Please try again.");
+    }
+  };
+
+  const handleNameKeyPress = (e) => {
+    const char = String.fromCharCode(e.which);
+    if (!/[a-zA-Z ]/.test(char)) {
+      e.preventDefault();
     }
   };
 
@@ -151,13 +170,38 @@ export const AddClients = ({ closeModal, setFetchTrigger }) => {
                     <input
                       type="text"
                       className={`form-control ${styles.formControl}`}
-                      id="exampleInputEmail"
+                      id="name"
                       value={clientName}
                       onChange={(e) => setClientName(e.target.value)}
+                      onKeyPress={handleNameKeyPress}
                     />
                   </div>
                 </div>
-                <div className={styles.platformDropdown}>
+                <div className={styles.tabPanel}>
+                  <label htmlFor="clientName">Client Email:</label>
+                  <div className="form-group mb-2">
+                    <input
+                      type="text"
+                      className={`form-control ${styles.formControl}`}
+                      id="emailId"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div className={styles.tabPanel}>
+                  <label htmlFor="clientName">Client Contact:</label>
+                  <div className="form-group mb-2">
+                    <input
+                      type="text"
+                      className={`form-control ${styles.formControl}`}
+                      id="contactId"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                    />
+                  </div>
+                </div>
+                {/* <div className={styles.platformDropdown}>
                   <label htmlFor="platform">Select E-commerce Platform:</label>
                   <select
                     className="form-select mb-2"
@@ -170,7 +214,7 @@ export const AddClients = ({ closeModal, setFetchTrigger }) => {
                     <option value="woocommerce">WooCommerce</option>
                     <option value="magento">Magento</option>
                   </select>
-                </div>
+                </div> */}
                 {selectedPlatform === "shopify" && (
                   <div className={styles.platformFields}>
                     <label htmlFor="shopifyStoreUrl">Shopify Store URL:</label>
@@ -191,13 +235,13 @@ export const AddClients = ({ closeModal, setFetchTrigger }) => {
                       value={shopifyFields.apiKey}
                       onChange={handleShopifyFieldChange}
                     />
-                    <button
+                    {/* <button
                       className="btn btn-primary mt-2"
                       onClick={verifyShopifyCredentials}
                       disabled={isVerified}
                     >
                       {isVerified ? "Verified" : "Verify Shopify Credentials"}
-                    </button>
+                    </button> */}
                   </div>
                 )}
                 {selectedPlatform === "woocommerce" && (
