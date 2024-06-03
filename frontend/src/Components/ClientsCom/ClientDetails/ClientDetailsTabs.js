@@ -55,14 +55,6 @@ export const ClientDetailsTabs = () => {
         <div className={styles.leftTabSection}>
           <h2>{client?.clientName}</h2>
         </div>
-        <div className={styles.rightSection}>
-          {activeTab === "Logs" && <LogsTabHeader />}
-          {activeTab === "Details" && <DetailsTabTop />}
-          {activeTab === "Integration" && (
-            <IntegrationTabHeader openModal={openModal} />
-          )}{" "}
-          {/* Add more conditions here as needed */}
-        </div>
       </div>
       <div className={styles.tabContainer}>
         <div
@@ -119,7 +111,7 @@ export const ClientDetailsTabs = () => {
           />
         )}
         {activeTab === "Logs" && <LogsTab />}
-        {activeTab === "Details" && <DetailsTab />}
+        {activeTab === "Details" && <DetailsTab clientId={id} />}
       </div>
     </div>
   );

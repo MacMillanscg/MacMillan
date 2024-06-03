@@ -109,3 +109,39 @@ exports.getClientIntegrations = async (req, res) => {
     res.status(500).json({ error: "Error fetching client data" });
   }
 };
+exports.updateClient = async (req, res) => {
+  try {
+    const { clientName, phone, email, isActive } = req.body;
+    console.log("reqq", req.body);
+
+    // Find the client by ID
+    const client = await Client.findById(req.params.id);
+    console.log("updaed client", client);
+    if (!client) return res.status(404).send("Client not found");
+
+    // Update the client's details
+    client.clientName = clientName;
+    client.phone = phone;
+    client.email = email;
+    client.isActive = isActive;
+
+    // Save the updated client
+    await client.save();
+    res.json(client);
+  } catch (error) {
+    console.error("Error updating client:", error);
+    res.status(500).send("Server error");
+  }
+};
+
+exports.deleteClient = async (req, res) => {
+  try {
+    const client = await Client.findById(req.params.id);
+    if (!client) return res.status(404).send("Client not found");
+
+    await client.remove();
+    res.json({ message: "Client deleted" });
+  } catch (error) {
+    res.status(500).send("Server error");
+  }
+};

@@ -11,3 +11,7 @@
     opacity: .6;
 
 }
+.profilebottom{
+    display: flex;
+    justify-content: space-between;
+}

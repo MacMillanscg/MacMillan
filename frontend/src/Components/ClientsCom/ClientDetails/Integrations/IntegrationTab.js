@@ -9,6 +9,7 @@ import { url } from "../../../../api";
 import { MaskedToken } from "./MaskedToken";
 import style from "./IntegrationTab.module.css";
 import { EditIntegration } from "./EditIntegration";
+import { IntegrationTabHeader } from "./IntegrationTabHeader";
 
 export const IntegrationTab = ({
   clientId,
@@ -77,6 +78,7 @@ export const IntegrationTab = ({
 
   return (
     <>
+      <IntegrationTabHeader openModal={openModal} />
       <div className={styles.cardSection}>
         {clients?.map((client, i) => {
           return (

@@ -9,5 +9,7 @@ router.post("/addclients/:clientId", clientController.addClientIntegration);
 router.get("/addclients/:clientId", clientController.getClientIntegrations);
 router.get("/", clientController.getAllClients);
 router.get("/:id", clientController.getUserById);
+router.put("/addclients/:id", clientController.updateClient);
+router.delete("/addclients/:id", clientController.deleteClient);
 
 module.exports = router;

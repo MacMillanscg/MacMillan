@@ -6,6 +6,9 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 export const IntegrationTabHeader = ({ openModal }) => {
   return (
     <div className={styles.clientHeader} style={{ border: "none" }}>
+      <div className="clientLeft">
+        <h3>Integration</h3>
+      </div>
       <div className={styles.clientsRight}>
         <div className="form-group me-4">
           <input
