@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useAppContext } from "../../Context/AppContext";
 import styles from "./ClientDetail.module.css";
 import { DetailsTab } from "./DetailsTab";
-import { ExecutionsTab } from "./ExecutionsTab";
+import { IntegrationTab } from "./Integrations/IntegrationTab";
 import { LogsTab } from "./LogsTab";
 import { ConnectionsTab } from "./ConnectionsTab";
 import { SummaryTab } from "./SummaryTab";
@@ -11,15 +11,26 @@ import { ClientDetailTop } from "./ClientDetailTop";
 import { url } from "../../../api";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { DetailsTabTop } from "./DetailsTabTop";
+import { IntegrationTabHeader } from "./Integrations/IntegrationTabHeader";
 
-export const ClientDetails = () => {
+export const ClientDetailsTabs = () => {
   const [activeTab, setActiveTab] = useState("Summary");
   const [client, setClient] = useState("");
   const { dashboardWidth } = useAppContext();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { id } = useParams();
 
   const handleTabClick = (tabName) => {
     setActiveTab(tabName);
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   useEffect(() => {
@@ -42,10 +53,15 @@ export const ClientDetails = () => {
       </div>
       <div className={styles.tabsHeaderSection}>
         <div className={styles.leftTabSection}>
-          <h2>{client.clientName}</h2>
+          <h2>{client?.clientName}</h2>
         </div>
         <div className={styles.rightSection}>
           {activeTab === "Logs" && <LogsTabHeader />}
+          {activeTab === "Details" && <DetailsTabTop />}
+          {activeTab === "Integration" && (
+            <IntegrationTabHeader openModal={openModal} />
+          )}{" "}
+          {/* Add more conditions here as needed */}
         </div>
       </div>
       <div className={styles.tabContainer}>
@@ -59,20 +75,21 @@ export const ClientDetails = () => {
         </div>
         <div
           className={`${styles.tab} ${
+            activeTab === "Integration" && styles.active
+          }`}
+          onClick={() => handleTabClick("Integration")}
+        >
+          Integrations
+        </div>
+        <div
+          className={`${styles.tab} ${
             activeTab === "Connections" && styles.active
           }`}
           onClick={() => handleTabClick("Connections")}
         >
           Connections
         </div>
-        <div
-          className={`${styles.tab} ${
-            activeTab === "Executions" && styles.active
-          }`}
-          onClick={() => handleTabClick("Executions")}
-        >
-          Executions
-        </div>
+
         <div
           className={`${styles.tab} ${activeTab === "Logs" && styles.active}`}
           onClick={() => handleTabClick("Logs")}
@@ -92,7 +109,15 @@ export const ClientDetails = () => {
       <div className={styles.tabContent}>
         {activeTab === "Summary" && <SummaryTab />}
         {activeTab === "Connections" && <ConnectionsTab />}
-        {activeTab === "Executions" && <ExecutionsTab />}
+        {activeTab === "Integration" && (
+          <IntegrationTab
+            clientId={id}
+            openModal={openModal}
+            closeModal={closeModal}
+            isModalOpen={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
+          />
+        )}
         {activeTab === "Logs" && <LogsTab />}
         {activeTab === "Details" && <DetailsTab />}
       </div>

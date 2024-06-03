@@ -1,0 +1,13 @@
+.cancel{
+    
+    color: black !important;
+    border: none;
+    background: transparent !important;
+    margin-right: 10px;
+}
+
+.savebtn{
+    background-color: green !important;
+    opacity: .6;
+
+}

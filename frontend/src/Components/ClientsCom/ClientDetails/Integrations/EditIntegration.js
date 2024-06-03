@@ -1,21 +1,23 @@
 import React, { useState } from "react";
-import { useAppContext } from "../Context/AppContext";
-import styles from "./AddClients.module.css";
+import styles from "../../AddClients.module.css";
 import toast from "react-hot-toast";
-import { url } from "../../api";
 import axios from "axios";
+import { url } from "../../../../api";
 
-export const AddClients = ({ closeModal, setFetchTrigger }) => {
+export const EditIntegration = ({
+  closeModal,
+  clientId,
+  setFetchTrigger,
+  closeIntegration,
+}) => {
   const [activeTab, setActiveTab] = useState("info");
-  const [clientName, setClientName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const { dashboardWidth } = useAppContext();
+  const [integrationName, setIntegrationName] = useState("");
   const [selectedPlatform, setSelectedPlatform] = useState("");
   const [shopifyFields, setShopifyFields] = useState({
     storeUrl: "",
     apiKey: "",
   });
+  console.log("clientId", clientId);
 
   const [isVerified, setIsVerified] = useState(false);
 
@@ -66,36 +68,49 @@ export const AddClients = ({ closeModal, setFetchTrigger }) => {
     setMagentoFields((prevFields) => ({ ...prevFields, [name]: value }));
   };
 
+  const verifyShopifyCredentials = async () => {
+    const { storeUrl, apiKey } = shopifyFields;
+
+    try {
+      const response = await axios.post(`${url}/clients/validate-shopify`, {
+        storeUrl,
+        apiKey,
+      });
+
+      if (response.status === 200) {
+        toast.success("Shopify credentials verified successfully!");
+        setIsVerified(true);
+      }
+    } catch (error) {
+      console.error("Error verifying Shopify credentials:", error);
+      toast.error(
+        "Invalid Shopify store URL or API key. Please check and try again."
+      );
+      setIsVerified(false);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      !clientName ||
-      !email ||
-      !phone
-      // !shopifyFields.storeUrl ||
-      // !shopifyFields.apiKey
-    ) {
-      toast.error("Please fill in all required fields.");
+    if (!isVerified) {
+      toast.error("Please verify the Shopify credentials before submitting.");
       return;
     }
 
-    // if (!isVerified) {
-    //   toast.error("Please verify the Shopify credentials before submitting.");
-    //   return;
-    // }
-
     try {
       const newClient = {
-        clientName,
-        email,
-        phone,
-        // storeUrl: shopifyFields.storeUrl,
-        // apiKey: shopifyFields.apiKey,
+        integrationName,
+        selectedPlatform,
+        storeUrl: shopifyFields.storeUrl,
+        apiKey: shopifyFields.apiKey,
       };
       console.log("newClinet", newClient);
 
-      const response = await axios.post(`${url}/clients/addclients`, newClient);
+      const response = await axios.post(
+        `${url}/clients/addclients/${clientId}`,
+        newClient
+      );
       setFetchTrigger((prev) => !prev); // Toggle fetchTrigger to re-fetch clients
 
       console.log("New client created:", response.data);
@@ -115,13 +130,13 @@ export const AddClients = ({ closeModal, setFetchTrigger }) => {
   };
 
   return (
-    <div className="dashboard" style={{ width: dashboardWidth }}>
+    <div>
       <div className={styles.modalBackground}>
-        <div className={styles.modalContainer}>
+        <div className={styles.modalContainer} style={{ minHeight: "370px" }}>
           <div className={styles.modalHeader}>
-            <h2>Create New Client</h2>
+            <h3>Update Integration</h3>
           </div>
-          {/* <div className={styles.tabContainer}>
+          <div className={styles.tabContainer}>
             <button
               className={`${styles.tabButton} ${
                 activeTab === "info" && styles.activeTab
@@ -138,48 +153,24 @@ export const AddClients = ({ closeModal, setFetchTrigger }) => {
             >
               Connections
             </button>
-          </div> */}
+          </div>
           <div className={styles.tabContent}>
             {activeTab === "info" && (
               <>
                 <div className={styles.tabPanel}>
-                  <label htmlFor="clientName">Client Name:</label>
+                  <label htmlFor="clientName">Integration Name:</label>
                   <div className="form-group mb-2">
                     <input
                       type="text"
                       className={`form-control ${styles.formControl}`}
                       id="name"
-                      value={clientName}
-                      onChange={(e) => setClientName(e.target.value)}
-                      onKeyPress={handleNameKeyPress}
+                      value={integrationName}
+                      onChange={(e) => setIntegrationName(e.target.value)}
+                      // onKeyPress={handleNameKeyPress}
                     />
                   </div>
                 </div>
-                <div className={styles.tabPanel}>
-                  <label htmlFor="clientName">Client Email:</label>
-                  <div className="form-group mb-2">
-                    <input
-                      type="text"
-                      className={`form-control ${styles.formControl}`}
-                      id="emailId"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                  </div>
-                </div>
-                <div className={styles.tabPanel}>
-                  <label htmlFor="clientName">Client Contact:</label>
-                  <div className="form-group mb-2">
-                    <input
-                      type="text"
-                      className={`form-control ${styles.formControl}`}
-                      id="contactId"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                    />
-                  </div>
-                </div>
-                {/* <div className={styles.platformDropdown}>
+                <div className={styles.platformDropdown}>
                   <label htmlFor="platform">Select E-commerce Platform:</label>
                   <select
                     className="form-select mb-2"
@@ -192,7 +183,7 @@ export const AddClients = ({ closeModal, setFetchTrigger }) => {
                     <option value="woocommerce">WooCommerce</option>
                     <option value="magento">Magento</option>
                   </select>
-                </div> */}
+                </div>
                 {selectedPlatform === "shopify" && (
                   <div className={styles.platformFields}>
                     <label htmlFor="shopifyStoreUrl">Shopify Store URL:</label>
@@ -213,13 +204,13 @@ export const AddClients = ({ closeModal, setFetchTrigger }) => {
                       value={shopifyFields.apiKey}
                       onChange={handleShopifyFieldChange}
                     />
-                    {/* <button
+                    <button
                       className="btn btn-primary mt-2"
                       onClick={verifyShopifyCredentials}
                       disabled={isVerified}
                     >
                       {isVerified ? "Verified" : "Verify Shopify Credentials"}
-                    </button> */}
+                    </button>
                   </div>
                 )}
                 {selectedPlatform === "woocommerce" && (
@@ -333,11 +324,11 @@ export const AddClients = ({ closeModal, setFetchTrigger }) => {
             )}
           </div>
           <div className={styles.buttonContainer}>
-            <button className={styles.cancelButton} onClick={closeModal}>
+            <button className={styles.cancelButton} onClick={closeIntegration}>
               Cancel
             </button>
             <button onClick={handleSubmit} className={styles.addButton}>
-              Add
+              Update
             </button>
           </div>
         </div>

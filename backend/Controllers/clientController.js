@@ -2,29 +2,29 @@
 const axios = require("axios");
 const Client = require("../Schema/Client");
 
-// exports.addClientVerify = async (req, res) => {
-//   const { storeUrl, apiKey } = req.body;
+exports.addClientVerify = async (req, res) => {
+  const { storeUrl, apiKey } = req.body;
 
-//   try {
-//     const formattedStoreUrl = `https://${storeUrl}/admin/api/2024-04/shop.json`;
-//     const response = await axios.get(formattedStoreUrl, {
-//       headers: {
-//         "X-Shopify-Access-Token": apiKey,
-//       },
-//     });
+  try {
+    const formattedStoreUrl = `https://${storeUrl}/admin/api/2024-04/shop.json`;
+    const response = await axios.get(formattedStoreUrl, {
+      headers: {
+        "X-Shopify-Access-Token": apiKey,
+      },
+    });
 
-//     if (response.status === 200) {
-//       res
-//         .status(200)
-//         .json({ message: "Shopify credentials verified successfully!" });
-//     } else {
-//       res.status(400).json({ error: "Invalid Shopify credentials" });
-//     }
-//   } catch (error) {
-//     console.error("Error verifying Shopify credentials:", error);
-//     res.status(500).json({ error: "Error verifying Shopify credentials" });
-//   }
-// };
+    if (response.status === 200) {
+      res
+        .status(200)
+        .json({ message: "Shopify credentials verified successfully!" });
+    } else {
+      res.status(400).json({ error: "Invalid Shopify credentials" });
+    }
+  } catch (error) {
+    console.error("Error verifying Shopify credentials:", error);
+    res.status(500).json({ error: "Error verifying Shopify credentials" });
+  }
+};
 
 exports.addClient = async (req, res) => {
   const { clientName, email, phone } = req.body; // also pass url key api token
@@ -60,4 +60,52 @@ exports.getAllClients = (req, res) => {
   Client.find()
     .then((users) => res.json(users))
     .catch((err) => res.status(400).json("Err:" + err));
+};
+
+exports.addClientIntegration = async (req, res) => {
+  const { clientId } = req.params;
+  console.log("cliented", clientId);
+  const { integrationName, selectedPlatform, storeUrl, apiKey } = req.body;
+
+  try {
+    const client = await Client.findById(clientId);
+    if (!client) {
+      return res.status(404).json({ error: "Client not found" });
+    }
+
+    const integrationData = {
+      integrationName,
+      platform: selectedPlatform,
+      storeUrl,
+      apiKey,
+    };
+    console.log("client", client);
+
+    client.integrations.push(integrationData);
+    const updatedClient = await client.save();
+
+    res.status(200).json({
+      message: "Client integration added successfully",
+      client: updatedClient,
+    });
+  } catch (error) {
+    console.error("Error adding client integration:", error);
+    res.status(500).json({ error: "Error adding client integration" });
+  }
+};
+
+exports.getClientIntegrations = async (req, res) => {
+  const { clientId } = req.params;
+
+  try {
+    const client = await Client.findById(clientId);
+    if (!client) {
+      return res.status(404).json({ error: "Client not found" });
+    }
+
+    res.status(200).json(client);
+  } catch (error) {
+    console.error("Error fetching client data:", error);
+    res.status(500).json({ error: "Error fetching client data" });
+  }
 };

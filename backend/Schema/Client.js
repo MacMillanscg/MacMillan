@@ -1,6 +1,40 @@
 // models/Client.js
 const mongoose = require("mongoose");
 
+const IntegrationSchema = new mongoose.Schema({
+  integrationName: {
+    type: String,
+    required: true,
+  },
+  platform: {
+    type: String,
+    required: true,
+  },
+  storeUrl: {
+    type: String,
+    required: true,
+  },
+  apiKey: {
+    type: String,
+  },
+  consumerKey: {
+    type: String,
+  },
+  consumerSecret: {
+    type: String,
+  },
+  accessToken: {
+    type: String,
+  },
+  accessTokenSecret: {
+    type: String,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
 const ClientSchema = new mongoose.Schema({
   clientName: {
     type: String,
@@ -12,14 +46,7 @@ const ClientSchema = new mongoose.Schema({
   phone: {
     type: Number,
   },
-  storeUrl: {
-    type: String,
-    // required: true,
-  },
-  apiKey: {
-    type: String,
-    // required: true,
-  },
+  integrations: [IntegrationSchema], // Array of integration objects
   createdAt: {
     type: Date,
     default: Date.now,
