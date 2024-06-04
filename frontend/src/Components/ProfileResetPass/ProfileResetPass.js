@@ -15,7 +15,7 @@ export const ProfileResetPass = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 
-  const { dashboardWidth, name } = useAppContext();
+  const { dashboardWidth } = useAppContext();
   const localStorageUser = JSON.parse(localStorage.getItem("rememberMeUser"));
   const sessionStorageUser = JSON.parse(sessionStorage.getItem("userRecord"));
   const user = localStorageUser || sessionStorageUser;
@@ -23,21 +23,24 @@ export const ProfileResetPass = () => {
 
   const handlePasswordChange = async () => {
     let errorOccurred = false;
-    if (!currentPassword.trim()) {
-      toast.error("Please enter a password");
-      errorOccurred = true;
-    }
-    if (!newPassword.trim()) {
-      toast.error("Please enter a new password");
-      errorOccurred = true;
-    }
-    if (newPassword !== confirmPassword) {
-      toast.error("Passwords do not match");
+    if (!currentPassword || !newPassword || !confirmPassword) {
+      toast.error("Please do not leave any required fields blank");
       errorOccurred = true;
     }
 
     if (!errorOccurred) {
       // Password strength validation
+
+      if (currentPassword === newPassword) {
+        toast.error("Current password should not be same as a new password.");
+        errorOccurred = true;
+      }
+
+      if (newPassword !== confirmPassword) {
+        toast.error("New Password & Confirm passwords do not match");
+        errorOccurred = true;
+      }
+
       if (newPassword.length < 8) {
         toast.error("Password must be at least 8 characters long");
         errorOccurred = true;

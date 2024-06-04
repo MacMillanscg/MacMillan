@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Profile.module.css";
-import { Link, resolvePath } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ConfirmationDialog } from "./ConfirmationDialog";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt, faHeadset } from "@fortawesome/free-solid-svg-icons";
+import toast from "react-hot-toast";
 
 export const Profile = () => {
   const navigate = useNavigate();
@@ -30,10 +31,14 @@ export const Profile = () => {
   const closeDialog = () => {
     setShowDialog(false);
   };
+  const closeProfileModal = () => {
+    setShowProfile(false);
+  };
 
   const confirmLogout = () => {
     handleLogout();
   };
+  console.log("close", showProfile);
 
   return (
     <div>
@@ -47,7 +52,11 @@ export const Profile = () => {
               </div>
               <div>{userCapitalize}</div>
               <div className="title-text">{user.email}</div>
-              <Link className={styles.btn} to={"/profiledetails"}>
+              <Link
+                className={styles.btn}
+                to={"/profiledetails"}
+                onClick={closeProfileModal}
+              >
                 User setting
               </Link>
 

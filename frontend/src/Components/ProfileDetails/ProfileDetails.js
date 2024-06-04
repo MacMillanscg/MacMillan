@@ -22,9 +22,9 @@ export const ProfileDetails = () => {
   console.log("dataaa", data);
 
   useEffect(() => {
-    if (user && user.name) {
+    if ((user && user.name) || user.phone) {
       setName(user.name);
-      // setPhone(user.phone);
+      setPhone(user.phone);
     }
   }, [user._id]);
 
@@ -86,6 +86,10 @@ export const ProfileDetails = () => {
     }
   };
 
+  const handleCancel = () => {
+    toast("Changes have been reverted");
+  };
+
   return (
     <div className="home-section" style={{ width: dashboardWidth }}>
       <div className={styles.profileDetails}>
@@ -111,7 +115,9 @@ export const ProfileDetails = () => {
               <span className={styles.title}>{userCapitalize}</span>
             </div>
             <div className="inner-right">
-              <button className={styles.cancel}>Cancel</button>
+              <button className={styles.cancel} onClick={handleCancel}>
+                Cancel
+              </button>
               <button
                 onClick={handleSave}
                 className={`btn btn-success ${styles.save}`}
