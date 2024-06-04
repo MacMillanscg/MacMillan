@@ -24,7 +24,7 @@ export const DetailsTab = ({ clientId }) => {
         setClientName(client.clientName);
         setPhone(client.phone);
         setEmail(client.email);
-        // setIsActive(client.isActive);
+        setIsActive(client.isActive);
       } catch (error) {
         console.error("Error fetching client details:", error);
         toast.error("Failed to fetch client details");
@@ -35,6 +35,10 @@ export const DetailsTab = ({ clientId }) => {
   }, [clientId]);
 
   const handleSave = async () => {
+    if (!clientName || !email || !phone) {
+      toast.error("Please fill in all required fields.");
+      return;
+    }
     try {
       const updatedClient = {
         clientName,
@@ -63,7 +67,7 @@ export const DetailsTab = ({ clientId }) => {
         setClientName(client.clientName);
         setPhone(client.phone);
         setEmail(client.email);
-        // setIsActive(client.isActive);
+        setIsActive(client.isActive);
       } catch (error) {
         console.error("Error fetching client details:", error);
         toast.error("Failed to fetch client details");
@@ -88,9 +92,16 @@ export const DetailsTab = ({ clientId }) => {
     }
   };
 
+  const handleNameKeyPress = (e) => {
+    const char = String.fromCharCode(e.which);
+    if (!/[a-zA-Z ]/.test(char)) {
+      e.preventDefault();
+    }
+  };
+
   return (
     <div>
-      <div className={styles.profileDetails} style={{ maxWidth: "900px" }}>
+      <div className={styles.profileDetails} style={{ maxWidth: "1025px" }}>
         <div className={styles.profilebottom}>
           <div className="inputFields" style={{ minWidth: "355px" }}>
             <div className="form-group mb-2">
@@ -101,7 +112,7 @@ export const DetailsTab = ({ clientId }) => {
                 id="exampleInputName"
                 value={clientName}
                 onChange={(e) => setClientName(e.target.value)}
-                // onKeyPress={handleNameKeyPress}
+                onKeyPress={handleNameKeyPress}
               />
             </div>
             <div className="form-group mb-2">

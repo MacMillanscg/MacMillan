@@ -46,6 +46,9 @@ const ClientSchema = new mongoose.Schema({
   phone: {
     type: Number,
   },
+  isActive: {
+    type: Boolean,
+  },
   integrations: [IntegrationSchema], // Array of integration objects
   createdAt: {
     type: Date,
