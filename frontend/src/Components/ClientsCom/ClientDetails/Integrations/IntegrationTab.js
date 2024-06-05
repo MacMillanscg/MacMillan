@@ -10,6 +10,7 @@ import { MaskedToken } from "./MaskedToken";
 import style from "./IntegrationTab.module.css";
 import { EditIntegration } from "./EditIntegration";
 import { IntegrationTabHeader } from "./IntegrationTabHeader";
+import { TestConnectionPopUp } from "./TestConnectionPopUp";
 
 export const IntegrationTab = ({
   clientId,
@@ -23,6 +24,9 @@ export const IntegrationTab = ({
   const [popupPosition, setPopupPosition] = useState({ top: 0, left: 0 });
   const [selectedClient, setSelectedClient] = useState(null);
   const [showIntegration, setShowIntegration] = useState(false);
+  const [testPopUp, setTestPopUp] = useState(false);
+  const [errorResponse, setErrorResponse] = useState("");
+  const [responseData, setResponseData] = useState("");
   const popupRef = useRef();
 
   console.log("clients", clients);
@@ -33,9 +37,11 @@ export const IntegrationTab = ({
         const response = await axios.get(`${url}/clients/${clientId}`);
         if (response) {
           setClients(response?.data.integrations);
+          setResponseData(response);
         }
-        console.log("resintegr", response.data.integrations);
+        console.log("resintegr", response);
       } catch (error) {
+        setErrorResponse(error);
         console.log(error);
       }
     };
@@ -76,13 +82,24 @@ export const IntegrationTab = ({
     setPopupVisible(false);
   };
 
+  const handleTestPopUp = (index) => {
+    setTestPopUp((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
+  };
+
   return (
     <>
       <IntegrationTabHeader openModal={openModal} />
       <div className={styles.cardSection}>
         {clients?.map((client, i) => {
           return (
-            <div className="card me-1" style={{ width: "32%" }} key={i}>
+            <div
+              className={`card  me-1 ${styles.cardSection}`}
+              style={{ width: "32%" }}
+              key={i}
+            >
               <div className="card-body">
                 <div className={style.cardTop}>
                   <h3 className="card-title">{client.platform}</h3>
@@ -96,7 +113,18 @@ export const IntegrationTab = ({
                 <h4>{client?.integrationName}</h4>
                 <p className="mb-1">{client?.apiKey}</p>
                 <MaskedToken token={client?.storeUrl} />
-                <div className={style.testConnection}>Test Connection</div>
+                <div
+                  className={style.testConnection}
+                  onClick={() => handleTestPopUp(i)}
+                >
+                  Test Connection
+                </div>
+                {testPopUp[i] && (
+                  <TestConnectionPopUp
+                    onClose={() => handleTestPopUp(i)}
+                    responseData={responseData}
+                  />
+                )}
               </div>
             </div>
           );

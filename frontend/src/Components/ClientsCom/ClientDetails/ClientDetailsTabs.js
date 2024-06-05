@@ -37,8 +37,8 @@ export const ClientDetailsTabs = () => {
     const fetchClientSingleRecord = async () => {
       try {
         const response = await axios.get(`${url}/clients/${id}`);
-        console.log("resawse", response.data);
-        setClient(response.data);
+        const clientData = response.data;
+        setClient(clientData.clientName);
       } catch (error) {
         console.log(error);
       }
@@ -53,7 +53,7 @@ export const ClientDetailsTabs = () => {
       </div>
       <div className={styles.tabsHeaderSection}>
         <div className={styles.leftTabSection}>
-          <h2>{client?.clientName}</h2>
+          <h2>{client}</h2>
         </div>
       </div>
       <div className={styles.tabContainer}>

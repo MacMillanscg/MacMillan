@@ -10,6 +10,7 @@ const multer = require("multer");
 const path = require("path");
 const authController = require("../Controllers/authController");
 
+router.get("/", authController.getAllUsers);
 router.post("/register", authController.register);
 router.post("/login", authController.login);
 router.post("/forgot-password", authController.forgotPassword);

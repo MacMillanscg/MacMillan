@@ -65,6 +65,13 @@ export const Support = () => {
     }
   };
 
+  const handleNameKeyPress = (e) => {
+    const char = String.fromCharCode(e.which);
+    if (!/[a-zA-Z ]/.test(char)) {
+      e.preventDefault();
+    }
+  };
+
   return (
     <div className="authenticate">
       <div className={styles.support}>
@@ -85,6 +92,7 @@ export const Support = () => {
               //   placeholder="Email*"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              onKeyPress={handleNameKeyPress}
             />
           </div>
           <div className="form-group mt-1">

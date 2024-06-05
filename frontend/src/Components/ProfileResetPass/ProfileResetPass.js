@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./ProfileResetPass.module.css";
 import { Link } from "react-router-dom";
 import { useAppContext } from "../Context/AppContext";
@@ -6,6 +6,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { url } from "../../api";
 
 export const ProfileResetPass = () => {
   const [currentPassword, setCurrentPassword] = useState("");
@@ -14,12 +15,29 @@ export const ProfileResetPass = () => {
   const [currentPasswordVisible, setCurrentPasswordVisible] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+  const [userProfile, setUserProfile] = useState(null);
 
   const { dashboardWidth } = useAppContext();
   const localStorageUser = JSON.parse(localStorage.getItem("rememberMeUser"));
   const sessionStorageUser = JSON.parse(sessionStorage.getItem("userRecord"));
   const user = localStorageUser || sessionStorageUser;
-  const userCapitalize = user.name.charAt(0).toUpperCase() + user.name.slice(1);
+  const userCapitalize =
+    userProfile?.name.charAt(0).toUpperCase() + userProfile?.name.slice(1);
+
+  useEffect(() => {
+    const fetchSingleProfile = async () => {
+      try {
+        const response = await axios.get(`${url}/auth/${user._id}`);
+        const userData = response.data;
+        setUserProfile(userData);
+      } catch (error) {
+        console.log("There was an error fetching the user data!", error);
+      }
+    };
+    fetchSingleProfile();
+  }, []);
+
+  const userImageUrl = `http://localhost:5000/${userProfile?.profileImage}`;
 
   const handlePasswordChange = async () => {
     let errorOccurred = false;
@@ -69,7 +87,6 @@ export const ProfileResetPass = () => {
           newPassword,
         }
       );
-      console.log("resetReponse", response);
       if (response.data.success) {
         toast.success("Password updated successfully");
         setCurrentPassword("");
@@ -83,6 +100,12 @@ export const ProfileResetPass = () => {
       // toast.error("Please enter the passwords");
     }
   };
+  const handleCancel = () => {
+    setCurrentPassword("");
+    setNewPassword("");
+    setConfirmPassword("");
+    toast("Changes have been reverted");
+  };
 
   return (
     <div className="home-section" style={{ width: dashboardWidth }}>
@@ -93,23 +116,22 @@ export const ProfileResetPass = () => {
           <div className={styles.inner}>
             <div className="inner-left">
               <span className={styles.subtitle}>
-                {user.profileImage ? (
+                {userProfile?.profileImage ? (
                   <img
                     className={styles.profileImage0}
-                    src={`http://localhost:5000/${user.profileImage.replace(
-                      /\\/g,
-                      "/"
-                    )}`}
+                    src={userImageUrl}
                     alt=""
                   />
                 ) : (
-                  user.name.slice(0, 2).toUpperCase()
+                  userProfile?.name.slice(0, 2).toUpperCase()
                 )}
               </span>
               <span className={styles.title}>{userCapitalize}</span>
             </div>
             <div className="inner-right">
-              <button className={styles.cancel}>Cancel</button>
+              <button className={styles.cancel} onClick={handleCancel}>
+                Cancel
+              </button>
               <button
                 onClick={handlePasswordChange}
                 className={`btn btn-success ${styles.save}`}

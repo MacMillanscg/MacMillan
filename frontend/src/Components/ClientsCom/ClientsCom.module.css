@@ -81,7 +81,7 @@
 .cardSection{
     display: flex;
     /* justify-content: space-between; */
-    padding-top: 49px;
+    padding-top: 16px;
     flex-wrap: wrap;
 }
 .cardWrap{

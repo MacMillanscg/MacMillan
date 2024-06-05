@@ -3,6 +3,12 @@ const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const User = require("../Schema/userModel");
 
+exports.getAllUsers = (req, res) => {
+  User.find()
+    .then((users) => res.json(users))
+    .catch((err) => console.log(err));
+};
+
 // Register User
 exports.register = async (req, res) => {
   try {

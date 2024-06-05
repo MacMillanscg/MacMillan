@@ -12,6 +12,7 @@ export const DetailsTab = ({ clientId }) => {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState(null);
   const [isActive, setIsActive] = useState(false);
+  const [fetchTrigger, setFetchTrigger] = useState(false);
   console.log("clientIDDD", clientId);
   const navigate = useNavigate();
 
@@ -21,6 +22,7 @@ export const DetailsTab = ({ clientId }) => {
       try {
         const response = await axios.get(`${url}/clients/${clientId}`);
         const client = response.data;
+        console.log("updated", response.data);
         setClientName(client.clientName);
         setPhone(client.phone);
         setEmail(client.email);
@@ -32,7 +34,7 @@ export const DetailsTab = ({ clientId }) => {
     };
 
     fetchClientDetails();
-  }, [clientId]);
+  }, [fetchTrigger]);
 
   const handleSave = async () => {
     if (!clientName || !email || !phone) {
@@ -48,6 +50,12 @@ export const DetailsTab = ({ clientId }) => {
       };
       await axios.put(`${url}/clients/addclients/${clientId}`, updatedClient);
       toast.success("Client details updated successfully");
+      // Update the state directly
+      setClientName(updatedClient.clientName);
+      setPhone(updatedClient.phone);
+      setEmail(updatedClient.email);
+      setIsActive(updatedClient.isActive);
+      setFetchTrigger((prev) => !prev);
     } catch (error) {
       console.error("Error updating client details:", error);
       toast.error("Failed to update client details");

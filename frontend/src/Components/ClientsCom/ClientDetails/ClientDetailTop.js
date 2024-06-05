@@ -12,7 +12,8 @@ export const ClientDetailTop = () => {
     const fetchClientSingleRecord = async () => {
       try {
         const response = await axios.get(`${url}/clients/${id}`);
-        setClient(response.data);
+        const clientData = response.data;
+        setClient(clientData.clientName);
       } catch (error) {
         console.log(error);
       }
@@ -22,7 +23,7 @@ export const ClientDetailTop = () => {
 
   return (
     <div>
-      <span>Clients</span> / <span>{client && client.clientName}</span>
+      <span>Clients</span> / <span>{client}</span>
     </div>
   );
 };

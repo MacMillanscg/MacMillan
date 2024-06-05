@@ -2,6 +2,9 @@
     display: flex;
     justify-content: space-between;
 }
+.cardSection{
+  position: relative;
+}
 
 .popup {
     position: absolute;
@@ -31,4 +34,32 @@
     background: lightgray;
     padding: 5px;
     text-align: center;
+    cursor: pointer;
+  }
+
+  .popupTest {
+    position: absolute;
+    left: 0;
+    top:113px;
+    width: 100%;
+  }
+
+  .popupContent {
+    background-color: white;
+    padding: 12px;
+    border-radius: 5px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+    background-color: #f0f0f0;
+    position: relative;
+  }
+  
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .para{
+    margin-bottom: 15px;
   }

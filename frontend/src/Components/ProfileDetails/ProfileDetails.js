@@ -6,27 +6,49 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useCustomFetch } from "../../customsHooks/useCustomFetch";
 import { url } from "../../api";
+import { useNavigate } from "react-router-dom";
 
 export const ProfileDetails = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
+  const [userProfile, setUserProfile] = useState(null);
 
   const { dashboardWidth } = useAppContext();
 
   const localStorageUser = JSON.parse(localStorage.getItem("rememberMeUser"));
   const sessionStorageUser = JSON.parse(sessionStorage.getItem("userRecord"));
   const user = localStorageUser || sessionStorageUser;
-  const userCapitalize = user.name.charAt(0).toUpperCase() + user.name.slice(1);
+  const userCapitalize =
+    userProfile?.name.charAt(0).toUpperCase() + userProfile?.name.slice(1);
   const { data, loading, error } = useCustomFetch(url, user._id);
-  console.log("dataaa", data);
-
+  const navigate = useNavigate();
   useEffect(() => {
     if ((user && user.name) || user.phone) {
       setName(user.name);
       setPhone(user.phone);
     }
   }, [user._id]);
+
+  useEffect(() => {
+    const fetchSingleProfile = async () => {
+      try {
+        const response = await axios.get(`${url}/auth/${user._id}`);
+        const userData = response.data;
+        setUserProfile(userData);
+        setName(userData.name);
+        setPhone(userData.phone);
+        console.log("res", response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchSingleProfile();
+  }, []);
+  console.log("userProfile", userProfile);
+
+  const userImageUrl = `http://localhost:5000/${userProfile?.profileImage}`;
+  console.log("userImage", userImageUrl);
 
   const handleFileChange = (e) => {
     setSelectedFile(e.target.files[0]);
@@ -38,7 +60,7 @@ export const ProfileDetails = () => {
       toast.error("Please enter your name");
       errorOccurred = true;
     }
-    if (!phone.trim()) {
+    if (!phone) {
       toast.error("Please enter your phone number");
       errorOccurred = true;
     }
@@ -70,6 +92,7 @@ export const ProfileDetails = () => {
         // setProfileImage(user.profileImage);
         localStorage.setItem("rememberMeUser", JSON.stringify(user));
         sessionStorage.setItem("userRecord", JSON.stringify(user));
+        navigate("/");
       } else {
         toast.error(response.data.message);
       }
@@ -99,17 +122,14 @@ export const ProfileDetails = () => {
           <div className={styles.inner}>
             <div className="inner-left">
               <span className={styles.subtitle}>
-                {user.profileImage ? (
+                {userProfile?.profileImage ? (
                   <img
                     className={styles.profileImage0}
-                    src={`http://localhost:5000/${user.profileImage.replace(
-                      /\\/g,
-                      "/"
-                    )}`}
-                    alt=""
+                    src={userImageUrl}
+                    alt={`${userProfile?.name}'s profile`}
                   />
                 ) : (
-                  user.name.slice(0, 2).toUpperCase()
+                  userProfile?.name.slice(0, 2).toUpperCase()
                 )}
               </span>
               <span className={styles.title}>{userCapitalize}</span>
@@ -137,17 +157,14 @@ export const ProfileDetails = () => {
           <div className="form-section d-flex">
             <div className="left">
               <span className={styles.img}>
-                {user.profileImage ? (
+                {userProfile?.profileImage ? (
                   <img
                     className={styles.profileImage}
-                    src={`http://localhost:5000/${user.profileImage.replace(
-                      /\\/g,
-                      "/"
-                    )}`}
+                    src={userImageUrl}
                     alt=""
                   />
                 ) : (
-                  user.name.slice(0, 2).toUpperCase()
+                  userProfile?.name.slice(0, 2).toUpperCase()
                 )}
               </span>
             </div>
