@@ -112,8 +112,12 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
       toast.success("New client created successfully!");
       closeModal();
     } catch (error) {
-      console.error("Error creating new client:", error);
-      toast.error("Error creating new client. Please try again.");
+      if (error.response && error.response.status === 400) {
+        toast.error(error.response.data.message);
+      } else {
+        console.error("Error creating new client:", error);
+        toast.error("Error creating new client. Please try again.");
+      }
     }
   };
 

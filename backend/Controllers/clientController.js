@@ -72,6 +72,21 @@ exports.addClientIntegration = async (req, res) => {
       return res.status(404).json({ error: "Client not found" });
     }
 
+    // Check if integration already exists
+    const existingIntegration = client.integrations.find(
+      (integration) =>
+        integration.platform === selectedPlatform &&
+        integration.storeUrl === storeUrl &&
+        integration.apiKey === apiKey
+    );
+
+    if (existingIntegration) {
+      return res.status(400).json({
+        message:
+          "Integration with the same platform, store URL, and API key already exists.",
+      });
+    }
+
     const integrationData = {
       integrationName,
       platform: selectedPlatform,
@@ -97,7 +112,6 @@ exports.addClientIntegration = async (req, res) => {
 
 exports.getClientIntegrations = async (req, res) => {
   const { clientId } = req.params;
-
   try {
     const client = await Client.findById(clientId);
     if (!client) {

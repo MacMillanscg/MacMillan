@@ -22,6 +22,11 @@ import { ConnectorList } from "./Components/Connectors/ConnectorList";
 import { Terms } from "./Components/Register/Terms";
 import { VerifyEmail } from "./Components/Register/VerifyEmail";
 import { ClientDetailsTabs } from "./Components/ClientsCom/ClientDetails/ClientDetailsTabs";
+import { ExploreConnections } from "./Components/Explore/Connections/ExploreConnections";
+import { Explore } from "./Components/Explore/Explore";
+import { Executions } from "./Components/Explore/Executions/Executions";
+import { Logss } from "./Components/Explore/Logss/Logss";
+import { Users } from "./Components/Explore/Users/Users";
 
 export const AllRoutes = () => {
   return (
@@ -52,7 +57,14 @@ export const AllRoutes = () => {
           />
           <Route path="/connectors/connectorList" element={<ConnectorList />} />
           <Route path="/addclients/:id" element={<ClientDetailsTabs />} />
-          {/* <Route path="/client/:id" component={ClientDetail} /> */}
+          <Route path="/explore" element={<Explore />} />
+          <Route
+            path="/explore/exploreconnections"
+            element={<ExploreConnections />}
+          />
+          <Route path="/explore/executions" element={<Executions />} />
+          <Route path="/explore/Logs" element={<Logss />} />
+          <Route path="/explore/users" element={<Users />} />
         </Route>
 
         <Route

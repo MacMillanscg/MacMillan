@@ -3,7 +3,7 @@ import { useAppContext } from "../../Context/AppContext";
 import styles from "./ClientDetail.module.css";
 import { DetailsTab } from "./DetailsTab";
 import { IntegrationTab } from "./Integrations/IntegrationTab";
-import { LogsTab } from "./LogsTab";
+import { LogsTab } from "./LogsTab/LogsTab";
 import { ConnectionsTab } from "./ConnectionsTab";
 import { SummaryTab } from "./SummaryTab";
 import { LogsTabHeader } from "./LogsTabHeader";

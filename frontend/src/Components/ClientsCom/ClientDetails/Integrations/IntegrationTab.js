@@ -27,12 +27,14 @@ export const IntegrationTab = ({
   const [testPopUp, setTestPopUp] = useState(false);
   const [errorResponse, setErrorResponse] = useState("");
   const [responseData, setResponseData] = useState("");
+  const [loading, setLoading] = useState(false);
   const popupRef = useRef();
 
-  console.log("clients", clients);
+  console.log("loading", loading);
 
   useEffect(() => {
     const fetchAllIntegration = async () => {
+      setLoading(true);
       try {
         const response = await axios.get(`${url}/clients/${clientId}`);
         if (response) {
@@ -43,6 +45,8 @@ export const IntegrationTab = ({
       } catch (error) {
         setErrorResponse(error);
         console.log(error);
+      } finally {
+        setLoading(false); // End loading
       }
     };
     fetchAllIntegration();
@@ -84,10 +88,20 @@ export const IntegrationTab = ({
 
   const handleTestPopUp = (index) => {
     setTestPopUp((prev) => ({
-      ...prev,
+      // ...prev,
       [index]: !prev[index],
     }));
   };
+
+  useEffect(() => {
+    if (testPopUp) {
+      const timeout = setTimeout(() => {
+        setTestPopUp(false);
+      }, 3000);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [testPopUp]);
 
   return (
     <>
@@ -96,8 +110,7 @@ export const IntegrationTab = ({
         {clients?.map((client, i) => {
           return (
             <div
-              className={`card  me-1 ${styles.cardSection}`}
-              style={{ width: "32%" }}
+              className={`card  me-1 ${styles.cardSection} ${style.cardSection}`}
               key={i}
             >
               <div className="card-body">
@@ -111,8 +124,9 @@ export const IntegrationTab = ({
                   </div>
                 </div>
                 <h4>{client?.integrationName}</h4>
-                <p className="mb-1">{client?.apiKey}</p>
-                <MaskedToken token={client?.storeUrl} />
+                <p className="mb-1">{client?.storeUrl}</p>
+                <MaskedToken token={client?.apiKey} />
+
                 <div
                   className={style.testConnection}
                   onClick={() => handleTestPopUp(i)}
@@ -123,6 +137,7 @@ export const IntegrationTab = ({
                   <TestConnectionPopUp
                     onClose={() => handleTestPopUp(i)}
                     responseData={responseData}
+                    loading={loading}
                   />
                 )}
               </div>

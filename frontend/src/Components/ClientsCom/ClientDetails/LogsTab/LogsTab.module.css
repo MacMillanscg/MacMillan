@@ -1,0 +1,72 @@
+.logsContainer {
+    margin-top: 20px;
+  }
+  
+  .logsTable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .tableHead{
+    border-bottom: 1px solid lightgray;
+  }
+  
+  .logsTable th, .logsTable td {
+    /* border: 1px solid #ddd; */
+    padding: 8px;
+  }
+  .logsTable thead th{
+    padding-bottom: 30px;
+  }
+  .logsTable td{
+    padding-top: 25px;
+  }
+  
+  .logsTable th {
+    background-color: #f4f4f4;
+    text-align: left;
+  }
+  
+  .logRow:hover {
+    background-color: #f9f9f9;
+    cursor: pointer;
+  }
+  
+  .expandedRow {
+    background-color: #f1f1f1;
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .logIcon {
+    margin-right: 10px;
+    font-size: 18px;
+  }
+  
+  .logIcon.debug {
+    color: green;
+  }
+  
+  .logIcon.info {
+    color: gray;
+  }
+  
+  .logIcon.warn {
+    color: yellow;
+  }
+  
+  .logIcon.error {
+    color: red;
+  }
+  
+  .expandedContent {
+    padding: 10px;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  

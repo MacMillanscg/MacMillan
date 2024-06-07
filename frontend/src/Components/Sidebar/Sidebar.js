@@ -9,6 +9,9 @@ import {
   faChevronLeft,
   faBars,
   faTh,
+  faCalendarAlt,
+  faCaretDown,
+  faCaretUp,
 } from "@fortawesome/free-solid-svg-icons";
 import logo from "../../assets/images/logo.jpg";
 import { useAppContext } from "../Context/AppContext";
@@ -18,6 +21,7 @@ export const Sidebar = () => {
   const [showText, setShowText] = useState(true);
   // const [sidebarMinimized, setSidebarMinimized] = useState(false);
   const { sidebarMinimized, setSidebarMinimized } = useAppContext();
+  const [isExploreExpanded, setIsExploreExpanded] = useState(false); // New state for dropdown
 
   const handleItemClick = (link) => {
     setActiveLink(link);
@@ -30,6 +34,10 @@ export const Sidebar = () => {
   const toggleTextVisibility = () => {
     setShowText(!showText);
     toggleSidebarWidth();
+  };
+
+  const toggleExploreDropdown = () => {
+    setIsExploreExpanded(!isExploreExpanded);
   };
 
   return (
@@ -138,6 +146,71 @@ export const Sidebar = () => {
               <FontAwesomeIcon icon={faUsers} className={styles.icon} />
             )}
           </Link>
+        </li>
+        <li
+          className={`${styles.li} ${
+            activeLink === "explore" ? styles.active : ""
+          }`}
+        >
+          <div
+            className={styles.sidebarLink}
+            onClick={toggleExploreDropdown}
+            style={{ cursor: "pointer" }}
+          >
+            {showText ? (
+              <>
+                <FontAwesomeIcon icon={faCalendarAlt} className={styles.icon} />
+                Explore
+                <FontAwesomeIcon
+                  icon={isExploreExpanded ? faCaretUp : faCaretDown}
+                  className={styles.caretIcon}
+                />
+              </>
+            ) : (
+              <FontAwesomeIcon icon={faCalendarAlt} className={styles.icon} />
+            )}
+          </div>
+          {isExploreExpanded && showText && (
+            <ul className={styles.dropdown}>
+              <li>
+                <Link
+                  className={styles.sidebarLink}
+                  to="/explore/exploreconnections"
+                  onClick={() => handleItemClick("exploreconnections")}
+                >
+                  Connections
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className={styles.sidebarLink}
+                  to="/explore/executions"
+                  onClick={() => handleItemClick("executions")}
+                >
+                  Executions
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  className={styles.sidebarLink}
+                  to="/explore/logs"
+                  onClick={() => handleItemClick("logs")}
+                >
+                  Logs
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className={styles.sidebarLink}
+                  to="/explore/users"
+                  onClick={() => handleItemClick("users")}
+                >
+                  Users
+                </Link>
+              </li>
+            </ul>
+          )}
         </li>
       </ul>
     </div>

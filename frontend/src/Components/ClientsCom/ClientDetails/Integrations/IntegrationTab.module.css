@@ -4,6 +4,7 @@
 }
 .cardSection{
   position: relative;
+  width: 33%;
 }
 
 .popup {
@@ -40,8 +41,10 @@
   .popupTest {
     position: absolute;
     left: 0;
-    top:113px;
-    width: 100%;
+    top: 11px;
+    width: 90%;
+    margin: 0 auto;
+    right: 0;
   }
 
   .popupContent {
@@ -49,7 +52,7 @@
     padding: 12px;
     border-radius: 5px;
     /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-    background-color: #f0f0f0;
+    border: 15px solid #ccc;
     position: relative;
   }
   

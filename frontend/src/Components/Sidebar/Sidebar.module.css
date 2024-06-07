@@ -15,7 +15,7 @@
 }
 .sidebarLink{
     color: #fff !important;
-    font-size: 15px;
+    font-size: 16px;
     padding: 10px 0 10px 32px;
     border-left: 3px solid #1e223a;
     font-weight: 600;
@@ -31,7 +31,7 @@
     background-color: rgba(101, 212, 217, 0.1);
 }
 .icon{
-    margin-right: 7px;
+    margin-right: 20px;
     font-size: 13px;
 
 }
@@ -66,3 +66,40 @@
 .sidebar-minimized {
     width: 80px; /* Minimized width */
   }
+
+  .caretIcon {
+    margin-left: 10px;
+  }
+  
+  .dropdown {
+
+    background-color: #1e223a;
+    padding: 0  !important;
+    animation: fadeIn 0.3s ease forwards;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  
+  .dropdown li {
+    padding: 5px 0;
+  }
+  
+  .dropdown li .sidebarLink {
+    font-size: 15px; /* Smaller font size for dropdown items */
+    padding-left: 50px;
+  }
+  
+  .dropdown li:hover {
+    background-color: rgba(101, 212, 217, 0.1);
+  }
+  

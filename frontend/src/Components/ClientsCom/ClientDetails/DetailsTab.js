@@ -13,6 +13,7 @@ export const DetailsTab = ({ clientId }) => {
   const [email, setEmail] = useState(null);
   const [isActive, setIsActive] = useState(false);
   const [fetchTrigger, setFetchTrigger] = useState(false);
+
   console.log("clientIDDD", clientId);
   const navigate = useNavigate();
 
@@ -56,6 +57,7 @@ export const DetailsTab = ({ clientId }) => {
       setEmail(updatedClient.email);
       setIsActive(updatedClient.isActive);
       setFetchTrigger((prev) => !prev);
+      navigate("/addclients");
     } catch (error) {
       console.error("Error updating client details:", error);
       toast.error("Failed to update client details");
