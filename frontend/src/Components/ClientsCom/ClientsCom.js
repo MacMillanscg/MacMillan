@@ -16,20 +16,28 @@ export const ClientsCom = () => {
   const [clients, setClients] = useState([]);
   const [fetchTrigger, setFetchTrigger] = useState(false); // A state to trigger re-fetching
 
-  console.log("ismodal", isModalOpen);
+  const userId =
+    JSON.parse(localStorage.getItem("rememberMeUser"))._id ||
+    JSON.parse(sessionStorage.getItem("userRecord"))._id;
+  console.log("USERID", userId);
 
   useEffect(() => {
     const fetchAllClients = async () => {
       try {
         const response = await axios.get(`${url}/clients`);
-        setClients(response.data);
-        console.log("resss", response.data);
+        console.log("status", response.status);
+        const updatedData = response.data;
+        const userClients = updatedData.filter(
+          (user) => user.userId === userId
+        );
+        console.log("updated", userClients);
+        setClients(userClients);
       } catch (error) {
         console.log(error);
       }
     };
     fetchAllClients();
-  }, [fetchTrigger]);
+  }, [fetchTrigger, userId]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -77,27 +85,29 @@ export const ClientsCom = () => {
         </div>
       </div>
       <div className={styles.cardSection}>
-        {clients.map((client) => {
-          return (
-            <Link
-              to={`/addclients/${client._id}`}
-              key={client._id}
-              className={styles.cardLink}
-              style={{ width: "32%" }}
-            >
-              <div className="card me-1 mb-2">
-                <div className="card-body">
-                  <h3>{client.clientName}</h3>
-                  <h4 className={styles.heading4}>{client.email}</h4>
-                  <h4 className={styles.heading4}>{client.phone}</h4>
-                  <p className={styles.text}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  </p>
+        {clients &&
+          clients.map((client) => {
+            return (
+              <Link
+                to={`/addclients/${client._id}`}
+                key={client._id}
+                className={styles.cardLink}
+                style={{ width: "32%" }}
+              >
+                <div className="card me-1 mb-2">
+                  <div className="card-body">
+                    <h3>{client.clientName}</h3>
+                    <h4 className={styles.heading4}>{client.email}</h4>
+                    <h4 className={styles.heading4}>{client.phone}</h4>
+                    {/* <h4>{new Date(client.createdAt).toLocaleString()}</h4> */}
+                    <p className={styles.text}>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          );
-        })}
+              </Link>
+            );
+          })}
       </div>
       {isModalOpen && (
         <AddClients closeModal={closeModal} setFetchTrigger={setFetchTrigger} />

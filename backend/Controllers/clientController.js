@@ -26,7 +26,7 @@ exports.addClientVerify = async (req, res) => {
 };
 
 exports.addClient = async (req, res) => {
-  const { clientName, email, phone } = req.body; // also pass url key api token
+  const { clientName, email, phone, userId } = req.body; // also pass url key api token
   console.log(req.body);
 
   try {
@@ -34,8 +34,7 @@ exports.addClient = async (req, res) => {
       clientName,
       email,
       phone,
-      // storeUrl,
-      // apiKey,
+      userId,
     });
     const savedClient = await newClient.save();
     res
@@ -54,12 +53,37 @@ exports.getUserById = (req, res) => {
     .catch((err) => res.status(400).json("Err :" + err));
 };
 
+// get cliens by id
+exports.getClients = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const clients = await Client.find({ userId });
+    res.status(200).send(clients);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
+
 // Get All Clients
 exports.getAllClients = (req, res) => {
   Client.find()
     .then((users) => res.json(users))
     .catch((err) => res.status(400).json("Err:" + err));
 };
+
+// Get Clients with Filter Criteria
+// exports.filterClients = async (req, res) => {
+//   try {
+//     const { userId } = req.body;
+//     if (!userId) {
+//       return res.status(400).send({ message: "User ID is required" });
+//     }
+//     const clients = await Client.find({ userId });
+//     res.status(200).send(clients);
+//   } catch (error) {
+//     res.status(400).send(error);
+//   }
+// };
 
 exports.addClientIntegration = async (req, res) => {
   const { clientId } = req.params;

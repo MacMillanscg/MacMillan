@@ -49,6 +49,11 @@ const ClientSchema = new mongoose.Schema({
   isActive: {
     type: Boolean,
   },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "users",
+    required: true,
+  },
   integrations: [IntegrationSchema], // Array of integration objects
   createdAt: {
     type: Date,

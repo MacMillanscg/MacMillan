@@ -1,22 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Connections.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faChevronDown,
-  faPlus,
-  faSearch,
-  faSync,
-  faThLarge,
-  faClock,
-  faVideo,
-  faPlayCircle,
-} from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useAppContext } from "../Context/AppContext";
 import { Link } from "react-router-dom";
 import connectionData from "./ConnectionData";
+import { AddConnections } from "./AddConnections";
 
 export const Connections = () => {
   const { dashboardWidth } = useAppContext();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className="dashboard" style={{ width: dashboardWidth }}>
@@ -46,13 +47,13 @@ export const Connections = () => {
               className={styles.filterIcon}
             />
           </div>
-          <Link
-            to="/connections/addConnections"
+          <button
             className={`btn btn-success ${styles.addBtn} ms-4`}
+            onClick={openModal}
           >
             <FontAwesomeIcon icon={faPlus} className={styles.addIcon} />
-            Add Connections
-          </Link>
+            Add Connection
+          </button>
         </div>
       </div>
       <div className={styles.cardSection}>
@@ -111,6 +112,7 @@ export const Connections = () => {
           </Link>
         ))}
       </div>
+      {isModalOpen && <AddConnections closeModal={closeModal} />}
     </div>
   );
 };

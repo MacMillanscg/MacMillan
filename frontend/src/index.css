@@ -80,3 +80,6 @@ ul{
   height: 100vh;
   padding: 20px 40px;
 }
+p{
+  word-break:break-word;
+}

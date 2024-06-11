@@ -17,6 +17,15 @@
   .logsTable thead th{
     padding-bottom: 30px;
   }
+  .logsTable td{
+    padding-top: 25px;
+  }
+  
+  .logsTable th {
+    background-color: #f4f4f4;
+    text-align: left;
+  }
+
   .logsTable tbody{
     position: relative;
   }
@@ -74,14 +83,5 @@
   }
   .expandedContent p{
     margin-bottom: 10px;
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
   }
   

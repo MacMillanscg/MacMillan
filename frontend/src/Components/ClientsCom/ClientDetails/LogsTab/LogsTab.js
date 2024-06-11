@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { LogsTabHeader } from "../LogsTabHeader";
 import styles from "./LogsTab.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,6 +8,9 @@ import {
   faExclamationTriangle,
   faTimesCircle,
 } from "@fortawesome/free-solid-svg-icons";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { url } from "../../../../api";
 
 const getIconForLogType = (type) => {
   switch (type) {
@@ -51,36 +54,60 @@ export const LogsTab = () => {
       type: "Debug",
       timestamp: "08/25/2023 16:30:29",
       client: "client 1",
-      connection: "Connection A",
-      message: "Message 1",
+      integration: "Monday",
+      connection: "Shopify",
+      message: "Need to debug",
+      details: "Execution started successfully...",
     },
     {
       id: 2,
       type: "Info",
       timestamp: "08/25/2023 16:30:29",
       client: "client 2",
-      connection: "Connection B",
-      message: "Message 2'",
+      integration: "Tuesday",
+      connection: "Amazon",
+      message: "Execution successfully'",
+      details: "Execution started successfully...",
     },
     {
       id: 3,
       type: "Warn",
       timestamp: "08/25/2023 16:30:29",
       client: "client 3",
-      connection: "Connection C",
-      message: "Message 3'",
+      integration: "Wednesday",
+      connection: "Eshipers",
+      message: "Its the last time to check it",
+      details: "Execution started successfully...",
     },
     {
       id: 4,
       type: "Error",
       timestamp: "08/25/2023 16:30:29",
       client: "client 4",
-      connection: "Connection D",
-      message: "Message 4'",
+      integration: "Friday",
+      connection: "",
+      message: "Error in connection",
+      details: "Execution started successfully...",
     },
   ];
 
   const [expandedLog, setExpandedLog] = useState(null);
+  const [client, setClient] = useState([]);
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    const fetchClientSingleRecord = async () => {
+      try {
+        const response = await axios.get(`${url}/clients/${id}`);
+        const clientData = response.data;
+        setClient(clientData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchClientSingleRecord();
+  }, []);
 
   const handleExpand = (logId) => {
     setExpandedLog(expandedLog === logId ? null : logId);
@@ -99,14 +126,14 @@ export const LogsTab = () => {
               <th>Message</th>
               <th>Timestamp</th>
               <th>Connection</th>
-              <th>Client</th>
+              {/* <th>Client</th> */}
             </tr>
           </thead>
           <tbody>
             {logs.map((log) => (
               <React.Fragment key={log.id}>
                 <tr
-                  // onClick={() => handleExpand(log.id)}
+                  onClick={() => handleExpand(log.id)}
                   className={styles.logRow}
                 >
                   <td>
@@ -114,10 +141,25 @@ export const LogsTab = () => {
                     {log.type}
                   </td>
                   <td>{log.message}</td>
-                  <td>{log.timestamp}</td>
+                  {/* <td>{log.timestamp}</td> */}
+                  <td>{new Date(client.createdAt).toLocaleString()}</td>
                   <td>{log.connection}</td>
-                  <td>{log.client}</td>
+                  {/* <td>{log.client}</td> */}
                 </tr>
+                {expandedLog === log.id && (
+                  <tr className={styles.expandedRow}>
+                    <td className="pt-0">
+                      <div className={styles.expandedContent}>
+                        <p>
+                          <strong>Instance:</strong> {log.integration}
+                        </p>
+                        <p>
+                          <strong>Execution:</strong> {log.message}
+                        </p>
+                      </div>
+                    </td>
+                  </tr>
+                )}
               </React.Fragment>
             ))}
           </tbody>

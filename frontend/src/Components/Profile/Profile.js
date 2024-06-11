@@ -14,6 +14,7 @@ export const Profile = () => {
 
   const localStorageUser = JSON.parse(localStorage.getItem("rememberMeUser"));
   const sessionStorageUser = JSON.parse(sessionStorage.getItem("userRecord"));
+
   const user = localStorageUser || sessionStorageUser;
   const userCapitalize = user.name.charAt(0).toUpperCase() + user.name.slice(1);
 

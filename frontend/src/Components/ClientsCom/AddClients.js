@@ -17,6 +17,11 @@ export const AddClients = ({ closeModal, setFetchTrigger }) => {
     apiKey: "",
   });
 
+  const userId =
+    JSON.parse(localStorage.getItem("rememberMeUser"))._id ||
+    JSON.parse(sessionStorage.getItem("userRecord"))._id;
+  console.log("USERID", userId);
+
   const [isVerified, setIsVerified] = useState(false);
 
   const [woocommerceFields, setWooCommerceFields] = useState({
@@ -69,29 +74,17 @@ export const AddClients = ({ closeModal, setFetchTrigger }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      !clientName ||
-      !email ||
-      !phone
-      // !shopifyFields.storeUrl ||
-      // !shopifyFields.apiKey
-    ) {
+    if (!clientName || !email || !phone) {
       toast.error("Please fill in all required fields.");
       return;
     }
-
-    // if (!isVerified) {
-    //   toast.error("Please verify the Shopify credentials before submitting.");
-    //   return;
-    // }
 
     try {
       const newClient = {
         clientName,
         email,
         phone,
-        // storeUrl: shopifyFields.storeUrl,
-        // apiKey: shopifyFields.apiKey,
+        userId,
       };
       console.log("newClinet", newClient);
 
@@ -121,24 +114,6 @@ export const AddClients = ({ closeModal, setFetchTrigger }) => {
           <div className={styles.modalHeader}>
             <h2>Create New Client</h2>
           </div>
-          {/* <div className={styles.tabContainer}>
-            <button
-              className={`${styles.tabButton} ${
-                activeTab === "info" && styles.activeTab
-              }`}
-              onClick={() => handleTabChange("info")}
-            >
-              Info
-            </button>
-            <button
-              className={`${styles.tabButton} ${
-                activeTab === "connections" && styles.activeTab
-              }`}
-              onClick={() => handleTabChange("connections")}
-            >
-              Connections
-            </button>
-          </div> */}
           <div className={styles.tabContent}>
             {activeTab === "info" && (
               <>
@@ -179,20 +154,6 @@ export const AddClients = ({ closeModal, setFetchTrigger }) => {
                     />
                   </div>
                 </div>
-                {/* <div className={styles.platformDropdown}>
-                  <label htmlFor="platform">Select E-commerce Platform:</label>
-                  <select
-                    className="form-select mb-2"
-                    id="platform"
-                    value={selectedPlatform}
-                    onChange={handlePlatformChange}
-                  >
-                    <option value="">Select Platform</option>
-                    <option value="shopify">Shopify</option>
-                    <option value="woocommerce">WooCommerce</option>
-                    <option value="magento">Magento</option>
-                  </select>
-                </div> */}
                 {selectedPlatform === "shopify" && (
                   <div className={styles.platformFields}>
                     <label htmlFor="shopifyStoreUrl">Shopify Store URL:</label>
@@ -213,13 +174,6 @@ export const AddClients = ({ closeModal, setFetchTrigger }) => {
                       value={shopifyFields.apiKey}
                       onChange={handleShopifyFieldChange}
                     />
-                    {/* <button
-                      className="btn btn-primary mt-2"
-                      onClick={verifyShopifyCredentials}
-                      disabled={isVerified}
-                    >
-                      {isVerified ? "Verified" : "Verify Shopify Credentials"}
-                    </button> */}
                   </div>
                 )}
                 {selectedPlatform === "woocommerce" && (
