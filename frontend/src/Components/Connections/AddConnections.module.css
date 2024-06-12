@@ -18,7 +18,7 @@
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
     z-index: 1000; /* Ensure modal is on top of the background */
-    width: 450px;
+    width:500px;
     min-height: 418px;
     max-height: 100%;
     overflow-y:scroll ;
@@ -171,15 +171,70 @@
   .optionIcon {
     margin-right: 5px;
   }
-  .integrationList{
+  /* .integrationList{
     border: 1px solid lightgray;
     padding-left: 8px;
     border-radius: 4px;
-  }
+  } */
   .close {
     position: absolute;
     top: 10px;
     right: 10px;
     font-size: 20px;
     cursor: pointer;
+  }
+  .webhookForm .formGroup {
+    margin-top: 15px;
+  }
+  
+  .searchContainer {
+    display: flex;
+    align-items: center;
+  }
+  
+  .searchIcon {
+    margin-right: 8px;
+  }
+  
+  .searchInput {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .integrationList {
+    margin-top: 20px;
+  }
+  
+  .integrationItem {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  .integrationItems{
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .integrationHeader {
+    display: flex;
+    align-items: center;
+  }
+  
+  .integrationName {
+    font-weight: bold;
+  }
+  
+  .integrationDescription {
+    color: #666;
+  }
+  .selected{
+    border: 1px solid #4fac64;
+    background-color: #f9f9f9;
   }

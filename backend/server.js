@@ -34,10 +34,12 @@ app.use(cookieParser());
 const userAuth = require("./routes/auth");
 const support = require("./routes/supportRoute");
 const clientRoute = require("./routes/clientRoutes");
+const connectionRoute = require("./routes/connectionRoutes");
 // app.use("/users", userRouter);
 app.use("/auth", userAuth);
 app.use("/supports", support);
 app.use("/clients", clientRoute);
+app.use("/connections", connectionRoute);
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");

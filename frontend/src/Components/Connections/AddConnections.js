@@ -5,12 +5,18 @@ import {
   faLink,
   faCalendarAlt,
   faCogs,
+  faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 import { useAppContext } from "../Context/AppContext";
 import styles from "./AddConnections.module.css";
 import axios from "axios";
 import { url } from "../../api";
 import { MaskedToken } from "../ClientsCom/ClientDetails/Integrations/MaskedToken";
+import {
+  webhookTriggers,
+  managementTriggers,
+  scheduleOptions,
+} from "./Webhook/WebhookData";
 
 export const AddConnections = ({ closeModal }) => {
   const { dashboardWidth } = useAppContext();
@@ -22,7 +28,15 @@ export const AddConnections = ({ closeModal }) => {
   const [selectedClientIntegrations, setSelectedClientIntegrations] = useState(
     []
   );
-  console.log("selected", selectedClientIntegrations);
+  const [cronExpression, setCronExpression] = useState("");
+  const [schedule, setSchedule] = useState("");
+  const [webhookUrl, setWebhookUrl] = useState("");
+  const [webhookSecret, setWebhookSecret] = useState("");
+  const [selectedWebhookTrigger, setSelectedWebhookTrigger] = useState(null);
+  const [selectedManagementTrigger, setSelectedManagementTrigger] =
+    useState(null);
+
+  console.log("selectedWebhookTrigger", selectedWebhookTrigger);
 
   const userId =
     JSON.parse(localStorage.getItem("rememberMeUser"))._id ||
@@ -59,15 +73,30 @@ export const AddConnections = ({ closeModal }) => {
     }
   };
 
+  const handleWebhookTriggerClick = (trigger) => {
+    setSelectedWebhookTrigger(trigger);
+  };
+
+  const handleManagementTriggerClick = (trigger) => {
+    setSelectedManagementTrigger(trigger);
+  };
+
   const handleCreate = () => {
     const selectedClient = clients.find(
       (client) => client.clientName === client
     );
+
     const dataToStore = {
       connectionName,
-      client: selectedClient.clientName,
+      client,
+      webhookTrigger: option === "Webhook" ? selectedWebhookTrigger : null,
+      managementTrigger:
+        option === "Management" ? selectedManagementTrigger : null,
       integrations: selectedClientIntegrations,
+      schedule: option === "Schedule" ? schedule : undefined,
+      cronExpression: option === "Schedule" ? cronExpression : undefined,
     };
+
     console.log("Create connection:", dataToStore);
     // onClose();
   };
@@ -153,16 +182,136 @@ export const AddConnections = ({ closeModal }) => {
                 </button>
               </div>
             </div>
+
+            {option === "Webhook" && (
+              <div className={styles.webhookForm}>
+                <div className={styles.formGroup}>
+                  <label htmlFor="webhookSearch">Search triggers</label>
+                  <div className={styles.searchContainer}>
+                    <input
+                      type="text"
+                      id="webhookSearch"
+                      className={styles.searchInput}
+                      placeholder="Search triggers"
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div className={styles.integrationList}>
+                  {webhookTriggers
+                    .filter((trigger) =>
+                      trigger.name.toLowerCase().includes(search.toLowerCase())
+                    )
+                    .map((trigger, index) => (
+                      <div
+                        key={index}
+                        className={`${styles.integrationItem} ${
+                          selectedWebhookTrigger === trigger
+                            ? styles.selected
+                            : ""
+                        }`}
+                        onClick={() => handleWebhookTriggerClick(trigger)}
+                      >
+                        <div className={styles.integrationHeader}>
+                          <FontAwesomeIcon
+                            icon={faLink}
+                            className={styles.optionIcon}
+                          />
+                          <div>
+                            <div className={styles.integrationName}>
+                              {trigger.name}
+                            </div>
+                            <div className={styles.integrationDescription}>
+                              {trigger.description}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                </div>
+              </div>
+            )}
+
+            {option === "Management" && (
+              <div className={styles.managementForm}>
+                <div className={styles.integrationList}>
+                  {managementTriggers.map((trigger, index) => (
+                    <div
+                      key={index}
+                      className={`${styles.integrationItem} ${
+                        selectedManagementTrigger === trigger
+                          ? styles.selected
+                          : ""
+                      }`}
+                      onClick={() => handleManagementTriggerClick(trigger)}
+                    >
+                      <div className={styles.integrationHeader}>
+                        <FontAwesomeIcon
+                          icon={faCogs}
+                          className={styles.optionIcon}
+                        />
+                        <div>
+                          <div className={styles.integrationName}>
+                            {trigger.name}
+                          </div>
+                          <div className={styles.integrationDescription}>
+                            {trigger.description}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {option === "Schedule" && (
+              <div className={styles.scheduleForm}>
+                <div className={styles.formGroup}>
+                  <label htmlFor="scheduleType">Schedule Type</label>
+                  <select
+                    id="scheduleType"
+                    className={styles.select}
+                    value={schedule}
+                    onChange={(e) => setSchedule(e.target.value)}
+                  >
+                    {scheduleOptions.map((option, index) => (
+                      <option key={index} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className={styles.formGroup}>
+                  <label htmlFor="cronExpression">Cron Expression</label>
+                  <input
+                    type="text"
+                    id="cronExpression"
+                    className={styles.input}
+                    placeholder="* * * * *"
+                    value={cronExpression}
+                    onChange={(e) => setCronExpression(e.target.value)}
+                  />
+                  <small className={styles.cronHelp}>
+                    A cron expression for this config variable. You can use `* *
+                    * * *` for every minute, `0 0 * * *` for every day, and `0 *
+                    * * WED` for every Wednesday. e.g. `*/20 * * * *`
+                  </small>
+                </div>
+              </div>
+            )}
+
             <div className={styles.formGroup}>
               <label htmlFor="search">Search Integrations</label>
               <input
                 type="text"
                 id="search"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                // value={search}
+                // onChange={(e) => setSearch(e.target.value)}
               />
             </div>
-            <div className={styles.integrationList}>
+            <div className={styles.integrationItems}>
               {selectedClientIntegrations.length === 0 ? (
                 <h4 className="my-1">No integrations Available</h4>
               ) : (
@@ -172,9 +321,7 @@ export const AddConnections = ({ closeModal }) => {
                 {selectedClientIntegrations.map((integration, index) => {
                   return (
                     <>
-                      <li key={index} className={styles.integrationItem}>
-                        {integration.platform}
-                      </li>
+                      <li key={index}>{integration.platform}</li>
                       <li>{integration.integrationName}</li>
                       <li>{integration.storeUrl}</li>
                       <li>
@@ -190,7 +337,9 @@ export const AddConnections = ({ closeModal }) => {
             {/* <button className={styles.cancelButton} onClick={closeModal}>
               Cancel
             </button> */}
-            <button className={styles.addButton}>Create</button>
+            <button className={styles.addButton} onClick={handleCreate}>
+              Create
+            </button>
           </div>
         </div>
       </div>
