@@ -27,6 +27,7 @@ import { Explore } from "./Components/Explore/Explore";
 import { Executions } from "./Components/Explore/Executions/Executions";
 import { Logss } from "./Components/Explore/Logss/Logss";
 import { Users } from "./Components/Explore/Users/Users";
+import { IntegrationCanvas } from "./Components/Connections/Webhook/IntegrationCanvas";
 
 export const AllRoutes = () => {
   return (
@@ -89,6 +90,10 @@ export const AllRoutes = () => {
         <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
         <Route path="/support" element={<Support />} />
         <Route path="/verify/:token" element={<VerifyEmail />} />
+        <Route
+          path="/connections/integration"
+          element={<IntegrationCanvas />}
+        />
 
         {/* <Route
           path="*"

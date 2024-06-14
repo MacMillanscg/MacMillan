@@ -17,6 +17,7 @@ import {
   managementTriggers,
   scheduleOptions,
 } from "./Webhook/WebhookData";
+import { useNavigate } from "react-router-dom";
 
 export const AddConnections = ({ closeModal }) => {
   const { dashboardWidth } = useAppContext();
@@ -35,8 +36,11 @@ export const AddConnections = ({ closeModal }) => {
   const [selectedWebhookTrigger, setSelectedWebhookTrigger] = useState(null);
   const [selectedManagementTrigger, setSelectedManagementTrigger] =
     useState(null);
+  const [selectedClient, setSelectedClient] = useState(null);
+  const navigate = useNavigate();
 
   console.log("selectedWebhookTrigger", selectedWebhookTrigger);
+  console.log("option", option);
 
   const userId =
     JSON.parse(localStorage.getItem("rememberMeUser"))._id ||
@@ -62,10 +66,12 @@ export const AddConnections = ({ closeModal }) => {
   console.log("clients", clients);
 
   const handleClientChange = (e) => {
+    const clientName = e.target.value;
     const selectedClient = clients.find(
-      (client) => client.clientName === e.target.value
+      (client) => client.clientName === clientName
     );
-    setClient(e.target.value);
+    setSelectedClient(selectedClient);
+    setClient(clientName);
     if (selectedClient) {
       setSelectedClientIntegrations(selectedClient.integrations || []);
     } else {
@@ -80,25 +86,36 @@ export const AddConnections = ({ closeModal }) => {
   const handleManagementTriggerClick = (trigger) => {
     setSelectedManagementTrigger(trigger);
   };
-
-  const handleCreate = () => {
-    const selectedClient = clients.find(
-      (client) => client.clientName === client
-    );
-
-    const dataToStore = {
-      connectionName,
-      client,
-      webhookTrigger: option === "Webhook" ? selectedWebhookTrigger : null,
-      managementTrigger:
-        option === "Management" ? selectedManagementTrigger : null,
-      integrations: selectedClientIntegrations,
-      schedule: option === "Schedule" ? schedule : undefined,
-      cronExpression: option === "Schedule" ? cronExpression : undefined,
-    };
-
-    console.log("Create connection:", dataToStore);
-    // onClose();
+  console.log("client1", client);
+  const handleCreate = async () => {
+    try {
+      const selectedClientObj = clients.find(
+        (client) => client.clientName === client
+      );
+      console.log("selcted", selectedClient);
+      const dataToStore = {
+        connectionName,
+        // client: selectedClient._id, // Send the client ID
+        // integrations: selectedClientIntegrations.map(
+        //   (integration) => integration._id
+        // ), // Send integration IDs
+        // webhookTrigger: option === "Webhook" ? selectedWebhookTrigger : null,
+        // managementTrigger:
+        //   option === "Management" ? selectedManagementTrigger : null,
+        // schedule: option === "Schedule" ? schedule : undefined,
+        // cronExpression: option === "Schedule" ? cronExpression : undefined,
+      };
+      console.log("Create connection:", dataToStore);
+      navigate("/connections/integration");
+      // Send dataToStore to the server
+      // const response = await axios.post(
+      //   `${url}/connections/addConnections`,
+      //   dataToStore
+      // );
+      // console.log("Server response success:", response.data);
+    } catch (error) {
+      console.log("Error creating connection:", error);
+    }
   };
 
   return (
@@ -302,15 +319,6 @@ export const AddConnections = ({ closeModal }) => {
               </div>
             )}
 
-            <div className={styles.formGroup}>
-              <label htmlFor="search">Search Integrations</label>
-              <input
-                type="text"
-                id="search"
-                // value={search}
-                // onChange={(e) => setSearch(e.target.value)}
-              />
-            </div>
             <div className={styles.integrationItems}>
               {selectedClientIntegrations.length === 0 ? (
                 <h4 className="my-1">No integrations Available</h4>

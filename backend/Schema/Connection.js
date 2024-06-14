@@ -1,25 +1,31 @@
 const mongoose = require("mongoose");
 
 const WebhookTriggerSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  description: { type: String, required: true },
+  name: { type: String },
+  description: { type: String },
   webhookUrl: { type: String },
   webhookSecret: { type: String },
 });
 
 const ManagementTriggerSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  description: { type: String, required: true },
+  name: { type: String },
+  description: { type: String },
 });
 
 const ConnectionSchema = new mongoose.Schema({
-  connectionName: { type: String, required: true },
+  connectionName: { type: String },
   client: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Client",
     required: true,
   },
-  integrations: [{ type: mongoose.Schema.Types.ObjectId, ref: "Integration" }],
+  integrations: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Integration",
+      required: true,
+    },
+  ],
   webhookTrigger: WebhookTriggerSchema,
   managementTrigger: ManagementTriggerSchema,
   schedule: { type: String },
@@ -27,4 +33,5 @@ const ConnectionSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
-module.exports = mongoose.model("Connection", ConnectionSchema);
+const Connection = mongoose.model("Connection", ConnectionSchema);
+module.exports = Connection;

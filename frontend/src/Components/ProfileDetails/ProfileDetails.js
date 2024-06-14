@@ -7,12 +7,15 @@ import toast from "react-hot-toast";
 import { useCustomFetch } from "../../customsHooks/useCustomFetch";
 import { url } from "../../api";
 import { useNavigate } from "react-router-dom";
+import { CancelPopUp } from "./CancelPopUp";
 
 export const ProfileDetails = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [userProfile, setUserProfile] = useState(null);
+  const [showDialog, setShowDialog] = useState(false);
+  const [originalData, setOriginalData] = useState({ name: "", phone: "" });
 
   const { dashboardWidth } = useAppContext();
 
@@ -38,6 +41,7 @@ export const ProfileDetails = () => {
         setUserProfile(userData);
         setName(userData.name);
         setPhone(userData.phone);
+        setOriginalData({ name: userData.name, phone: userData.phone });
         console.log("res", response.data);
       } catch (error) {
         console.log(error);
@@ -110,7 +114,20 @@ export const ProfileDetails = () => {
   };
 
   const handleCancel = () => {
-    toast("Changes have been reverted");
+    if (isDirty()) {
+      setShowDialog(true);
+      // setName(originalData.name);
+      // setPhone(originalData.phone);
+      // setSelectedFile(null);
+    }
+  };
+
+  const isDirty = () => {
+    return (
+      name !== originalData.name ||
+      phone !== originalData.phone ||
+      selectedFile !== null
+    );
   };
 
   return (
@@ -141,6 +158,7 @@ export const ProfileDetails = () => {
               <button
                 onClick={handleSave}
                 className={`btn btn-success ${styles.save}`}
+                disabled={!isDirty()}
               >
                 Save
               </button>
@@ -152,6 +170,15 @@ export const ProfileDetails = () => {
             </Link>
             <Link to="/profileResetPass">Password</Link>
           </div>
+          {showDialog && (
+            <CancelPopUp
+              setShowDialog={setShowDialog}
+              setName={setName}
+              setPhone={setPhone}
+              setSelectedFile={setSelectedFile}
+              originalData={originalData}
+            />
+          )}
         </div>
         <div className={styles.profilebottom}>
           <div className="form-section d-flex">

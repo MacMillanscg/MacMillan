@@ -5,15 +5,21 @@ export const ConfirmationDialog = ({ open, onClose, onConfirm }) => {
   if (!open) return null;
 
   return (
-    <div className={`dialog-overlay ${styles.confirm}`}>
-      <div className="dialog-content">
-        <p className={`mb-3 ${styles.para}`}>
-          Are you sure you want to logout?
-        </p>
-        <button className={styles.okay} onClick={onConfirm}>
+    <div className={styles.dialog}>
+      <div className={styles.dialogHeader}>
+        <h3 className={styles.warning}>Warning!</h3>
+      </div>
+      <div className={styles.dialogBody}>
+        <p className={styles.continue}>Are you sure you want to logout ?</p>
+      </div>
+      <div className={styles.dialogFooter}>
+        <button className={`${styles.btn} ${styles.btnOk}`} onClick={onConfirm}>
           OK
         </button>
-        <button className={styles.cancel} onClick={onClose}>
+        <button
+          className={`${styles.btn} ${styles.btnCancel}`}
+          onClick={onClose}
+        >
           Cancel
         </button>
       </div>

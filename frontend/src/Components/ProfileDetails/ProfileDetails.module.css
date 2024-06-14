@@ -4,6 +4,7 @@
 .profiletop{
     background-color: #F1F4F6;
     padding: 6px 17px;
+    position: relative;
 }
 .profilename{
     font-weight:700;
