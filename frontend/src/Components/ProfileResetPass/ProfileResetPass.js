@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { url } from "../../api";
+import { CancelPopUp } from "../ProfileDetails/CancelPopUp";
 
 export const ProfileResetPass = () => {
   const [currentPassword, setCurrentPassword] = useState("");
@@ -16,6 +17,7 @@ export const ProfileResetPass = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   const [userProfile, setUserProfile] = useState(null);
+  const [showDialog, setShowDialog] = useState(false);
 
   const { dashboardWidth } = useAppContext();
   const localStorageUser = JSON.parse(localStorage.getItem("rememberMeUser"));
@@ -101,10 +103,13 @@ export const ProfileResetPass = () => {
     }
   };
   const handleCancel = () => {
-    setCurrentPassword("");
-    setNewPassword("");
-    setConfirmPassword("");
-    toast("Changes have been reverted");
+    if (
+      currentPassword.length > 0 ||
+      newPassword.length > 0 ||
+      confirmPassword.length > 0
+    ) {
+      setShowDialog(true);
+    }
   };
 
   return (
@@ -146,6 +151,14 @@ export const ProfileResetPass = () => {
             </Link>
             <Link to="/profileResetPass">Password</Link>
           </div>
+          {showDialog && (
+            <CancelPopUp
+              setShowDialog={setShowDialog}
+              setCurrentPassword={setCurrentPassword}
+              setNewPassword={setNewPassword}
+              setConfirmPassword={setConfirmPassword}
+            />
+          )}
         </div>
         <div className={styles.profilebottom}>
           <div className="inputFields">

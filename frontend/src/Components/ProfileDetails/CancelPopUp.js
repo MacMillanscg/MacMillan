@@ -7,14 +7,22 @@ export const CancelPopUp = ({
   setPhone,
   setSelectedFile,
   originalData,
+  setCurrentPassword,
+  setNewPassword,
+  setConfirmPassword,
 }) => {
   const handleOk = () => {
     setShowDialog(false);
-    setName(originalData.name);
-    setPhone(originalData.phone);
-    setSelectedFile(null);
+    if (originalData) {
+      setName(originalData.name);
+      setPhone(originalData.phone);
+      setSelectedFile(null);
+    } else {
+      setCurrentPassword("");
+      setNewPassword("");
+      setConfirmPassword("");
+    }
   };
-  console.log("orign", originalData);
 
   const handleCancel = () => {
     setShowDialog(false);

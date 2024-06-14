@@ -116,9 +116,6 @@ export const ProfileDetails = () => {
   const handleCancel = () => {
     if (isDirty()) {
       setShowDialog(true);
-      // setName(originalData.name);
-      // setPhone(originalData.phone);
-      // setSelectedFile(null);
     }
   };
 
