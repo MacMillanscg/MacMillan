@@ -1,9 +1,40 @@
 import React, { useState } from "react";
 import styles from "./IntegrationCanvas.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCog,
+  faPlay,
+  faClock,
+  faPlayCircle,
+  faL,
+} from "@fortawesome/free-solid-svg-icons";
+import { ConnectionPopup } from "../Popups/ConnectionDetailsPopup/ConnectionPopup";
+import { ClientPopup } from "../Popups/ClientPopup/ClientPopup";
+import { VersionHistoryPopup } from "../Popups/VersionHistoryPopup/VersionHistoryPopup";
 
 export const IntegrationCanvas = () => {
   const [steps, setSteps] = useState([{ id: 1, title: "Step 1 of Rule 1" }]);
   const [isVisible, setIsVisible] = useState(true);
+  const [connectionPopup, setConnectionPopup] = useState(false);
+  const [clientPopup, setClientPopup] = useState(false);
+  const [versionPopup, setVersionPopup] = useState(false);
+
+  const openConnectionPopup = () => {
+    setConnectionPopup(true);
+  };
+  const openClientPopup = () => {
+    setClientPopup(true);
+  };
+
+  const openVersionPopup = () => {
+    setVersionPopup(true);
+  };
+
+  const handleClosePopup = () => {
+    setConnectionPopup(false);
+    setClientPopup(false);
+    setVersionPopup(false);
+  };
 
   const addStep = () => {
     const newStepId = steps.length + 1;
@@ -32,19 +63,33 @@ export const IntegrationCanvas = () => {
       </div>
 
       <div className={styles.mainContainer}>
-        {/* <div className={styles.leftSidePanel}>
-          <div className={styles.detailsSection}>
-            <h2>Connection Details</h2>
-          </div>
-          <div className={styles.clientsSection}>
-            <h2>Clients</h2>
-          </div>
-          <div className={styles.versionHistorySection}>
-            <h2>Version History</h2>
-          </div>
-        </div> */}
-
         <div className={styles.canvas}>
+          <div className={styles.leftIcon}>
+            <div className={styles.iconsWrap}>
+              <FontAwesomeIcon
+                icon={faCog}
+                className={styles.icons}
+                onClick={openConnectionPopup}
+              />
+              <FontAwesomeIcon
+                icon={faPlayCircle}
+                className={styles.icons}
+                onClick={openClientPopup}
+              />
+              <FontAwesomeIcon
+                icon={faClock}
+                className={`${styles.icons} mb-0`}
+                onClick={openVersionPopup}
+              />
+              {connectionPopup && (
+                <ConnectionPopup onClose={handleClosePopup} />
+              )}
+              {clientPopup && <ClientPopup onClose={handleClosePopup} />}
+              {versionPopup && (
+                <VersionHistoryPopup onClose={handleClosePopup} />
+              )}
+            </div>
+          </div>
           <div className={styles.stepContainer}>
             {steps.map((step) => (
               <div className={styles.step} key={step.id}>

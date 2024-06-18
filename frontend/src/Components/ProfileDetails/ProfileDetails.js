@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import { useCustomFetch } from "../../customsHooks/useCustomFetch";
 import { url } from "../../api";
 import { useNavigate } from "react-router-dom";
-import { CancelPopUp } from "./CancelPopUp";
+import { ConfirmCancelPopUp } from "../Common/ConfirmCancelPopUp/ConfirmCancelPopUp";
 
 export const ProfileDetails = () => {
   const [name, setName] = useState("");
@@ -113,7 +113,7 @@ export const ProfileDetails = () => {
     }
   };
 
-  const handleCancel = () => {
+  const onhandleCancel = () => {
     if (isDirty()) {
       setShowDialog(true);
     }
@@ -125,6 +125,17 @@ export const ProfileDetails = () => {
       phone !== originalData.phone ||
       selectedFile !== null
     );
+  };
+
+  const handleOk = () => {
+    setShowDialog(false);
+    setName(originalData.name);
+    setPhone(originalData.phone);
+    setSelectedFile(null);
+  };
+
+  const handleCancel = () => {
+    setShowDialog(false);
   };
 
   return (
@@ -149,7 +160,7 @@ export const ProfileDetails = () => {
               <span className={styles.title}>{userCapitalize}</span>
             </div>
             <div className="inner-right">
-              <button className={styles.cancel} onClick={handleCancel}>
+              <button className={styles.cancel} onClick={onhandleCancel}>
                 Cancel
               </button>
               <button
@@ -168,12 +179,13 @@ export const ProfileDetails = () => {
             <Link to="/profileResetPass">Password</Link>
           </div>
           {showDialog && (
-            <CancelPopUp
-              setShowDialog={setShowDialog}
-              setName={setName}
-              setPhone={setPhone}
-              setSelectedFile={setSelectedFile}
-              originalData={originalData}
+            <ConfirmCancelPopUp
+              headerText="Warning"
+              bodyText="You have unsaved data. Do you want to continue?"
+              onOk={handleOk}
+              onCancel={handleCancel}
+              okButtonText="Ok"
+              cancelButtonText="Cancel"
             />
           )}
         </div>

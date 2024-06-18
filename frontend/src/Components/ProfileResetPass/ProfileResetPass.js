@@ -7,7 +7,8 @@ import toast from "react-hot-toast";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { url } from "../../api";
-import { CancelPopUp } from "../ProfileDetails/CancelPopUp";
+// import { CancelPopUp } from "../ProfileDetails/CancelPopUp";
+import { ConfirmCancelPopUp } from "../Common/ConfirmCancelPopUp/ConfirmCancelPopUp";
 
 export const ProfileResetPass = () => {
   const [currentPassword, setCurrentPassword] = useState("");
@@ -102,7 +103,7 @@ export const ProfileResetPass = () => {
       // toast.error("Please enter the passwords");
     }
   };
-  const handleCancel = () => {
+  const onhandleCancel = () => {
     if (
       currentPassword.length > 0 ||
       newPassword.length > 0 ||
@@ -110,6 +111,17 @@ export const ProfileResetPass = () => {
     ) {
       setShowDialog(true);
     }
+  };
+
+  const handleOk = () => {
+    setShowDialog(false);
+    setCurrentPassword("");
+    setNewPassword("");
+    setConfirmPassword("");
+  };
+
+  const handleCancel = () => {
+    setShowDialog(false);
   };
 
   return (
@@ -134,7 +146,7 @@ export const ProfileResetPass = () => {
               <span className={styles.title}>{userCapitalize}</span>
             </div>
             <div className="inner-right">
-              <button className={styles.cancel} onClick={handleCancel}>
+              <button className={styles.cancel} onClick={onhandleCancel}>
                 Cancel
               </button>
               <button
@@ -152,11 +164,13 @@ export const ProfileResetPass = () => {
             <Link to="/profileResetPass">Password</Link>
           </div>
           {showDialog && (
-            <CancelPopUp
-              setShowDialog={setShowDialog}
-              setCurrentPassword={setCurrentPassword}
-              setNewPassword={setNewPassword}
-              setConfirmPassword={setConfirmPassword}
+            <ConfirmCancelPopUp
+              headerText="Warning"
+              bodyText="You have unsaved data. Do you want to continue?"
+              onOk={handleOk}
+              onCancel={handleCancel}
+              okButtonText="Ok"
+              cancelButtonText="Cancel"
             />
           )}
         </div>
