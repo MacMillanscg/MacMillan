@@ -19,7 +19,6 @@ import { DeployedInstances } from "./Components/DeployedInstances/DeployedInstan
 import { AddConnections } from "./Components/Connections/AddConnections";
 import { ConnectionList } from "./Components/Connections/ConnectionList";
 import { ConnectorList } from "./Components/Connectors/ConnectorList";
-import { Terms } from "./Components/Register/Terms";
 import { VerifyEmail } from "./Components/Register/VerifyEmail";
 import { ClientDetailsTabs } from "./Components/ClientsCom/ClientDetails/ClientDetailsTabs";
 import { ExploreConnections } from "./Components/Explore/Connections/ExploreConnections";
@@ -48,10 +47,7 @@ export const AllRoutes = () => {
           <Route path="/addclients" element={<ClientsCom />} />
           <Route path="/alertmonitors" element={<AlertMonitors />} />
           <Route path="/deployedinstances" element={<DeployedInstances />} />
-          <Route
-            path="/connections/connectionList"
-            element={<ConnectionList />}
-          />
+          {/* <Route path="/connections/:id" element={<ConnectionList />} /> */}
           <Route
             path="/connections/addConnections"
             element={<AddConnections />}
@@ -67,6 +63,15 @@ export const AllRoutes = () => {
           <Route path="/explore/Logs" element={<Logss />} />
           <Route path="/explore/users" element={<Users />} />
         </Route>
+        {/* <Route path="/connections/:id" element={<IntegrationCanvas />} /> */}
+        <Route
+          path="/connections/:id"
+          element={
+            // <ProtectedRoutes>
+            <IntegrationCanvas />
+            // </ProtectedRoutes>
+          }
+        />
 
         <Route
           path="/register"
@@ -90,10 +95,6 @@ export const AllRoutes = () => {
         <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
         <Route path="/support" element={<Support />} />
         <Route path="/verify/:token" element={<VerifyEmail />} />
-        <Route
-          path="/connections/integration"
-          element={<IntegrationCanvas />}
-        />
 
         {/* <Route
           path="*"

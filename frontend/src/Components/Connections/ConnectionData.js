@@ -8,6 +8,7 @@ import {
 
 const connectionData = [
   {
+    id: "332525jkjlsdjf",
     title: "Shopify",
     versionIcon: faSync,
     categoryIcon: faThLarge,
@@ -17,6 +18,7 @@ const connectionData = [
     instances: 0,
   },
   {
+    id: "sdjf4545lljsdlfs",
     title: "Amazon",
     versionIcon: faSync,
     categoryIcon: faThLarge,
@@ -26,6 +28,7 @@ const connectionData = [
     instances: 0,
   },
   {
+    id: "kdlsj4jrdf34lhlf",
     title: "Eshipper",
     versionIcon: faSync,
     categoryIcon: faThLarge,

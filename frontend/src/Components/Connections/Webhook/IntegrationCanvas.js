@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./IntegrationCanvas.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,6 +11,9 @@ import {
 import { ConnectionPopup } from "../Popups/ConnectionDetailsPopup/ConnectionPopup";
 import { ClientPopup } from "../Popups/ClientPopup/ClientPopup";
 import { VersionHistoryPopup } from "../Popups/VersionHistoryPopup/VersionHistoryPopup";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import { url } from "../../../api";
 
 export const IntegrationCanvas = () => {
   const [steps, setSteps] = useState([{ id: 1, title: "Step 1 of Rule 1" }]);
@@ -18,6 +21,26 @@ export const IntegrationCanvas = () => {
   const [connectionPopup, setConnectionPopup] = useState(false);
   const [clientPopup, setClientPopup] = useState(false);
   const [versionPopup, setVersionPopup] = useState(false);
+  const { id } = useParams();
+  const [connection, setConnection] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchConnection = async () => {
+      try {
+        const response = await axios.get(`${url}/connections/${id}`);
+        setConnection(response.data);
+        console.log("response", response);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching connection:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchConnection();
+  }, [id]);
+  console.log("connectionData", connection);
 
   const openConnectionPopup = () => {
     setConnectionPopup(true);
@@ -53,7 +76,9 @@ export const IntegrationCanvas = () => {
       <div className={styles.topBar}>
         <div className="d-flex">
           <button className={styles.exitButton}>Exit</button>
-          <h3 className={styles.connectionTitle}>Untitled Integration</h3>
+          <h3 className={styles.connectionTitle}>
+            {connection.connectionName}
+          </h3>
         </div>
         <div className={styles.topBarControls}>
           <button className={styles.publishButton}>Publish</button>

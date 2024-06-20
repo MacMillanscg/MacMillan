@@ -6,13 +6,10 @@ import { IntegrationTab } from "./Integrations/IntegrationTab";
 import { LogsTab } from "./LogsTab/LogsTab";
 import { ConnectionsTab } from "./ConnectionsTab";
 import { SummaryTab } from "./SummaryTab";
-import { LogsTabHeader } from "./LogsTabHeader";
 import { ClientDetailTop } from "./ClientDetailTop";
 import { url } from "../../../api";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { DetailsTabTop } from "./DetailsTabTop";
-import { IntegrationTabHeader } from "./Integrations/IntegrationTabHeader";
 
 export const ClientDetailsTabs = () => {
   const [activeTab, setActiveTab] = useState("Summary");

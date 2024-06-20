@@ -17,9 +17,11 @@ import {
   managementTriggers,
   scheduleOptions,
 } from "./Webhook/WebhookData";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const AddConnections = ({ closeModal }) => {
+  const { id } = useParams();
+  console.log("sdfasf", id);
   const { dashboardWidth } = useAppContext();
   const [connectionName, setConnectionName] = useState("");
   const [clients, setClients] = useState([]);
@@ -95,24 +97,27 @@ export const AddConnections = ({ closeModal }) => {
       console.log("selcted", selectedClient);
       const dataToStore = {
         connectionName,
-        // client: selectedClient._id, // Send the client ID
-        // integrations: selectedClientIntegrations.map(
-        //   (integration) => integration._id
-        // ), // Send integration IDs
-        // webhookTrigger: option === "Webhook" ? selectedWebhookTrigger : null,
-        // managementTrigger:
-        //   option === "Management" ? selectedManagementTrigger : null,
-        // schedule: option === "Schedule" ? schedule : undefined,
-        // cronExpression: option === "Schedule" ? cronExpression : undefined,
+        client: selectedClient._id, // Send the client ID
+        integrations: selectedClientIntegrations.map(
+          (integration) => integration._id
+        ), // Send integration IDs
+        webhookTrigger: option === "Webhook" ? selectedWebhookTrigger : null,
+        managementTrigger:
+          option === "Management" ? selectedManagementTrigger : null,
+        schedule: option === "Schedule" ? schedule : undefined,
+        cronExpression: option === "Schedule" ? cronExpression : undefined,
       };
       console.log("Create connection:", dataToStore);
-      navigate("/connections/integration");
       // Send dataToStore to the server
-      // const response = await axios.post(
-      //   `${url}/connections/addConnections`,
-      //   dataToStore
-      // );
-      // console.log("Server response success:", response.data);
+      const response = await axios.post(
+        `${url}/connections/addConnections`,
+        dataToStore
+      );
+      const newConnectionId = response.data.id;
+      navigate(`/connections/${newConnectionId}`);
+      console.log("newconnected", newConnectionId);
+
+      console.log("Server response success:", response.data);
     } catch (error) {
       console.log("Error creating connection:", error);
     }

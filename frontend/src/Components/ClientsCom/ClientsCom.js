@@ -25,7 +25,6 @@ export const ClientsCom = () => {
     const fetchAllClients = async () => {
       try {
         const response = await axios.get(`${url}/clients`);
-        console.log("status", response.status);
         const updatedData = response.data;
         const userClients = updatedData.filter(
           (user) => user.userId === userId

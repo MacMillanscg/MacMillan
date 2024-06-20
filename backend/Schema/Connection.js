@@ -14,6 +14,7 @@ const ManagementTriggerSchema = new mongoose.Schema({
 
 const ConnectionSchema = new mongoose.Schema({
   connectionName: { type: String },
+  description: { type: String },
   client: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Client",
@@ -30,6 +31,7 @@ const ConnectionSchema = new mongoose.Schema({
   managementTrigger: ManagementTriggerSchema,
   schedule: { type: String },
   cronExpression: { type: String },
+
   createdAt: { type: Date, default: Date.now },
 });
 

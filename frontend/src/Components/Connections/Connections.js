@@ -59,7 +59,7 @@ export const Connections = () => {
       <div className={styles.cardSection}>
         {connectionData.map((connection, index) => (
           <Link
-            to={`/connections/connectionList`}
+            to={`/connections/${connection.id}`}
             className={styles.cardWrap}
             key={index}
           >
