@@ -13,7 +13,6 @@ exports.createConnection = async (req, res) => {
 exports.getConnectionById = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(id);
     const connection = await Connection.findById(id);
     // .populate("client")
     // .populate("integrations");
@@ -23,6 +22,50 @@ exports.getConnectionById = async (req, res) => {
     res.status(200).json(connection);
   } catch (error) {
     res.status(500).json({ message: "Error fetching connection", error });
+  }
+};
+
+// Function to update connection by ID
+exports.updateConnection = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { description } = req.body;
+
+    const updatedConnection = await Connection.findByIdAndUpdate(
+      id,
+      { $set: { description } }, // Use $set to update connectionName and description fields
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedConnection) {
+      return res.status(404).json({ message: "Connection not found" });
+    }
+
+    res.status(200).json(updatedConnection);
+  } catch (error) {
+    res.status(500).json({ message: "Error updating connection", error });
+  }
+};
+
+exports.updateConnectionVersion = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { hideUnavailable } = req.body;
+    console.log("trw", req.body);
+
+    const updatedConnection = await Connection.findByIdAndUpdate(
+      id,
+      { $set: { hideUnavailable } },
+      { new: true }
+    );
+
+    if (!updatedConnection) {
+      return res.status(404).json({ message: "Connection not found" });
+    }
+
+    res.status(200).json(updatedConnection);
+  } catch (error) {
+    res.status(500).json({ message: "Error updating connection", error });
   }
 };
 

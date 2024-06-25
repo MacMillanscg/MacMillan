@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./ConnectionPopup.module.css"; // Import the CSS module
 import { url } from "../../../../api";
 import axios from "axios";
@@ -8,19 +8,44 @@ export const ConnectionPopup = ({ onClose }) => {
   const { id } = useParams();
   const [connectionName, setConnectionName] = useState("");
   const [description, setDescription] = useState("");
+  const [originalData, setOriginalData] = useState({
+    connectionName: "",
+    description: "",
+  });
+  useEffect(() => {
+    const fetchConnectionDetails = async () => {
+      try {
+        const response = await axios.get(`${url}/connections/${id}`);
+        console.log("ressss", response);
+        const connection = response.data;
+        setConnectionName(connection.connectionName);
+        setDescription(connection.description || ""); // Set description if available
+      } catch (error) {
+        console.error("Error fetching connection details:", error);
+      }
+    };
+
+    fetchConnectionDetails();
+  }, [id]);
 
   const handleSave = async (e) => {
     e.preventDefault();
     try {
-      const connectionPopup = { connectionName, description };
+      // const updatedData = { connectionName, description };
       const response = await axios.put(`${url}/connections/${id}`, {
-        connectionPopup,
+        description,
       });
       console.log("Server response:", response.data);
       onClose();
     } catch (error) {
       console.error("Error updating connection:", error);
     }
+  };
+
+  const cancelPopup = () => {
+    setConnectionName("");
+    setDescription("");
+    onClose();
   };
 
   return (
@@ -57,7 +82,9 @@ export const ConnectionPopup = ({ onClose }) => {
               <button className={styles.save} onClick={handleSave}>
                 Save
               </button>
-              <button className={styles.cancel}>Cancel</button>
+              <button className={styles.cancel} onClick={cancelPopup}>
+                Cancel
+              </button>
             </div>
           </form>
         </div>

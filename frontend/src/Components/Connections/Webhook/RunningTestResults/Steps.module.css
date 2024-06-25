@@ -1,0 +1,45 @@
+.steps li {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  .webImg{
+    width: 30px;
+    margin-right: 5px;
+  }
+
+  .toggleContainer {
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .toggleButton {
+    width: 50px;
+    height: 24px;
+    background-color: #e0e0e0;
+    border-radius: 12px;
+    position: relative;
+    transition: background-color 0.3s;
+  }
+  
+  .toggled {
+    background-color: #007bff;
+  }
+  
+  .toggleCircle {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: left 0.3s;
+  }
+  
+  .toggled .toggleCircle {
+    left: 28px;
+  }
+  
