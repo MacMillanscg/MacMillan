@@ -33,6 +33,7 @@ import { ConverterPopup } from "../Popups/ConverterPopup/ConverterPopup";
 import { IntegrationPopup } from "../Popups/IntegrationPopup/IntegrationPopup";
 import { ShopifyPopup } from "../Popups/ShopifyPopup/ShopifyPopup";
 import { EShippersPopup } from "../Popups/EShippersPopup/EShippersPopup";
+import { HttpPopup } from "../Popups/HttpPopup/HttpPopup";
 
 export const IntegrationCanvas = () => {
   const [steps, setSteps] = useState([{ id: 1, title: "Step 1 of Rule 1" }]);
@@ -58,6 +59,7 @@ export const IntegrationCanvas = () => {
   const [isIntegratioPopup, setIsIntegrationPopup] = useState(false);
   const [isShopifyPopUp, setIsShopifyPopup] = useState(false);
   const [isEShipperPopup, setIsEShipperPopup] = useState(false);
+  const [isHttpPopup, setIsHttpPopup] = useState(false);
 
   const logicToolsPopup = () => {
     setIsLogicPopup(true);
@@ -94,6 +96,13 @@ export const IntegrationCanvas = () => {
   const openEShipperPopup = () => {
     setIsEShipperPopup(true);
     closeIntegrationPopup();
+  };
+  const openHttpPopup = () => {
+    setIsHttpPopup(true);
+    closeIntegrationPopup();
+  };
+  const closeHttpPopup = () => {
+    setIsHttpPopup(false);
   };
 
   const closeStepPopup = () => {
@@ -350,6 +359,7 @@ export const IntegrationCanvas = () => {
                 <IntegrationPopup
                   openShopifyPopup={openShopifyPopup}
                   openEShipperPopup={openEShipperPopup}
+                  openHttpPopup={openHttpPopup}
                 />
               </StepPopup>
             )}
@@ -369,6 +379,11 @@ export const IntegrationCanvas = () => {
                 onClose={closeEShipperPopup}
               >
                 <EShippersPopup />
+              </StepPopup>
+            )}
+            {isHttpPopup && (
+              <StepPopup back="Back" heading="Actions" onClose={closeHttpPopup}>
+                <HttpPopup />
               </StepPopup>
             )}
           </div>

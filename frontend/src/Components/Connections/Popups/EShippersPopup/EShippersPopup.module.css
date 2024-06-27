@@ -1,3 +1,6 @@
+.popupContent{
+    padding-bottom: 30px;
+}
 select{
     max-width: 200px;
     width: 100%;
