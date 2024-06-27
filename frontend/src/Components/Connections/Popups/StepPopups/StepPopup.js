@@ -3,12 +3,15 @@ import styles from "./StepPopup.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
+// Re useable popup when I click on + icon
+
 export const StepPopup = ({
   back,
   heading,
   onClose,
   children,
   isPopupOpen,
+  onBack,
 }) => {
   return (
     <div className={styles.popupContainer}>
@@ -16,7 +19,7 @@ export const StepPopup = ({
         <div className={styles.popupHeader}>
           <div>
             {!isPopupOpen && (
-              <button className={styles.backBtn}>
+              <button className={styles.backBtn} onClick={onBack}>
                 <FontAwesomeIcon
                   icon={faChevronLeft}
                   className={styles.leftIcon}
@@ -24,7 +27,7 @@ export const StepPopup = ({
                 {back}
               </button>
             )}
-            <h6 className="d-inline-block">{heading}</h6>
+            <h6 className="d-inline-block fw-600">{heading}</h6>
           </div>
           <button className={styles.closeButton} onClick={onClose}>
             ×

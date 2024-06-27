@@ -213,6 +213,13 @@ export const IntegrationCanvas = () => {
     });
   };
 
+  const backPopup = () => {
+    closeLoginPopup();
+    closeConverterPopup();
+    closeIntegrationPopup();
+    openStepPopup();
+  };
+
   return (
     <div>
       <div className={styles.topBar}>
@@ -320,6 +327,7 @@ export const IntegrationCanvas = () => {
                 back="Back"
                 heading="Logic Tools"
                 onClose={closeLoginPopup}
+                onBack={backPopup}
               >
                 <LogicToolsPopup
                   onOpenActionPopup={openActionPopup}
@@ -332,12 +340,24 @@ export const IntegrationCanvas = () => {
                 back="Back"
                 heading="Actions"
                 onClose={closeActionPopup}
+                onBack={() => {
+                  setIsLogicPopup(true);
+                  setIsActionPopup(false);
+                }}
               >
                 <ActionPopup />
               </StepPopup>
             )}
             {isLoopPopup && (
-              <StepPopup back="Back" heading="Actions" onClose={closeLoopPopup}>
+              <StepPopup
+                back="Back"
+                heading="Actions"
+                onClose={closeLoopPopup}
+                onBack={() => {
+                  setIsLogicPopup(true);
+                  setIsLoopPopup(false);
+                }}
+              >
                 <LoopActionPopup />
               </StepPopup>
             )}
@@ -346,6 +366,7 @@ export const IntegrationCanvas = () => {
                 back="Back"
                 heading="Converter"
                 onClose={closeConverterPopup}
+                onBack={backPopup}
               >
                 <ConverterPopup />
               </StepPopup>
@@ -355,6 +376,7 @@ export const IntegrationCanvas = () => {
                 back="Back"
                 heading="Integrations"
                 onClose={closeIntegrationPopup}
+                onBack={backPopup}
               >
                 <IntegrationPopup
                   openShopifyPopup={openShopifyPopup}
@@ -368,6 +390,10 @@ export const IntegrationCanvas = () => {
                 back="Back"
                 heading="Actions"
                 onClose={closeShopifyPopup}
+                onBack={() => {
+                  setIsShopifyPopup(false);
+                  setIsIntegrationPopup(true);
+                }}
               >
                 <ShopifyPopup />
               </StepPopup>
@@ -377,12 +403,24 @@ export const IntegrationCanvas = () => {
                 back="Back"
                 heading="Actions"
                 onClose={closeEShipperPopup}
+                onBack={() => {
+                  setIsEShipperPopup(false);
+                  setIsIntegrationPopup(true);
+                }}
               >
                 <EShippersPopup />
               </StepPopup>
             )}
             {isHttpPopup && (
-              <StepPopup back="Back" heading="Actions" onClose={closeHttpPopup}>
+              <StepPopup
+                back="Back"
+                heading="Actions"
+                onClose={closeHttpPopup}
+                onBack={() => {
+                  setIsHttpPopup(false);
+                  setIsIntegrationPopup(true);
+                }}
+              >
                 <HttpPopup />
               </StepPopup>
             )}
