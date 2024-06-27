@@ -9,6 +9,8 @@ import {
   faPlayCircle,
   faChevronUp,
   faChevronDown,
+  faL,
+  faLariSign,
 } from "@fortawesome/free-solid-svg-icons";
 import { ConnectionPopup } from "../Popups/ConnectionDetailsPopup/ConnectionPopup";
 import { ClientPopup } from "../Popups/ClientPopup/ClientPopup";
@@ -22,10 +24,18 @@ import { OutputLogs } from "./RunningTestResults/OutputLogs";
 import webhook from "../../../assets/images/webhook.png";
 import Shopify from "../../../assets/images/Shopify.jpg";
 import xmlimg from "../../../assets/images/xmlimg.PNG";
+import { StepPopup } from "../Popups/StepPopups/StepPopup";
+import { AddStepPopup } from "../Popups/AddStepPopup/AddStepPopup";
+import { LogicToolsPopup } from "../Popups/LogicToolsPopup/LogicToolsPopup";
+import { ActionPopup } from "../Popups/ActionPopup/ActionPopup";
+import { LoopActionPopup } from "../Popups/LoopActionPopup/LoopActionPopup";
+import { ConverterPopup } from "../Popups/ConverterPopup/ConverterPopup";
+import { IntegrationPopup } from "../Popups/IntegrationPopup/IntegrationPopup";
+import { ShopifyPopup } from "../Popups/ShopifyPopup/ShopifyPopup";
+import { EShippersPopup } from "../Popups/EShippersPopup/EShippersPopup";
 
 export const IntegrationCanvas = () => {
   const [steps, setSteps] = useState([{ id: 1, title: "Step 1 of Rule 1" }]);
-  const [isVisible, setIsVisible] = useState(true);
   const [connectionPopup, setConnectionPopup] = useState(false);
   const [clientPopup, setClientPopup] = useState(false);
   const [versionPopup, setVersionPopup] = useState(false);
@@ -34,14 +44,84 @@ export const IntegrationCanvas = () => {
   const [loading, setLoading] = useState(true);
   const [showTestResults, setShowTestResults] = useState(false);
   const [testHistory, setTestHistory] = useState([]);
-
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [stepsData] = useState([
     { id: 1, name: "Trigger", webImg: webhook, time: null },
     { id: 2, name: "Deserialize XML", webImg: xmlimg, time: null },
     { id: 3, name: "List Products", webImg: Shopify, time: null },
   ]);
-
   const [stepsRun, setStepsRun] = useState(stepsData);
+  const [isLogicPopup, setIsLogicPopup] = useState(false);
+  const [isActionPopup, setIsActionPopup] = useState(false);
+  const [isLoopPopup, setIsLoopPopup] = useState(false);
+  const [isConverterPopup, setIsConverterPopup] = useState(false);
+  const [isIntegratioPopup, setIsIntegrationPopup] = useState(false);
+  const [isShopifyPopUp, setIsShopifyPopup] = useState(false);
+  const [isEShipperPopup, setIsEShipperPopup] = useState(false);
+
+  const logicToolsPopup = () => {
+    setIsLogicPopup(true);
+    closeStepPopup();
+  };
+
+  const openActionPopup = () => {
+    setIsActionPopup(true);
+    closeLoginPopup();
+  };
+
+  const openStepPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  const openLoopPopup = () => {
+    setIsLoopPopup(true);
+    closeLoginPopup();
+  };
+
+  const openConverterPopup = () => {
+    setIsConverterPopup(true);
+    setIsPopupOpen(false);
+  };
+  const openIntegrationPopup = () => {
+    setIsIntegrationPopup(true);
+    closeStepPopup();
+  };
+
+  const openShopifyPopup = () => {
+    setIsShopifyPopup(true);
+    closeIntegrationPopup();
+  };
+  const openEShipperPopup = () => {
+    setIsEShipperPopup(true);
+    closeIntegrationPopup();
+  };
+
+  const closeStepPopup = () => {
+    setIsPopupOpen(false);
+  };
+  const closeLoginPopup = () => {
+    setIsLogicPopup(false);
+  };
+  const closeActionPopup = () => {
+    setIsActionPopup(false);
+  };
+  const closeLoopPopup = () => {
+    setIsLoopPopup(false);
+    closeActionPopup();
+  };
+  const closeConverterPopup = () => {
+    setIsConverterPopup(false);
+  };
+  const closeIntegrationPopup = () => {
+    setIsIntegrationPopup(false);
+  };
+  const closeShopifyPopup = () => {
+    setIsShopifyPopup(false);
+  };
+
+  const closeEShipperPopup = () => {
+    setIsEShipperPopup(false);
+  };
 
   useEffect(() => {
     const fetchConnection = async () => {
@@ -58,7 +138,6 @@ export const IntegrationCanvas = () => {
 
     fetchConnection();
   }, [id]);
-  console.log("connectionData", connection);
 
   const openConnectionPopup = () => {
     setConnectionPopup(true);
@@ -78,11 +157,11 @@ export const IntegrationCanvas = () => {
   };
 
   const addStep = () => {
-    const newStepId = steps.length + 1;
-    setSteps([
-      ...steps,
-      { id: newStepId, title: `Step ${newStepId} of Rule 1` },
-    ]);
+    // const newStepId = steps.length + 1;
+    // setSteps([
+    //   ...steps,
+    //   { id: newStepId, title: `Step ${newStepId} of Rule 1` },
+    // ]);
   };
 
   const toggleVisibility = () => {
@@ -124,8 +203,6 @@ export const IntegrationCanvas = () => {
       }, (index + 1) * 500); // Delay each step by 500ms
     });
   };
-
-  console.log("steprun", stepsRun);
 
   return (
     <div>
@@ -212,9 +289,88 @@ export const IntegrationCanvas = () => {
                 <p>Shopify List-Products</p>
               </div>
             </div>
-            <button className={styles.addStepButton} onClick={addStep}>
+            <button className={styles.addStepButton} onClick={openStepPopup}>
               +
             </button>
+            {isPopupOpen && (
+              <StepPopup
+                heading="Add a step"
+                onClose={closeStepPopup}
+                isPopupOpen={isPopupOpen}
+              >
+                <AddStepPopup
+                  onClose={closeStepPopup}
+                  logicToolsPopup={logicToolsPopup}
+                  openConverterPopup={openConverterPopup}
+                  openIntegrationPopup={openIntegrationPopup}
+                />
+              </StepPopup>
+            )}
+            {isLogicPopup && (
+              <StepPopup
+                back="Back"
+                heading="Logic Tools"
+                onClose={closeLoginPopup}
+              >
+                <LogicToolsPopup
+                  onOpenActionPopup={openActionPopup}
+                  openLoopPopup={openLoopPopup}
+                />
+              </StepPopup>
+            )}
+            {isActionPopup && (
+              <StepPopup
+                back="Back"
+                heading="Actions"
+                onClose={closeActionPopup}
+              >
+                <ActionPopup />
+              </StepPopup>
+            )}
+            {isLoopPopup && (
+              <StepPopup back="Back" heading="Actions" onClose={closeLoopPopup}>
+                <LoopActionPopup />
+              </StepPopup>
+            )}
+            {isConverterPopup && (
+              <StepPopup
+                back="Back"
+                heading="Converter"
+                onClose={closeConverterPopup}
+              >
+                <ConverterPopup />
+              </StepPopup>
+            )}
+            {isIntegratioPopup && (
+              <StepPopup
+                back="Back"
+                heading="Integrations"
+                onClose={closeIntegrationPopup}
+              >
+                <IntegrationPopup
+                  openShopifyPopup={openShopifyPopup}
+                  openEShipperPopup={openEShipperPopup}
+                />
+              </StepPopup>
+            )}
+            {isShopifyPopUp && (
+              <StepPopup
+                back="Back"
+                heading="Actions"
+                onClose={closeShopifyPopup}
+              >
+                <ShopifyPopup />
+              </StepPopup>
+            )}
+            {isEShipperPopup && (
+              <StepPopup
+                back="Back"
+                heading="Actions"
+                onClose={closeEShipperPopup}
+              >
+                <EShippersPopup />
+              </StepPopup>
+            )}
           </div>
         </div>
       </div>

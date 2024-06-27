@@ -57,6 +57,7 @@
   width: 79%;
   margin: 0 auto;
   max-width: 250px;
+  position: relative;
 }
 
 .leftIcon{

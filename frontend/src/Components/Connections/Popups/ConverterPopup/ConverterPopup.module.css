@@ -1,0 +1,17 @@
+.logicDescription{
+    margin: 0;
+}
+.actionDescription{
+    border: 1px solid lightgray;
+    padding: 15px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+.searchInput{
+    background: #f8f9fa;
+    height: 48px;
+}
+/* .loopOptionsWrap{
+    overflow-y: scroll;
+    height: 300px;
+} */
