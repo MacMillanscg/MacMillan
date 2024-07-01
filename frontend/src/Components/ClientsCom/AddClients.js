@@ -18,8 +18,8 @@ export const AddClients = ({ closeModal, setFetchTrigger }) => {
   });
 
   const userId =
-    JSON.parse(localStorage.getItem("rememberMeUser"))._id ||
-    JSON.parse(sessionStorage.getItem("userRecord"))._id;
+    JSON.parse(localStorage.getItem("rememberMeUser"))?._id ||
+    JSON.parse(sessionStorage.getItem("userRecord"))?._id;
   console.log("USERID", userId);
 
   const [isVerified, setIsVerified] = useState(false);

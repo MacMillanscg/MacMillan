@@ -17,8 +17,8 @@ export const ClientsCom = () => {
   const [fetchTrigger, setFetchTrigger] = useState(false); // A state to trigger re-fetching
 
   const userId =
-    JSON.parse(localStorage.getItem("rememberMeUser"))._id ||
-    JSON.parse(sessionStorage.getItem("userRecord"))._id;
+    JSON.parse(localStorage.getItem("rememberMeUser"))?._id ||
+    JSON.parse(sessionStorage.getItem("userRecord"))?._id;
   console.log("USERID", userId);
 
   useEffect(() => {
