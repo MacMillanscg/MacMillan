@@ -16,8 +16,11 @@ export const ClientsCom = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [clients, setClients] = useState([]);
   const [fetchTrigger, setFetchTrigger] = useState(false); // A state to trigger re-fetching
-  let userId = getUser();
-  userId = userId._id;
+
+  const userId =
+    JSON.parse(localStorage.getItem("rememberMeUser"))?._id ||
+    JSON.parse(sessionStorage.getItem("userRecord"))?._id;
+  console.log("USERID", userId);
 
   useEffect(() => {
     const fetchAllClients = async () => {
