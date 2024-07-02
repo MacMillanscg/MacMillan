@@ -34,7 +34,6 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-// const userRouter = require("./routes/usersRoute");
 const userAuth = require("./routes/auth");
 const support = require("./routes/supportRoute");
 const clientRoute = require("./routes/clientRoutes");
