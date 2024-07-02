@@ -48,8 +48,7 @@ export const Login = () => {
 
       toast.dismiss();
       const { success, data, user, message } = response.data;
-      console.log("user", user);
-      console.log("user", typeof user);
+
       if (success) {
         toast.success(message);
         if (rememberMe) {

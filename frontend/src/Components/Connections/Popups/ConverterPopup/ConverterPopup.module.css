@@ -6,6 +6,7 @@
     padding: 15px;
     border-radius: 3px;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 .searchInput{
     background: #f8f9fa;

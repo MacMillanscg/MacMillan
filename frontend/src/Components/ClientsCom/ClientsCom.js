@@ -9,17 +9,15 @@ import { AddClients } from "./AddClients";
 import { ShopifyData } from "./ShopifyData";
 import axios from "axios";
 import { url } from "../../api";
+import { getUser } from "../../storageUtils/storageUtils";
 
 export const ClientsCom = () => {
   const { dashboardWidth } = useAppContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [clients, setClients] = useState([]);
   const [fetchTrigger, setFetchTrigger] = useState(false); // A state to trigger re-fetching
-
-  const userId =
-    JSON.parse(localStorage.getItem("rememberMeUser"))._id ||
-    JSON.parse(sessionStorage.getItem("userRecord"))._id;
-  console.log("USERID", userId);
+  let userId = getUser();
+  userId = userId._id;
 
   useEffect(() => {
     const fetchAllClients = async () => {
@@ -29,7 +27,7 @@ export const ClientsCom = () => {
         const userClients = updatedData.filter(
           (user) => user.userId === userId
         );
-        console.log("updated", userClients);
+        // console.log("updated", userClients);
         setClients(userClients);
       } catch (error) {
         console.log(error);

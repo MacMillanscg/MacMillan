@@ -5,18 +5,17 @@ import { useNavigate } from "react-router-dom";
 import { ConfirmationDialog } from "./ConfirmationDialog";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt, faHeadset } from "@fortawesome/free-solid-svg-icons";
-import toast from "react-hot-toast";
+import { getUser } from "../../storageUtils/storageUtils";
 
 export const Profile = () => {
   const navigate = useNavigate();
   const [showDialog, setShowDialog] = useState(false);
   const [showProfile, setShowProfile] = useState(true);
 
-  const localStorageUser = JSON.parse(localStorage.getItem("rememberMeUser"));
-  const sessionStorageUser = JSON.parse(sessionStorage.getItem("userRecord"));
+  const user = getUser();
 
-  const user = localStorageUser || sessionStorageUser;
-  const userCapitalize = user.name.charAt(0).toUpperCase() + user.name.slice(1);
+  const userCapitalize =
+    user?.name.charAt(0).toUpperCase() + user?.name.slice(1);
 
   const handleLogout = () => {
     // Clear local storage
@@ -39,7 +38,6 @@ export const Profile = () => {
   const confirmLogout = () => {
     handleLogout();
   };
-  console.log("close", showProfile);
 
   return (
     <div>
@@ -49,10 +47,10 @@ export const Profile = () => {
             {/* <img src="" alt="" /> */}
             <div className="card-body">
               <div className={styles.cardtitle}>
-                {user.name.slice(0, 2).toUpperCase()}
+                {user && user.name.slice(0, 2).toUpperCase()}
               </div>
               <div>{userCapitalize}</div>
-              <div className="title-text">{user.email}</div>
+              <div className="title-text"> {user && user.email}</div>
               <Link
                 className={styles.btn}
                 to={"/profiledetails"}

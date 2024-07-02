@@ -1,18 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import styles from "./Header.module.css";
 import { Profile } from "../Profile/Profile";
-import { url } from "../../api";
-import { useCustomFetch } from "../../customsHooks/useCustomFetch";
+import { getUser } from "../../storageUtils/storageUtils";
 
 export const Header = () => {
   const [isProfileVisible, setIsProfileVisible] = useState(false);
-  const navigate = useNavigate();
   const profileRef = useRef(null);
   const toggleButtonRef = useRef(null);
-  const localStorageUser = JSON.parse(localStorage.getItem("rememberMeUser"));
-  const sessionStorageUser = JSON.parse(sessionStorage.getItem("userRecord"));
-  const user = localStorageUser || sessionStorageUser;
+  const user = getUser();
+
   const toggleProfile = () => {
     setIsProfileVisible(!isProfileVisible);
   };

@@ -9,6 +9,7 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { url } from "../../api";
 // import { CancelPopUp } from "../ProfileDetails/CancelPopUp";
 import { ConfirmCancelPopUp } from "../Common/ConfirmCancelPopUp/ConfirmCancelPopUp";
+import { getUser } from "../../storageUtils/storageUtils";
 
 export const ProfileResetPass = () => {
   const [currentPassword, setCurrentPassword] = useState("");
@@ -21,11 +22,10 @@ export const ProfileResetPass = () => {
   const [showDialog, setShowDialog] = useState(false);
 
   const { dashboardWidth } = useAppContext();
-  const localStorageUser = JSON.parse(localStorage.getItem("rememberMeUser"));
-  const sessionStorageUser = JSON.parse(sessionStorage.getItem("userRecord"));
-  const user = localStorageUser || sessionStorageUser;
   const userCapitalize =
     userProfile?.name.charAt(0).toUpperCase() + userProfile?.name.slice(1);
+
+  const user = getUser();
 
   useEffect(() => {
     const fetchSingleProfile = async () => {

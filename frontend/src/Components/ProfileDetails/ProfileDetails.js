@@ -8,6 +8,7 @@ import { useCustomFetch } from "../../customsHooks/useCustomFetch";
 import { url } from "../../api";
 import { useNavigate } from "react-router-dom";
 import { ConfirmCancelPopUp } from "../Common/ConfirmCancelPopUp/ConfirmCancelPopUp";
+import { getUser } from "../../storageUtils/storageUtils";
 
 export const ProfileDetails = () => {
   const [name, setName] = useState("");
@@ -18,13 +19,11 @@ export const ProfileDetails = () => {
   const [originalData, setOriginalData] = useState({ name: "", phone: "" });
 
   const { dashboardWidth } = useAppContext();
+  const user = getUser();
 
-  const localStorageUser = JSON.parse(localStorage.getItem("rememberMeUser"));
-  const sessionStorageUser = JSON.parse(sessionStorage.getItem("userRecord"));
-  const user = localStorageUser || sessionStorageUser;
   const userCapitalize =
     userProfile?.name.charAt(0).toUpperCase() + userProfile?.name.slice(1);
-  const { data, loading, error } = useCustomFetch(url, user._id);
+
   const navigate = useNavigate();
   useEffect(() => {
     if ((user && user.name) || user.phone) {
@@ -42,17 +41,14 @@ export const ProfileDetails = () => {
         setName(userData.name);
         setPhone(userData.phone);
         setOriginalData({ name: userData.name, phone: userData.phone });
-        console.log("res", response.data);
       } catch (error) {
         console.log(error);
       }
     };
     fetchSingleProfile();
   }, []);
-  console.log("userProfile", userProfile);
 
   const userImageUrl = `http://localhost:5000/${userProfile?.profileImage}`;
-  console.log("userImage", userImageUrl);
 
   const handleFileChange = (e) => {
     setSelectedFile(e.target.files[0]);

@@ -11,22 +11,22 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useAppContext } from "../Context/AppContext";
 import { useCustomFetch } from "../../customsHooks/useCustomFetch";
+import { getUser } from "../../storageUtils/storageUtils";
 
 export const Dashboard = () => {
   const { dashboardWidth } = useAppContext();
-  const localStorageUser = JSON.parse(localStorage.getItem("rememberMeUser"));
-  const sessionStorageUser = JSON.parse(sessionStorage.getItem("userRecord"));
-  const user = localStorageUser || sessionStorageUser;
-  console.log("user1", user);
+  const user = getUser();
+
+  // console.log("user1", user);
   const { data, loading, error } = useCustomFetch(url, user._id);
 
-  console.log("data", data);
+  // console.log("data", data);
 
   return (
     <div className="dashboard" style={{ width: dashboardWidth }}>
       <div className={styles.home}>
         <div className={styles.homeTitle}>
-          <h1 className={styles.heading1}>Welcome back {user.name}</h1>
+          <h1 className={styles.heading1}>Welcome back {user && user.name}</h1>
           <p className={styles.description}>To do more with MacMillan</p>
           <Link to="#" className={styles.learnMore}>
             Learn more{" "}

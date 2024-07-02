@@ -18,10 +18,11 @@ import {
   scheduleOptions,
 } from "./Webhook/WebhookData";
 import { useNavigate, useParams } from "react-router-dom";
+import { getUser } from "../../storageUtils/storageUtils";
 
 export const AddConnections = ({ closeModal }) => {
   const { id } = useParams();
-  console.log("sdfasf", id);
+  // console.log("sdfasf", id);
   const { dashboardWidth } = useAppContext();
   const [connectionName, setConnectionName] = useState("");
   const [clients, setClients] = useState([]);
@@ -40,14 +41,11 @@ export const AddConnections = ({ closeModal }) => {
     useState(null);
   const [selectedClient, setSelectedClient] = useState(null);
   const navigate = useNavigate();
+  let userId = getUser();
+  userId = userId._id;
 
-  console.log("selectedWebhookTrigger", selectedWebhookTrigger);
-  console.log("option", option);
-
-  const userId =
-    JSON.parse(localStorage.getItem("rememberMeUser"))._id ||
-    JSON.parse(sessionStorage.getItem("userRecord"))._id;
-  console.log("USERID", userId);
+  // console.log("selectedWebhookTrigger", selectedWebhookTrigger);
+  // console.log("option", option);
 
   useEffect(() => {
     const fetchAllClients = async () => {
@@ -57,7 +55,7 @@ export const AddConnections = ({ closeModal }) => {
         const userClients = updatedData.filter(
           (user) => user.userId === userId
         );
-        console.log("updated clients", userClients);
+        // console.log("updated clients", userClients);
         setClients(userClients);
       } catch (error) {
         console.log(error);
@@ -65,7 +63,7 @@ export const AddConnections = ({ closeModal }) => {
     };
     fetchAllClients();
   }, [userId]);
-  console.log("clients", clients);
+  // console.log("clients", clients);
 
   const handleClientChange = (e) => {
     const clientName = e.target.value;
@@ -88,13 +86,13 @@ export const AddConnections = ({ closeModal }) => {
   const handleManagementTriggerClick = (trigger) => {
     setSelectedManagementTrigger(trigger);
   };
-  console.log("client1", client);
+  // console.log("client1", client);
   const handleCreate = async () => {
     try {
       const selectedClientObj = clients.find(
         (client) => client.clientName === client
       );
-      console.log("selcted", selectedClient);
+      // console.log("selcted", selectedClient);
       const dataToStore = {
         connectionName,
         client: selectedClient._id, // Send the client ID
@@ -115,7 +113,7 @@ export const AddConnections = ({ closeModal }) => {
       );
       const newConnectionId = response.data.id;
       navigate(`/connections/${newConnectionId}`);
-      console.log("newconnected", newConnectionId);
+      // console.log("newconnected", newConnectionId);
 
       console.log("Server response success:", response.data);
     } catch (error) {
@@ -156,7 +154,7 @@ export const AddConnections = ({ closeModal }) => {
                 {clients &&
                   clients.map((client, i) => {
                     return (
-                      <option value={client.clientName}>
+                      <option value={client.clientName} key={i}>
                         {client.clientName}
                       </option>
                     );

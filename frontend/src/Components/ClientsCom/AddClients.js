@@ -4,6 +4,7 @@ import styles from "./AddClients.module.css";
 import toast from "react-hot-toast";
 import { url } from "../../api";
 import axios from "axios";
+import { getUser } from "../../storageUtils/storageUtils";
 
 export const AddClients = ({ closeModal, setFetchTrigger }) => {
   const [activeTab, setActiveTab] = useState("info");
@@ -17,10 +18,8 @@ export const AddClients = ({ closeModal, setFetchTrigger }) => {
     apiKey: "",
   });
 
-  const userId =
-    JSON.parse(localStorage.getItem("rememberMeUser"))._id ||
-    JSON.parse(sessionStorage.getItem("userRecord"))._id;
-  console.log("USERID", userId);
+  let userId = getUser();
+  userId = userId._id;
 
   const [isVerified, setIsVerified] = useState(false);
 
@@ -86,7 +85,7 @@ export const AddClients = ({ closeModal, setFetchTrigger }) => {
         phone,
         userId,
       };
-      console.log("newClinet", newClient);
+      // console.log("newClinet", newClient);
 
       const response = await axios.post(`${url}/clients/addclients`, newClient);
       setFetchTrigger((prev) => !prev); // Toggle fetchTrigger to re-fetch clients
