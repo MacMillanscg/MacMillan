@@ -4,37 +4,63 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCogs,
   faExchangeAlt,
-  faL,
   faLaptopCode,
 } from "@fortawesome/free-solid-svg-icons";
-import { LogicToolsPopup } from "../LogicToolsPopup/LogicToolsPopup";
+// import { LogicToolsPopup } from "../LogicToolsPopup/LogicToolsPopup"; // Uncomment if needed
+
+const options = [
+  { name: "Logic", icon: faCogs, action: "logicToolsPopup" },
+  { name: "Converter", icon: faExchangeAlt, action: "openConverterPopup" },
+  { name: "Integrations", icon: faLaptopCode, action: "openIntegrationPopup" },
+];
 
 export const AddStepPopup = ({
   logicToolsPopup,
   openConverterPopup,
   openIntegrationPopup,
 }) => {
+  const [searchInput, setSearchInput] = useState("");
+  const [filteredOptions, setFilteredOptions] = useState(options);
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchInput(value);
+
+    if (value.length >= 3) {
+      const filtered = options.filter((option) =>
+        option.name.toLowerCase().includes(value.toLowerCase())
+      );
+      setFilteredOptions(filtered);
+    } else {
+      setFilteredOptions(options);
+    }
+  };
+
   return (
     <div className={styles.popupContent}>
       <input
         type="text"
         placeholder="Search apps, actions, and tools"
         className={`${styles.searchInput} form-control`}
+        value={searchInput}
+        onChange={handleSearchChange}
       />
       <div className={styles.options}>
-        <div className={styles.option} onClick={logicToolsPopup}>
-          <FontAwesomeIcon icon={faCogs} className={styles.optionIcon} />
-          Logic
-        </div>
-        {/* {isLogicPopup && <LogicToolsPopup />} */}
-        <div className={styles.option} onClick={openConverterPopup}>
-          <FontAwesomeIcon icon={faExchangeAlt} className={styles.optionIcon} />
-          Converter
-        </div>
-        <div className={styles.option} onClick={openIntegrationPopup}>
-          <FontAwesomeIcon icon={faLaptopCode} className={styles.optionIcon} />
-          Integrations
-        </div>
+        {filteredOptions.map((option, index) => (
+          <div
+            key={index}
+            className={styles.option}
+            onClick={() => {
+              if (option.action === "logicToolsPopup") logicToolsPopup();
+              if (option.action === "openConverterPopup") openConverterPopup();
+              if (option.action === "openIntegrationPopup")
+                openIntegrationPopup();
+            }}
+          >
+            <FontAwesomeIcon icon={option.icon} className={styles.optionIcon} />
+            {option.name}
+          </div>
+        ))}
       </div>
       <div className={styles.inUseSection}>
         <h3>In use</h3>

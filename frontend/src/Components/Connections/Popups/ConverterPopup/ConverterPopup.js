@@ -2,9 +2,38 @@ import React, { useState } from "react";
 import styles from "./ConverterPopup.module.css";
 import toast from "react-hot-toast";
 
+const conversionActions = [
+  {
+    name: "JSON to XML",
+    description: "Convert JSON to XML.",
+    action: "convertJsonToXml",
+  },
+  {
+    name: "JSON to CSV",
+    description: "Convert JSON to CSV.",
+    action: "convertJsonToCsv",
+  },
+];
+
 export const ConverterPopup = ({ onClose }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [convertedContent, setConvertedContent] = useState("");
+  const [searchInput, setSearchInput] = useState("");
+  const [filteredActions, setFilteredActions] = useState(conversionActions);
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchInput(value);
+
+    if (value.length >= 3) {
+      const filtered = conversionActions.filter((action) =>
+        action.name.toLowerCase().includes(value.toLowerCase())
+      );
+      setFilteredActions(filtered);
+    } else {
+      setFilteredActions(conversionActions);
+    }
+  };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -76,9 +105,9 @@ export const ConverterPopup = ({ onClose }) => {
       try {
         const jsonContent = JSON.parse(fileContent);
         let result;
-        if (action === "JSON to XML") {
+        if (action === "convertJsonToXml") {
           result = convertJsonToXml(jsonContent);
-        } else if (action === "JSON to CSV") {
+        } else if (action === "convertJsonToCsv") {
           result = convertJsonToCsv(jsonContent);
         }
         setConvertedContent(result);
@@ -108,6 +137,8 @@ export const ConverterPopup = ({ onClose }) => {
         type="text"
         placeholder="Search Actions"
         className={`${styles.searchInput} form-control mb-4`}
+        value={searchInput}
+        onChange={handleSearchChange}
       />
       <input
         type="file"
@@ -115,20 +146,16 @@ export const ConverterPopup = ({ onClose }) => {
         className="form-control mb-4"
       />
       <div className={styles.loopOptionsWrap}>
-        <div
-          className={styles.actionDescription}
-          onClick={() => handleActionClick("JSON to XML")}
-        >
-          <h4 className={`m-0 mb-2`}>JSON to XML</h4>
-          <p className={styles.logicDescription}>Convert JSON to XML.</p>
-        </div>
-        <div
-          className={styles.actionDescription}
-          onClick={() => handleActionClick("JSON to CSV")}
-        >
-          <h4 className={`m-0 mb-2`}>JSON to CSV</h4>
-          <p className={styles.logicDescription}>Convert JSON to CSV.</p>
-        </div>
+        {filteredActions.map((action, index) => (
+          <div
+            key={index}
+            className={styles.actionDescription}
+            onClick={() => handleActionClick(action.action)}
+          >
+            <h4 className={`m-0 mb-2`}>{action.name}</h4>
+            <p className={styles.logicDescription}>{action.description}</p>
+          </div>
+        ))}
       </div>
       {convertedContent && (
         <div>

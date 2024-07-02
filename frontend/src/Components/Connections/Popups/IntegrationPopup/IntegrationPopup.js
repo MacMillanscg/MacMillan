@@ -1,31 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./IntegrationPopup.module.css";
+
+const integrationOptions = [
+  { name: "Shopify", action: "openShopifyPopup" },
+  { name: "eShippers", action: "openEShipperPopup" },
+  { name: "HTTP Request", action: "openHttpPopup" },
+];
 
 export const IntegrationPopup = ({
   openShopifyPopup,
   openEShipperPopup,
   openHttpPopup,
 }) => {
+  const [searchInput, setSearchInput] = useState("");
+  const [filteredOptions, setFilteredOptions] = useState(integrationOptions);
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchInput(value);
+
+    if (value.length >= 3) {
+      const filtered = integrationOptions.filter((option) =>
+        option.name.toLowerCase().includes(value.toLowerCase())
+      );
+      setFilteredOptions(filtered);
+    } else {
+      setFilteredOptions(integrationOptions);
+    }
+  };
+
+  const handleOptionClick = (action) => {
+    if (action === "openShopifyPopup") openShopifyPopup();
+    if (action === "openEShipperPopup") openEShipperPopup();
+    if (action === "openHttpPopup") openHttpPopup();
+  };
+
   return (
     <div className={styles.popupContent}>
       <input
         type="text"
         placeholder="Search integration"
         className={`${styles.searchInput} form-control mb-4`}
+        value={searchInput}
+        onChange={handleSearchChange}
       />
       <div className={styles.loopOptionsWrap}>
-        <div className={styles.actionDescription} onClick={openShopifyPopup}>
-          <h4 className={`m-0 mb-2`}>Shopify</h4>
-          {/* <p className={styles.logicDescription}>Shopify details.</p> */}
-        </div>
-        <div className={styles.actionDescription} onClick={openEShipperPopup}>
-          <h4 className={`m-0 mb-2`}>eShippers</h4>
-          {/* <p className={styles.logicDescription}>eShippers details</p> */}
-        </div>
-        <div className={styles.actionDescription} onClick={openHttpPopup}>
-          <h4 className={`m-0 mb-2`}>HTTP Request</h4>
-          {/* <p className={styles.logicDescription}>HTTP Request details</p> */}
-        </div>
+        {filteredOptions.map((option, index) => (
+          <div
+            key={index}
+            className={styles.actionDescription}
+            onClick={() => handleOptionClick(option.action)}
+          >
+            <h4 className="m-0 mb-2">{option.name}</h4>
+          </div>
+        ))}
       </div>
     </div>
   );

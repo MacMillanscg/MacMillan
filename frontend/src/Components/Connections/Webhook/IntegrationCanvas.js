@@ -16,7 +16,7 @@ import { ConnectionPopup } from "../Popups/ConnectionDetailsPopup/ConnectionPopu
 import { ClientPopup } from "../Popups/ClientPopup/ClientPopup";
 import { VersionHistoryPopup } from "../Popups/VersionHistoryPopup/VersionHistoryPopup";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { url } from "../../../api";
 import { RunHistory } from "./RunningTestResults/RunHistory";
 import { Steps } from "./RunningTestResults/Steps";
@@ -224,7 +224,9 @@ export const IntegrationCanvas = () => {
     <div>
       <div className={styles.topBar}>
         <div className="d-flex">
-          <button className={styles.exitButton}>Exit</button>
+          <Link to="/connections" className={styles.exitButton}>
+            Exit
+          </Link>
           <h3 className={styles.connectionTitle}>
             {connection?.connectionName}
           </h3>

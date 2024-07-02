@@ -17,10 +17,8 @@ export const ClientsCom = () => {
   const [clients, setClients] = useState([]);
   const [fetchTrigger, setFetchTrigger] = useState(false); // A state to trigger re-fetching
 
-  const userId =
-    JSON.parse(localStorage.getItem("rememberMeUser"))?._id ||
-    JSON.parse(sessionStorage.getItem("userRecord"))?._id;
-  console.log("USERID", userId);
+  let userId = getUser();
+  userId = userId?._id;
 
   useEffect(() => {
     const fetchAllClients = async () => {

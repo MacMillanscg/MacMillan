@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const app = express();
 const axios = require("axios");
@@ -5,7 +7,7 @@ const axios = require("axios");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 const path = require("path");
 
 const cookieParser = require("cookie-parser");
@@ -13,7 +15,9 @@ const cookieParser = require("cookie-parser");
 app.use("/public", express.static(path.join(__dirname, "public")));
 // app.use(express.static("public"));
 
-const url = "mongodb://127.0.0.1:27017/mernapp";
+// const url = "mongodb://127.0.0.1:27017/mernapp";
+const url = process.env.MONGO_URI;
+
 mongoose
   .connect(url, {
     useNewUrlParser: true,

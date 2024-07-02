@@ -18,10 +18,8 @@ export const AddClients = ({ closeModal, setFetchTrigger }) => {
     apiKey: "",
   });
 
-  const userId =
-    JSON.parse(localStorage.getItem("rememberMeUser"))?._id ||
-    JSON.parse(sessionStorage.getItem("userRecord"))?._id;
-  console.log("USERID", userId);
+  let userId = getUser();
+  userId = userId?._id;
 
   const [isVerified, setIsVerified] = useState(false);
 

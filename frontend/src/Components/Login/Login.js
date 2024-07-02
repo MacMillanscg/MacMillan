@@ -13,6 +13,7 @@ export const Login = () => {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
+  // const url = process.env.REACT_APP_API_URL;
 
   const navigate = useNavigate();
   const loginUser = async () => {
