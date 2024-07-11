@@ -11,6 +11,8 @@ import {
   faChevronDown,
   faL,
   faLariSign,
+  faEdit,
+  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { ConnectionPopup } from "../Popups/ConnectionDetailsPopup/ConnectionPopup";
 import { ClientPopup } from "../Popups/ClientPopup/ClientPopup";
@@ -34,6 +36,8 @@ import { IntegrationPopup } from "../Popups/IntegrationPopup/IntegrationPopup";
 import { ShopifyPopup } from "../Popups/ShopifyPopup/ShopifyPopup";
 import { EShippersPopup } from "../Popups/EShippersPopup/EShippersPopup";
 import { HttpPopup } from "../Popups/HttpPopup/HttpPopup";
+import { WarningPopup } from "../Popups/WarningPopup/WarningPopup";
+import { CanvasFlow } from "./CanvasFlows/CanvasFlow";
 
 export const IntegrationCanvas = () => {
   const [steps, setSteps] = useState([{ id: 1, title: "Step 1 of Rule 1" }]);
@@ -48,8 +52,8 @@ export const IntegrationCanvas = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [stepsData] = useState([
     { id: 1, name: "Trigger", webImg: webhook, time: null },
-    { id: 2, name: "Deserialize XML", webImg: xmlimg, time: null },
-    { id: 3, name: "List Products", webImg: Shopify, time: null },
+    // { id: 2, name: "Deserialize XML", webImg: xmlimg, time: null },
+    { id: 2, name: "Get Orders", webImg: Shopify, time: null },
   ]);
   const [stepsRun, setStepsRun] = useState(stepsData);
   const [isLogicPopup, setIsLogicPopup] = useState(false);
@@ -60,6 +64,72 @@ export const IntegrationCanvas = () => {
   const [isShopifyPopUp, setIsShopifyPopup] = useState(false);
   const [isEShipperPopup, setIsEShipperPopup] = useState(false);
   const [isHttpPopup, setIsHttpPopup] = useState(false);
+  const [orders, setOrders] = useState([]);
+  const [error, setError] = useState(null);
+  const [shopifyDetails, setShopifyDetails] = useState(null);
+  const [fetchTrigger, setFetchTrigger] = useState(false);
+  const [initialized, setInitialized] = useState(
+    JSON.parse(localStorage.getItem("shopifyInitialized")) || false
+  );
+  const [showWarningModal, setShowWarningModal] = useState(false);
+
+  console.log("initial", initialized);
+  console.log("fetchtrigger", fetchTrigger);
+
+  const fetchShopifyOrders = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:5000/connections/api/orders"
+      );
+      setOrders(response.data.orders);
+      localStorage.setItem("shopifyInitialized", JSON.stringify(true));
+      closeShopifyPopup();
+      setInitialized(true);
+      setFetchTrigger(!fetchTrigger);
+    } catch (error) {
+      console.error("Error fetching orders:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (initialized) {
+      fetchShopifyOrders();
+    }
+  }, [initialized]);
+
+  const handleButtonClick = () => {
+    if (!initialized) {
+      fetchShopifyOrders();
+    }
+  };
+
+  useEffect(() => {
+    const fetchShopifyDetails = async () => {
+      try {
+        const response = await axios.get(
+          `${url}/connections/${id}/shopifyDetails`
+        );
+        setShopifyDetails(response.data);
+      } catch (error) {
+        console.error("Error fetching Shopify details:", error);
+      }
+    };
+
+    fetchShopifyDetails();
+  }, [id, fetchTrigger]);
+  console.log("shopifyDetails", shopifyDetails);
+
+  const handleDeleteShopifyDetails = async () => {
+    try {
+      await axios.delete(`${url}/connections/${id}/shopifyDetails`);
+      setFetchTrigger(!fetchTrigger); // Re-fetch the details to reflect the deletion
+      setShowWarningModal(false);
+      localStorage.removeItem("shopifyInitialized");
+      setInitialized(false);
+    } catch (error) {
+      console.error("Error deleting Shopify details:", error);
+    }
+  };
 
   const logicToolsPopup = () => {
     setIsLogicPopup(true);
@@ -165,14 +235,6 @@ export const IntegrationCanvas = () => {
     setVersionPopup(false);
   };
 
-  const addStep = () => {
-    // const newStepId = steps.length + 1;
-    // setSteps([
-    //   ...steps,
-    //   { id: newStepId, title: `Step ${newStepId} of Rule 1` },
-    // ]);
-  };
-
   const toggleVisibility = () => {
     setShowTestResults(!showTestResults);
   };
@@ -220,11 +282,20 @@ export const IntegrationCanvas = () => {
     openStepPopup();
   };
 
+  const clearShopifySession = () => {
+    localStorage.removeItem("shopifyInitialized");
+    setInitialized(false);
+  };
+
   return (
     <div>
       <div className={styles.topBar}>
         <div className="d-flex">
-          <Link to="/connections" className={styles.exitButton}>
+          <Link
+            to="/connections"
+            className={styles.exitButton}
+            onClick={clearShopifySession}
+          >
             Exit
           </Link>
           <h3 className={styles.connectionTitle}>
@@ -239,6 +310,11 @@ export const IntegrationCanvas = () => {
       </div>
 
       <div className={styles.mainContainer}>
+        <WarningPopup
+          show={showWarningModal}
+          onClose={() => setShowWarningModal(false)}
+          onConfirm={handleDeleteShopifyDetails}
+        />
         <div className={styles.canvas}>
           <div className={styles.leftIcon}>
             <div className={styles.iconsWrap}>
@@ -267,13 +343,27 @@ export const IntegrationCanvas = () => {
             </div>
           </div>
           <div className={styles.stepContainer}>
+            <CanvasFlow />
             <div className={styles.webhook}>
               <div className={styles.imageContainer}>
-                <img src={webhook} alt="webhook" />
-                <FontAwesomeIcon
-                  icon={faArrowDown}
-                  className={styles.imgIcon}
-                />
+                <div className={styles.imgWrapper}>
+                  <img src={webhook} alt="webhook" />
+                </div>
+                <div className={styles.iconHoverWrap}>
+                  <span className={styles.iconBorder}></span>
+                  <FontAwesomeIcon
+                    icon={faArrowDown}
+                    className={styles.imgIcon}
+                  />
+                  {shopifyDetails && (
+                    <button
+                      className={styles.addOnHover}
+                      onClick={openStepPopup}
+                    >
+                      +
+                    </button>
+                  )}
+                </div>
               </div>
 
               <div className={styles.imageContent}>
@@ -281,32 +371,45 @@ export const IntegrationCanvas = () => {
                 <p>Universal webhook - webhook</p>
               </div>
             </div>
-            <div className={styles.xmlimg}>
-              <div className={styles.imageContainer}>
-                <img src={xmlimg} alt="xmlimage" />
-                <FontAwesomeIcon
-                  icon={faArrowDown}
-                  className={styles.imgIcon}
-                />
+            {/* from here the shopify started */}
+            {shopifyDetails && (
+              <div className={styles.webhook}>
+                <div className={styles.imageContainer}>
+                  <div className={styles.editDeleteWrap}>
+                    <div
+                      className={`${styles.imgWrapper} ${styles.shopifyImgHover}`}
+                    >
+                      <img src={Shopify} alt="Shopify" />
+                    </div>
+                    <div className={styles.iconsWrapper}>
+                      <FontAwesomeIcon
+                        icon={faTrash}
+                        className={styles.editDeleteIcon}
+                        onClick={() => setShowWarningModal(true)}
+                      />
+                      <FontAwesomeIcon
+                        icon={faEdit}
+                        className={styles.editDeleteIcon}
+                      />
+                    </div>
+                  </div>
+
+                  <div className={styles.iconHoverWrap}>
+                    <span className={styles.iconBorder}></span>
+                    <FontAwesomeIcon
+                      icon={faArrowDown}
+                      className={styles.imgIcon}
+                    />
+                  </div>
+                </div>
+
+                <div className={styles.imageContent}>
+                  <h3>{shopifyDetails.shopifyTitle}</h3>
+                  <p>{shopifyDetails.shopifyDetails}</p>
+                </div>
               </div>
-              <div className={styles.imageContent}>
-                <h3>Deseraliaze XML</h3>
-                <p>Change Data formate Dese</p>
-              </div>
-            </div>
-            <div className={styles.shopify}>
-              <div className={styles.imageContainer}>
-                <img src={Shopify} alt="shopify" />
-                <FontAwesomeIcon
-                  icon={faArrowDown}
-                  className={styles.imgIcon}
-                />
-              </div>
-              <div className={styles.imageContent}>
-                <h3>List Products</h3>
-                <p>Shopify List-Products</p>
-              </div>
-            </div>
+            )}
+            {/* ending shopify here */}
             <button className={styles.addStepButton} onClick={openStepPopup}>
               +
             </button>
@@ -397,7 +500,7 @@ export const IntegrationCanvas = () => {
                   setIsIntegrationPopup(true);
                 }}
               >
-                <ShopifyPopup />
+                <ShopifyPopup fetchShopifyOrders={handleButtonClick} />
               </StepPopup>
             )}
             {isEShipperPopup && (
@@ -430,7 +533,11 @@ export const IntegrationCanvas = () => {
         </div>
       </div>
 
-      <div className={`${showTestResults ? styles.showBtns : ""}`}>
+      <div
+        className={`${styles.bottomBarWrap} ${
+          showTestResults ? styles.showBtns : ""
+        }`}
+      >
         <div className={`${styles.bottomBar} `}>
           <button className={styles.runButton} onClick={handleRunClick}>
             Run
@@ -454,13 +561,19 @@ export const IntegrationCanvas = () => {
           showTestResults ? styles.show : ""
         }`}
       >
-        <div className={styles.testResultsSection}>
+        <div
+          className={`${styles.testResultsSection} ${styles.testHistorySection}`}
+        >
           <RunHistory testHistory={testHistory} />
         </div>
-        <div className={styles.testResultsSection}>
-          <Steps steps={stepsRun} />
+        <div className={`${styles.testResultsSection} ${styles.testSteps}`}>
+          <Steps
+            steps={stepsRun}
+            orders={orders}
+            shopifyDetails={shopifyDetails}
+          />
         </div>
-        <div className={styles.testResultsSection}>
+        <div className={`${styles.testResultsSection} ${styles.testOutLogs}`}>
           <OutputLogs data={connection} />
         </div>
       </div>

@@ -1,10 +1,11 @@
 .popupContent{
     padding-bottom: 30px;
 }
-select{
-    max-width: 200px;
-    width: 100%;
+
+.items{
     border: 1px solid lightgray;
-    height: 40px;
+    padding: 15px;
     border-radius: 3px;
+    margin-bottom: 10px;
+    cursor: pointer;
 }

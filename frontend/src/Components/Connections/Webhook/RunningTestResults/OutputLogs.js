@@ -32,10 +32,47 @@ const DataTreeView = ({ data }) => {
 };
 
 export const OutputLogs = () => {
+  const [activeTab, setActiveTab] = useState("output");
+
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+  };
+
   return (
-    <div className={styles.outputlog}>
-      <h4 className="fs-5 m-0 mb-3">Output logs</h4>
-      <DataTreeView data={data} />
+    <div className={styles.tabsContainer}>
+      <div className={styles.tabs}>
+        <div
+          className={`${styles.tab} ${
+            activeTab === "output" ? styles.active : ""
+          }`}
+          onClick={() => handleTabClick("output")}
+        >
+          Output
+        </div>
+        <div
+          className={`${styles.tab} ${
+            activeTab === "logs" ? styles.active : ""
+          }`}
+          onClick={() => handleTabClick("logs")}
+        >
+          Logs
+        </div>
+      </div>
+      <div className={styles.tabContent}>
+        {activeTab === "output" && (
+          <div className={styles.output}>
+            {/* Replace with your actual Output component */}
+            <h4 className="fs-5 m-0 mb-3">Output</h4>
+            <DataTreeView data={data} />
+          </div>
+        )}
+        {activeTab === "logs" && (
+          <div className={styles.logs}>
+            <h4 className="fs-6 m-0 mb-3">Logs</h4>
+            <p>No logs exist for this step</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

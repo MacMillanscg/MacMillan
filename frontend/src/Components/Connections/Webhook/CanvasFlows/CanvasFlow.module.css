@@ -1,0 +1,61 @@
+/* DropdownMenu.module.css */
+
+.dropdownContainer {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdownToggle {
+    background-color: #fff !important;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+    margin: 0 0 10px 0;
+    color: #808080 !important;
+  }
+  
+  .dropdownMenu {
+    display: block;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    margin-top: 5px;
+    min-width: 350px;
+    border-radius: 4px;
+    z-index: 1000;
+  }
+  
+  .dropdownItem {
+    padding: 10px 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #9a9eb6;
+  }
+  .dropdownAddItem{
+    color: #9a9eb6;
+    padding: 10px 15px;
+  }
+  .dropdownItem:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .flowName {
+    flex: 1;
+  }
+  
+  .flowActions > svg {
+    margin: 0 7px;
+    cursor: pointer;
+  }
+  .flowActions{
+    color: #9a9eb6;
+  }
+  .flowIconDown{
+    margin-left: 8px;
+    font-size: 13px;
+  }
+  

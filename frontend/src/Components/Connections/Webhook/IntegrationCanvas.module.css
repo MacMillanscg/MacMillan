@@ -123,6 +123,8 @@
   border: dashed;
   border: 1px solid lightgray;
   border: dashed lightgray;
+  margin-left: 14px;
+  margin-top: 4px;
 }
 
 .bottomBar {
@@ -146,7 +148,7 @@
 
 .toggleButton {
   position: absolute;
-  bottom: 10px;
+  top: 50%;
   right: 10px;
   background-color:transparent !important;
   color: #808080 !important;
@@ -154,6 +156,7 @@
   padding: 5px 10px;
   cursor: pointer;
   border-radius: 3px;
+  transform: translateY(-50%);
 }
 .publishButton , .cancelButton {
   background: rgb(227, 232, 236) !important;
@@ -188,16 +191,17 @@
   right: 0;
   transform: translateY(100%);
   /* transition: transform 0.5s ease-in-out; */
+  padding-bottom: 0;
 }
 
 .testResultsContainer.show {
   transform: translateY(-3%);
-  height: 292px;
+  height: 303px;
   overflow-y: scroll;
 }
 
 .testResultsSection {
-  flex: 1;
+  /* flex: 1; */
   margin: 0 10px;
   padding: 10px;
   border: 1px solid #ddd;
@@ -209,31 +213,84 @@
   bottom: 300px;
   left: 0;
   right: 0;
-  /* transform: translateY(50%); */
-  /* transition: transform 0.5s ease-in-out; */
 }
 
-.imageContainer{
+ .imgWrapper{
   max-width: 61px;
-  background: white;
+  background-color: white;
   padding: 10px;
-  margin-bottom: 50px;
   margin-right: 10px;
-  position: relative;
+  margin-bottom: 10px;
+ }
+
+.iconBorder{
+  width: 3px;
+  height: 58px;
+  background: #ccc;
 }
+
 .imageContainer img{
   width: 100%;
   border-radius: 50%;
 }
 .imgIcon{
-  position: absolute;
-    bottom: -36px;
-    left: 50%;
-    transform: translateX(-50%);
     color: #ccc;
-    height: 31px;
-    width: 30px;
+    font-size: 22px;
+    margin-top: -3px;
 }
+.iconHoverWrap{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 5px;
+  margin: 0 auto 10px;
+}
+.addOnHover {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  background: #fff !important;
+  color: #ccc !important;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  font-size: 20px;
+  transition: opacity 0.3s ease-in, visibility 0.3s ease-in;
+  padding: 0 10px;
+}
+
+.iconHoverWrap:hover .addOnHover {
+  opacity: 1;
+  visibility: visible;
+}
+.editDeleteWrap{
+  position: relative;
+}
+.iconsWrapper{
+  display: none;
+  position:absolute;
+  top: -2px;
+  left: -96px;
+  padding: 20px;
+}
+
+.editDeleteIcon {
+  background: none;
+  color: #808080;
+  padding: 0 8px;
+  border-radius: 10px;
+  font-size: 14px;
+  /* height: 34px; */
+  margin-left: 5px; /* Space between icons */
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+}
+
+.editDeleteWrap:hover .iconsWrapper, .iconsWrapper:hover{
+  display: block;
+}
+
 .webhook, .xmlimg, .shopify{
   display: flex;
 }
@@ -243,4 +300,36 @@
 }
 .imageContent p{
   margin: 0 !important;
+}
+.bottomBarWrap{
+  position: relative;
+}
+.testHistorySection{
+  /* max-width: 300px; */
+  width: 23%;
+}
+.testSteps{
+  /* max-width: 500px; */
+  width: 43%;
+
+}
+.testOutLogs{
+  /* max-width: 400px; */
+  width: 45%;
+}
+.hoverStep{
+  visibility: hidden;
+  width: 120px;
+  background-color: gray;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+.hoverStep:hover .hoverStep {
+  visibility: visible;
 }

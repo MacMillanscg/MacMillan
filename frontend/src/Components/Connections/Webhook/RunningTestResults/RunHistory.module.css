@@ -11,3 +11,6 @@
 .records{
     color: #808080;
 }
+.testHistoryTitle{
+    border-bottom: 1px solid #ccc;
+}

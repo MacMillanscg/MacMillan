@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Connections.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -6,11 +6,32 @@ import { useAppContext } from "../Context/AppContext";
 import { Link } from "react-router-dom";
 import connectionData from "./ConnectionData";
 import { AddConnections } from "./AddConnections";
+import { url } from "../../api";
+import axios from "axios";
 
 export const Connections = () => {
   const { dashboardWidth } = useAppContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
+  const [orders, setOrders] = useState([]);
+  const [error, setError] = useState(null);
+
+  // useEffect(() => {
+  //   const getOrders = async () => {
+  //     setLoading(true);
+  //     setError(null);
+  //     try {
+  //       const response = await axios.get(`${url}/connections`);
+  //       setOrders(response.data);
+  //     } catch (err) {
+  //       setError("Error fetching orders");
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   getOrders();
+  // }, []);
   const openModal = () => {
     setIsModalOpen(true);
   };

@@ -5,8 +5,8 @@ import { faPlayCircle } from "@fortawesome/free-solid-svg-icons";
 
 export const RunHistory = ({ testHistory }) => {
   return (
-    <div>
-      <h3 className="fs-5">Test history</h3>
+    <div className={styles.testHistoryWrap}>
+      <h3 className={`${styles.testHistoryTitle} fs-5 pb-3`}>Test history</h3>
       <h4 className={`my-1 fs-6 ${styles.records}`}>
         Viewing previous records
       </h4>

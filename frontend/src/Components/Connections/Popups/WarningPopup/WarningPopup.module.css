@@ -1,0 +1,63 @@
+/* Modal.css */
+
+.modal {
+    width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: absolute;
+    top: 10px;
+    right: 50%;
+    transform: translateX(66%);
+    z-index: 999;
+}
+  
+  .modalContent {
+    background-color: white;
+    /* padding: 20px; */
+    border-radius: 5px;
+    text-align: center;
+  }
+
+  
+  button {
+    padding: 5px 10px;
+    margin-left: 5px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .heading{
+    background: #6e6565;
+    text-align: center;
+    padding: 9px 0;
+    color: #fff;
+    margin-top: 0 !important;
+
+  }
+  .yes{
+    background-color: #ff6c00 !important;
+    color: #fff !important;
+  }
+  .modalAction{
+    display: flex;
+    justify-content: end;
+    padding: 0 10px 10px 10px;
+  }
+  .no{
+    background-color: transparent !important;
+    color: #000 !important;
+    border: 1px solid #808080 !important;
+  }
+  .description{
+    text-align: center;
+    font-size: 17px !important;
+    color: #514444;
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 10px;
+    padding-bottom: 22px;
+    margin: 0 3px 15px;
+  }

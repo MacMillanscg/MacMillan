@@ -2,3 +2,60 @@
     height: 230px;
     overflow-y: scroll;
 }
+
+.tabsContainer {
+    width: 100%;
+    font-family: Arial, sans-serif;
+  }
+  
+  .tabs {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-right: 2px;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.3s;
+    font-size: 18px;
+    padding-top: 0;
+  }
+  
+  .tab:hover {
+    color: #007bff;
+  }
+  
+  .active {
+    border-bottom: 2px solid #007bff;
+    font-weight: bold;
+  }
+  
+  .tabContent {
+    padding: 20px;
+    height: 216px;
+    overflow-y: scroll;
+    padding-bottom: 0;
+  }
+  
+  .tabContent::-webkit-scrollbar { 
+    width: 8px; 
+  } 
+  
+  .tabContent::-webkit-scrollbar-track { 
+    background: #f1f1f1; 
+  } 
+  
+  .tabContent::-webkit-scrollbar-thumb { 
+    background: #d3d3d3; 
+    transition: all ease-in .3s;
+  } 
+  
+  .tabContent::-webkit-scrollbar-thumb:hover { 
+    background: #808080; 
+  } 
+  
+  .tabContent::-webkit-scrollbar-button { 
+    display: none; 
+  }

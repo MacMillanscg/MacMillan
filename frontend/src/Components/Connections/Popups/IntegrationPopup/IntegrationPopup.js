@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import styles from "./IntegrationPopup.module.css";
-
-const integrationOptions = [
-  { name: "Shopify", action: "openShopifyPopup" },
-  { name: "eShippers", action: "openEShipperPopup" },
-  { name: "HTTP Request", action: "openHttpPopup" },
-];
+import axios from "axios";
+import { url } from "../../../../api";
+import { useParams } from "react-router-dom";
 
 export const IntegrationPopup = ({
   openShopifyPopup,
@@ -13,26 +10,35 @@ export const IntegrationPopup = ({
   openHttpPopup,
 }) => {
   const [searchInput, setSearchInput] = useState("");
-  const [filteredOptions, setFilteredOptions] = useState(integrationOptions);
+  const { id } = useParams();
 
   const handleSearchChange = (e) => {
-    const value = e.target.value;
-    setSearchInput(value);
-
-    if (value.length >= 3) {
-      const filtered = integrationOptions.filter((option) =>
-        option.name.toLowerCase().includes(value.toLowerCase())
-      );
-      setFilteredOptions(filtered);
-    } else {
-      setFilteredOptions(integrationOptions);
-    }
+    setSearchInput(e.target.value);
   };
 
-  const handleOptionClick = (action) => {
-    if (action === "openShopifyPopup") openShopifyPopup();
-    if (action === "openEShipperPopup") openEShipperPopup();
-    if (action === "openHttpPopup") openHttpPopup();
+  const handleShopifyClick = () => {
+    const shopifyData = {
+      shopifyTitle: "Shopify", // Replace with actual data
+      shopifyDetails: "Get Orders", // Replace with actual data
+    };
+
+    axios
+      .patch(`${url}/connections/${id}/addshopify`, shopifyData)
+      .then((response) => {
+        console.log("Shopify data saved:", response.data);
+        openShopifyPopup();
+      })
+      .catch((error) => {
+        console.error("Error saving Shopify data:", error);
+      });
+  };
+
+  const handleEShipperClick = () => {
+    openEShipperPopup();
+  };
+
+  const handleHttpClick = () => {
+    openHttpPopup();
   };
 
   return (
@@ -40,20 +46,20 @@ export const IntegrationPopup = ({
       <input
         type="text"
         placeholder="Search integration"
-        className={`${styles.searchInput} form-control mb-4`}
+        className={`${styles.searchInput} form-control mb-2`}
         value={searchInput}
         onChange={handleSearchChange}
       />
       <div className={styles.loopOptionsWrap}>
-        {filteredOptions.map((option, index) => (
-          <div
-            key={index}
-            className={styles.actionDescription}
-            onClick={() => handleOptionClick(option.action)}
-          >
-            <h4 className="m-0 mb-2">{option.name}</h4>
-          </div>
-        ))}
+        <div className={styles.actionDescription} onClick={handleShopifyClick}>
+          <h4 className="m-0 mb-2">Shopify</h4>
+        </div>
+        <div className={styles.actionDescription} onClick={handleEShipperClick}>
+          <h4 className="m-0 mb-2">eShippers</h4>
+        </div>
+        <div className={styles.actionDescription} onClick={handleHttpClick}>
+          <h4 className="m-0 mb-2">HTTP Request</h4>
+        </div>
       </div>
     </div>
   );

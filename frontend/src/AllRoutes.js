@@ -48,10 +48,10 @@ export const AllRoutes = () => {
           <Route path="/alertmonitors" element={<AlertMonitors />} />
           <Route path="/deployedinstances" element={<DeployedInstances />} />
           {/* <Route path="/connections/:id" element={<ConnectionList />} /> */}
-          <Route
+          {/* <Route
             path="/connections/addConnections"
             element={<AddConnections />}
-          />
+          /> */}
           <Route path="/connectors/connectorList" element={<ConnectorList />} />
           <Route path="/addclients/:id" element={<ClientDetailsTabs />} />
           <Route path="/explore" element={<Explore />} />

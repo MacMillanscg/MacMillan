@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const shopifyDetailsSchema = require("./ShopifySchema");
 
 const WebhookTriggerSchema = new mongoose.Schema({
   name: { type: String },
@@ -19,7 +20,7 @@ const ConnectionSchema = new mongoose.Schema({
   client: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Client",
-    required: true,
+    // required: true,
   },
   integrations: [
     {
@@ -32,6 +33,7 @@ const ConnectionSchema = new mongoose.Schema({
   managementTrigger: ManagementTriggerSchema,
   schedule: { type: String },
   cronExpression: { type: String },
+  shopifyDetails: shopifyDetailsSchema,
   createdAt: { type: Date, default: Date.now },
 });
 

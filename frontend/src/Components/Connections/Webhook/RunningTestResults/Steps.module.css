@@ -1,4 +1,4 @@
-.steps li {
+.items {
     display: flex;
     justify-content: space-between;
     padding: 5px 0;
@@ -13,6 +13,7 @@
   .toggleContainer {
     display: inline-block;
     cursor: pointer;
+    display: flex;
   }
   
   .toggleButton {
@@ -42,4 +43,34 @@
   .toggled .toggleCircle {
     left: 28px;
   }
+  .logsSpan{
+    font-size: 19px;
+    margin-right: 7px;
+  }
+  .shopifyWrapper{
+    height: 222px;
+    overflow-y: scroll;
+    padding: 0 10px;
+    border-top: 1px solid #ccc;
+  }
+
+  .shopifyWrapper::-webkit-scrollbar { 
+    width: 8px; 
+  } 
   
+  .shopifyWrapper::-webkit-scrollbar-track { 
+    background: #f1f1f1; 
+  } 
+  
+  .shopifyWrapper::-webkit-scrollbar-thumb { 
+    background: #d3d3d3; 
+    transition: all ease-in .3s;
+  } 
+  
+  .shopifyWrapper::-webkit-scrollbar-thumb:hover { 
+    background: #808080; 
+  } 
+  
+  .shopifyWrapper::-webkit-scrollbar-button { 
+    display: none; 
+  }
