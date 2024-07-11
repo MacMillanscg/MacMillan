@@ -11,5 +11,6 @@ router.get("/api/orders", connectionController.shofipyOrders);
 router.patch("/:id/addshopify", shopifyControllers.createShopifyConnection);
 router.get("/:id/shopifyDetails", shopifyControllers.getShopifyDetails);
 router.delete("/:id/shopifyDetails", shopifyControllers.deleteShopifyDetails);
+router.get("/", connectionController.getAllConnections);
 
 module.exports = router;

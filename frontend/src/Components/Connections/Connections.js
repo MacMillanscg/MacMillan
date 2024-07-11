@@ -14,24 +14,26 @@ export const Connections = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const [orders, setOrders] = useState([]);
+  const [connections, setConnections] = useState([]);
   const [error, setError] = useState(null);
 
-  // useEffect(() => {
-  //   const getOrders = async () => {
-  //     setLoading(true);
-  //     setError(null);
-  //     try {
-  //       const response = await axios.get(`${url}/connections`);
-  //       setOrders(response.data);
-  //     } catch (err) {
-  //       setError("Error fetching orders");
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  //   getOrders();
-  // }, []);
+  useEffect(() => {
+    const getConnections = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await axios.get(`${url}/connections`);
+        setConnections(response.data);
+      } catch (err) {
+        setError("Error fetching orders");
+      } finally {
+        setLoading(false);
+      }
+    };
+    getConnections();
+  }, []);
+  console.log("connecitns", connections);
+
   const openModal = () => {
     setIsModalOpen(true);
   };

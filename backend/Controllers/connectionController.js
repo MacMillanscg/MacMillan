@@ -2,6 +2,16 @@ const Connection = require("../Schema/Connection");
 const ShopifyDetails = require("../Schema/ShopifySchema");
 const axios = require("axios");
 
+exports.getAllConnections = async (req, res) => {
+  try {
+    const connections = await Connection.find();
+    res.status(200).json(connections);
+  } catch (error) {
+    console.log("Error in finding the connections");
+    res.status(500).json({ error: error.message });
+  }
+};
+
 exports.createConnection = async (req, res) => {
   try {
     const newConnection = new Connection(req.body);
