@@ -238,3 +238,26 @@
     border: 1px solid #4fac64;
     background-color: #f9f9f9;
   }
+
+  
+  .integrationHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .optionIcon {
+    margin-right: 10px;
+  }
+  
+  .integrationName {
+    font-weight: bold;
+  }
+  
+  .integrationDescription {
+    color: #666;
+  }
+  .selected {
+    border-color: green; /* Green border for selected item */
+  }
+  

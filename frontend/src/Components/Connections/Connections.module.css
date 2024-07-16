@@ -57,16 +57,22 @@
     background: rgb(247, 248, 249)
 }
 .list{
-    padding: 0 15px 0 5px;
+    padding: 0 15px 0 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.listItem{
+    width: 40%;
 }
 .listItem{
     display: flex;
     justify-content: space-between;
     padding-bottom: 6px;
 }
-.listItem:nth-child(2){
+/* .listItem:nth-child(2){
     padding-bottom: 23px;
-}
+} */
 .listText{
     color: #808080 !important;
 }
@@ -77,7 +83,7 @@
 .cardTitle{
     font-size: 28px;
     font-weight: 500;
-    margin-bottom: 40px
+    margin-bottom: 15px
 }
 .cardSection{
     display: flex;

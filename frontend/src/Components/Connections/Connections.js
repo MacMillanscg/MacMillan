@@ -4,34 +4,24 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useAppContext } from "../Context/AppContext";
 import { Link } from "react-router-dom";
-import connectionData from "./ConnectionData";
 import { AddConnections } from "./AddConnections";
-import { url } from "../../api";
-import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchConnections } from "../../Redux/Actions/ConnectionsActions";
 
 export const Connections = () => {
   const { dashboardWidth } = useAppContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  const [connections, setConnections] = useState([]);
-  const [error, setError] = useState(null);
+  const dispatch = useDispatch();
+  const { connections, loading, error } = useSelector(
+    (state) => state.connections
+  );
 
   useEffect(() => {
-    const getConnections = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const response = await axios.get(`${url}/connections`);
-        setConnections(response.data);
-      } catch (err) {
-        setError("Error fetching orders");
-      } finally {
-        setLoading(false);
-      }
-    };
-    getConnections();
-  }, []);
+    if (connections.length === 0) {
+      dispatch(fetchConnections());
+    }
+  }, [dispatch]);
+
   console.log("connecitns", connections);
 
   const openModal = () => {
@@ -80,60 +70,50 @@ export const Connections = () => {
         </div>
       </div>
       <div className={styles.cardSection}>
-        {connectionData.map((connection, index) => (
-          <Link
-            to={`/connections/${connection.id}`}
-            className={styles.cardWrap}
-            key={index}
-          >
-            <div className={`card ${styles.connectionCard}`}>
-              <div className="card-body">
-                <h3 className={styles.cardTitle}>{connection.title}</h3>
-                <div className="category">
-                  <ul className={styles.list}>
-                    <li className={styles.listItem}>
-                      <Link to="#" className={styles.listText}>
-                        <FontAwesomeIcon
+        {connections &&
+          connections.map((connection, index) => (
+            <Link to="#" className={styles.cardWrap} key={index}>
+              <div className={`card ${styles.connectionCard}`}>
+                <div className="card-body">
+                  <h3 className={styles.cardTitle}>
+                    {connection?.shopifyDetails?.shopifyTitle}
+                  </h3>
+                  <h4 className="fs-5 m-0 mb-2">
+                    {connection.client.clientName}
+                  </h4>
+                  <h4 className="fs-5 m-0 mb-2">{connection.connectionName}</h4>
+                  <div className="category">
+                    <ul className={styles.list}>
+                      <li className={styles.listItem}>
+                        <Link to="#" className={styles.listText}>
+                          {/* <FontAwesomeIcon
                           className={styles.icon}
-                          icon={connection.versionIcon}
-                        />
-                        Version
-                      </Link>{" "}
-                      <Link to="#" className={styles.listText}>
-                        <FontAwesomeIcon
+                          // icon={connection.versionIcon}
+                        /> */}
+                          Version
+                        </Link>{" "}
+                      </li>
+                      {/* <li className={styles.listItem}>{connection.status} --</li> */}
+                      <li className={styles.listItem}>
+                        <Link to="#" className={styles.listText}>
+                          {/* <FontAwesomeIcon
                           className={styles.icon}
-                          icon={connection.categoryIcon}
-                        />
-                        Category
-                      </Link>
-                    </li>
-                    <li className={styles.listItem}>{connection.status} --</li>
-                    <li className={styles.listItem}>
-                      <Link to="#" className={styles.listText}>
-                        <FontAwesomeIcon
-                          className={styles.icon}
-                          icon={connection.lastRunIcon}
-                        />
-                        Last Run
-                      </Link>{" "}
-                      <Link className={styles.listText} to="#">
-                        <FontAwesomeIcon
-                          className={styles.icon}
-                          icon={connection.instanceIcon}
-                        />
-                        Instance
-                      </Link>
-                    </li>
-                    <li className={styles.listItem}>
-                      <span>Has not run</span>{" "}
-                      <span>{connection.instances} instances</span>
-                    </li>
-                  </ul>
+                          // icon={connection.lastRunIcon}
+                        /> */}
+                          Last Run
+                        </Link>{" "}
+                      </li>
+                      <li className={styles.listItem}>
+                        <span>Has not run</span>{" "}
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          ))}
+
+        {/* {loading && <h1>Loading ..... </h1>} */}
       </div>
       {isModalOpen && <AddConnections closeModal={closeModal} />}
     </div>

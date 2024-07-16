@@ -38,6 +38,8 @@ import { EShippersPopup } from "../Popups/EShippersPopup/EShippersPopup";
 import { HttpPopup } from "../Popups/HttpPopup/HttpPopup";
 import { WarningPopup } from "../Popups/WarningPopup/WarningPopup";
 import { CanvasFlow } from "./CanvasFlows/CanvasFlow";
+import { OrdersPopUp } from "../Popups/OrdersPopUp/OrdersPopUp";
+import { FullfilmentPopUp } from "../Popups/FullfilmentPopup/FullfilmentPopup";
 
 export const IntegrationCanvas = () => {
   const [steps, setSteps] = useState([{ id: 1, title: "Step 1 of Rule 1" }]);
@@ -64,6 +66,8 @@ export const IntegrationCanvas = () => {
   const [isShopifyPopUp, setIsShopifyPopup] = useState(false);
   const [isEShipperPopup, setIsEShipperPopup] = useState(false);
   const [isHttpPopup, setIsHttpPopup] = useState(false);
+  const [isOrderPopup, setIsOrderPopup] = useState(false);
+  const [isFullfilmentPopup, setIsFullfilmentPopup] = useState(false);
   const [orders, setOrders] = useState([]);
   const [error, setError] = useState(null);
   const [shopifyDetails, setShopifyDetails] = useState(null);
@@ -71,8 +75,8 @@ export const IntegrationCanvas = () => {
   const [initialized, setInitialized] = useState(
     JSON.parse(localStorage.getItem("shopifyInitialized")) || false
   );
+  const [selectedIntegration, setSelectedIntegration] = useState([]);
   const [showWarningModal, setShowWarningModal] = useState(false);
-
   console.log("initial", initialized);
   console.log("fetchtrigger", fetchTrigger);
 
@@ -112,12 +116,31 @@ export const IntegrationCanvas = () => {
         setShopifyDetails(response.data);
       } catch (error) {
         console.error("Error fetching Shopify details:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchShopifyDetails();
   }, [id, fetchTrigger]);
   console.log("shopifyDetails", shopifyDetails);
+
+  useEffect(() => {
+    const fetchShopifyDetails = async () => {
+      try {
+        const response = await axios.get(`${url}/connections/${id}`);
+        setSelectedIntegration(response.data);
+      } catch (error) {
+        console.error("Error fetching Shopify details:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchShopifyDetails();
+  }, [id, fetchTrigger]);
+
+  console.log("integration", selectedIntegration);
 
   const handleDeleteShopifyDetails = async () => {
     try {
@@ -170,6 +193,23 @@ export const IntegrationCanvas = () => {
   const openHttpPopup = () => {
     setIsHttpPopup(true);
     closeIntegrationPopup();
+  };
+
+  const openOrderPopup = () => {
+    setIsOrderPopup(true);
+  };
+
+  const openFullfilmentPopup = () => {
+    setIsFullfilmentPopup(true);
+    setIsIntegrationPopup(false);
+  };
+
+  const closeFullfilmentPopup = () => {
+    setIsFullfilmentPopup(false);
+  };
+
+  const closeOrderPopup = () => {
+    setIsOrderPopup(false);
   };
   const closeHttpPopup = () => {
     setIsHttpPopup(false);
@@ -487,7 +527,39 @@ export const IntegrationCanvas = () => {
                   openShopifyPopup={openShopifyPopup}
                   openEShipperPopup={openEShipperPopup}
                   openHttpPopup={openHttpPopup}
+                  openOrdersPopup={openOrderPopup}
                 />
+              </StepPopup>
+            )}
+            {isOrderPopup && (
+              <StepPopup
+                back="Back"
+                heading="Shopify"
+                onClose={closeOrderPopup}
+                onBack={() => {
+                  setIsOrderPopup(false);
+                  setIsIntegrationPopup(true);
+                }}
+              >
+                <OrdersPopUp
+                  openShopifyPopup={openShopifyPopup}
+                  closeOrderPopup={closeOrderPopup}
+                  openFullfilmentPopup={openFullfilmentPopup}
+                />
+              </StepPopup>
+            )}
+
+            {isFullfilmentPopup && (
+              <StepPopup
+                back="Back"
+                heading="Fullfillment"
+                onClose={closeFullfilmentPopup}
+                onBack={() => {
+                  setIsOrderPopup(true);
+                  setIsFullfilmentPopup(false);
+                }}
+              >
+                <FullfilmentPopUp closeOrderPopup={closeOrderPopup} />
               </StepPopup>
             )}
             {isShopifyPopUp && (
@@ -571,10 +643,14 @@ export const IntegrationCanvas = () => {
             steps={stepsRun}
             orders={orders}
             shopifyDetails={shopifyDetails}
+            laoding={loading}
           />
         </div>
         <div className={`${styles.testResultsSection} ${styles.testOutLogs}`}>
-          <OutputLogs data={connection} />
+          <OutputLogs
+            data={connection}
+            selectedIntegration={selectedIntegration}
+          />
         </div>
       </div>
     </div>

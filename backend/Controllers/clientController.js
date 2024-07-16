@@ -1,6 +1,7 @@
 // Endpoint to validate Shopify credentials
 const axios = require("axios");
 const Client = require("../Schema/Client");
+const Connection = require("../Schema/Connection");
 
 exports.addClientVerify = async (req, res) => {
   const { storeUrl, apiKey } = req.body;
@@ -70,20 +71,6 @@ exports.getAllClients = (req, res) => {
     .then((users) => res.json(users))
     .catch((err) => res.status(400).json("Err:" + err));
 };
-
-// Get Clients with Filter Criteria
-// exports.filterClients = async (req, res) => {
-//   try {
-//     const { userId } = req.body;
-//     if (!userId) {
-//       return res.status(400).send({ message: "User ID is required" });
-//     }
-//     const clients = await Client.find({ userId });
-//     res.status(200).send(clients);
-//   } catch (error) {
-//     res.status(400).send(error);
-//   }
-// };
 
 exports.addClientIntegration = async (req, res) => {
   const { clientId } = req.params;

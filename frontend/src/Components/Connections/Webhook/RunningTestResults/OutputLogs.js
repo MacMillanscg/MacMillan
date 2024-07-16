@@ -31,12 +31,14 @@ const DataTreeView = ({ data }) => {
   );
 };
 
-export const OutputLogs = () => {
+export const OutputLogs = ({ selectedIntegration }) => {
   const [activeTab, setActiveTab] = useState("output");
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
+
+  console.log("selectedIntegration", selectedIntegration.integrations);
 
   return (
     <div className={styles.tabsContainer}>
@@ -61,11 +63,16 @@ export const OutputLogs = () => {
       <div className={styles.tabContent}>
         {activeTab === "output" && (
           <div className={styles.output}>
-            {/* Replace with your actual Output component */}
             <h4 className="fs-5 m-0 mb-3">Output</h4>
-            <DataTreeView data={data} />
+            {selectedIntegration.integrations &&
+            selectedIntegration.integrations[0].integrationName ? (
+              <DataTreeView data={data} />
+            ) : (
+              <p>No Output exist for this step</p>
+            )}
           </div>
         )}
+
         {activeTab === "logs" && (
           <div className={styles.logs}>
             <h4 className="fs-6 m-0 mb-3">Logs</h4>

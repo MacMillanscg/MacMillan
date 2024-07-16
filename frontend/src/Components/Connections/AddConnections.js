@@ -40,12 +40,13 @@ export const AddConnections = ({ closeModal }) => {
   const [selectedManagementTrigger, setSelectedManagementTrigger] =
     useState(null);
   const [selectedClient, setSelectedClient] = useState(null);
+  const [selectedIntegration, setSelectedIntegration] = useState(null);
   const navigate = useNavigate();
   let userId = getUser();
   userId = userId._id;
 
   // console.log("selectedWebhookTrigger", selectedWebhookTrigger);
-  // console.log("option", option);
+  console.log("integration", selectedIntegration);
 
   useEffect(() => {
     const fetchAllClients = async () => {
@@ -78,6 +79,7 @@ export const AddConnections = ({ closeModal }) => {
       setSelectedClientIntegrations([]);
     }
   };
+  console.log("selectintegration", selectedClientIntegrations);
 
   const handleWebhookTriggerClick = (trigger) => {
     setSelectedWebhookTrigger(trigger);
@@ -86,19 +88,37 @@ export const AddConnections = ({ closeModal }) => {
   const handleManagementTriggerClick = (trigger) => {
     setSelectedManagementTrigger(trigger);
   };
+  console.log("select client", selectedClient?.clientName);
+
+  const handleIntegrationClick = (integration) => {
+    setSelectedIntegration(integration);
+  };
+
   // console.log("client1", client);
   const handleCreate = async () => {
     try {
       const selectedClientObj = clients.find(
         (client) => client.clientName === client
       );
+
+      const formattedIntegrations = {
+        integrationId: selectedIntegration?._id,
+        integrationName: selectedIntegration?.integrationName,
+        platform: selectedIntegration?.platform,
+        storeUrl: selectedIntegration?.storeUrl,
+        apiKey: selectedIntegration?.apiKey,
+      };
+
       // console.log("selcted", selectedClient);
       const dataToStore = {
         connectionName,
-        client: selectedClient._id, // Send the client ID
-        integrations: selectedClientIntegrations.map(
-          (integration) => integration._id
-        ), // Send integration IDs
+        client: {
+          clientId: selectedClient._id,
+          clientName: selectedClient.clientName,
+        },
+        // Send the client ID
+        integrations: formattedIntegrations,
+        // Send integration IDs
         webhookTrigger: option === "Webhook" ? selectedWebhookTrigger : null,
         managementTrigger:
           option === "Management" ? selectedManagementTrigger : null,
@@ -329,18 +349,41 @@ export const AddConnections = ({ closeModal }) => {
                 <h4 className="my-1">Available Integrations</h4>
               )}
               <ul className="ps-0">
-                {selectedClientIntegrations.map((integration, index) => {
-                  return (
-                    <>
-                      <li key={index}>{integration.platform}</li>
-                      <li>{integration.integrationName}</li>
-                      <li>{integration.storeUrl}</li>
-                      <li>
-                        <MaskedToken token={integration.apiKey} />
-                      </li>
-                    </>
-                  );
-                })}
+                {selectedClientIntegrations &&
+                  selectedClientIntegrations.map((integration, index) => (
+                    <div
+                      key={index}
+                      className={`${styles.integrationItem} ${
+                        selectedIntegration &&
+                        selectedIntegration.integrationId ===
+                          integration.integrationId
+                          ? styles.selected
+                          : ""
+                      }`}
+                      onClick={() => handleIntegrationClick(integration)} // Handle click event
+                    >
+                      <div className={styles.integrationHeader}>
+                        <FontAwesomeIcon
+                          icon={faLink}
+                          className={styles.optionIcon}
+                        />
+                        <div>
+                          <div className={styles.integrationName}>
+                            {integration.integrationName}
+                          </div>
+                          <div className={styles.integrationDescription}>
+                            {integration.platform}
+                          </div>
+                          <div className={styles.integrationDescription}>
+                            {integration.storeUrl}
+                          </div>
+                          <div className={styles.integrationDescription}>
+                            <MaskedToken token={integration.apiKey} />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
               </ul>
             </div>
           </div>

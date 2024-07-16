@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./Steps.module.css";
 
 import { JSONTree } from "react-json-tree";
+import { ClipLoader } from "react-spinners";
 
 const theme = {
   base00: "#ffffff",
@@ -22,7 +23,7 @@ const theme = {
   base0F: "#d73a49",
 };
 
-export const Steps = ({ steps, orders, shopifyDetails }) => {
+export const Steps = ({ steps, orders, shopifyDetails, loading }) => {
   const [isToggled, setIsToggled] = useState(false);
 
   const handleToggle = () => {
@@ -64,8 +65,14 @@ export const Steps = ({ steps, orders, shopifyDetails }) => {
         </ul>
         <div className="shopify">
           <div style={{ margin: "20px" }}>
-            {shopifyDetails && (
-              <JSONTree data={orders} theme={theme} invertTheme={false} />
+            {loading ? (
+              <div className={styles.loaderContainer}>
+                <ClipLoader size={50} color={"#123abc"} loading={loading} />
+              </div>
+            ) : (
+              shopifyDetails && (
+                <JSONTree data={orders} theme={theme} invertTheme={false} />
+              )
             )}
           </div>
         </div>

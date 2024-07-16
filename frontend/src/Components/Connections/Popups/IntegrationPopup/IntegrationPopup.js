@@ -8,6 +8,7 @@ export const IntegrationPopup = ({
   openShopifyPopup,
   openEShipperPopup,
   openHttpPopup,
+  openOrdersPopup,
 }) => {
   const [searchInput, setSearchInput] = useState("");
   const { id } = useParams();
@@ -26,7 +27,8 @@ export const IntegrationPopup = ({
       .patch(`${url}/connections/${id}/addshopify`, shopifyData)
       .then((response) => {
         console.log("Shopify data saved:", response.data);
-        openShopifyPopup();
+        // openShopifyPopup();
+        openOrdersPopup();
       })
       .catch((error) => {
         console.error("Error saving Shopify data:", error);

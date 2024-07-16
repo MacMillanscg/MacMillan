@@ -30,7 +30,7 @@ exports.shofipyOrders = async (req, res) => {
       {
         headers: {
           "Content-Type": "application/json",
-          "X-Shopify-Access-Token": "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",
+          "X-Shopify-Access-Token": "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",
         },
       }
     );
@@ -84,7 +84,6 @@ exports.updateConnectionVersion = async (req, res) => {
   try {
     const { id } = req.params;
     const { hideUnavailable } = req.body;
-    console.log("trw", req.body);
 
     const updatedConnection = await Connection.findByIdAndUpdate(
       id,

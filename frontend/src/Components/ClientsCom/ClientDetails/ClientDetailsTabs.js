@@ -4,7 +4,7 @@ import styles from "./ClientDetail.module.css";
 import { DetailsTab } from "./DetailsTab";
 import { IntegrationTab } from "./Integrations/IntegrationTab";
 import { LogsTab } from "./LogsTab/LogsTab";
-import { ConnectionsTab } from "./ConnectionsTab";
+import { ConnectionsTab } from "./ConnectionsTab/ConnectionsTab";
 import { SummaryTab } from "./SummaryTab";
 import { ClientDetailTop } from "./ClientDetailTop";
 import { url } from "../../../api";

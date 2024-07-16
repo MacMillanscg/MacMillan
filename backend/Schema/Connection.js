@@ -1,6 +1,25 @@
 const mongoose = require("mongoose");
 const shopifyDetailsSchema = require("./ShopifySchema");
 
+const IntegrationSchema = new mongoose.Schema({
+  integrationId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Integration",
+  },
+  integrationName: {
+    type: String,
+  },
+  platform: {
+    type: String,
+  },
+  storeUrl: {
+    type: String,
+  },
+  apiKey: {
+    type: String,
+  },
+});
+
 const WebhookTriggerSchema = new mongoose.Schema({
   name: { type: String },
   description: { type: String },
@@ -18,17 +37,17 @@ const ConnectionSchema = new mongoose.Schema({
   description: { type: String },
   hideUnavailable: { type: Boolean, default: false },
   client: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Client",
-    // required: true,
-  },
-  integrations: [
-    {
+    clientId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Integration",
+      ref: "Client",
       required: true,
     },
-  ],
+    clientName: {
+      type: String,
+    },
+  },
+  integrations: [IntegrationSchema],
+
   webhookTrigger: WebhookTriggerSchema,
   managementTrigger: ManagementTriggerSchema,
   schedule: { type: String },
