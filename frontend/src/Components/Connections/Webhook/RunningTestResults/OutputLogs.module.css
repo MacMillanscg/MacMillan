@@ -1,61 +1,120 @@
-.outputlog{
-    height: 230px;
-    overflow-y: scroll;
+.outputlog {
+  height: 230px;
+  overflow-y: scroll;
 }
 
 .tabsContainer {
-    width: 100%;
-    font-family: Arial, sans-serif;
-  }
-  
-  .tabs {
-    display: flex;
-    border-bottom: 1px solid #ccc;
-  }
-  
-  .tab {
-    padding: 10px 20px;
-    cursor: pointer;
-    margin-right: 2px;
-    border-bottom: 2px solid transparent;
-    transition: border-bottom 0.3s;
-    font-size: 18px;
-    padding-top: 0;
-  }
-  
-  .tab:hover {
-    color: #007bff;
-  }
-  
-  .active {
-    border-bottom: 2px solid #007bff;
-    font-weight: bold;
-  }
-  
-  .tabContent {
-    padding: 20px;
-    height: 216px;
-    overflow-y: scroll;
-    padding-bottom: 0;
-  }
-  
-  .tabContent::-webkit-scrollbar { 
-    width: 8px; 
-  } 
-  
-  .tabContent::-webkit-scrollbar-track { 
-    background: #f1f1f1; 
-  } 
-  
-  .tabContent::-webkit-scrollbar-thumb { 
-    background: #d3d3d3; 
-    transition: all ease-in .3s;
-  } 
-  
-  .tabContent::-webkit-scrollbar-thumb:hover { 
-    background: #808080; 
-  } 
-  
-  .tabContent::-webkit-scrollbar-button { 
-    display: none; 
-  }
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+  justify-content: space-between;
+}
+
+.tab {
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-right: 2px;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 0.3s;
+  font-size: 18px;
+  padding-top: 0;
+}
+
+.tab:hover {
+  color: #007bff;
+}
+
+.active {
+  border-bottom: 2px solid #007bff;
+  font-weight: bold;
+}
+
+.tabContent {
+  padding: 20px;
+  height: 216px;
+  overflow-y: scroll;
+  padding-bottom: 0;
+}
+
+.tabContent::-webkit-scrollbar {
+  width: 8px;
+}
+
+.tabContent::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.tabContent::-webkit-scrollbar-thumb {
+  background: #d3d3d3;
+  transition: all ease-in 0.3s;
+}
+
+.tabContent::-webkit-scrollbar-thumb:hover {
+  background: #808080;
+}
+
+.tabContent::-webkit-scrollbar-button {
+  display: none;
+}
+
+.exportButtonContainer {
+  position: relative;
+}
+
+.exportButton {
+  padding: 10px 20px;
+  cursor: pointer;
+  background: transparent !important;
+  color: black ! IMPORTANT;
+  border: 1px solid lightgray;
+  margin-bottom: 4px;
+  margin-right: 23px;
+
+}
+
+.exportOptions {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  margin-top: 6px;
+  margin-right: 16px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  padding-top: 40px;
+}
+
+.exportOptions div {
+  margin-bottom: 10px;
+}
+
+.exportOptions input[type="text"] {
+  width: 100%;
+}
+
+.exportOptions .btn {
+  width: 100%;
+}
+.btns{
+  display: flex;
+}
+.cancel{
+  color: blue !important;
+  background: transparent !important;
+  border: none !important;
+}
+.export{
+  background: #322f2e !important;
+    border: none;
+}
+.label{
+  margin-left: 4px;
+}

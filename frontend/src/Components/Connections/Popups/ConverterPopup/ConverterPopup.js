@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./ConverterPopup.module.css";
 import toast from "react-hot-toast";
+import { js2xml } from "xml-js";
 
 const conversionActions = [
   {
@@ -15,120 +16,31 @@ const conversionActions = [
   },
 ];
 
-export const ConverterPopup = ({ onClose }) => {
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [convertedContent, setConvertedContent] = useState("");
+export const ConverterPopup = ({ onClose, openXmlPopup, orders }) => {
   const [searchInput, setSearchInput] = useState("");
   const [filteredActions, setFilteredActions] = useState(conversionActions);
 
-  const handleSearchChange = (e) => {
-    const value = e.target.value;
-    setSearchInput(value);
-
-    if (value.length >= 3) {
-      const filtered = conversionActions.filter((action) =>
-        action.name.toLowerCase().includes(value.toLowerCase())
-      );
-      setFilteredActions(filtered);
-    } else {
-      setFilteredActions(conversionActions);
-    }
-  };
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setSelectedFile(file);
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const fileContent = event.target.result;
-        // Assuming JSON file
-        try {
-          const jsonContent = JSON.parse(fileContent);
-          setConvertedContent(JSON.stringify(jsonContent, null, 2)); // Pretty print JSON
-        } catch (error) {
-          console.error("Invalid JSON file");
-        }
-      };
-      reader.readAsText(file);
-    }
-  };
-
-  const convertJsonToXml = (json) => {
-    let xml = '<?xml version="1.0" encoding="UTF-8" ?>\n';
-    xml += jsonToXml(json);
-    return xml;
-  };
-
-  const jsonToXml = (obj, indent = "") => {
-    let xml = "";
-    for (let key in obj) {
-      if (Array.isArray(obj[key])) {
-        obj[key].forEach((item) => {
-          xml += `${indent}<${key}>\n`;
-          xml += jsonToXml(item, indent + "  ");
-          xml += `${indent}</${key}>\n`;
-        });
-      } else if (typeof obj[key] === "object") {
-        xml += `${indent}<${key}>\n`;
-        xml += jsonToXml(obj[key], indent + "  ");
-        xml += `${indent}</${key}>\n`;
-      } else {
-        xml += `${indent}<${key}>${obj[key]}</${key}>\n`;
-      }
-    }
-    return xml;
-  };
-
-  const convertJsonToCsv = (json) => {
-    const array = Array.isArray(json) ? json : [json];
-    const keys = Object.keys(array[0]);
-    const csvContent = [
-      keys.join(","), // header row
-      ...array.map((row) =>
-        keys.map((key) => JSON.stringify(row[key], replacer)).join(",")
-      ),
-    ].join("\n");
-    return csvContent;
-  };
-
-  const replacer = (key, value) => (value === null ? "" : value);
-
   const handleActionClick = (action) => {
-    if (!selectedFile) {
-      toast.error(" Please select a file first.");
-      return;
-    }
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const fileContent = event.target.result;
+    if (action === "convertJsonToXml") {
       try {
-        const jsonContent = JSON.parse(fileContent);
-        let result;
-        if (action === "convertJsonToXml") {
-          result = convertJsonToXml(jsonContent);
-        } else if (action === "convertJsonToCsv") {
-          result = convertJsonToCsv(jsonContent);
-        }
-        setConvertedContent(result);
-      } catch (error) {
-        console.error("Invalid JSON file");
-      }
-    };
-    reader.readAsText(selectedFile);
-  };
+        console.log("Orders JSON:", orders);
 
-  const downloadFile = () => {
-    const blob = new Blob([convertedContent], {
-      type: "text/plain;charset=utf-8",
-    });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "converted_file.txt";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+        if (!Array.isArray(orders) || orders.length === 0) {
+          throw new Error("Invalid JSON data.");
+        }
+
+        // Wrap orders in an object to ensure valid XML structure
+        const wrappedOrders = { orders: { order: orders } };
+
+        const xmlContent = js2xml(wrappedOrders, { compact: true, spaces: 4 });
+        openXmlPopup(xmlContent);
+      } catch (error) {
+        console.error("Conversion Error:", error);
+        toast.error(`Failed to convert JSON to XML: ${error.message}`);
+      }
+    } else {
+      toast("This action is not yet implemented");
+    }
   };
 
   return (
@@ -138,13 +50,9 @@ export const ConverterPopup = ({ onClose }) => {
         placeholder="Search Actions"
         className={`${styles.searchInput} form-control mb-4`}
         value={searchInput}
-        onChange={handleSearchChange}
+        onChange={(e) => setSearchInput(e.target.value)}
       />
-      <input
-        type="file"
-        onChange={handleFileChange}
-        className="form-control mb-4"
-      />
+      <input type="file" className="form-control mb-4" />
       <div className={styles.loopOptionsWrap}>
         {filteredActions.map((action, index) => (
           <div
@@ -157,14 +65,6 @@ export const ConverterPopup = ({ onClose }) => {
           </div>
         ))}
       </div>
-      {convertedContent && (
-        <div>
-          {/* <pre className={styles.convertedContent}>{convertedContent}</pre> */}
-          <button onClick={downloadFile} className="btn btn-primary mt-4">
-            Download Converted File
-          </button>
-        </div>
-      )}
     </div>
   );
 };

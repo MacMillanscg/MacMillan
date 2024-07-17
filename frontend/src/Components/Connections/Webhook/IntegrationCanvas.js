@@ -40,6 +40,7 @@ import { WarningPopup } from "../Popups/WarningPopup/WarningPopup";
 import { CanvasFlow } from "./CanvasFlows/CanvasFlow";
 import { OrdersPopUp } from "../Popups/OrdersPopUp/OrdersPopUp";
 import { FullfilmentPopUp } from "../Popups/FullfilmentPopup/FullfilmentPopup";
+import { XmlPopup } from "../Popups/XmlPopup/XmlPopup";
 
 export const IntegrationCanvas = () => {
   const [steps, setSteps] = useState([{ id: 1, title: "Step 1 of Rule 1" }]);
@@ -77,6 +78,8 @@ export const IntegrationCanvas = () => {
   );
   const [selectedIntegration, setSelectedIntegration] = useState([]);
   const [showWarningModal, setShowWarningModal] = useState(false);
+  const [isXmlPopup, setIsXmlPopup] = useState(false);
+  const [xmlContents, setXmlContents] = useState("");
   console.log("initial", initialized);
   console.log("fetchtrigger", fetchTrigger);
 
@@ -94,6 +97,8 @@ export const IntegrationCanvas = () => {
       console.error("Error fetching orders:", error);
     }
   };
+
+  console.log("orders", orders);
 
   useEffect(() => {
     if (initialized) {
@@ -202,6 +207,18 @@ export const IntegrationCanvas = () => {
   const openFullfilmentPopup = () => {
     setIsFullfilmentPopup(true);
     setIsIntegrationPopup(false);
+  };
+
+  const openXmlPopup = (xmlContent) => {
+    console.log("Converted XML:", xmlContent);
+    setXmlContents(xmlContent);
+    setIsXmlPopup(true);
+    closeConverterPopup();
+  };
+  console.log("xmlContents:", xmlContents);
+
+  const closeXmlPopup = () => {
+    setIsXmlPopup(false);
   };
 
   const closeFullfilmentPopup = () => {
@@ -513,7 +530,20 @@ export const IntegrationCanvas = () => {
                 onClose={closeConverterPopup}
                 onBack={backPopup}
               >
-                <ConverterPopup />
+                <ConverterPopup openXmlPopup={openXmlPopup} orders={orders} />
+              </StepPopup>
+            )}
+            {isXmlPopup && (
+              <StepPopup
+                back="Back"
+                heading="JSON to XML"
+                onClose={closeXmlPopup}
+                onBack={() => {
+                  setIsXmlPopup(false);
+                  setIsConverterPopup(true);
+                }}
+              >
+                <XmlPopup xmlContent={xmlContents} />
               </StepPopup>
             )}
             {isIntegratioPopup && (
