@@ -4,21 +4,36 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useAppContext } from "../Context/AppContext";
 import { Link } from "react-router-dom";
-import clientsData from "./ClientsData";
 import { AddClients } from "./AddClients";
-import { ShopifyData } from "./ShopifyData";
 import axios from "axios";
 import { url } from "../../api";
 import { getUser } from "../../storageUtils/storageUtils";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { FilterPopup } from "./ClientDetails/FilterPopup/FilterPopup";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchClients } from "../../Redux/Actions/ClientsActions";
 
 export const ClientsCom = () => {
   const { dashboardWidth } = useAppContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [clients, setClients] = useState([]);
   const [fetchTrigger, setFetchTrigger] = useState(false); // A state to trigger re-fetching
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
+  const dispatch = useDispatch();
+
+  // const { clients, loading, error } = useSelector((state) => state.clients);
+
+  const openFilterModal = () => {
+    setIsFilterModalOpen(!isFilterModalOpen);
+  };
 
   let userId = getUser();
   userId = userId?._id;
+
+  // useEffect(() => {
+  //   dispatch(fetchClients());
+  //   // console.log("clients", clients);
+  // }, [dispatch, fetchTrigger, userId]);
 
   useEffect(() => {
     const fetchAllClients = async () => {
@@ -62,16 +77,14 @@ export const ClientsCom = () => {
             {/* <FontAwesomeIcon icon={faSearch} className={styles.searchIcon} /> */}
           </div>
           <div className={styles.selectFilterOption}>
-            <select name="" id="" className={styles.selectFilter}>
-              <option value="">Filter</option>
-              <option value="">client1</option>
-              <option value="">client2</option>
-              <option value="">client3</option>
-            </select>
-            {/* <FontAwesomeIcon
-              icon={faChevronDown}
-              className={styles.filterIcon}
-            /> */}
+            <button className={styles.filterBtn} onClick={openFilterModal}>
+              Filter
+              <FontAwesomeIcon
+                icon={faChevronDown}
+                className={styles.filterIcon}
+              />
+            </button>
+            {isFilterModalOpen && <FilterPopup />}
           </div>
           <button
             className={`btn btn-success ${styles.addBtn} ms-4`}

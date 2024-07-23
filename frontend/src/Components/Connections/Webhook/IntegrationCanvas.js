@@ -41,6 +41,7 @@ import { CanvasFlow } from "./CanvasFlows/CanvasFlow";
 import { OrdersPopUp } from "../Popups/OrdersPopUp/OrdersPopUp";
 import { FullfilmentPopUp } from "../Popups/FullfilmentPopup/FullfilmentPopup";
 import { XmlPopup } from "../Popups/XmlPopup/XmlPopup";
+import { WebhookTriggerPopup } from "../Popups/WebhookTriggerPopup/WebhookTriggerPopup";
 
 export const IntegrationCanvas = () => {
   const [steps, setSteps] = useState([{ id: 1, title: "Step 1 of Rule 1" }]);
@@ -80,6 +81,7 @@ export const IntegrationCanvas = () => {
   const [showWarningModal, setShowWarningModal] = useState(false);
   const [isXmlPopup, setIsXmlPopup] = useState(false);
   const [xmlContents, setXmlContents] = useState("");
+  const [isWebhookTriggerPopup, setIsWebhookTriggerPopup] = useState(false);
   console.log("initial", initialized);
   console.log("fetchtrigger", fetchTrigger);
 
@@ -159,6 +161,14 @@ export const IntegrationCanvas = () => {
     }
   };
 
+  const openTriggerPopup = () => {
+    setIsWebhookTriggerPopup(true);
+  };
+
+  const closeWebhookTriggerPopup = () => {
+    setIsWebhookTriggerPopup(false);
+  };
+
   const logicToolsPopup = () => {
     setIsLogicPopup(true);
     closeStepPopup();
@@ -210,12 +220,12 @@ export const IntegrationCanvas = () => {
   };
 
   const openXmlPopup = (xmlContent) => {
-    console.log("Converted XML:", xmlContent);
+    // console.log("Converted XML:", xmlContent);
     setXmlContents(xmlContent);
     setIsXmlPopup(true);
     closeConverterPopup();
   };
-  console.log("xmlContents:", xmlContents);
+  // console.log("xmlContents:", xmlContents);
 
   const closeXmlPopup = () => {
     setIsXmlPopup(false);
@@ -401,7 +411,8 @@ export const IntegrationCanvas = () => {
           </div>
           <div className={styles.stepContainer}>
             <CanvasFlow />
-            <div className={styles.webhook}>
+
+            <div className={styles.webhook} onClick={openTriggerPopup}>
               <div className={styles.imageContainer}>
                 <div className={styles.imgWrapper}>
                   <img src={webhook} alt="webhook" />
@@ -578,7 +589,6 @@ export const IntegrationCanvas = () => {
                 />
               </StepPopup>
             )}
-
             {isFullfilmentPopup && (
               <StepPopup
                 back="Back"
@@ -632,6 +642,12 @@ export const IntegrationCanvas = () => {
               </StepPopup>
             )}
           </div>
+          {isWebhookTriggerPopup && (
+            <WebhookTriggerPopup
+              onClose={closeWebhookTriggerPopup}
+              // onBack={backPopup}
+            />
+          )}
         </div>
       </div>
 

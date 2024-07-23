@@ -1,0 +1,74 @@
+.overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 99999;
+}
+
+.popup {
+    background: #fff;
+    /* padding: 20px; */
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.close {
+    background: none !important;
+    border: none;
+    font-size: 20px;
+    position: absolute;
+    top: 10px;
+    right: 13%;
+    cursor: pointer;
+    color: #808080 !important;
+}
+
+.title {
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+/* .trigger, .configure {
+    background: #f0f0f0;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+} */
+
+.field {
+    margin-bottom: 10px;
+}
+
+.field label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.field input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.webhookImage{
+    max-width: 39px;
+    margin-right:8px;
+}
+.webhookImage img{
+    border-radius: 20px;
+}
+.leftWebhook{
+    display: flex;
+    align-items: flex-start;
+    background-color: #f0f0f0;
+    padding: 14px;
+}
+.WebhookForm{
+    padding: 10px 20px  20px;
+}
+.configure{
+    padding: 0px 0 16px 20px; 
+    background-color: #f0f0f0;
+}

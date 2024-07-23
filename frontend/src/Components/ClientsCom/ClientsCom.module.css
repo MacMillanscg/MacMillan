@@ -3,6 +3,7 @@
     justify-content: space-between;
     border-bottom: 1px solid lightgray;
     padding-bottom: 20px;
+    position: relative;
 }
 .clientsRight{
     display: flex;
@@ -39,14 +40,12 @@
     border: none;
     background-color: transparent;
 }
-.selectFilterOption{
+/* .selectFilterOption{
     position: relative;
-}
+} */
 .filterIcon{
-    position: absolute;
-    right: 23px;
-    top: 6px;
     font-size: 13px;
+    margin-left: 10px;
 }
 .connectorCard{
     /* width: 32%; */
@@ -166,6 +165,11 @@
 .text{
     margin-bottom: 0;
 }
+.filterBtn{
+    background: transparent !important;
+    color: black !important;
+    font-size: 18px;
+}
 @media(max-width: 1200px){
     .cardTitle{
         font-size: 25px;
@@ -176,7 +180,7 @@
     .connectorHeader{
         flex-direction: column;
     }
-    .clientHeader{
+    /* .clientHeader{
         flex-direction: column;
-    }
+    } */
 }

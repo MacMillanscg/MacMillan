@@ -10,13 +10,23 @@ import {
   faTh,
   faEllipsisV,
 } from "@fortawesome/free-solid-svg-icons";
+import { AddnewSteps } from "./AddnewSteps/AddnewSteps";
 
 export const CanvasFlow = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const [showAddNewStep, setShowAddNewStep] = useState(false);
+
+  const handleAddNewStep = () => {
+    setShowAddNewStep(true);
+  };
+  const handleCloseAddNewStep = () => {
+    setShowAddNewStep(false);
+  };
 
   const handleToggleMenu = () => {
     setShowMenu(!showMenu);
   };
+  console.log("showAddNewStep", showAddNewStep);
 
   return (
     <div className={styles.dropdownContainer}>
@@ -24,9 +34,10 @@ export const CanvasFlow = () => {
         Step 1
         <FontAwesomeIcon icon={faChevronDown} className={styles.flowIconDown} />
       </button>
+      {showAddNewStep && <AddnewSteps onclose={handleCloseAddNewStep} />}
       {showMenu && (
         <div className={styles.dropdownMenu}>
-          <div className={styles.dropdownAddItem}>
+          <div className={styles.dropdownAddItem} onClick={handleAddNewStep}>
             <FontAwesomeIcon icon={faPlus} /> Add new step
           </div>
           <div className={styles.dropdownItem}>

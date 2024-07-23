@@ -23,7 +23,7 @@ export const fetchConnections = () => {
   return async (dispatch) => {
     dispatch(fetchConnectionsRequest());
     try {
-      const response = await axios.get(`http://localhost:5000/connections`);
+      const response = await axios.get(`${url}/connections`);
       dispatch(fetchConnectionsSuccess(response.data));
     } catch (error) {
       dispatch(fetchConnectionsFailure("Error fetching connections"));

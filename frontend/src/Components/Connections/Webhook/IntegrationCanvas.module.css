@@ -290,9 +290,14 @@
 .editDeleteWrap:hover .iconsWrapper, .iconsWrapper:hover{
   display: block;
 }
-
+.webhook{
+  cursor: pointer;
+}
 .webhook, .xmlimg, .shopify{
   display: flex;
+}
+.imageContent{
+  cursor: pointer;
 }
 .imageContent h3{
   font-size: 18px;

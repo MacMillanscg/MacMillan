@@ -4,6 +4,8 @@ import toast from "react-hot-toast";
 
 export const XmlPopup = ({ onClose, xmlContent }) => {
   const [fileName, setFileName] = useState("");
+  const [directoryPath, setDirectoryPath] = useState("");
+  const [savedFileName, setSavedFileName] = useState("");
 
   useEffect(() => {
     if (xmlContent) {
@@ -11,43 +13,56 @@ export const XmlPopup = ({ onClose, xmlContent }) => {
     }
   }, [xmlContent]);
 
-  const handleDownload = () => {
-    try {
-      if (!xmlContent || typeof xmlContent !== "string") {
-        throw new Error("Invalid XML content.");
-      }
+  const handleDownload = async () => {
+    if (!xmlContent || typeof xmlContent !== "string") {
+      const toastId = toast.error("Invalid XML content.");
+      setTimeout(() => toast.dismiss(toastId), 4000); // Dismiss after 4 seconds
+      console.error("Invalid XML content.");
+      return;
+    }
 
-      const blob = new Blob([xmlContent], { type: "application/xml" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = fileName || "converted.xml"; // Use fileName if set, otherwise default to "converted.xml"
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-      toast.success("File downloaded successfully!");
+    try {
+      // Prompt the user to select a directory
+      const directoryHandle = await window.showDirectoryPicker();
+      const fileHandle = await directoryHandle.getFileHandle(
+        fileName || "converted.xml",
+        { create: true }
+      );
+      const writable = await fileHandle.createWritable();
+      await writable.write(xmlContent);
+      await writable.close();
+
+      // Set the directory path and saved file name
+      setDirectoryPath(directoryHandle.name); // Note: This will only give the directory name, not the full path
+      setSavedFileName(fileName);
+
+      const toastId = toast.success("File saved successfully!");
+      setTimeout(() => toast.dismiss(toastId), 4000); // Dismiss after 4 seconds
     } catch (error) {
-      toast.error(`Failed to download the file: ${error.message}`);
-      console.error("Download Error:", error);
+      // Handle user cancellation gracefully
+      if (error.name === "AbortError") {
+        const toastId = toast.error("File save cancelled.");
+        setTimeout(() => toast.dismiss(toastId), 4000); // Dismiss after 4 seconds
+      } else {
+        const toastId = toast.error(
+          `Failed to save the file: ${error.message}`
+        );
+        setTimeout(() => toast.dismiss(toastId), 4000); // Dismiss after 4 seconds
+        console.error("Save Error:", error);
+      }
     }
   };
 
   return (
     <div className={styles.popupContent}>
-      <h4 className="fs-5 m-0 mb-3">Save Converted XML</h4>
-      <input
-        type="text"
-        placeholder="Enter file name"
-        className="form-control mb-4"
-        value={fileName}
-        onChange={(e) => setFileName(e.target.value)}
-      />
-      <button onClick={handleDownload} className="btn btn-primary">
-        Save to Path
+      <button
+        onClick={handleDownload}
+        className={`btn btn-primary ${styles.exportBtn}`}
+      >
+        Choose path
       </button>
-      <button onClick={onClose} className="btn btn-secondary mt-2">
-        Close
+      <button className={styles.noFile}>
+        {directoryPath ? `${directoryPath}` : "No file chosen"}
       </button>
     </div>
   );
