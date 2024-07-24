@@ -35,6 +35,8 @@ export const WebhookTriggerPopup = ({ show, onClose }) => {
             <label htmlFor="apiKey">API Key</label>
             <input type="text" id="apiKey" />
           </div>
+
+          <button className={styles.addBtn}>Add</button>
         </form>
       </div>
     </div>

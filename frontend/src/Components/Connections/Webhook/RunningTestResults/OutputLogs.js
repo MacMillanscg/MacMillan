@@ -32,7 +32,7 @@ const DataTreeView = ({ data }) => {
   );
 };
 
-export const OutputLogs = ({ selectedIntegration }) => {
+export const OutputLogs = ({ selectedIntegration, orders, shopifyDetails }) => {
   const [activeTab, setActiveTab] = useState("output");
   const [showExportOptions, setShowExportOptions] = useState(false);
   const [fileName, setFileName] = useState("");
@@ -152,11 +152,10 @@ export const OutputLogs = ({ selectedIntegration }) => {
         {activeTab === "output" && (
           <div className={styles.output}>
             <h4 className="fs-5 m-0 mb-3">Output</h4>
-            {selectedIntegration.integrations &&
-            selectedIntegration.integrations[0].integrationName ? (
-              <DataTreeView data={data} />
+            {shopifyDetails ? (
+              <DataTreeView data={orders} />
             ) : (
-              <p>No Output exists for this step</p>
+              <p>No data available</p>
             )}
           </div>
         )}

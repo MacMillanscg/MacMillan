@@ -696,6 +696,8 @@ export const IntegrationCanvas = () => {
           <OutputLogs
             data={connection}
             selectedIntegration={selectedIntegration}
+            orders={orders}
+            shopifyDetails={shopifyDetails}
           />
         </div>
       </div>
