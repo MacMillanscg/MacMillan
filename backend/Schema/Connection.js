@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const shopifyDetailsSchema = require("./ShopifySchema");
+const conversionActionSchema = require("./conversionSchema");
 
 const IntegrationSchema = new mongoose.Schema({
   integrationId: {
@@ -53,6 +54,7 @@ const ConnectionSchema = new mongoose.Schema({
   schedule: { type: String },
   cronExpression: { type: String },
   shopifyDetails: shopifyDetailsSchema,
+  conversionsXML: conversionActionSchema,
   createdAt: { type: Date, default: Date.now },
 });
 

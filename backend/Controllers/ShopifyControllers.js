@@ -26,12 +26,37 @@ exports.createShopifyConnection = async (req, res) => {
   }
 };
 
+exports.addXmlConvertion = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, description, action } = req.body;
+    const updatedXMlconversion = await Connection.findOneAndUpdate(
+      id,
+      {
+        conversionsXML: { name, description, action },
+      },
+      { new: true, runValidators: true }
+    );
+    if (!updatedXMlconversion) {
+      return res.status(404).json({ error: "Connection not found" });
+    }
+    res.status(200).json({
+      message: "XMLConvertion created successfully",
+      xmlConvertion: updatedXMlconversion,
+    });
+    console.log("req,bldy", req.body);
+  } catch (error) {
+    console.error("Error in conversion of xml file");
+    res.status(500).json({ error: error.message });
+  }
+};
 // get shopify connection
 exports.getShopifyDetails = async (req, res) => {
   try {
     const { id } = req.params;
 
     const connection = await Connection.findById(id).select("shopifyDetails");
+    console.log("connection shofi", connection);
 
     if (!connection) {
       return res.status(404).json({ error: "Connection not found" });
@@ -40,6 +65,21 @@ exports.getShopifyDetails = async (req, res) => {
     res.status(200).json(connection.shopifyDetails);
   } catch (error) {
     console.error("Error fetching Shopify details:", error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+exports.getXMLConversion = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const connection = await Connection.findById(id).select("conversionsXML");
+    console.log("Conversion Data:", connection.conversionsXML);
+    if (!connection) {
+      return res.status(404).json({ error: "Connection not found" });
+    }
+    res.status(200).json(connection);
+  } catch (error) {
+    console.error("Error in fetching details:", error);
     res.status(500).json({ error: error.message });
   }
 };

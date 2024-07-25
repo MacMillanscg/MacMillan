@@ -12,6 +12,7 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
     storeUrl: "",
     apiKey: "",
   });
+
   console.log("clientId", clientId);
 
   const [isVerified, setIsVerified] = useState(false);

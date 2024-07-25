@@ -33,7 +33,7 @@
 .mainContainer {
   display: flex;
   background-color: rgb(208, 217, 223);
-  height: 79vh;
+  min-height: 79vh;
 }
 
 .leftSidePanel {

@@ -12,5 +12,8 @@ router.patch("/:id/addshopify", shopifyControllers.createShopifyConnection);
 router.get("/:id/shopifyDetails", shopifyControllers.getShopifyDetails);
 router.delete("/:id/shopifyDetails", shopifyControllers.deleteShopifyDetails);
 router.get("/", connectionController.getAllConnections);
+router.post("/:id", connectionController.createWebhook);
+router.patch("/:id/xmlconversion", shopifyControllers.addXmlConvertion);
+router.get("/:id/xmlconversions", shopifyControllers.getXMLConversion);
 
 module.exports = router;

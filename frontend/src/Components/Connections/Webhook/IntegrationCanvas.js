@@ -82,8 +82,10 @@ export const IntegrationCanvas = () => {
   const [isXmlPopup, setIsXmlPopup] = useState(false);
   const [xmlContents, setXmlContents] = useState("");
   const [isWebhookTriggerPopup, setIsWebhookTriggerPopup] = useState(false);
+  const [xmlConversion, setXmlConversion] = useState([]);
   console.log("initial", initialized);
   console.log("fetchtrigger", fetchTrigger);
+  console.log("xmldata", xmlConversion);
 
   const fetchShopifyOrders = async () => {
     try {
@@ -100,7 +102,7 @@ export const IntegrationCanvas = () => {
     }
   };
 
-  console.log("orders", orders);
+  // console.log("orders", orders);
 
   useEffect(() => {
     if (initialized) {
@@ -130,7 +132,25 @@ export const IntegrationCanvas = () => {
 
     fetchShopifyDetails();
   }, [id, fetchTrigger]);
-  console.log("shopifyDetails", shopifyDetails);
+  // console.log("shopifyDetails", shopifyDetails);
+
+  useEffect(() => {
+    const fetchShopifyDetails = async () => {
+      try {
+        const response = await axios.get(
+          `${url}/connections/${id}/xmlconversions`
+        );
+        console.log("xmlreso", response);
+        setXmlConversion(response.data.conversionsXML);
+      } catch (error) {
+        console.error("Error fetching Shopify details:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchShopifyDetails();
+  }, [id, fetchTrigger]);
 
   useEffect(() => {
     const fetchShopifyDetails = async () => {
@@ -146,8 +166,6 @@ export const IntegrationCanvas = () => {
 
     fetchShopifyDetails();
   }, [id, fetchTrigger]);
-
-  console.log("integration", selectedIntegration);
 
   const handleDeleteShopifyDetails = async () => {
     try {
@@ -274,7 +292,7 @@ export const IntegrationCanvas = () => {
       try {
         const response = await axios.get(`${url}/connections/${id}`);
         setConnection(response.data);
-        console.log("response", response);
+        console.log("response", response.data);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching connection:", error);
@@ -474,6 +492,43 @@ export const IntegrationCanvas = () => {
                 <div className={styles.imageContent}>
                   <h3>{shopifyDetails.shopifyTitle}</h3>
                   <p>{shopifyDetails.shopifyDetails}</p>
+                </div>
+              </div>
+            )}
+            {xmlConversion && (
+              <div className={styles.webhook}>
+                <div className={styles.imageContainer}>
+                  <div className={styles.editDeleteWrap}>
+                    <div
+                      className={`${styles.imgWrapper} ${styles.shopifyImgHover}`}
+                    >
+                      <img src={xmlimg} alt="xmlimg" />
+                    </div>
+                    <div className={styles.iconsWrapper}>
+                      <FontAwesomeIcon
+                        icon={faTrash}
+                        className={styles.editDeleteIcon}
+                        onClick={() => setShowWarningModal(true)}
+                      />
+                      <FontAwesomeIcon
+                        icon={faEdit}
+                        className={styles.editDeleteIcon}
+                      />
+                    </div>
+                  </div>
+
+                  <div className={styles.iconHoverWrap}>
+                    <span className={styles.iconBorder}></span>
+                    <FontAwesomeIcon
+                      icon={faArrowDown}
+                      className={styles.imgIcon}
+                    />
+                  </div>
+                </div>
+
+                <div className={styles.imageContent}>
+                  <h3>{xmlConversion?.name}</h3>
+                  <p>{xmlConversion?.description}</p>
                 </div>
               </div>
             )}

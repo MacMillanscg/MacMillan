@@ -1,6 +1,7 @@
 const Connection = require("../Schema/Connection");
 const ShopifyDetails = require("../Schema/ShopifySchema");
 const axios = require("axios");
+const Webhook = require("../Schema/Webhook");
 
 exports.getAllConnections = async (req, res) => {
   try {
@@ -9,6 +10,32 @@ exports.getAllConnections = async (req, res) => {
   } catch (error) {
     console.log("Error in finding the connections");
     res.status(500).json({ error: error.message });
+  }
+};
+
+exports.createWebhook = async (req, res) => {
+  const { name, url, apiKey } = req.body;
+  console.log("reqbody", req.body);
+
+  if (!name || !url || !apiKey) {
+    return res
+      .status(400)
+      .json({ error: "Name, URL, and API Key are required" });
+  }
+
+  try {
+    // Save the webhook document to the database
+    const newWebhook = new Webhook(req.body);
+    const webhookData = await newWebhook.save();
+    res.status(200).json({
+      success: true,
+      message: "Webhook added successfully",
+      data: webhookData,
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Error saving webhook", details: error.message });
   }
 };
 

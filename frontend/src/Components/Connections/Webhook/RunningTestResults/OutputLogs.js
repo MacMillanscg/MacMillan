@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import data from "./XMLData/Data";
 import { JSONTree } from "react-json-tree";
 import styles from "./OutputLogs.module.css";
 import toast from "react-hot-toast";
@@ -45,14 +44,25 @@ export const OutputLogs = ({ selectedIntegration, orders, shopifyDetails }) => {
     let content;
     if (format === "csv") {
       // Convert JSON data to CSV
-      const headers = Object.keys(data[0]);
-      const rows = data.map((row) =>
+      if (!orders || orders.length === 0) {
+        toast.error("No orders available for export.");
+        return;
+      }
+      const headers = Object.keys(orders[0]);
+      const rows = orders.map((row) =>
         headers.map((header) => row[header]).join(",")
       );
       content = [headers.join(","), ...rows].join("\n");
     } else if (format === "xml") {
       // Convert JSON data to XML
-      content = js2xml(data, { compact: true, spaces: 4 });
+      if (!orders || orders.length === 0) {
+        toast.error("No orders available for export.");
+        return;
+      }
+
+      // Ensure proper XML structure
+      const wrappedOrders = { orders: { order: orders } };
+      content = js2xml(wrappedOrders, { compact: true, spaces: 4 });
     }
 
     const blob = new Blob([content], {

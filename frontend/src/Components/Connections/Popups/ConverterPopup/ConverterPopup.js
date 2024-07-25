@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import styles from "./ConverterPopup.module.css";
 import toast from "react-hot-toast";
 import { js2xml } from "xml-js";
+import axios from "axios";
+import { url } from "../../../../api";
+import { useParams } from "react-router-dom";
 
 const conversionActions = [
   {
@@ -19,9 +22,16 @@ const conversionActions = [
 export const ConverterPopup = ({ onClose, openXmlPopup, orders }) => {
   const [searchInput, setSearchInput] = useState("");
   const [filteredActions, setFilteredActions] = useState(conversionActions);
+  const [selectedJsonData, setSelectedJsonData] = useState(null);
+  console.log("JSONDATA", selectedJsonData);
+  const { id } = useParams();
+  console.log("id", id);
 
-  const handleActionClick = (action) => {
+  const handleActionClick = async (action, actions) => {
+    setSelectedJsonData(actions);
+    console.log("actionsss", actions);
     if (action === "convertJsonToXml") {
+      console.log("aciton");
       try {
         console.log("Orders JSON:", orders);
 
@@ -34,6 +44,11 @@ export const ConverterPopup = ({ onClose, openXmlPopup, orders }) => {
 
         const xmlContent = js2xml(wrappedOrders, { compact: true, spaces: 4 });
         openXmlPopup(xmlContent);
+        const response = await axios.patch(
+          `${url}/connections/${id}/xmlconversion`,
+          actions
+        );
+        console.log("response", response.data);
       } catch (error) {
         console.error("Conversion Error:", error);
         toast.error(`Failed to convert JSON to XML: ${error.message}`);
@@ -58,7 +73,7 @@ export const ConverterPopup = ({ onClose, openXmlPopup, orders }) => {
           <div
             key={index}
             className={styles.actionDescription}
-            onClick={() => handleActionClick(action.action)}
+            onClick={() => handleActionClick(action.action, action)}
           >
             <h4 className={`m-0 mb-2`}>{action.name}</h4>
             <p className={styles.logicDescription}>{action.description}</p>
