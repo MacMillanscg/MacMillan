@@ -1,4 +1,5 @@
 const Connection = require("../Schema/Connection");
+const Transaction = require("../Schema/Transaction");
 
 // create shopify connection
 exports.createShopifyConnection = async (req, res) => {
@@ -30,16 +31,16 @@ exports.addXmlConvertion = async (req, res) => {
   try {
     const { id } = req.params;
     const { name, description, action } = req.body;
-    const updatedXMlconversion = await Connection.findOneAndUpdate(
+    const updatedXMlconversion = await Connection.findByIdAndUpdate(
       id,
-      {
-        conversionsXML: { name, description, action },
-      },
+      { conversionsXML: { name, description, action } },
       { new: true, runValidators: true }
     );
+
     if (!updatedXMlconversion) {
       return res.status(404).json({ error: "Connection not found" });
     }
+
     res.status(200).json({
       message: "XMLConvertion created successfully",
       xmlConvertion: updatedXMlconversion,
@@ -73,7 +74,7 @@ exports.getXMLConversion = async (req, res) => {
   try {
     const { id } = req.params;
     const connection = await Connection.findById(id).select("conversionsXML");
-    console.log("Conversion Data:", connection.conversionsXML);
+    console.log("Conversion Data:", connection);
     if (!connection) {
       return res.status(404).json({ error: "Connection not found" });
     }
@@ -81,6 +82,29 @@ exports.getXMLConversion = async (req, res) => {
   } catch (error) {
     console.error("Error in fetching details:", error);
     res.status(500).json({ error: error.message });
+  }
+};
+
+exports.addAllOrders = async () => {
+  const { clientId, integrationId, type, shopifyId } = req.body;
+
+  try {
+    const transaction = new Transaction({
+      clientId,
+      integrationId,
+      type,
+      shopifyId,
+    });
+
+    const transactionData = await transaction.save();
+    res.status(201).json({
+      message: "Transaction saved successfully",
+      transaction: transactionData,
+    });
+    console.log("trans", transactionData);
+  } catch (error) {
+    console.error("Error saving transaction:", error);
+    res.status(500).json({ error: "Failed to save transaction" });
   }
 };
 

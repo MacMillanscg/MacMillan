@@ -82,7 +82,11 @@ export const AddConnections = ({ closeModal }) => {
   console.log("selectintegration", selectedClientIntegrations);
 
   const handleWebhookTriggerClick = (trigger) => {
-    setSelectedWebhookTrigger(trigger);
+    if (selectedWebhookTrigger === trigger) {
+      setSelectedWebhookTrigger(null);
+    } else {
+      setSelectedWebhookTrigger(trigger);
+    }
   };
 
   const handleManagementTriggerClick = (trigger) => {
@@ -91,7 +95,11 @@ export const AddConnections = ({ closeModal }) => {
   console.log("select client", selectedClient?.clientName);
 
   const handleIntegrationClick = (integration) => {
-    setSelectedIntegration(integration);
+    if (selectedIntegration === integration) {
+      setSelectedIntegration(null);
+    } else {
+      setSelectedIntegration(integration);
+    }
   };
 
   // console.log("client1", client);

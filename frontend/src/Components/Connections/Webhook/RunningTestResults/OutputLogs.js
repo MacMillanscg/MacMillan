@@ -34,49 +34,49 @@ const DataTreeView = ({ data }) => {
 export const OutputLogs = ({ selectedIntegration, orders, shopifyDetails }) => {
   const [activeTab, setActiveTab] = useState("output");
   const [showExportOptions, setShowExportOptions] = useState(false);
-  const [fileName, setFileName] = useState("");
+  const [selectedFormat, setSelectedFormat] = useState("");
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
 
-  const handleExport = (format) => {
-    let content;
-    if (format === "csv") {
-      // Convert JSON data to CSV
-      if (!orders || orders.length === 0) {
-        toast.error("No orders available for export.");
-        return;
-      }
-      const headers = Object.keys(orders[0]);
-      const rows = orders.map((row) =>
-        headers.map((header) => row[header]).join(",")
-      );
-      content = [headers.join(","), ...rows].join("\n");
-    } else if (format === "xml") {
-      // Convert JSON data to XML
-      if (!orders || orders.length === 0) {
-        toast.error("No orders available for export.");
-        return;
-      }
-
-      // Ensure proper XML structure
-      const wrappedOrders = { orders: { order: orders } };
-      content = js2xml(wrappedOrders, { compact: true, spaces: 4 });
+  const handleExport = () => {
+    if (!orders || orders.length === 0) {
+      toast.error("No orders available for export.");
+      return;
     }
 
-    const blob = new Blob([content], {
-      type: format === "csv" ? "text/csv" : "application/xml",
+    orders.forEach((order) => {
+      let content;
+      if (selectedFormat === "csv") {
+        // Convert each order to CSV
+        const headers = Object.keys(order);
+        const rows = headers.map((header) => order[header]).join(",");
+        content = [headers.join(","), rows].join("\n");
+      } else if (selectedFormat === "xml") {
+        // Convert each order to XML
+        const wrappedOrder = { order };
+        content = js2xml(wrappedOrder, { compact: true, spaces: 4 });
+      }
+
+      if (content) {
+        const blob = new Blob([content], {
+          type: selectedFormat === "csv" ? "text/csv" : "application/xml",
+        });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `${order.id}.${selectedFormat}`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
     });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = fileName || `exported_data.${format}`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    toast.success(`File downloaded successfully as ${format.toUpperCase()}!`);
+
+    toast.success(
+      `Files downloaded successfully as ${selectedFormat.toUpperCase()}!`
+    );
   };
 
   return (
@@ -115,7 +115,7 @@ export const OutputLogs = ({ selectedIntegration, orders, shopifyDetails }) => {
                   id="csv"
                   name="format"
                   value="csv"
-                  onChange={() => handleExport("csv")}
+                  onChange={() => setSelectedFormat("csv")}
                 />
                 <label className={styles.label} htmlFor="csv">
                   CSV
@@ -127,7 +127,7 @@ export const OutputLogs = ({ selectedIntegration, orders, shopifyDetails }) => {
                   id="xml"
                   name="format"
                   value="xml"
-                  onChange={() => handleExport("xml")}
+                  onChange={() => setSelectedFormat("xml")}
                 />
                 <label className={styles.label} htmlFor="xml">
                   XML
@@ -137,10 +137,10 @@ export const OutputLogs = ({ selectedIntegration, orders, shopifyDetails }) => {
               <div className={styles.btns}>
                 <button
                   onClick={() => {
-                    if (fileName) {
-                      handleExport("csv");
+                    if (selectedFormat) {
+                      handleExport();
                     } else {
-                      toast.error("Please enter a file name.");
+                      toast.error("Please select a format.");
                     }
                   }}
                   className={`btn btn-primary mt-2 ${styles.export}`}

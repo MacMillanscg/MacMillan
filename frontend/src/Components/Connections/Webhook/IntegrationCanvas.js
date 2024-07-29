@@ -42,6 +42,8 @@ import { OrdersPopUp } from "../Popups/OrdersPopUp/OrdersPopUp";
 import { FullfilmentPopUp } from "../Popups/FullfilmentPopup/FullfilmentPopup";
 import { XmlPopup } from "../Popups/XmlPopup/XmlPopup";
 import { WebhookTriggerPopup } from "../Popups/WebhookTriggerPopup/WebhookTriggerPopup";
+import { fetchConnections } from "../../../Redux/Actions/ConnectionsActions";
+import { useSelector, useDispatch } from "react-redux";
 
 export const IntegrationCanvas = () => {
   const [steps, setSteps] = useState([{ id: 1, title: "Step 1 of Rule 1" }]);
@@ -71,7 +73,7 @@ export const IntegrationCanvas = () => {
   const [isOrderPopup, setIsOrderPopup] = useState(false);
   const [isFullfilmentPopup, setIsFullfilmentPopup] = useState(false);
   const [orders, setOrders] = useState([]);
-  const [error, setError] = useState(null);
+  // const [error, setError] = useState(null);
   const [shopifyDetails, setShopifyDetails] = useState(null);
   const [fetchTrigger, setFetchTrigger] = useState(false);
   const [initialized, setInitialized] = useState(
@@ -83,9 +85,37 @@ export const IntegrationCanvas = () => {
   const [xmlContents, setXmlContents] = useState("");
   const [isWebhookTriggerPopup, setIsWebhookTriggerPopup] = useState(false);
   const [xmlConversion, setXmlConversion] = useState([]);
+  const [filteredConnection, setFilteredConnection] = useState(null);
+  const [clientId, setClientId] = useState(null);
+  const [integrationId, setIntegrationId] = useState(null);
+  // const [shopifyId, setShopifyId] = useState(null);
   console.log("initial", initialized);
   console.log("fetchtrigger", fetchTrigger);
   console.log("xmldata", xmlConversion);
+
+  const dispatch = useDispatch();
+  const { connections, error } = useSelector((state) => state.connections);
+
+  useEffect(() => {
+    const newConnection = connections.find(
+      (connection, i) => connection._id === id
+    );
+    setFilteredConnection(newConnection);
+    setClientId(newConnection?.client.clientId);
+    setIntegrationId(
+      newConnection?.integrations.map((integration) => integration._id)
+    );
+  }, [id, connections]);
+
+  console.log("filteredConnection", filteredConnection);
+
+  useEffect(() => {
+    if (connections.length === 0) {
+      dispatch(fetchConnections());
+    }
+  }, [dispatch]);
+
+  console.log("connecitns", connections);
 
   const fetchShopifyOrders = async () => {
     try {
@@ -116,6 +146,14 @@ export const IntegrationCanvas = () => {
     }
   };
 
+  const shopifyId =
+    orders &&
+    orders.map((order, i) => {
+      return order.id;
+    });
+  // setShopifyId(newOrders);
+  // console.log("neworder", typeof newOrders);
+
   useEffect(() => {
     const fetchShopifyDetails = async () => {
       try {
@@ -123,6 +161,17 @@ export const IntegrationCanvas = () => {
           `${url}/connections/${id}/shopifyDetails`
         );
         setShopifyDetails(response.data);
+
+        const transactionResponse = await axios.post(
+          `${url}/connections/saveTransaction`,
+          {
+            clientId,
+            integrationId,
+            type: "order",
+            data: shopifyId,
+          }
+        );
+        console.log("trasnaction", transactionResponse);
       } catch (error) {
         console.error("Error fetching Shopify details:", error);
       } finally {
@@ -133,9 +182,10 @@ export const IntegrationCanvas = () => {
     fetchShopifyDetails();
   }, [id, fetchTrigger]);
   // console.log("shopifyDetails", shopifyDetails);
+  console.log("ordrs", orders);
 
   useEffect(() => {
-    const fetchShopifyDetails = async () => {
+    const fetchConversionDetails = async () => {
       try {
         const response = await axios.get(
           `${url}/connections/${id}/xmlconversions`
@@ -149,7 +199,7 @@ export const IntegrationCanvas = () => {
       }
     };
 
-    fetchShopifyDetails();
+    fetchConversionDetails();
   }, [id, fetchTrigger]);
 
   useEffect(() => {
