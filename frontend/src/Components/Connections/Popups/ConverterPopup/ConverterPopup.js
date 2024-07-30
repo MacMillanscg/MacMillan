@@ -19,7 +19,13 @@ const conversionActions = [
   },
 ];
 
-export const ConverterPopup = ({ onClose, openXmlPopup, orders }) => {
+export const ConverterPopup = ({
+  onClose,
+  openXmlPopup,
+  orders,
+  setFetchTriggerXml,
+  fetchTriggerXml,
+}) => {
   const [searchInput, setSearchInput] = useState("");
   const [filteredActions, setFilteredActions] = useState(conversionActions);
   const [selectedJsonData, setSelectedJsonData] = useState(null);
@@ -48,6 +54,7 @@ export const ConverterPopup = ({ onClose, openXmlPopup, orders }) => {
           `${url}/connections/${id}/xmlconversion`,
           actions
         );
+        setFetchTriggerXml(!fetchTriggerXml);
         console.log("response", response.data);
       } catch (error) {
         console.error("Conversion Error:", error);

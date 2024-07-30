@@ -57,7 +57,7 @@ exports.getShopifyDetails = async (req, res) => {
     const { id } = req.params;
 
     const connection = await Connection.findById(id).select("shopifyDetails");
-    console.log("connection shofi", connection);
+    console.log("connection shopify", connection);
 
     if (!connection) {
       return res.status(404).json({ error: "Connection not found" });
@@ -85,15 +85,16 @@ exports.getXMLConversion = async (req, res) => {
   }
 };
 
-exports.addAllOrders = async () => {
+exports.addAllOrders = async (req, res) => {
   const { clientId, integrationId, type, shopifyId } = req.body;
+  console.log("ordersss", req.body);
 
   try {
     const transaction = new Transaction({
       clientId,
       integrationId,
       type,
-      shopifyId,
+      // shopifyId,
     });
 
     const transactionData = await transaction.save();

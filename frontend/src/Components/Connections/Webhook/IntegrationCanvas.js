@@ -76,6 +76,7 @@ export const IntegrationCanvas = () => {
   // const [error, setError] = useState(null);
   const [shopifyDetails, setShopifyDetails] = useState(null);
   const [fetchTrigger, setFetchTrigger] = useState(false);
+  const [fetchTriggerXml, setFetchTriggerXml] = useState(false);
   const [initialized, setInitialized] = useState(
     JSON.parse(localStorage.getItem("shopifyInitialized")) || false
   );
@@ -161,17 +162,6 @@ export const IntegrationCanvas = () => {
           `${url}/connections/${id}/shopifyDetails`
         );
         setShopifyDetails(response.data);
-
-        const transactionResponse = await axios.post(
-          `${url}/connections/saveTransaction`,
-          {
-            clientId,
-            integrationId,
-            type: "order",
-            data: shopifyId,
-          }
-        );
-        console.log("trasnaction", transactionResponse);
       } catch (error) {
         console.error("Error fetching Shopify details:", error);
       } finally {
@@ -184,6 +174,23 @@ export const IntegrationCanvas = () => {
   // console.log("shopifyDetails", shopifyDetails);
   console.log("ordrs", orders);
 
+  const addShopifyOrders = async () => {
+    try {
+      const transactionResponse = await axios.post(
+        `${url}/connections/${id}/saveTransaction`,
+        {
+          clientId,
+          integrationId,
+          type: "order",
+          // data: shopifyId,
+        }
+      );
+      console.log("trasnaction", transactionResponse);
+    } catch (error) {
+      console.log("Error in shopify orders ", error);
+    }
+  };
+
   useEffect(() => {
     const fetchConversionDetails = async () => {
       try {
@@ -192,6 +199,7 @@ export const IntegrationCanvas = () => {
         );
         console.log("xmlreso", response);
         setXmlConversion(response.data.conversionsXML);
+        // setFetchTrigger(!fetchTrigger);
       } catch (error) {
         console.error("Error fetching Shopify details:", error);
       } finally {
@@ -200,13 +208,16 @@ export const IntegrationCanvas = () => {
     };
 
     fetchConversionDetails();
-  }, [id, fetchTrigger]);
+  }, [id, fetchTriggerXml]);
+  console.log("xmlconversion", xmlConversion);
+  console.log("fetchTriggerXml", fetchTriggerXml);
 
   useEffect(() => {
     const fetchShopifyDetails = async () => {
       try {
         const response = await axios.get(`${url}/connections/${id}`);
         setSelectedIntegration(response.data);
+        console.log("inside shopify");
       } catch (error) {
         console.error("Error fetching Shopify details:", error);
       } finally {
@@ -440,7 +451,9 @@ export const IntegrationCanvas = () => {
         <div className={styles.topBarControls}>
           <button className={styles.publishButton}>Publish</button>
           <button className={styles.cancelButton}>Cancel</button>
-          <button className={styles.saveButton}>Save</button>
+          <button className={styles.saveButton} onClick={addShopifyOrders}>
+            Save
+          </button>
         </div>
       </div>
 
@@ -646,7 +659,12 @@ export const IntegrationCanvas = () => {
                 onClose={closeConverterPopup}
                 onBack={backPopup}
               >
-                <ConverterPopup openXmlPopup={openXmlPopup} orders={orders} />
+                <ConverterPopup
+                  openXmlPopup={openXmlPopup}
+                  orders={orders}
+                  setFetchTriggerXml={setFetchTriggerXml}
+                  fetchTriggerXml={fetchTriggerXml}
+                />
               </StepPopup>
             )}
             {isXmlPopup && (
