@@ -1,28 +1,43 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Connections.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown, faPlus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronDown,
+  faPlus,
+  faEllipsisV,
+  faPencil,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 import { useAppContext } from "../Context/AppContext";
 import { Link } from "react-router-dom";
 import { AddConnections } from "./AddConnections";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchConnections } from "../../Redux/Actions/ConnectionsActions";
+import { WarningPopup } from "./Popups/WarningPopup/WarningPopup";
+import axios from "axios";
+import { url } from "../../api";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export const Connections = () => {
   const { dashboardWidth } = useAppContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showWarningModal, setShowWarningModal] = useState(false);
+  const [connectionId, setConnectionId] = useState(null);
   const dispatch = useDispatch();
   const { connections, loading, error } = useSelector(
     (state) => state.connections
   );
 
-  useEffect(() => {
-    if (connections.length === 0) {
-      dispatch(fetchConnections());
-    }
-  }, [dispatch]);
+  const navigate = useNavigate();
 
-  console.log("connecitns", connections);
+  const handleEditConnection = (id) => {
+    navigate(`/connections/${id}`);
+  };
+
+  useEffect(() => {
+    dispatch(fetchConnections());
+  }, [dispatch]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -32,10 +47,32 @@ export const Connections = () => {
     setIsModalOpen(false);
   };
 
+  const handleDeleteConnection = (id) => {
+    setConnectionId(id);
+    setShowWarningModal(true);
+  };
+  console.log("delete id", connectionId);
+
+  const confirmDeleteConnection = async () => {
+    try {
+      await axios.delete(`${url}/connections/${connectionId}`);
+      dispatch(fetchConnections());
+      setShowWarningModal(false);
+      toast.success("The connection deleted successfully.");
+    } catch (error) {
+      console.error("Error deleting Shopify details:", error);
+    }
+  };
+
   return (
     <div className="dashboard" style={{ width: dashboardWidth }}>
       <div className={styles.connectionHeader}>
         <h2 className={styles.heading2}>Connections</h2>
+        <WarningPopup
+          show={showWarningModal}
+          onClose={() => setShowWarningModal(false)}
+          onConfirm={confirmDeleteConnection} // Confirm delete on this action
+        />{" "}
         <div className={styles.connectionsRight}>
           <div className="form-group me-4">
             <input
@@ -43,10 +80,7 @@ export const Connections = () => {
               className={`form-control ${styles.formControl}`}
               id="exampleInputEmail"
               placeholder="Search Connections"
-              // value={email}
-              // onChange={(e) => setEmail(e.target.value)}
             />
-            {/* <FontAwesomeIcon icon={faSearch} className={styles.searchIcon} /> */}
           </div>
           <div className={styles.selectFilterOption}>
             <select name="" id="" className={styles.selectFilter}>
@@ -78,6 +112,25 @@ export const Connections = () => {
                   <h3 className={styles.cardTitle}>
                     {connection?.shopifyDetails?.shopifyTitle}
                   </h3>
+                  <div className={styles.EditDeleteShow}>
+                    <FontAwesomeIcon
+                      icon={faEllipsisV}
+                      className={styles.dots}
+                    />
+                    <div className={styles.editDelteIconsWrap}>
+                      <Link to={`/connections/${connection._id}`}>
+                        <FontAwesomeIcon
+                          icon={faPencil}
+                          className={styles.editIcon}
+                        />
+                      </Link>
+                      <FontAwesomeIcon
+                        icon={faTrash}
+                        className={styles.deleteIcon}
+                        onClick={() => handleDeleteConnection(connection._id)} // Pass connection._id here
+                      />
+                    </div>
+                  </div>
                   <h4 className="fs-5 m-0 mb-2">
                     {connection.client.clientName}
                   </h4>
@@ -86,20 +139,12 @@ export const Connections = () => {
                     <ul className={styles.list}>
                       <li className={styles.listItem}>
                         <Link to="#" className={styles.listText}>
-                          {/* <FontAwesomeIcon
-                          className={styles.icon}
-                          // icon={connection.versionIcon}
-                        /> */}
                           Version
                         </Link>{" "}
                       </li>
-                      {/* <li className={styles.listItem}>{connection.status} --</li> */}
+
                       <li className={styles.listItem}>
                         <Link to="#" className={styles.listText}>
-                          {/* <FontAwesomeIcon
-                          className={styles.icon}
-                          // icon={connection.lastRunIcon}
-                        /> */}
                           Last Run
                         </Link>{" "}
                       </li>
@@ -112,8 +157,6 @@ export const Connections = () => {
               </div>
             </Link>
           ))}
-
-        {/* {loading && <h1>Loading ..... </h1>} */}
       </div>
       {isModalOpen && <AddConnections closeModal={closeModal} />}
     </div>

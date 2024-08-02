@@ -34,6 +34,9 @@ const ManagementTriggerSchema = new mongoose.Schema({
 });
 
 const ConnectionSchema = new mongoose.Schema({
+  userId: {
+    type: String,
+  },
   connectionName: { type: String },
   description: { type: String },
   hideUnavailable: { type: Boolean, default: false },

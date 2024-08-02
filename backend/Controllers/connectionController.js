@@ -41,6 +41,7 @@ exports.createWebhook = async (req, res) => {
 
 exports.createConnection = async (req, res) => {
   try {
+    console.log("reqb", req.body);
     const newConnection = new Connection(req.body);
     const connection = await newConnection.save();
     res.status(201).json({ id: connection._id });
@@ -51,6 +52,8 @@ exports.createConnection = async (req, res) => {
 
 // Route to fetch orders from Shopify
 exports.shofipyOrders = async (req, res) => {
+  const { id } = req.query;
+  console.log("params", req.query);
   try {
     const response = await axios.get(
       "https://27cd06-29.myshopify.com/admin/api/2024-04/orders.json",
@@ -125,5 +128,23 @@ exports.updateConnectionVersion = async (req, res) => {
     res.status(200).json(updatedConnection);
   } catch (error) {
     res.status(500).json({ message: "Error updating connection", error });
+  }
+};
+
+// Controller to delete a connection by ID
+exports.deleteConnectionById = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deletedConnection = await Connection.findByIdAndDelete(id);
+
+    if (!deletedConnection) {
+      return res.status(404).json({ message: "Connection not found" });
+    }
+
+    res.status(200).json({ message: "Connection deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting connection:", error);
+    res.status(500).json({ message: "Server error" });
   }
 };

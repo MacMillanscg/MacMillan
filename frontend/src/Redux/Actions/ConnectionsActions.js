@@ -1,5 +1,6 @@
 import axios from "axios";
 import { url } from "./restApis";
+import { getUser } from "../../storageUtils/storageUtils";
 
 export const FETCH_CONNECTIONS_REQUEST = "FETCH_CONNECTIONS_REQUEST";
 export const FETCH_CONNECTIONS_SUCCESS = "FETCH_CONNECTIONS_SUCCESS";
@@ -22,9 +23,14 @@ const fetchConnectionsFailure = (error) => ({
 export const fetchConnections = () => {
   return async (dispatch) => {
     dispatch(fetchConnectionsRequest());
+    let userId = getUser();
+    userId = userId._id;
     try {
       const response = await axios.get(`${url}/connections`);
-      dispatch(fetchConnectionsSuccess(response.data));
+      const filteredConnections = response.data.filter(
+        (connection) => connection.userId === userId
+      );
+      dispatch(fetchConnectionsSuccess(filteredConnections));
     } catch (error) {
       dispatch(fetchConnectionsFailure("Error fetching connections"));
     }

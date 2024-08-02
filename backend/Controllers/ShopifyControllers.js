@@ -45,7 +45,7 @@ exports.addXmlConvertion = async (req, res) => {
       message: "XMLConvertion created successfully",
       xmlConvertion: updatedXMlconversion,
     });
-    console.log("req,bldy", req.body);
+    // console.log("req,bldy", req.body);
   } catch (error) {
     console.error("Error in conversion of xml file");
     res.status(500).json({ error: error.message });
@@ -57,7 +57,7 @@ exports.getShopifyDetails = async (req, res) => {
     const { id } = req.params;
 
     const connection = await Connection.findById(id).select("shopifyDetails");
-    console.log("connection shopify", connection);
+    // console.log("connection shopify", connection);
 
     if (!connection) {
       return res.status(404).json({ error: "Connection not found" });
@@ -74,7 +74,7 @@ exports.getXMLConversion = async (req, res) => {
   try {
     const { id } = req.params;
     const connection = await Connection.findById(id).select("conversionsXML");
-    console.log("Conversion Data:", connection);
+    // console.log("Conversion Data:", connection);
     if (!connection) {
       return res.status(404).json({ error: "Connection not found" });
     }
@@ -87,7 +87,7 @@ exports.getXMLConversion = async (req, res) => {
 
 exports.addAllOrders = async (req, res) => {
   const { clientId, integrationId, type, shopifyId } = req.body;
-  console.log("ordersss", req.body);
+  // console.log("ordersss", req.body);
 
   try {
     const transaction = new Transaction({
@@ -102,7 +102,7 @@ exports.addAllOrders = async (req, res) => {
       message: "Transaction saved successfully",
       transaction: transactionData,
     });
-    console.log("trans", transactionData);
+    // console.log("trans", transactionData);
   } catch (error) {
     console.error("Error saving transaction:", error);
     res.status(500).json({ error: "Failed to save transaction" });

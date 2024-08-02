@@ -26,7 +26,7 @@ export const CanvasFlow = () => {
   const handleToggleMenu = () => {
     setShowMenu(!showMenu);
   };
-  console.log("showAddNewStep", showAddNewStep);
+  // console.log("showAddNewStep", showAddNewStep);
 
   return (
     <div className={styles.dropdownContainer}>

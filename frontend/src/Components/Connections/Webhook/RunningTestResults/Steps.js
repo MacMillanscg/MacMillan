@@ -29,6 +29,9 @@ export const Steps = ({ steps, orders, shopifyDetails, loading }) => {
   const handleToggle = () => {
     setIsToggled(!isToggled);
   };
+
+  console.log("orders in steps", orders);
+
   return (
     <div className={styles.steps}>
       <div className="d-flex justify-content-between">

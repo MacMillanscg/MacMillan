@@ -90,16 +90,17 @@ export const IntegrationCanvas = () => {
   const [clientId, setClientId] = useState(null);
   const [integrationId, setIntegrationId] = useState(null);
   // const [shopifyId, setShopifyId] = useState(null);
-  console.log("initial", initialized);
-  console.log("fetchtrigger", fetchTrigger);
-  console.log("xmldata", xmlConversion);
+  // console.log("initial", initialized);
+  // console.log("fetchtrigger", fetchTrigger);
+  // console.log("xmldata", xmlConversion);
 
   const dispatch = useDispatch();
   const { connections, error } = useSelector((state) => state.connections);
+  console.log("idddd", id);
 
   useEffect(() => {
     const newConnection = connections.find(
-      (connection, i) => connection._id === id
+      (connection) => connection._id === id
     );
     setFilteredConnection(newConnection);
     setClientId(newConnection?.client.clientId);
@@ -108,20 +109,27 @@ export const IntegrationCanvas = () => {
     );
   }, [id, connections]);
 
-  console.log("filteredConnection", filteredConnection);
+  console.log("filteredConnection", filteredConnection?.integrations);
 
   useEffect(() => {
     if (connections.length === 0) {
       dispatch(fetchConnections());
     }
-  }, [dispatch]);
+  }, [dispatch, connections]);
 
   console.log("connecitns", connections);
 
   const fetchShopifyOrders = async () => {
     try {
+      // const apiKey = filteredConnection?.integrations[0].apiKey;
+      // const apiKey = "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";
+      // const storeUrl = filteredConnection?.integrations[0].storeUrl;
+      // const storeUrl = "27cd06-29.myshopify";
       const response = await axios.get(
-        "http://localhost:5000/connections/api/orders"
+        "http://localhost:5000/connections/api/orders",
+        {
+          params: { id },
+        }
       );
       setOrders(response.data.orders);
       localStorage.setItem("shopifyInitialized", JSON.stringify(true));
@@ -172,7 +180,7 @@ export const IntegrationCanvas = () => {
     fetchShopifyDetails();
   }, [id, fetchTrigger]);
   // console.log("shopifyDetails", shopifyDetails);
-  console.log("ordrs", orders);
+  // console.log("ordrs", orders);
 
   const addShopifyOrders = async () => {
     try {
@@ -197,7 +205,7 @@ export const IntegrationCanvas = () => {
         const response = await axios.get(
           `${url}/connections/${id}/xmlconversions`
         );
-        console.log("xmlreso", response);
+        // console.log("xmlreso", response);
         setXmlConversion(response.data.conversionsXML);
         // setFetchTrigger(!fetchTrigger);
       } catch (error) {
@@ -209,15 +217,14 @@ export const IntegrationCanvas = () => {
 
     fetchConversionDetails();
   }, [id, fetchTriggerXml]);
-  console.log("xmlconversion", xmlConversion);
-  console.log("fetchTriggerXml", fetchTriggerXml);
+  // console.log("xmlconversion", xmlConversion);
+  // console.log("fetchTriggerXml", fetchTriggerXml);
 
   useEffect(() => {
     const fetchShopifyDetails = async () => {
       try {
         const response = await axios.get(`${url}/connections/${id}`);
         setSelectedIntegration(response.data);
-        console.log("inside shopify");
       } catch (error) {
         console.error("Error fetching Shopify details:", error);
       } finally {
@@ -239,6 +246,22 @@ export const IntegrationCanvas = () => {
       console.error("Error deleting Shopify details:", error);
     }
   };
+
+  useEffect(() => {
+    const fetchConnection = async () => {
+      try {
+        const response = await axios.get(`${url}/connections/${id}`);
+        setConnection(response.data);
+        // console.log("response", response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching connection:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchConnection();
+  }, [id]);
 
   const openTriggerPopup = () => {
     setIsWebhookTriggerPopup(true);
@@ -347,22 +370,6 @@ export const IntegrationCanvas = () => {
   const closeEShipperPopup = () => {
     setIsEShipperPopup(false);
   };
-
-  useEffect(() => {
-    const fetchConnection = async () => {
-      try {
-        const response = await axios.get(`${url}/connections/${id}`);
-        setConnection(response.data);
-        console.log("response", response.data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching connection:", error);
-        setLoading(false);
-      }
-    };
-
-    fetchConnection();
-  }, [id]);
 
   const openConnectionPopup = () => {
     setConnectionPopup(true);

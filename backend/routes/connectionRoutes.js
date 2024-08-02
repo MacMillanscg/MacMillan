@@ -16,5 +16,6 @@ router.post("/:id", connectionController.createWebhook);
 router.patch("/:id/xmlconversion", shopifyControllers.addXmlConvertion);
 router.get("/:id/xmlconversions", shopifyControllers.getXMLConversion);
 router.post("/:id/saveTransaction", shopifyControllers.addAllOrders);
+router.delete("/:id", connectionController.deleteConnectionById);
 
 module.exports = router;

@@ -19,9 +19,15 @@ import {
 } from "./Webhook/WebhookData";
 import { useNavigate, useParams } from "react-router-dom";
 import { getUser } from "../../storageUtils/storageUtils";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setSelectedClient,
+  setSelectedClientIntegrations,
+} from "../../Redux/Actions/SelectedIntegrationActions";
 
 export const AddConnections = ({ closeModal }) => {
   const { id } = useParams();
+  const dispatch = useDispatch();
   // console.log("sdfasf", id);
   const { dashboardWidth } = useAppContext();
   const [connectionName, setConnectionName] = useState("");
@@ -29,9 +35,9 @@ export const AddConnections = ({ closeModal }) => {
   const [client, setClient] = useState("");
   const [option, setOption] = useState("");
   const [search, setSearch] = useState("");
-  const [selectedClientIntegrations, setSelectedClientIntegrations] = useState(
-    []
-  );
+  // const [selectedClientIntegrations, setSelectedClientIntegrations] = useState(
+  //   []
+  // );
   const [cronExpression, setCronExpression] = useState("");
   const [schedule, setSchedule] = useState("");
   const [webhookUrl, setWebhookUrl] = useState("");
@@ -39,14 +45,21 @@ export const AddConnections = ({ closeModal }) => {
   const [selectedWebhookTrigger, setSelectedWebhookTrigger] = useState(null);
   const [selectedManagementTrigger, setSelectedManagementTrigger] =
     useState(null);
-  const [selectedClient, setSelectedClient] = useState(null);
+  // const [selectedClient, setSelectedClient] = useState(null);
   const [selectedIntegration, setSelectedIntegration] = useState(null);
   const navigate = useNavigate();
   let userId = getUser();
   userId = userId._id;
+  const selectedClient = useSelector(
+    (state) => state.selectedIntegration.selectedClient
+  );
+  const selectedClientIntegrations = useSelector(
+    (state) => state.selectedIntegration.selectedClientIntegrations
+  );
 
   // console.log("selectedWebhookTrigger", selectedWebhookTrigger);
   console.log("integration", selectedIntegration);
+  console.log("userId", userId);
 
   useEffect(() => {
     const fetchAllClients = async () => {
@@ -71,13 +84,16 @@ export const AddConnections = ({ closeModal }) => {
     const selectedClient = clients.find(
       (client) => client.clientName === clientName
     );
-    setSelectedClient(selectedClient);
+
+    // Dispatch actions to update the Redux state
+    dispatch(setSelectedClient(selectedClient));
+    dispatch(
+      setSelectedClientIntegrations(
+        selectedClient ? selectedClient.integrations || [] : []
+      )
+    );
+
     setClient(clientName);
-    if (selectedClient) {
-      setSelectedClientIntegrations(selectedClient.integrations || []);
-    } else {
-      setSelectedClientIntegrations([]);
-    }
   };
   console.log("selectintegration", selectedClientIntegrations);
 
@@ -119,6 +135,7 @@ export const AddConnections = ({ closeModal }) => {
 
       // console.log("selcted", selectedClient);
       const dataToStore = {
+        userId: userId,
         connectionName,
         client: {
           clientId: selectedClient._id,
