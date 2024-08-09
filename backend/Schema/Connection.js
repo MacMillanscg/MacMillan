@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const shopifyDetailsSchema = require("./ShopifySchema");
 const conversionActionSchema = require("./conversionSchema");
+const PostFulfillmentSchema = require("./FullfillmentSchema");
 
 const IntegrationSchema = new mongoose.Schema({
   integrationId: {
@@ -58,6 +59,7 @@ const ConnectionSchema = new mongoose.Schema({
   cronExpression: { type: String },
   shopifyDetails: shopifyDetailsSchema,
   conversionsXML: conversionActionSchema,
+  postFulfillments: [PostFulfillmentSchema],
   createdAt: { type: Date, default: Date.now },
 });
 

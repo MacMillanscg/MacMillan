@@ -1,5 +1,6 @@
 const Connection = require("../Schema/Connection");
 const Transaction = require("../Schema/Transaction");
+const axios = require("axios");
 
 // create shopify connection
 exports.createShopifyConnection = async (req, res) => {
@@ -130,5 +131,85 @@ exports.deleteShopifyDetails = async (req, res) => {
   } catch (error) {
     console.error("Error deleting Shopify details:", error);
     res.status(500).json({ error: error.message });
+  }
+};
+
+exports.updateShopifyFullfillment = async (req, res) => {
+  const {
+    id,
+    fulfillmentId,
+    trackingNumber,
+    trackingCompany,
+    postFullfillments,
+  } = req.body;
+  console.log("body", req.body);
+
+  try {
+    const connection = await Connection.findById(id);
+    if (!connection) {
+      return res.status(404).json({ error: "Connection not found" });
+    }
+    const newFulfillment = {
+      fulfillmentId,
+      trackingNumber,
+      trackingCompany,
+      postFullfillments,
+    };
+
+    connection.postFulfillments.push(newFulfillment);
+    const data = await connection.save();
+
+    const fulfillmentUpdateData = {
+      fulfillment: {
+        tracking_info: {
+          company: trackingCompany,
+          number: trackingNumber,
+        },
+      },
+    };
+
+    const response = await axios.post(
+      `https://27cd06-29.myshopify.com/admin/api/2024-04/fulfillments/4927362138326/update_tracking.json`,
+      fulfillmentUpdateData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Shopify-Access-Token": "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",
+        },
+      }
+    );
+
+    res
+      .status(200)
+      .json({ shopifyResponse: response.data, connection: connection });
+  } catch (error) {
+    console.error("Error updating fulfillment data:", error);
+    res.status(500).json({ error: "Failed to update fulfillment data" });
+  }
+};
+
+// get shopify fullfillment
+
+exports.getFullFillment = async (req, res) => {
+  const { orderId } = req.params;
+
+  try {
+    const storeUrl = "27cd06-29.myshopify.com"; // Replace with your Shopify store URL
+    const accessToken = "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"; // Replace with your Shopify Admin API access token
+
+    const response = await axios.get(
+      `https://${storeUrl}/admin/api/2024-04/orders/${orderId}/fulfillments.json`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Shopify-Access-Token": accessToken,
+        },
+      }
+    );
+
+    res.status(200).json(response.data);
+  } catch (error) {
+    console.error("Error fetching fulfillment details:", error);
+    res.status(500).json({ error: "Failed to fetch fulfillment details" });
   }
 };

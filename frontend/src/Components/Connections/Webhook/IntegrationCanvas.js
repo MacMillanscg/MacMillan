@@ -126,10 +126,7 @@ export const IntegrationCanvas = () => {
       // const storeUrl = filteredConnection?.integrations[0].storeUrl;
       // const storeUrl = "27cd06-29.myshopify";
       const response = await axios.get(
-        "http://localhost:5000/connections/api/orders",
-        {
-          params: { id },
-        }
+        `http://localhost:5000/connections/${id}/api/orders`
       );
       setOrders(response.data.orders);
       localStorage.setItem("shopifyInitialized", JSON.stringify(true));
@@ -729,7 +726,10 @@ export const IntegrationCanvas = () => {
                   setIsFullfilmentPopup(false);
                 }}
               >
-                <FullfilmentPopUp closeOrderPopup={closeOrderPopup} />
+                <FullfilmentPopUp
+                  closeOrderPopup={closeOrderPopup}
+                  onClose={closeFullfilmentPopup}
+                />
               </StepPopup>
             )}
             {isShopifyPopUp && (

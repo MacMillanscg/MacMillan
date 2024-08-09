@@ -52,15 +52,23 @@ exports.createConnection = async (req, res) => {
 
 // Route to fetch orders from Shopify
 exports.shofipyOrders = async (req, res) => {
-  const { id } = req.query;
-  console.log("params", req.query);
+  const { id } = req.params;
   try {
+    const connection = await Connection.findById(id);
+
+    if (!connection) {
+      return res.status(404).json({ message: "Connection not found" });
+    }
+
+    const integration = connection.integrations[0];
+    const { apiKey, storeUrl } = integration;
+
     const response = await axios.get(
-      "https://27cd06-29.myshopify.com/admin/api/2024-04/orders.json",
+      `https://${storeUrl}/admin/api/2024-04/orders.json`,
       {
         headers: {
           "Content-Type": "application/json",
-          "X-Shopify-Access-Token": "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",
+          "X-Shopify-Access-Token": apiKey,
         },
       }
     );
