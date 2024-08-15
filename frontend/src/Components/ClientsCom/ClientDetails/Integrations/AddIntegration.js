@@ -257,10 +257,10 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
                     onChange={handlePlatformChange}
                   >
                     <option value="">Select Platform</option>
-                    <option value="shopify">Shopify</option>
-                    <option value="eShipper">eShipper</option>
-                    <option value="woocommerce">WooCommerce</option>
-                    <option value="magento">Magento</option>
+                    <option value="Shopify">Shopify</option>
+                    <option value="EShipper">EShipper</option>
+                    <option value="Woocommerce">WooCommerce</option>
+                    <option value="Magento">Magento</option>
                   </select>
                 </div>
                 {selectedPlatform === "shopify" && (

@@ -112,7 +112,8 @@ export const ClientsCom = () => {
                     <h4 className={styles.heading4}>{client.phone}</h4>
                     {/* <h4>{new Date(client.createdAt).toLocaleString()}</h4> */}
                     <p className={styles.text}>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Lorem ipsum dolor sit amet consectetur adipisicing
+                      elitsdf.
                     </p>
                   </div>
                 </div>
