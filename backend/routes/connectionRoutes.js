@@ -22,4 +22,6 @@ router.patch(
   shopifyControllers.updateShopifyFullfillment
 );
 router.get("/get-fulfillment/:orderId", shopifyControllers.getFullFillment);
+router.post("/:id/api/saveOrderIds", shopifyControllers.createShopifyOrdersId);
+
 module.exports = router;

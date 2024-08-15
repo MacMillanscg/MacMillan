@@ -30,7 +30,7 @@ export const Steps = ({ steps, orders, shopifyDetails, loading }) => {
     setIsToggled(!isToggled);
   };
 
-  console.log("orders in steps", orders);
+  console.log("orders in steps", orders[0]?.id);
 
   return (
     <div className={styles.steps}>

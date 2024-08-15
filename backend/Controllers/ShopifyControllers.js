@@ -1,5 +1,6 @@
 const Connection = require("../Schema/Connection");
 const Transaction = require("../Schema/Transaction");
+const Order = require("../Schema/ShopifyOrderSchema");
 const axios = require("axios");
 
 // create shopify connection
@@ -109,7 +110,7 @@ exports.addAllOrders = async (req, res) => {
     res.status(500).json({ error: "Failed to save transaction" });
   }
 };
-
+// 5426
 exports.deleteShopifyDetails = async (req, res) => {
   try {
     const { id } = req.params;
@@ -211,5 +212,19 @@ exports.getFullFillment = async (req, res) => {
   } catch (error) {
     console.error("Error fetching fulfillment details:", error);
     res.status(500).json({ error: "Failed to fetch fulfillment details" });
+  }
+};
+
+exports.createShopifyOrdersId = async (req, res) => {
+  try {
+    const { orderIds } = req.body;
+
+    const ordersToInsert = orderIds.map((id) => ({ shopifyId: id }));
+    await Order.insertMany(ordersToInsert, { ordered: false });
+
+    res.status(200).json({ message: "Order IDs saved successfully" });
+  } catch (error) {
+    console.error("Error saving order IDs:", error);
+    res.status(500).json({ message: "Error saving order IDs", error });
   }
 };

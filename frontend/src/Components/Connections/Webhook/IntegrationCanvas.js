@@ -121,17 +121,19 @@ export const IntegrationCanvas = () => {
 
   const fetchShopifyOrders = async () => {
     try {
-      // const apiKey = filteredConnection?.integrations[0].apiKey;
-      // const apiKey = "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";
-      // const storeUrl = filteredConnection?.integrations[0].storeUrl;
-      // const storeUrl = "27cd06-29.myshopify";
       const response = await axios.get(
         `http://localhost:5000/connections/${id}/api/orders`
       );
       setOrders(response.data.orders);
+      const orderIds = response.data.orders.map((order) => order.id);
+      await axios.post(
+        `http://localhost:5000/connections/${id}/api/saveOrderIds`,
+        { orderIds }
+      );
       localStorage.setItem("shopifyInitialized", JSON.stringify(true));
+      localStorage.setItem("shopify", JSON.stringify(true));
       closeShopifyPopup();
-      setInitialized(true);
+      // setInitialized(true);
       setFetchTrigger(!fetchTrigger);
     } catch (error) {
       console.error("Error fetching orders:", error);
@@ -141,10 +143,10 @@ export const IntegrationCanvas = () => {
   // console.log("orders", orders);
 
   useEffect(() => {
-    if (initialized) {
-      fetchShopifyOrders();
-    }
-  }, [initialized]);
+    // if (initialized) {
+    fetchShopifyOrders();
+    // }
+  }, []);
 
   const handleButtonClick = () => {
     if (!initialized) {

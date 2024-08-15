@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../../AddClients.module.css";
 import toast from "react-hot-toast";
 import axios from "axios";
@@ -12,10 +12,16 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
     storeUrl: "",
     apiKey: "",
   });
+  const [formData, setFormData] = useState({
+    eShipperStoreUrl: "",
+    username: "",
+    password: "",
+  });
+  const [token, setToken] = useState("");
+  const [isVerified, setIsVerified] = useState(false);
+  const [error, setError] = useState("");
 
   console.log("clientId", clientId);
-
-  const [isVerified, setIsVerified] = useState(false);
 
   const [woocommerceFields, setWooCommerceFields] = useState({
     storeUrl: "",
@@ -33,6 +39,67 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
     oauthKey1: "",
     oauthKey2: "",
   });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    setIsVerified(false);
+  };
+
+  const verifyEShipperCredentials = async () => {
+    try {
+      const { eShipperStoreUrl, username, password } = formData;
+      // Make the POST request to your Express.js server
+      const response = await axios.post(`${url}/clients/get-token`, {
+        url: eShipperStoreUrl,
+        principal: username,
+        credential: password,
+      });
+      console.log(response);
+      if (response.data.token) {
+        toast.success("Credentials verified successfully!");
+      }
+
+      // Set the token in the state and mark as verified
+      setToken(response.data.token);
+      setIsVerified(true);
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to authenticate. Please check your credentials.");
+      setIsVerified(false);
+    }
+  };
+
+  const addEShipperRecord = async () => {
+    if (!isVerified) {
+      toast.error("Please verify the  credentials before submitting.");
+      return;
+    }
+    try {
+      const eShipper = {
+        integrationName,
+        selectedPlatform,
+        eShipperStoreUrl: formData.eShipperStoreUrl,
+        username: formData.username,
+        password: formData.password,
+      };
+      await axios.post(
+        `${url}/clients/addclients/${clientId}/addEShipper`,
+        eShipper
+      );
+      toast.success("New integration created successfully!");
+      closeModal();
+
+      // setFormData({
+      //   eShipperStoreUrl: "",
+      //   username: "",
+      //   password: "",
+      // });
+      setIsVerified(false);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const handleOAuthKeyChange = (e) => {
     const { name, value } = e.target;
@@ -86,8 +153,8 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const addShopifyRecord = async (e) => {
+    // e.preventDefault();
 
     if (!isVerified) {
       toast.error("Please verify the Shopify credentials before submitting.");
@@ -109,16 +176,25 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
       );
       setFetchTrigger((prev) => !prev); // Toggle fetchTrigger to re-fetch clients
 
-      console.log("New client created:", response.data);
-      toast.success("New client created successfully!");
+      console.log("New integration created:", response.data);
+      toast.success("New integration created successfully!");
       closeModal();
     } catch (error) {
       if (error.response && error.response.status === 400) {
         toast.error(error.response.data.message);
       } else {
-        console.error("Error creating new client:", error);
-        toast.error("Error creating new client. Please try again.");
+        console.error("Error creating new integration:", error);
+        toast.error("Error creating new integration. Please try again.");
       }
+    }
+  };
+
+  // To manage all functions for submitting
+  const handleSubmit = () => {
+    if (selectedPlatform === "shopify") {
+      addShopifyRecord();
+    } else if (selectedPlatform === "eShipper") {
+      addEShipperRecord();
     }
   };
 
@@ -128,6 +204,8 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
       e.preventDefault();
     }
   };
+
+  console.log("token", token);
 
   return (
     <div>
@@ -151,7 +229,7 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
               }`}
               onClick={() => handleTabChange("connections")}
             >
-              Connections
+              Key / Token
             </button>
           </div>
           <div className={styles.tabContent}>
@@ -171,7 +249,7 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
                   </div>
                 </div>
                 <div className={styles.platformDropdown}>
-                  <label htmlFor="platform">Select E-commerce Platform:</label>
+                  <label htmlFor="platform">Select Platform:</label>
                   <select
                     className="form-select mb-2"
                     id="platform"
@@ -180,6 +258,7 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
                   >
                     <option value="">Select Platform</option>
                     <option value="shopify">Shopify</option>
+                    <option value="eShipper">eShipper</option>
                     <option value="woocommerce">WooCommerce</option>
                     <option value="magento">Magento</option>
                   </select>
@@ -209,7 +288,45 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
                       onClick={verifyShopifyCredentials}
                       disabled={isVerified}
                     >
-                      {isVerified ? "Verified" : "Verify Shopify Credentials"}
+                      {isVerified ? "Verified" : "Verify Credentials"}
+                    </button>
+                  </div>
+                )}
+                {selectedPlatform === "eShipper" && (
+                  <div className={styles.platformFields}>
+                    <label htmlFor="shopifyStoreUrl">eShipper URL:</label>
+                    <input
+                      type="text"
+                      className="form-control mb-2"
+                      id="eShipperStoreUrl"
+                      name="eShipperStoreUrl"
+                      value={formData.eShipperStoreUrl}
+                      onChange={handleChange}
+                    />
+                    <label htmlFor="shopifyApiKey">Username:</label>
+                    <input
+                      className="form-control"
+                      type="text"
+                      id="username"
+                      name="username"
+                      value={formData.username}
+                      onChange={handleChange}
+                    />
+                    <label htmlFor="shopifyApiKey">Password:</label>
+                    <input
+                      className="form-control"
+                      type="password"
+                      id="password"
+                      name="password"
+                      value={formData.password}
+                      onChange={handleChange}
+                    />
+                    <button
+                      className="btn btn-primary mt-2"
+                      onClick={verifyEShipperCredentials}
+                      disabled={isVerified}
+                    >
+                      {isVerified ? "Verified" : "Verify Credentials"}
                     </button>
                   </div>
                 )}

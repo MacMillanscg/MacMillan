@@ -1,6 +1,8 @@
 const router = require("express").Router();
+const axios = require("axios");
 
 const clientController = require("../Controllers/clientController");
+const eShipperController = require("../Controllers/eShipperController");
 
 // clients route
 router.post("/validate-shopify", clientController.addClientVerify);
@@ -15,5 +17,12 @@ router.get("/:userId", clientController.getClients);
 
 router.put("/addclients/:id", clientController.updateClient);
 router.delete("/addclients/:id", clientController.deleteClient);
+// router.get("/addclients/get-token", eShipperController.eShipperGetToken);
+
+router.post("/get-token", eShipperController.eShipperGetToken);
+router.post(
+  "/addclients/:clientId/addEShipper",
+  eShipperController.addEShipperRecord
+);
 
 module.exports = router;

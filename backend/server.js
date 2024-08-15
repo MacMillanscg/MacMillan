@@ -1,6 +1,9 @@
 require("dotenv").config();
 
 const express = require("express");
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger-output.json");
+
 const app = express();
 const axios = require("axios");
 
@@ -9,10 +12,10 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const PORT = process.env.PORT || 5000;
 const path = require("path");
-// const js2xmlparser = require("js2xmlparser");
-
 const cookieParser = require("cookie-parser");
-// Serve static files from the 'public' directory
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 app.use("/public", express.static(path.join(__dirname, "public")));
 // app.use(express.static("public"));
 
@@ -54,4 +57,8 @@ app.use((req, res, next) => {
 
 app.listen(PORT, () => {
   console.log("server is running on port:" + PORT);
+  console.log(
+    "API documentation available at http://localhost:" + PORT + "/api-docs"
+  );
 });
+module.exports = app;

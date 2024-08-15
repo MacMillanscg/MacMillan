@@ -4,30 +4,32 @@ const mongoose = require("mongoose");
 const IntegrationSchema = new mongoose.Schema({
   integrationName: {
     type: String,
-    required: true,
+    // required: true,
   },
   platform: {
     type: String,
-    required: true,
+    // required: true,
   },
   storeUrl: {
     type: String,
-    required: true,
+    // required: true,
   },
   apiKey: {
     type: String,
   },
-  consumerKey: {
+  eShipperStoreUrl: {
     type: String,
   },
-  consumerSecret: {
+  username: {
     type: String,
   },
-  accessToken: {
+  password: {
     type: String,
   },
-  accessTokenSecret: {
+  token: {
     type: String,
+    default: "",
+    trim: true,
   },
   createdAt: {
     type: Date,
@@ -52,7 +54,7 @@ const ClientSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "users",
-    required: true,
+    // required: true,
   },
   integrations: [IntegrationSchema], // Array of integration objects
   createdAt: {
