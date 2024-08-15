@@ -125,11 +125,10 @@ export const IntegrationTab = ({
                 </div>
                 <h4>{client?.integrationName}</h4>
                 <p className="mb-1">{client?.storeUrl}</p>
+                <p>{client?.eShipperStoreUrl}</p>
                 <MaskedToken token={client?.apiKey} />
                 <p className="mb-1 mt-0">{client.username}</p>
-                <div className="mb-2">
-                  <MaskedToken token={client?.password} />
-                </div>
+                <MaskedToken token={client?.password} />
 
                 <div
                   className={style.testConnection}

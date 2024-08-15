@@ -428,7 +428,7 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
             )}
             {activeTab === "connections" && (
               <div className={` ${styles.tabPanel} pt-3`}>
-                <label htmlFor="oauthKey1">OAuth / Acess Token Key:</label>
+                <label htmlFor="oauthKey1">OAuth / Access Token Key:</label>
                 <input
                   className="form-control"
                   type="text"
