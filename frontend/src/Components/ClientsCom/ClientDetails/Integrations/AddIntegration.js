@@ -191,9 +191,9 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
 
   // To manage all functions for submitting
   const handleSubmit = () => {
-    if (selectedPlatform === "shopify") {
+    if (selectedPlatform === "Shopify") {
       addShopifyRecord();
-    } else if (selectedPlatform === "eShipper") {
+    } else if (selectedPlatform === "EShipper") {
       addEShipperRecord();
     }
   };
@@ -263,7 +263,7 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
                     <option value="Magento">Magento</option>
                   </select>
                 </div>
-                {selectedPlatform === "shopify" && (
+                {selectedPlatform === "Shopify" && (
                   <div className={styles.platformFields}>
                     <label htmlFor="shopifyStoreUrl">Shopify Store URL:</label>
                     <input
@@ -292,7 +292,7 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
                     </button>
                   </div>
                 )}
-                {selectedPlatform === "eShipper" && (
+                {selectedPlatform === "EShipper" && (
                   <div className={styles.platformFields}>
                     <label htmlFor="shopifyStoreUrl">eShipper URL:</label>
                     <input
@@ -330,7 +330,7 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
                     </button>
                   </div>
                 )}
-                {selectedPlatform === "woocommerce" && (
+                {selectedPlatform === "Woocommerce" && (
                   <div className={styles.platformFields}>
                     <label htmlFor="woocommerceStoreUrl">
                       WooCommerce Store URL:
@@ -367,7 +367,7 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
                     />
                   </div>
                 )}
-                {selectedPlatform === "magento" && (
+                {selectedPlatform === "Magento" && (
                   <div className={styles.platformFields}>
                     <label htmlFor="magentoStoreUrl">Magento Store URL:</label>
                     <input

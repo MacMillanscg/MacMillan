@@ -1,6 +1,7 @@
 import React from "react";
 
 export const MaskedToken = ({ token }) => {
+  console.log("toekn", token);
   // Function to mask the token
   const maskToken = (token) => {
     if (!token) {
@@ -20,7 +21,7 @@ export const MaskedToken = ({ token }) => {
 
   return (
     <div>
-      <p>{maskedToken}</p>
+      <p className="mb-2">{maskedToken}</p>
     </div>
   );
 };

@@ -11,6 +11,7 @@ import style from "./IntegrationTab.module.css";
 import { EditIntegration } from "./EditIntegration";
 import { IntegrationTabHeader } from "./IntegrationTabHeader";
 import { TestConnectionPopUp } from "./TestConnectionPopUp";
+import { IntegrationList } from "./IntegrationTab/IntegrationList";
 
 export const IntegrationTab = ({
   clientId,
@@ -107,6 +108,7 @@ export const IntegrationTab = ({
     <>
       <IntegrationTabHeader openModal={openModal} />
       <div className={styles.cardSection}>
+        {/* <IntegrationList integrations={clients} /> */}
         {clients?.map((client, i) => {
           return (
             <div
@@ -127,6 +129,7 @@ export const IntegrationTab = ({
                 <p className="mb-1">{client?.storeUrl}</p>
                 <p>{client?.eShipperStoreUrl}</p>
                 <MaskedToken token={client?.apiKey} />
+                <p className={`${client.apiKey ? "addCustom" : ""}`}></p>
                 <p className="mb-1 mt-0">{client.username}</p>
                 <MaskedToken token={client?.password} />
 
