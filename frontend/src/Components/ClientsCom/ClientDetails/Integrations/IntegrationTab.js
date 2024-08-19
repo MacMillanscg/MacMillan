@@ -115,7 +115,7 @@ export const IntegrationTab = ({
               className={`card  me-1 ${styles.cardSection} ${style.cardSection}`}
               key={i}
             >
-              <div className="card-body">
+              <div className="card-body pb-5">
                 <div className={style.cardTop}>
                   <h3 className="card-title">{client.platform}</h3>
                   <div
@@ -128,8 +128,11 @@ export const IntegrationTab = ({
                 <h4>{client?.integrationName}</h4>
                 <p className="mb-1">{client?.storeUrl}</p>
                 <p>{client?.eShipperStoreUrl}</p>
-                <MaskedToken token={client?.apiKey} />
-                <p className={`${client.apiKey ? "addCustom" : ""}`}></p>
+                <MaskedToken
+                  token={client?.apiKey}
+                  style={{ marginBottom: "20px" }}
+                />
+
                 <p className="mb-1 mt-0">{client.username}</p>
                 <MaskedToken token={client?.password} />
 
