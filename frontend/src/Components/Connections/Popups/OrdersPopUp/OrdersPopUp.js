@@ -45,9 +45,6 @@ export const OrdersPopUp = ({
         >
           <h4 className="m-0 mb-2">Fulfilment</h4>
         </div>
-        <div className={styles.actionDescription}>
-          <h4 className="m-0 mb-2">Tracking</h4>
-        </div>
       </div>
     </div>
   );

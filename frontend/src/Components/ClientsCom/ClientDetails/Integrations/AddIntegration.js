@@ -50,7 +50,7 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
     try {
       const { eShipperStoreUrl, username, password } = formData;
       // Make the POST request to your Express.js server
-      const response = await axios.post(`${url}/clients/get-token`, {
+      const response = await axios.post(`${url}/clients/verify-eshipper`, {
         url: eShipperStoreUrl,
         principal: username,
         credential: password,

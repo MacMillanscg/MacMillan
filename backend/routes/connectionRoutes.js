@@ -2,6 +2,7 @@ const router = require("express").Router();
 
 const connectionController = require("../Controllers/connectionController");
 const shopifyControllers = require("../Controllers/ShopifyControllers");
+// const eShipperController = require("../Controllers/eShipperController");
 
 router.post("/addConnections", connectionController.createConnection);
 router.get("/:id", connectionController.getConnectionById);
@@ -23,5 +24,10 @@ router.patch(
 );
 router.get("/get-fulfillment/:orderId", shopifyControllers.getFullFillment);
 router.post("/:id/api/saveOrderIds", shopifyControllers.createShopifyOrdersId);
+router.post("/decode-pdf", connectionController.decodeData);
+router.post(
+  "/:id/verify-eshipper",
+  connectionController.verifyEShipperCredentials
+);
 
 module.exports = router;

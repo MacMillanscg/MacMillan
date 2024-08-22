@@ -19,7 +19,7 @@ router.put("/addclients/:id", clientController.updateClient);
 router.delete("/addclients/:id", clientController.deleteClient);
 // router.get("/addclients/get-token", eShipperController.eShipperGetToken);
 
-router.post("/get-token", eShipperController.eShipperGetToken);
+router.post("/verify-eshipper", eShipperController.verifyEShipperCredentials);
 router.post(
   "/addclients/:clientId/addEShipper",
   eShipperController.addEShipperRecord

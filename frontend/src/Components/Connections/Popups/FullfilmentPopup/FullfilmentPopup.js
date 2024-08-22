@@ -85,13 +85,7 @@ export const FullfilmentPopUp = ({
           className={styles.actionDescription}
           onClick={handleFullFillmentClick}
         >
-          <h4 className="m-0 mb-2">Post Fullfilment</h4>
-        </div>
-        <div
-          className={styles.actionDescription}
-          onClick={fetchFulfillmentDetails}
-        >
-          <h4 className="m-0 mb-2">Post tracking no.</h4>
+          <h4 className="m-0 mb-2">Post Fullfilment Status</h4>
         </div>
       </div>
     </div>

@@ -18,16 +18,44 @@ import axios from "axios";
 import { url } from "../../api";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { decodedData } from "./DecodedData";
 
 export const Connections = () => {
   const { dashboardWidth } = useAppContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showWarningModal, setShowWarningModal] = useState(false);
   const [connectionId, setConnectionId] = useState(null);
+  const [message, setMessage] = useState("");
+  const [base64Data, setbBase64Data] = useState(decodedData);
   const dispatch = useDispatch();
   const { connections, loading, error } = useSelector(
     (state) => state.connections
   );
+
+  const handleDecode = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:5000/connections/decode-pdf",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ data: base64Data }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      setMessage(result.message);
+    } catch (error) {
+      console.error("Error decoding PDF:", error);
+      setMessage("Failed to decode PDF.");
+    }
+  };
 
   const navigate = useNavigate();
 
@@ -101,6 +129,8 @@ export const Connections = () => {
             <FontAwesomeIcon icon={faPlus} className={styles.addIcon} />
             Add Connection
           </button>
+          <button onClick={handleDecode}>Decode PDF</button>
+          <p>{message}</p>
         </div>
       </div>
       <div className={styles.cardSection}>

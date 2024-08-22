@@ -6,12 +6,9 @@ export const HttpPopup = () => {
     <div className={styles.popupContent}>
       <div className={styles.loopOptionsWrap}>
         <h4 className="m-0 mb-2 fs-4">HTTP Request</h4>
-        <select name="" id="">
-          <option value="">Select any</option>
-          <option value="">GET HTTP Request</option>
-          <option value="">POST HTTP Request</option>
-          <option value="">PUT HTTP Request </option>
-        </select>
+        <div className={styles.items}>GET HTTP Request</div>
+        <div className={styles.items}>POST HTTP Request</div>
+        <div className={styles.items}>PUT HTTP Request</div>
       </div>
     </div>
   );

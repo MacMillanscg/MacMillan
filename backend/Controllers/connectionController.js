@@ -2,6 +2,8 @@ const Connection = require("../Schema/Connection");
 const ShopifyDetails = require("../Schema/ShopifySchema");
 const axios = require("axios");
 const Webhook = require("../Schema/Webhook");
+const fs = require("fs");
+const path = require("path");
 
 exports.getAllConnections = async (req, res) => {
   try {
@@ -154,5 +156,55 @@ exports.deleteConnectionById = async (req, res) => {
   } catch (error) {
     console.error("Error deleting connection:", error);
     res.status(500).json({ message: "Server error" });
+  }
+};
+
+exports.decodeData = async (req, res) => {
+  try {
+    console.log("Received request body:", req.body); // Debugging line
+
+    const base64Data = req.body.data;
+
+    if (!base64Data) {
+      return res.status(400).json({ message: "No Base64 data provided" });
+    }
+
+    // Decode the Base64 string
+    const buffer = Buffer.from(base64Data, "base64");
+
+    // Define the file path
+    const filePath = path.join(__dirname, "output.pdf");
+
+    // Save the decoded data as a PDF file
+    fs.writeFileSync(filePath, buffer);
+
+    // Respond with a success message
+    res.json({ message: "PDF decoded and saved successfully", filePath });
+  } catch (error) {
+    // Handle any errors that occur during the process
+    console.error("Error decoding or saving the PDF:", error);
+
+    // Respond with an error message
+    res.status(500).json({
+      message: "Failed to decode and save PDF.",
+      error: error.message,
+    });
+  }
+};
+
+exports.verifyEShipperCredentials = async (req, res) => {
+  const { url, principal, credential } = req.body;
+  console.log(req.body);
+  try {
+    const response = await axios.post(url, {
+      principal,
+      credential,
+    });
+    console.log(response);
+
+    res.json({ token: response.data });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Authentication failed" });
   }
 };

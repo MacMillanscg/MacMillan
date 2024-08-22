@@ -10,6 +10,8 @@ function App() {
       {/* <Orders /> */}
       <AllRoutes />
       {/* <ShopifyData /> */}
+
+      {/* 4. shipping api put */}
     </div>
   );
 }

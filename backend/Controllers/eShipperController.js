@@ -1,13 +1,15 @@
 const axios = require("axios");
 const Client = require("../Schema/Client");
 
-exports.eShipperGetToken = async (req, res) => {
+exports.verifyEShipperCredentials = async (req, res) => {
   const { url, principal, credential } = req.body;
+  console.log(req.body);
   try {
     const response = await axios.post(url, {
       principal,
       credential,
     });
+    console.log(response);
 
     res.json({ token: response.data });
   } catch (error) {

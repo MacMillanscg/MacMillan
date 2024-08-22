@@ -3,6 +3,8 @@ import styles from "./IntegrationPopup.module.css";
 import axios from "axios";
 import { url } from "../../../../api";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { verifyEShipperCredentials } from "../../../../Redux/Actions/EshipperActions";
 
 export const IntegrationPopup = ({
   openShopifyPopup,
@@ -11,7 +13,12 @@ export const IntegrationPopup = ({
   openOrdersPopup,
 }) => {
   const [searchInput, setSearchInput] = useState("");
+  // const [token, setToken] = useState("");
   const { id } = useParams();
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.eshipper.token);
+  const loading = useSelector((state) => state.eshipper.loading);
+  console.log("loading", loading);
 
   const handleSearchChange = (e) => {
     setSearchInput(e.target.value);
@@ -35,13 +42,20 @@ export const IntegrationPopup = ({
       });
   };
 
-  const handleEShipperClick = () => {
-    openEShipperPopup();
-  };
-
   const handleHttpClick = () => {
     openHttpPopup();
   };
+  const handleEShipperClick = () => {
+    dispatch(
+      verifyEShipperCredentials(
+        id,
+        "Macmillan_sandbox",
+        "Macmillan@123",
+        openEShipperPopup
+      )
+    );
+  };
+  console.log("token ", token);
 
   return (
     <div className={styles.popupContent}>
@@ -57,7 +71,7 @@ export const IntegrationPopup = ({
           <h4 className="m-0 mb-2">Shopify</h4>
         </div>
         <div className={styles.actionDescription} onClick={handleEShipperClick}>
-          <h4 className="m-0 mb-2">eShippers</h4>
+          <h4 className="m-0 mb-2">{loading ? "EShippers" : "EShippers"}</h4>
         </div>
         <div className={styles.actionDescription} onClick={handleHttpClick}>
           <h4 className="m-0 mb-2">HTTP Request</h4>
