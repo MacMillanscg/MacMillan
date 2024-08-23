@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 const express = require("express");
-const swaggerUi = require("swagger-ui-express");
+// const swaggerUi = require("swagger-ui-express");
 // const swaggerDocument = require("./swagger-output.json");
 
 const app = express();
@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 5000;
 const path = require("path");
 const cookieParser = require("cookie-parser");
 
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use("/public", express.static(path.join(__dirname, "public")));
 // app.use(express.static("public"));
