@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./EShippersPopup.module.css";
 import axios from "axios";
 import { url } from "../../../../api";
 import { useDispatch, useSelector } from "react-redux";
+import { data } from "./ShippmentData";
 
-export const EShippersPopup = () => {
+export const EShippersPopup = ({ onClose }) => {
+  const [shipmentData, setShipmentData] = useState(data);
   const token = useSelector((state) => state.eshipper.token);
 
-  const getShipmentDetails = async () => {
+  const postShipmentData = async () => {
     const orderId = "8000000010946";
+    onClose();
     try {
-      const response = await axios.get(
-        `https://uu2.eshipper.com/api/v2/ship/${orderId}`,
+      const response = await axios.put(
+        `https://uu2.eshipper.com/api/v2/ship`,
+        shipmentData,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -19,7 +23,7 @@ export const EShippersPopup = () => {
           },
         }
       );
-      console.log("Shipment Details:", response.data);
+      console.log("Shipment Data Posted Successfully:", response.data);
     } catch (error) {
       console.error(
         "Error fetching shipment:",
@@ -34,7 +38,7 @@ export const EShippersPopup = () => {
       <div className="dsdf">
         <h4 className="m-0 mb-2 fs-4">EShippers</h4>
         <div className={styles.eShipperPopup}>
-          <div className={styles.items} onClick={getShipmentDetails}>
+          <div className={styles.items} onClick={postShipmentData}>
             Shipments
           </div>
           <div className={styles.items}>Shipment Events</div>

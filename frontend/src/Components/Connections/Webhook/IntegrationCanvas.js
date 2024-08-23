@@ -757,7 +757,7 @@ export const IntegrationCanvas = () => {
                   setIsIntegrationPopup(true);
                 }}
               >
-                <EShippersPopup />
+                <EShippersPopup onClose={closeEShipperPopup} />
               </StepPopup>
             )}
             {isHttpPopup && (
