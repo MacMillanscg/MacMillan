@@ -27,6 +27,7 @@ import { Executions } from "./Components/Explore/Executions/Executions";
 import { Logss } from "./Components/Explore/Logss/Logss";
 import { Users } from "./Components/Explore/Users/Users";
 import { IntegrationCanvas } from "./Components/Connections/Webhook/IntegrationCanvas";
+import { Summary } from "./Components/Summary/Summary";
 
 export const AllRoutes = () => {
   return (
@@ -40,6 +41,7 @@ export const AllRoutes = () => {
           }
         >
           <Route path="/" element={<Dashboard />} />
+          <Route path="/summary" element={<Summary />} />
           <Route path="/profiledetails" element={<ProfileDetails />} />
           <Route path="/profileResetPass" element={<ProfileResetPass />} />
           <Route path="/connectors" element={<Connectors />} />

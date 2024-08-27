@@ -62,9 +62,7 @@ export const AddStepPopup = ({
           </div>
         ))}
       </div>
-      <div className={styles.inUseSection}>
-        <h3>In use</h3>
-      </div>
+      <div className={styles.inUseSection}></div>
     </div>
   );
 };

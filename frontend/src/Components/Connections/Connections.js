@@ -129,8 +129,8 @@ export const Connections = () => {
             <FontAwesomeIcon icon={faPlus} className={styles.addIcon} />
             Add Connection
           </button>
-          <button onClick={handleDecode}>Decode PDF</button>
-          <p>{message}</p>
+          {/* <button onClick={handleDecode}>Decode PDF</button>
+          <p>{message}</p> */}
         </div>
       </div>
       <div className={styles.cardSection}>

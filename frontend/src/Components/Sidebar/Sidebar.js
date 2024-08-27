@@ -8,7 +8,7 @@ import {
   faUsers,
   faChevronLeft,
   faBars,
-  faTh,
+  faColumns,
   faCalendarAlt,
   faCaretDown,
   faCaretUp,
@@ -89,6 +89,26 @@ export const Sidebar = () => {
         <hr className={styles.line} />
         <li
           className={`${styles.li} ${
+            activeLink === "summary" ? styles.active : ""
+          }`}
+        >
+          <Link
+            className={styles.sidebarLink}
+            to="/summary"
+            onClick={() => handleItemClick("summary")}
+          >
+            {showText ? (
+              <>
+                <FontAwesomeIcon icon={faColumns} className={styles.icon} />
+                Summary
+              </>
+            ) : (
+              <FontAwesomeIcon icon={faColumns} className={styles.icon} />
+            )}
+          </Link>
+        </li>
+        <li
+          className={`${styles.li} ${
             activeLink === "connections" ? styles.active : ""
           }`}
         >
@@ -107,7 +127,7 @@ export const Sidebar = () => {
             )}
           </Link>
         </li>
-        <li
+        {/* <li
           className={`${styles.li} ${
             activeLink === "connectors" ? styles.active : ""
           }`}
@@ -126,7 +146,7 @@ export const Sidebar = () => {
               <FontAwesomeIcon icon={faTh} className={styles.icon} />
             )}
           </Link>
-        </li>
+        </li> */}
         <li
           className={`${styles.li} ${
             activeLink === "clients" ? styles.active : ""
