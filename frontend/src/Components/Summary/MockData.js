@@ -32,7 +32,7 @@ export const MockData = [
   {
     orderNumber: "ORD004",
     shipmentNumber: "SHIP004",
-    platform: "Walmart",
+    platform: "eShipper",
     shipmentStatus: "Delivered",
     client: "Bob Lee",
     trackingNumber: "TRK004",
