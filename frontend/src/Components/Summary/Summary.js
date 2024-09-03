@@ -38,6 +38,7 @@ export const Summary = () => {
 
   const [isColumnManagerVisible, setIsColumnManagerVisible] = useState(false);
   const [columns, setColumns] = useState([
+    { name: "", key: "select", visible: true },
     { name: "Order Number", key: "orderNumber", visible: true },
     { name: "Shipment Number", key: "shipmentNumber", visible: true },
     { name: "Platform", key: "platform", visible: true },
@@ -176,6 +177,12 @@ export const Summary = () => {
     setCurrentPage(pageNumber);
   };
 
+  const handleSelectAll = (e) => {
+    const checked = e.target.checked;
+    const updatedSelection = checked ? data.map((_, i) => i) : [];
+    setSelectedRows(updatedSelection);
+  };
+
   return (
     <div className="dashboard" style={{ width: dashboardWidth }}>
       <div className={styles.summaryHeader}>
@@ -260,8 +267,20 @@ export const Summary = () => {
         <table className={styles.table}>
           <thead>
             <tr>
-              {columns.map(
-                (col, index) => col.visible && <th key={index}>{col.name}</th>
+              {columns.map((col, index) =>
+                col.visible ? (
+                  <th key={index}>
+                    {col.key === "select" ? (
+                      <input
+                        type="checkbox"
+                        onChange={(e) => handleSelectAll(e)}
+                        checked={selectedRows.length === data.length}
+                      />
+                    ) : (
+                      col.name
+                    )}
+                  </th>
+                ) : null
               )}
             </tr>
           </thead>
@@ -277,6 +296,7 @@ export const Summary = () => {
                         <input
                           type="checkbox"
                           onChange={(e) => handleRowSelect(e, rowIndex)}
+                          checked={selectedRows.includes(rowIndex)}
                         />
                       </td>
                     );
