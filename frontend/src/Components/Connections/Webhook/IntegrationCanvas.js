@@ -661,7 +661,7 @@ export const IntegrationCanvas = () => {
             {isConverterPopup && (
               <StepPopup
                 back="Back"
-                heading="Converter"
+                heading="Actions"
                 onClose={closeConverterPopup}
                 onBack={backPopup}
               >
