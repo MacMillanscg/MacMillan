@@ -4,12 +4,14 @@ import { connectionsReducer } from "./Redux/Reducers/ConnectionsReducer";
 import { clientsReducer } from "./Redux/Reducers/ClientsReducer";
 import { selectedIntegrationReducer } from "./Redux/Reducers/SelectedIntegrationReducer";
 import { eshipperReducer } from "./Redux/Reducers/EShipperReducer";
+import { summaryReducer } from "./Redux/Reducers/SummaryActions";
 
 const rootReducer = combineReducers({
   connections: connectionsReducer,
   clients: clientsReducer,
   selectedIntegration: selectedIntegrationReducer,
   eshipper: eshipperReducer,
+  summary: summaryReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

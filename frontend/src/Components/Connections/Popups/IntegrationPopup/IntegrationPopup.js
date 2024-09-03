@@ -17,6 +17,7 @@ export const IntegrationPopup = ({
   const { id } = useParams();
   const dispatch = useDispatch();
   const token = useSelector((state) => state.eshipper.token);
+  console.log("token", token);
   const loading = useSelector((state) => state.eshipper.loading);
   console.log("loading", loading);
 

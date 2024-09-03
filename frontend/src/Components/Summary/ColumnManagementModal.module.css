@@ -1,0 +1,43 @@
+.modalOverlay {
+    position: absolute;
+    top: 103px;
+    right: 179px;
+    height: 100%;
+    z-index: 1000;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; 
+ }
+  
+  .modalContent {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 345px;
+  }
+  
+  .checkboxGroup {
+    margin: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 50%;
+  }
+  
+  .checkbox input {
+    margin-right: 10px;
+  }
+  
+  .modalActions {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .modalActions button {
+    margin-left: 10px;
+  }
+  

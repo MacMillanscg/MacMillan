@@ -24,7 +24,7 @@ router.patch(
 );
 router.get("/get-fulfillment/:orderId", shopifyControllers.getFullFillment);
 router.post("/:id/api/saveOrderIds", shopifyControllers.createShopifyOrdersId);
-router.post("/decode-pdf", connectionController.decodeData);
+
 router.post(
   "/:id/verify-eshipper",
   connectionController.verifyEShipperCredentials

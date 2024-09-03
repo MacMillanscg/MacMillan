@@ -20,7 +20,6 @@
     font-size: 16px;
     width: 100%;
     max-width: 300px;
-    margin-bottom: 10px;
     box-sizing: border-box;
   }
   
@@ -36,22 +35,28 @@
   }
   
   .statusFilter {
-    margin-top: 10px;
     display: flex;
     align-items: center;
   }
   
   .select {
-    padding: 10px;
     font-size: 16px;
+    min-width: 50px;
+    height: 45px;
+    min-width: 100px;
+    padding-left: 5px;
   }
   label{
     min-width: 75px;
     margin-right: 5px;
   }
+  .statusFilter label{
+    min-width: 50px;
+  }
   .summaryHeader{
     border-bottom: 1px solid lightgray;
     padding-bottom: 23px;
+    position: relative;
   }
   @media (min-width: 768px) {
     .filters {
@@ -104,6 +109,48 @@
     .table th, .table td {
       padding: 12px 8px;
     }
+  }
+
+  .columnManagement {
+    margin-bottom: 15px;
+  }
+  
+  .columnToggle {
+    margin-right: 10px;
+  }
+  
+  .table th {
+    cursor: pointer;
+  }
+  
+  .noData {
+    text-align: center;
+  }
+  .dots{
+    background: white;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    height: 30px;
+    align-items: center;
+    color: gray;
+  }
+  .paginationContainer {
+    display: flex;
+    justify-content: end;
+    margin-top: 13px;
+  }
+  /* .columnsManagement{
+    position: relative;
+  } */
+
+  .manageColumns{
+    color: black !important;
+    background: white !important;
+    border: 1px solid lightgray;
+    width: 129px;
+    height: 45px;
+    padding: 10px 2px;
   }
   
   

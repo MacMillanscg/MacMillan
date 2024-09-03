@@ -26,6 +26,8 @@
     "nodemailer": "^6.9.13",
     "nodemon": "^2.0.19",
     "path": "^0.12.7",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
   },

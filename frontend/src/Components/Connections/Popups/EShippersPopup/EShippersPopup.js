@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./EShippersPopup.module.css";
 import axios from "axios";
 import { url } from "../../../../api";
 import { useDispatch, useSelector } from "react-redux";
 import { data } from "./ShippmentData";
+import { useParams } from "react-router-dom";
 
 export const EShippersPopup = ({ onClose }) => {
   const [shipmentData, setShipmentData] = useState(data);
   const token = useSelector((state) => state.eshipper.token);
+  const { id } = useParams();
 
   const postShipmentData = async () => {
     const orderId = "8000000010946";
@@ -32,7 +34,6 @@ export const EShippersPopup = ({ onClose }) => {
     }
   };
 
-  console.log("shipment token", token);
   return (
     <div className={styles.popupContent}>
       <div className="dsdf">
