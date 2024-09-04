@@ -26,7 +26,7 @@ export const ColumnManagementModal = ({ columns, setColumns, onClose }) => {
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalContent}>
-        <h3>Manage Columns</h3>
+        {/* <h4>Manage Columns</h4> */}
         <div className={styles.checkboxGroup}>
           <div className={styles.checkbox}>
             <input
@@ -34,7 +34,7 @@ export const ColumnManagementModal = ({ columns, setColumns, onClose }) => {
               checked={localColumns.every((col) => col.visible)}
               onChange={handleSelectAllChange}
             />
-            <label>Show All</label>
+            <label>All</label>
           </div>
           {localColumns.map((col, index) => (
             <div key={index} className={styles.checkbox}>

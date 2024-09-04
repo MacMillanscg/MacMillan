@@ -1,0 +1,37 @@
+.timeRangeFilter {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .timeRangeButton {
+    background-color: #fff !important;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    cursor: pointer;
+    color: black !important;
+    height: 42px;
+  }
+  
+  .timeOptions {
+    /* display: none; */
+    position: absolute;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 10px;
+    z-index: 1;
+    list-style: none;
+  }
+  
+  .timeOptions li {
+    padding: 8px;
+    cursor: pointer;
+  }
+  
+  .timeOptions li:hover {
+    background-color: #f1f1f1;
+  }
+  
+ .calender{
+    color: gray;
+ }

@@ -1,0 +1,49 @@
+.statusButton {
+    background-color: white !important;
+    border: 1px solid #ccc;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: black !important;
+  }
+  
+  .statusPopup {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 1000;
+    padding-top: 15px;
+    width: 180px;
+  }
+  
+  .popupContent {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .popupContent h4 {
+    margin-bottom: 10px;
+  }
+  
+  .popupContent div {
+    margin-bottom: 5px;
+  }
+  
+  .popupButtons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
+  
+  .applyButton, .cancelButton {
+    padding: 5px 10px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  .statusWrap{
+    display: flex;
+    align-items: center;
+  }

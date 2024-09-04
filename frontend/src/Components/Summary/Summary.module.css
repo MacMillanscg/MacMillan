@@ -128,10 +128,10 @@
   }
   .dots{
     background: white;
-    width: 30px;
+    width: 33px;
     display: flex;
     justify-content: center;
-    height: 30px;
+    height: 42px;
     align-items: center;
     color: gray;
   }
@@ -140,9 +140,10 @@
     justify-content: end;
     margin-top: 13px;
   }
-  /* .columnsManagement{
-    position: relative;
-  } */
+  .columnsManagement{
+    display: flex;
+    align-items: center;
+  }
 
   .manageColumns{
     color: black !important;
@@ -152,5 +153,11 @@
     height: 45px;
     padding: 10px 2px;
   }
+.resetBtn{
+  background-color: #5b71d6 !important;
+  height: 40px;
+  min-width: 85px
+}
+  
   
   

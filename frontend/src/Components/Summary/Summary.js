@@ -4,18 +4,20 @@ import { useAppContext } from "../Context/AppContext";
 import { useDispatch, useSelector } from "react-redux";
 import { verifyEShipperCredentials } from "../../Redux/Actions/SummaryActions";
 import axios from "axios";
-import { Dropdown, DropdownButton } from "react-bootstrap"; // Import Bootstrap for Dropdown
-import Pagination from "react-bootstrap/Pagination"; // Import Pagination
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEllipsisV,
   faChevronDown,
   faChevronUp,
+  faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import { DotsModal } from "./DotsModal";
 import { PrintModal } from "./PrintModal";
 import { MockData } from "./MockData";
 import { ColumnManagementModal } from "./ColumnManagementModal";
+import { StatusPopup } from "./StatusPopup/StatusPopup";
+import { TimeRangeFilter } from "./AllTimePopup/TimeRangeFilter ";
+import { CustomPagination } from "./CustomPagination/CustomPagination";
 
 export const Summary = () => {
   const { dashboardWidth } = useAppContext();
@@ -28,27 +30,35 @@ export const Summary = () => {
   const [base64Data, setBase64Data] = useState(null);
   const [selectedRows, setSelectedRows] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(20); // Default items per page
+  const [itemsPerPage, setItemsPerPage] = useState(20);
   const dispatch = useDispatch();
   const token = useSelector((state) => state.eshipper.token);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const [isMenuModalVisible, setIsMenuModalVisible] = useState(false);
   const [isPrintModalVisible, setIsPrintModalVisible] = useState(false);
 
   const [isColumnManagerVisible, setIsColumnManagerVisible] = useState(false);
+  const [selectedStatuses, setSelectedStatuses] = useState([]);
+  const [timeRange, setTimeRange] = useState("allTime");
   const [columns, setColumns] = useState([
     { name: "", key: "select", visible: true },
     { name: "Order Number", key: "orderNumber", visible: true },
-    { name: "Shipment Number", key: "shipmentNumber", visible: true },
     { name: "Platform", key: "platform", visible: true },
     { name: "Shipment Status", key: "shipmentStatus", visible: true },
     { name: "Client", key: "client", visible: true },
     { name: "Tracking Number", key: "trackingNumber", visible: true },
     { name: "Tracking URL", key: "trackingUrl", visible: true },
+    { name: "Created Date", key: "createdDate", visible: true },
+    { name: "Shipped Date", key: "shippedDate", visible: true },
     { name: "Labels", key: "labels", visible: true },
     { name: "Downloaded", key: "downloaded", visible: true },
   ]);
+
+  const getUniqueStatuses = (data) => {
+    const statuses = data.map((item) => item.shipmentStatus);
+    return [...new Set(statuses)];
+  };
+  const uniqueStatuses = getUniqueStatuses(MockData);
 
   const handleColumnManagerClick = () => {
     setIsColumnManagerVisible(!isColumnManagerVisible);
@@ -59,7 +69,7 @@ export const Summary = () => {
   };
 
   const handleMenuClick = () => {
-    setIsModalVisible(!isMenuModalVisible);
+    setIsModalVisible(!isModalVisible);
   };
 
   const handlePrintClick = () => {
@@ -72,9 +82,6 @@ export const Summary = () => {
   };
 
   const handleSearchChange = (e) => setSearchTerm(e.target.value);
-  const handleStartDateChange = (e) => setStartDate(e.target.value);
-  const handleEndDateChange = (e) => setEndDate(e.target.value);
-  const handleStatusChange = (e) => setStatus(e.target.value);
 
   const handleRowSelect = (e, rowIndex) => {
     const updatedSelection = [...selectedRows];
@@ -167,14 +174,12 @@ export const Summary = () => {
     }
   };
 
+  const totalItems = data.length;
+
   const paginateData = (data) => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     return data.slice(startIndex, endIndex);
-  };
-
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
   };
 
   const handleSelectAll = (e) => {
@@ -182,6 +187,17 @@ export const Summary = () => {
     const updatedSelection = checked ? data.map((_, i) => i) : [];
     setSelectedRows(updatedSelection);
   };
+
+  const filterDataByStatus = (data) => {
+    if (selectedStatuses.length === 0) {
+      return data; // If no status is selected, return all data
+    }
+    return data.filter((item) =>
+      selectedStatuses.includes(item.shipmentStatus)
+    );
+  };
+
+  const filteredData = filterDataByStatus(data); // Filter data before paginating
 
   return (
     <div className="dashboard" style={{ width: dashboardWidth }}>
@@ -197,28 +213,11 @@ export const Summary = () => {
             className={`form-control me-4 ${styles.searchBar}`}
           />
 
-          <div className={`${styles.dateFilters} me-5`}>
-            <div className="form-group d-flex align-items-center">
-              <label>Start Date:</label>
-              <input
-                type="date"
-                value={startDate}
-                onChange={handleStartDateChange}
-                className={`form-control ${styles.dateInput}`}
-              />
-            </div>
-
-            <div className="form-group d-flex align-items-center">
-              <label>End Date:</label>
-              <input
-                type="date"
-                value={endDate}
-                onChange={handleEndDateChange}
-                className={`form-control ${styles.dateInput}`}
-              />
-            </div>
+          <div className={`${styles.dateFilters} me-2`}>
+            <TimeRangeFilter setTimeRange={setTimeRange} />
           </div>
           <div className={styles.columnsManagement}>
+            Columns:
             <button
               onClick={handleColumnManagerClick}
               className={styles.manageColumns}
@@ -226,7 +225,7 @@ export const Summary = () => {
               Show Columns
               <FontAwesomeIcon
                 icon={isColumnManagerVisible ? faChevronUp : faChevronDown}
-                className="ms-1"
+                className="ms-2"
               />
             </button>
             {isColumnManagerVisible && (
@@ -239,22 +238,21 @@ export const Summary = () => {
           </div>
 
           <div className={styles.statusFilter}>
-            <label>Status:</label>
-            <select
-              value={status}
-              onChange={handleStatusChange}
-              className={styles.select}
-            >
-              <option value="">All</option>
-              <option value="completed">Completed</option>
-              <option value="pending">Pending</option>
-              <option value="failed">Failed</option>
-            </select>
+            <StatusPopup
+              statuses={uniqueStatuses}
+              selectedStatuses={selectedStatuses}
+              setSelectedStatuses={setSelectedStatuses}
+            />
           </div>
+          <button className={styles.resetBtn}>Reset</button>
 
           <div className="dotModal position-relative">
             <div className={styles.dots}>
-              <FontAwesomeIcon icon={faEllipsisV} onClick={handleMenuClick} />
+              <FontAwesomeIcon
+                icon={faEllipsisV}
+                onClick={handleMenuClick}
+                className="p-1 cursor-pointer"
+              />
             </div>
             {isModalVisible && (
               <DotsModal handlePrintClick={handlePrintClick} />
@@ -263,112 +261,61 @@ export const Summary = () => {
           </div>
         </div>
       </div>
-      <div className={styles.tableContainer}>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              {columns.map((col, index) =>
-                col.visible ? (
-                  <th key={index}>
-                    {col.key === "select" ? (
-                      <input
-                        type="checkbox"
-                        onChange={(e) => handleSelectAll(e)}
-                        checked={selectedRows.length === data.length}
-                      />
-                    ) : (
-                      col.name
-                    )}
-                  </th>
-                ) : null
-              )}
-            </tr>
-          </thead>
-          <tbody>
-            {paginateData(data).map((row, rowIndex) => (
-              <tr key={rowIndex}>
-                {columns.map((col, colIndex) => {
-                  if (!col.visible) return null;
 
-                  if (col.key === "select") {
-                    return (
-                      <td key={colIndex}>
-                        <input
-                          type="checkbox"
-                          onChange={(e) => handleRowSelect(e, rowIndex)}
-                          checked={selectedRows.includes(rowIndex)}
-                        />
-                      </td>
-                    );
-                  }
-
-                  if (col.key === "download") {
-                    return (
-                      <td key={colIndex}>
-                        <button
-                          onClick={() => handleDownloadClick(rowIndex)}
-                          className={styles.downloadButton}
-                        >
+      <table className="table mt-4">
+        <thead>
+          <tr>
+            <th>
+              <input
+                type="checkbox"
+                checked={selectedRows.length === filteredData.length}
+                onChange={handleSelectAll}
+              />
+            </th>
+            {columns.map(
+              (column) =>
+                column.visible && <th key={column.key}>{column.name}</th>
+            )}
+          </tr>
+        </thead>
+        <tbody>
+          {paginateData(filteredData).map((row, index) => (
+            <tr key={index}>
+              <td>
+                <input
+                  type="checkbox"
+                  checked={selectedRows.includes(index)}
+                  onChange={(e) => handleRowSelect(e, index)}
+                />
+              </td>
+              {columns
+                .filter((column) => column.visible)
+                .map((column) => (
+                  <td key={column.key}>
+                    {column.key === "downloaded" ? (
+                      row[column.key] ? (
+                        <FontAwesomeIcon icon={faCheck} />
+                      ) : (
+                        <button onClick={() => handleDownloadClick(index)}>
                           Download
                         </button>
-                      </td>
-                    );
-                  }
+                      )
+                    ) : (
+                      row[column.key]
+                    )}
+                  </td>
+                ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
-                  if (col.key === "downloaded") {
-                    return <td key={colIndex}>{row[col.key] ? "✔" : ""}</td>;
-                  }
-
-                  if (col.key === "trackingUrl") {
-                    return (
-                      <td key={colIndex}>
-                        <a href={row[col.key]} target="_blank" rel="noreferrer">
-                          URL
-                        </a>
-                      </td>
-                    );
-                  }
-
-                  return <td key={colIndex}>{row[col.key]}</td>;
-                })}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <div className={styles.paginationContainer}>
-        <Pagination>
-          <Pagination.First
-            onClick={() => handlePageChange(1)}
-            disabled={currentPage === 1}
-          />
-          <Pagination.Prev
-            onClick={() => handlePageChange(currentPage - 1)}
-            disabled={currentPage === 1}
-          />
-          {[...Array(Math.ceil(data.length / itemsPerPage)).keys()].map(
-            (page) => (
-              <Pagination.Item
-                key={page + 1}
-                active={page + 1 === currentPage}
-                onClick={() => handlePageChange(page + 1)}
-              >
-                {page + 1}
-              </Pagination.Item>
-            )
-          )}
-          <Pagination.Next
-            onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentPage === Math.ceil(data.length / itemsPerPage)}
-          />
-          <Pagination.Last
-            onClick={() =>
-              handlePageChange(Math.ceil(data.length / itemsPerPage))
-            }
-            disabled={currentPage === Math.ceil(data.length / itemsPerPage)}
-          />
-        </Pagination>
-      </div>
+      <CustomPagination
+        currentPage={currentPage}
+        totalItems={filteredData.length}
+        itemsPerPage={itemsPerPage}
+        onPageChange={setCurrentPage}
+      />
     </div>
   );
 };
