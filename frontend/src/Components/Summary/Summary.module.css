@@ -159,5 +159,10 @@
   min-width: 85px
 }
   
+.tableContainer{
+  width: 100%;
+  overflow-x: auto;
+  max-width: 1125px;
+}
   
   

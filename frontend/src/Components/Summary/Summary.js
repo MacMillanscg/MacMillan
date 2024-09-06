@@ -20,6 +20,8 @@ import { TimeRangeFilter } from "./AllTimePopup/TimeRangeFilter ";
 import { CustomPagination } from "./CustomPagination/CustomPagination";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { getUser } from "../../storageUtils/storageUtils";
+import { url } from "../../api";
 
 export const Summary = () => {
   const { dashboardWidth } = useAppContext();
@@ -37,8 +39,7 @@ export const Summary = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.eshipper.token);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  console.log("token", token);
-
+  const [clients, setClients] = useState([]);
   const [isPrintModalVisible, setIsPrintModalVisible] = useState(false);
 
   const [isColumnManagerVisible, setIsColumnManagerVisible] = useState(false);
@@ -57,6 +58,28 @@ export const Summary = () => {
     { name: "Labels", key: "labels", visible: true },
     { name: "Downloaded", key: "downloaded", visible: true },
   ]);
+
+  let userId = getUser();
+  userId = userId?._id;
+  console.log(userId);
+
+  useEffect(() => {
+    const fetchAllClients = async () => {
+      try {
+        const response = await axios.get(`${url}/clients`);
+        const updatedData = response.data;
+        const userClients = updatedData.filter(
+          (user) => user.userId === userId
+        );
+        // console.log("updated", userClients);
+        setClients(userClients);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchAllClients();
+  }, [userId]);
+  console.log(clients[0]?.clientName);
 
   // Filter data by time range
   const filterDataByTimeRange = (data) => {
@@ -173,9 +196,9 @@ export const Summary = () => {
       const mappedData = {
         orderNumber: response.data.reference.code,
         shipmentNumber: response.data.order.id,
-        platform: response.data.carrier.carrierName,
+        platform: "Shopify",
         shipmentStatus: response.data.carrier.serviceName,
-        client: response.data.quote.carrierName,
+        client: clients[0]?.clientName,
         trackingNumber: response.data.trackingNumber,
         trackingUrl: response.data.trackingUrl,
         label: response.data.labelData.label[0].data,
@@ -362,53 +385,76 @@ export const Summary = () => {
         </div>
       </div>
 
-      <table className="table mt-4">
-        <thead>
-          <tr>
-            <th>
-              <input
-                type="checkbox"
-                checked={selectedRows.length === filteredDatas.length}
-                onChange={handleSelectAll}
-              />
-            </th>
-            {columns.map(
-              (column) =>
-                column.visible && <th key={column.key}>{column.name}</th>
-            )}
-          </tr>
-        </thead>
-        <tbody>
-          {paginateData(data).map((row, index) => (
-            <tr key={index}>
-              <td>
+      <div className={styles.tableContainer}>
+        <table className="table mt-4">
+          <thead>
+            <tr>
+              <th>
                 <input
                   type="checkbox"
-                  checked={selectedRows.includes(index)}
-                  onChange={(e) => handleRowSelect(e, index)}
+                  checked={selectedRows.length === filteredDatas.length}
+                  onChange={handleSelectAll}
                 />
-              </td>
-              {columns
-                .filter((column) => column.visible)
-                .map((column) => (
-                  <td key={column.key}>
-                    {column.key === "downloaded" ? (
-                      row[column.key] ? (
-                        <FontAwesomeIcon icon={faCheck} />
-                      ) : (
-                        <button onClick={() => handleDownloadClick(index)}>
-                          Download
-                        </button>
-                      )
-                    ) : (
-                      row[column.key]
-                    )}
-                  </td>
-                ))}
+              </th>
+              {columns.map(
+                (column) =>
+                  column.visible && <th key={column.key}>{column.name}</th>
+              )}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {paginateData(data).map((row, index) => (
+              <tr key={index}>
+                <td>
+                  <input
+                    type="checkbox"
+                    checked={selectedRows.includes(index)}
+                    onChange={(e) => handleRowSelect(e, index)}
+                  />
+                </td>
+                {columns
+                  .filter((column) => column.visible)
+                  .map((column) => (
+                    <td key={column.key}>
+                      {column.key === "downloaded" ? (
+                        row.downloaded ? (
+                          <FontAwesomeIcon icon={faCheck} />
+                        ) : (
+                          <button onClick={() => handleDownloadClick(index)}>
+                            Download
+                          </button>
+                        )
+                      ) : column.key === "trackingUrl" ? (
+                        // Clickable Tracking URL Column
+                        <a
+                          href={row.trackingUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          URL
+                        </a>
+                      ) : column.key === "labels" ? (
+                        // Labels Column
+                        <>
+                          {/* Assuming row.labels contains some label data */}
+                          {row.labels}
+
+                          {/* Additional Label Text Below */}
+                          <p>
+                            {/* Example dynamic or static text */}
+                            Label
+                          </p>
+                        </>
+                      ) : (
+                        row[column.key]
+                      )}
+                    </td>
+                  ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
       <CustomPagination
         currentPage={currentPage}
