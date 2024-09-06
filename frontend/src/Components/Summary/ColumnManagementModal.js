@@ -7,6 +7,7 @@ export const ColumnManagementModal = ({ columns, setColumns, onClose }) => {
   const handleCheckboxChange = (index) => {
     const updatedColumns = [...localColumns];
     updatedColumns[index].visible = !updatedColumns[index].visible;
+    console.log("updatedcolum", updatedColumns);
     setLocalColumns(updatedColumns);
   };
 

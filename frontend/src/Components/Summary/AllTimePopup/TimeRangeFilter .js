@@ -6,8 +6,19 @@ import {
   faChevronUp,
   faCalendar,
 } from "@fortawesome/free-solid-svg-icons";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-export const TimeRangeFilter = ({ setTimeRange }) => {
+export const TimeRangeFilter = ({
+  setTimeRange,
+  timeRange,
+  customStartDate,
+  customEndDate,
+  startDate,
+  endDate,
+  setCustomStartDate,
+  setCustomEndDate,
+}) => {
   const [isVisible, setIsVisible] = useState(false);
   const [selectedOption, setSelectedOption] = useState("allTime");
 
@@ -42,16 +53,42 @@ export const TimeRangeFilter = ({ setTimeRange }) => {
         />
       </button>
       {isVisible && (
-        <ul className={styles.timeOptions}>
-          {timeOptions.map((option) => (
-            <li
-              key={option.value}
-              onClick={() => handleSelectOption(option.value)}
-            >
-              {option.label}
-            </li>
-          ))}
-        </ul>
+        <>
+          <ul className={styles.timeOptions}>
+            {timeOptions.map((option) => (
+              <li
+                key={option.value}
+                onClick={() => handleSelectOption(option.value)}
+              >
+                {option.label}
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+      {timeRange === "custom" && (
+        <div className={styles.customPeriod}>
+          <div className={styles.datePickerContainer}>
+            <div className={styles.datePicker}>
+              <label>From</label>
+              <DatePicker
+                selected={customStartDate}
+                onChange={(date) => setCustomStartDate(date)}
+                // dateFormat="MM/dd/yyyy"
+                placeholderText="Select Start Date"
+              />
+            </div>
+            <div className={styles.datePicker}>
+              <label>To</label>
+              <DatePicker
+                selected={customEndDate}
+                onChange={(date) => setCustomEndDate(date)}
+                // dateFormat="MM/dd/yyyy"
+                placeholderText="Select End Date"
+              />
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

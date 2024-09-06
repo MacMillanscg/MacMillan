@@ -6,11 +6,12 @@ export const MockData = [
     shipmentStatus: "Delivered",
     client: "John Doe",
     trackingNumber: "TRK001",
-    trackingUrl: "https://trackingurl.com/TRK001",
+    // trackingUrl: "https://trackingurl.com/TRK001",
+    trackingUrl: "Url",
     downloaded: false,
     status: "Completed", // Added status
-    createdDate: "2024-06-01", // Added created date
-    shippedDate: "2024-08-02", // Added shipped date
+    createdDate: "2024-09-05", // Added created date
+    shippedDate: "2024-09-05", // Added shipped date
   },
   {
     orderNumber: "ORD002",
@@ -19,7 +20,8 @@ export const MockData = [
     shipmentStatus: "In Transit",
     client: "Jane Smith",
     trackingNumber: "TRK002",
-    trackingUrl: "https://trackingurl.com/TRK002",
+    // trackingUrl: "https://trackingurl.com/TRK002",
+    trackingUrl: "Url",
     downloaded: true,
     status: "In Progress",
     createdDate: "2024-08-03",
@@ -32,7 +34,8 @@ export const MockData = [
     shipmentStatus: "Pending",
     client: "Alice Johnson",
     trackingNumber: "TRK003",
-    trackingUrl: "https://trackingurl.com/TRK003",
+    // trackingUrl: "https://trackingurl.com/TRK003",
+    trackingUrl: "Url",
     downloaded: false,
     status: "Pending", // Added status
     createdDate: "2024-08-05", // Added created date
@@ -45,7 +48,8 @@ export const MockData = [
     shipmentStatus: "Delivered",
     client: "Bob Lee",
     trackingNumber: "TRK004",
-    trackingUrl: "https://trackingurl.com/TRK004",
+    // trackingUrl: "https://trackingurl.com/TRK004",
+    trackingUrl: "Url",
     downloaded: true,
     status: "Completed", // Added status
     createdDate: "2024-08-06", // Added created date
@@ -58,7 +62,8 @@ export const MockData = [
     shipmentStatus: "Cancelled",
     client: "Charlie Brown",
     trackingNumber: "TRK005",
-    trackingUrl: "https://trackingurl.com/TRK005",
+    // trackingUrl: "https://trackingurl.com/TRK005",
+    trackingUrl: "Url",
     downloaded: false,
     status: "Cancelled", // Added status
     createdDate: "2024-08-08", // Added created date

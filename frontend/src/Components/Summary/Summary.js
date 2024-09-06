@@ -18,15 +18,18 @@ import { ColumnManagementModal } from "./ColumnManagementModal";
 import { StatusPopup } from "./StatusPopup/StatusPopup";
 import { TimeRangeFilter } from "./AllTimePopup/TimeRangeFilter ";
 import { CustomPagination } from "./CustomPagination/CustomPagination";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export const Summary = () => {
   const { dashboardWidth } = useAppContext();
 
   const [searchTerm, setSearchTerm] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [status, setStatus] = useState("");
-  const [data, setData] = useState(MockData);
+  const [customStartDate, setCustomStartDate] = useState(null);
+  const [customEndDate, setCustomEndDate] = useState(null);
+  const [data, setData] = useState([]);
+  const [allData, setAllData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const [base64Data, setBase64Data] = useState(null);
   const [selectedRows, setSelectedRows] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -34,6 +37,7 @@ export const Summary = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.eshipper.token);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  console.log("token", token);
 
   const [isPrintModalVisible, setIsPrintModalVisible] = useState(false);
 
@@ -53,6 +57,57 @@ export const Summary = () => {
     { name: "Labels", key: "labels", visible: true },
     { name: "Downloaded", key: "downloaded", visible: true },
   ]);
+
+  // Filter data by time range
+  const filterDataByTimeRange = (data) => {
+    const today = new Date();
+
+    if (timeRange === "today") {
+      return data.filter((item) => {
+        const createdDate = new Date(item.createdDate);
+        return createdDate.toDateString() === today.toDateString();
+      });
+    } else if (timeRange === "thisWeek") {
+      const startOfWeek = new Date(
+        today.setDate(today.getDate() - today.getDay())
+      );
+      return data.filter((item) => {
+        const createdDate = new Date(item.createdDate);
+        return createdDate >= startOfWeek;
+      });
+    } else if (timeRange === "thisMonth") {
+      const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+      return data.filter((item) => {
+        const createdDate = new Date(item.createdDate);
+        return createdDate >= startOfMonth;
+      });
+    } else if (timeRange === "custom" && customStartDate && customEndDate) {
+      return data.filter((item) => {
+        const createdDate = new Date(item.createdDate);
+        return createdDate >= customStartDate && createdDate <= customEndDate;
+      });
+    }
+    return data; // Return all data for "allTime"
+  };
+
+  const applyFilters = () => {
+    let filtered = [...data];
+    // Filter by status
+    if (selectedStatuses.length > 0) {
+      filtered = filtered.filter((item) =>
+        selectedStatuses.includes(item.shipmentStatus)
+      );
+    }
+    // Filter by time range
+    filtered = filterDataByTimeRange(filtered);
+    setFilteredData(filtered);
+  };
+
+  console.log("filter", filteredData);
+
+  useEffect(() => {
+    applyFilters();
+  }, [timeRange, selectedStatuses, customStartDate, customEndDate]);
 
   const getUniqueStatuses = (data) => {
     const statuses = data.map((item) => item.shipmentStatus);
@@ -95,11 +150,14 @@ export const Summary = () => {
     }
     setSelectedRows(updatedSelection);
   };
+  // 11007  11006  10963   10962   10956
+  const shippmentData = [];
+  console.log("dataaa", shippmentData);
 
-  const fetchData = async () => {
+  const fetchData = async (shipmentId) => {
     try {
       const response = await axios.get(
-        "https://uu2.eshipper.com/api/v2/ship/8000000010963",
+        `https://uu2.eshipper.com/api/v2/ship/${shipmentId}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -108,30 +166,57 @@ export const Summary = () => {
         }
       );
 
-      setBase64Data(response.data.labelData.label[0].data);
+      // setBase64Data(response.data.labelData.label[0].data);
 
       // Map fetched data to table format
-      const mappedData = [
-        {
-          orderNumber: response.data.reference.code,
-          shipmentNumber: response.data.order.id,
-          platform: response.data.carrier.carrierName,
-          shipmentStatus: response.data.carrier.serviceName,
-          client: response.data.quote.carrierName,
-          trackingNumber: response.data.trackingNumber,
-          trackingUrl: response.data.trackingUrl,
-          downloaded: false, // Initially set "Downloaded" status to false
-        },
-      ];
+      const mappedData = {
+        orderNumber: response.data.reference.code,
+        shipmentNumber: response.data.order.id,
+        platform: response.data.carrier.carrierName,
+        shipmentStatus: response.data.carrier.serviceName,
+        client: response.data.quote.carrierName,
+        trackingNumber: response.data.trackingNumber,
+        trackingUrl: response.data.trackingUrl,
+        downloaded: false, // Initially set "Downloaded" status to false
+      };
 
+      return mappedData;
+
+      // setAllData(mappedData);
       // setData(mappedData);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
+  // console.log("allData", allData);
+
+  const shipmentIds = [
+    "8000000011007",
+    "8000000011006",
+    "8000000010963",
+    "8000000010962",
+    "8000000010956",
+  ];
+
+  const getAllShipments = async () => {
+    const shipments = [];
+
+    // Loop through each shipment ID
+    for (let id of shipmentIds) {
+      const shipmentData = await fetchData(id);
+      if (shipmentData) {
+        shipments.push(shipmentData);
+      }
+    }
+
+    console.log("All shipments:", shipments);
+    // setData(shippmentData);
+  };
 
   useEffect(() => {
-    fetchData();
+    setTimeout(() => {
+      getAllShipments();
+    }, 1000);
   }, [token]);
 
   const handleEShipperClick = () => {
@@ -197,7 +282,10 @@ export const Summary = () => {
     );
   };
 
-  const filteredData = filterDataByStatus(data); // Filter data before paginating
+  const filteredDatas = filterDataByStatus(data); // Filter data before paginating
+
+  console.log("timerange", timeRange);
+  console.log("data", data);
 
   return (
     <div className="dashboard" style={{ width: dashboardWidth }}>
@@ -214,7 +302,16 @@ export const Summary = () => {
           />
 
           <div className={`${styles.dateFilters} me-2`}>
-            <TimeRangeFilter setTimeRange={setTimeRange} />
+            <TimeRangeFilter
+              setTimeRange={setTimeRange}
+              timeRange={timeRange}
+              customStartDate={customStartDate}
+              customEndDate={customEndDate}
+              startDate="Start Date"
+              endDate="End Date"
+              setCustomStartDate={setCustomStartDate}
+              setCustomEndDate={setCustomEndDate}
+            />
           </div>
           <div className={styles.columnsManagement}>
             Columns:
@@ -268,7 +365,7 @@ export const Summary = () => {
             <th>
               <input
                 type="checkbox"
-                checked={selectedRows.length === filteredData.length}
+                checked={selectedRows.length === filteredDatas.length}
                 onChange={handleSelectAll}
               />
             </th>
@@ -279,7 +376,7 @@ export const Summary = () => {
           </tr>
         </thead>
         <tbody>
-          {paginateData(filteredData).map((row, index) => (
+          {paginateData(data).map((row, index) => (
             <tr key={index}>
               <td>
                 <input
@@ -312,7 +409,7 @@ export const Summary = () => {
 
       <CustomPagination
         currentPage={currentPage}
-        totalItems={filteredData.length}
+        totalItems={filteredDatas.length}
         itemsPerPage={itemsPerPage}
         onPageChange={setCurrentPage}
       />
