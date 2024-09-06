@@ -166,7 +166,8 @@ export const Summary = () => {
         }
       );
 
-      // setBase64Data(response.data.labelData.label[0].data);
+      setBase64Data(response.data.labelData.label[0].data);
+      console.log("response", response);
 
       // Map fetched data to table format
       const mappedData = {
@@ -177,6 +178,7 @@ export const Summary = () => {
         client: response.data.quote.carrierName,
         trackingNumber: response.data.trackingNumber,
         trackingUrl: response.data.trackingUrl,
+        label: response.data.labelData.label[0].data,
         downloaded: false, // Initially set "Downloaded" status to false
       };
 
@@ -196,6 +198,7 @@ export const Summary = () => {
     "8000000010963",
     "8000000010962",
     "8000000010956",
+    "8000000011015",
   ];
 
   const getAllShipments = async () => {
@@ -210,7 +213,7 @@ export const Summary = () => {
     }
 
     console.log("All shipments:", shipments);
-    // setData(shippmentData);
+    setData(shipments);
   };
 
   useEffect(() => {
