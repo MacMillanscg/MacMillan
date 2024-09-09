@@ -41,7 +41,7 @@ export const Summary = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [clients, setClients] = useState([]);
   const [isPrintModalVisible, setIsPrintModalVisible] = useState(false);
-
+  const [loading, setLoading] = useState(false);
   const [isColumnManagerVisible, setIsColumnManagerVisible] = useState(false);
   const [selectedStatuses, setSelectedStatuses] = useState([]);
   const [timeRange, setTimeRange] = useState("allTime");
@@ -178,6 +178,7 @@ export const Summary = () => {
   console.log("dataaa", shippmentData);
 
   const fetchData = async (shipmentId) => {
+    setLoading(true);
     try {
       const response = await axios.get(
         `https://uu2.eshipper.com/api/v2/ship/${shipmentId}`,
@@ -201,6 +202,8 @@ export const Summary = () => {
         client: clients[0]?.clientName,
         trackingNumber: response.data.trackingNumber,
         trackingUrl: response.data.trackingUrl,
+        createdDate: "09/06/2024",
+        shippedDate: "07/07/2024",
         label: response.data.labelData.label[0].data,
         downloaded: false, // Initially set "Downloaded" status to false
       };
@@ -211,6 +214,8 @@ export const Summary = () => {
       // setData(mappedData);
     } catch (error) {
       console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false); // Stop loading after data is fetched
     }
   };
   // console.log("allData", allData);
@@ -386,74 +391,78 @@ export const Summary = () => {
       </div>
 
       <div className={styles.tableContainer}>
-        <table className="table mt-4">
-          <thead>
-            <tr>
-              <th>
-                <input
-                  type="checkbox"
-                  checked={selectedRows.length === filteredDatas.length}
-                  onChange={handleSelectAll}
-                />
-              </th>
-              {columns.map(
-                (column) =>
-                  column.visible && <th key={column.key}>{column.name}</th>
-              )}
-            </tr>
-          </thead>
-          <tbody>
-            {paginateData(data).map((row, index) => (
-              <tr key={index}>
-                <td>
+        {loading ? (
+          <div className={styles.loading}></div>
+        ) : (
+          <table className="table mt-4">
+            <thead>
+              <tr>
+                <th>
                   <input
                     type="checkbox"
-                    checked={selectedRows.includes(index)}
-                    onChange={(e) => handleRowSelect(e, index)}
+                    checked={selectedRows.length === filteredDatas.length}
+                    onChange={handleSelectAll}
                   />
-                </td>
-                {columns
-                  .filter((column) => column.visible)
-                  .map((column) => (
-                    <td key={column.key}>
-                      {column.key === "downloaded" ? (
-                        row.downloaded ? (
-                          <FontAwesomeIcon icon={faCheck} />
-                        ) : (
-                          <button onClick={() => handleDownloadClick(index)}>
-                            Download
-                          </button>
-                        )
-                      ) : column.key === "trackingUrl" ? (
-                        // Clickable Tracking URL Column
-                        <a
-                          href={row.trackingUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          URL
-                        </a>
-                      ) : column.key === "labels" ? (
-                        // Labels Column
-                        <>
-                          {/* Assuming row.labels contains some label data */}
-                          {row.labels}
-
-                          {/* Additional Label Text Below */}
-                          <p>
-                            {/* Example dynamic or static text */}
-                            Label
-                          </p>
-                        </>
-                      ) : (
-                        row[column.key]
-                      )}
-                    </td>
-                  ))}
+                </th>
+                {columns.map(
+                  (column) =>
+                    column.visible && <th key={column.key}>{column.name}</th>
+                )}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {paginateData(data).map((row, index) => (
+                <tr key={index}>
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={selectedRows.includes(index)}
+                      onChange={(e) => handleRowSelect(e, index)}
+                    />
+                  </td>
+                  {columns
+                    .filter((column) => column.visible)
+                    .map((column) => (
+                      <td key={column.key}>
+                        {column.key === "downloaded" ? (
+                          row.downloaded ? (
+                            <FontAwesomeIcon icon={faCheck} />
+                          ) : (
+                            <button onClick={() => handleDownloadClick(index)}>
+                              Download
+                            </button>
+                          )
+                        ) : column.key === "trackingUrl" ? (
+                          // Clickable Tracking URL Column
+                          <a
+                            href={row.trackingUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            URL
+                          </a>
+                        ) : column.key === "labels" ? (
+                          // Labels Column
+                          <>
+                            {/* Assuming row.labels contains some label data */}
+                            {row.labels}
+
+                            {/* Additional Label Text Below */}
+                            <p>
+                              {/* Example dynamic or static text */}
+                              Label
+                            </p>
+                          </>
+                        ) : (
+                          row[column.key]
+                        )}
+                      </td>
+                    ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
 
       <CustomPagination
