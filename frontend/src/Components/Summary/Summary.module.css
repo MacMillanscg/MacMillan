@@ -82,9 +82,10 @@
   }
   
   .table th, .table td {
-    /* border: 1px solid #ddd; */
+    border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
+    white-space: nowrap;
   }
   
   .table th {
@@ -110,6 +111,12 @@
     .table th, .table td {
       padding: 12px 8px;
     }
+  }
+  .table td:nth-child(2){
+    display: none;
+  }
+  .table th:nth-child(2){
+    display: none;
   }
 
   .columnManagement {
@@ -163,7 +170,7 @@
 .tableContainer{
   width: 100%;
   overflow-x: auto;
-  max-width: 1125px;
+  max-width: 1170px;
 }
 .loading {
   display: flex;
