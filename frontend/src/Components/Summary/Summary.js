@@ -50,11 +50,13 @@ export const Summary = () => {
     { name: "Order Number", key: "orderNumber", visible: true },
     { name: "Platform", key: "platform", visible: true },
     { name: "Shipment Status", key: "shipmentStatus", visible: true },
+    { name: "Carrier", key: "carrier", visible: true },
     { name: "Client", key: "client", visible: true },
     { name: "Tracking Number", key: "trackingNumber", visible: true },
     { name: "Tracking URL", key: "trackingUrl", visible: true },
     { name: "Created Date", key: "createdDate", visible: true },
     { name: "Shipped Date", key: "shippedDate", visible: true },
+    { name: "Reference", key: "reference", visible: true },
     { name: "Labels", key: "labels", visible: true },
     { name: "Downloaded", key: "downloaded", visible: true },
   ]);
@@ -115,7 +117,6 @@ export const Summary = () => {
 
   const applyFilters = () => {
     let filtered = [...data];
-    // Filter by status
     if (selectedStatuses.length > 0) {
       filtered = filtered.filter((item) =>
         selectedStatuses.includes(item.shipmentStatus)
@@ -180,38 +181,46 @@ export const Summary = () => {
   const fetchData = async (shipmentId) => {
     setLoading(true);
     try {
-      const response = await axios.get(
-        `https://uu2.eshipper.com/api/v2/ship/${shipmentId}`,
-        {
+      const [shipResponse, trackResponse] = await Promise.all([
+        axios.get(`https://uu2.eshipper.com/api/v2/ship/${shipmentId}`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-        }
-      );
+        }),
+        axios.get(`https://uu2.eshipper.com/api/v2/track/${shipmentId}`, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }),
+      ]);
+      console.log(shipResponse);
+      console.log(trackResponse);
 
-      setBase64Data(response.data.labelData.label[0].data);
-      console.log("response", response);
+      // Process the response from both APIs
+      const shipData = shipResponse.data;
+      const trackData = trackResponse.data;
 
-      // Map fetched data to table format
       const mappedData = {
-        orderNumber: response.data.reference.code,
-        shipmentNumber: response.data.order.id,
+        orderNumber: shipData.reference.code,
+        shipmentNumber: shipData.order.id,
+        carrier: shipData.carrier.carrierName,
         platform: "Shopify",
-        shipmentStatus: response.data.carrier.serviceName,
+        shipmentStatus: shipData.carrier.serviceName,
         client: clients[0]?.clientName,
-        trackingNumber: response.data.trackingNumber,
-        trackingUrl: response.data.trackingUrl,
+        trackingNumber: shipData.trackingNumber, // From the 'track' API
+        trackingUrl: trackData.trackingUrl,
         createdDate: "09/06/2024",
         shippedDate: "07/07/2024",
-        label: response.data.labelData.label[0].data,
-        downloaded: false, // Initially set "Downloaded" status to false
+        reference: shipData.reference.name,
+        label: shipData.labelData.label[0].data,
+        downloaded: false,
       };
 
+      // Set the base64 label data if needed
+      setBase64Data(shipData.labelData.label[0].data);
       return mappedData;
-
-      // setAllData(mappedData);
-      // setData(mappedData);
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
@@ -394,7 +403,7 @@ export const Summary = () => {
         {loading ? (
           <div className={styles.loading}></div>
         ) : (
-          <table className="table mt-4">
+          <table className={`${styles.table} mt-4`}>
             <thead>
               <tr>
                 <th>
