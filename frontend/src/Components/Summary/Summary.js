@@ -215,6 +215,7 @@ export const Summary = () => {
         platform: "Shopify",
         shipmentStatus: shipData.carrier.serviceName,
         client: clients[0]?.clientName,
+        customer: trackData.orderDetails.to.attention,
         address: trackData.orderDetails.to.address1,
         trackingNumber: shipData.trackingNumber, // From the 'track' API
         trackingUrl: trackData.trackingUrl,
@@ -223,7 +224,7 @@ export const Summary = () => {
         reference: shipData.reference.name,
         reference2: shipData.reference2.name,
         reference3: shipData.reference3.name,
-        dimentions: `Length x Width x height ${trackData.orderDetails.packages.packages[0].length} x ${trackData.orderDetails.packages.packages[0].width} x ${trackData.orderDetails.packages.packages[0].height}`,
+        dimentions: `${trackData.orderDetails.packages.packages[0].length} x ${trackData.orderDetails.packages.packages[0].width} x ${trackData.orderDetails.packages.packages[0].height}`,
         weight: `${trackData.orderDetails.packages.packages[0].weight} ${trackData.orderDetails.packages.packages[0].weightUnit}`,
         label: shipData.labelData.label[0].data,
         downloaded: false,

@@ -172,6 +172,26 @@
   overflow-x: auto;
   max-width: 1170px;
 }
+.tableContainer::-webkit-scrollbar { 
+  height: 8px; 
+} 
+
+.tableContainer::-webkit-scrollbar-track { 
+  background: #f1f1f1; 
+} 
+
+.tableContainer::-webkit-scrollbar-thumb { 
+  background: #d3d3d3; 
+  transition: all ease-in .3s;
+} 
+
+.tableContainer::-webkit-scrollbar-thumb:hover { 
+  background: #808080; 
+} 
+
+.tableContainer::-webkit-scrollbar-button { 
+  display: none; 
+}
 .loading {
   display: flex;
   justify-content: center;
