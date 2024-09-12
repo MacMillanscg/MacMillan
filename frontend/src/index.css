@@ -83,3 +83,14 @@ ul{
 p{
   word-break:break-word;
 }
+.react-datepicker{
+  margin-right: 16px !important;
+  border: none !important;
+}
+.react-datepicker__header{
+  background-color: unset !important;
+}
+.react-datepicker button{
+  color: gray;
+  background-color: unset !important;
+}

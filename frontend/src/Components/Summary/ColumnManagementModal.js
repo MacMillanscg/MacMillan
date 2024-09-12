@@ -1,8 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./ColumnManagementModal.module.css"; // Add necessary CSS for styling
 
 export const ColumnManagementModal = ({ columns, setColumns, onClose }) => {
   const [localColumns, setLocalColumns] = useState(columns);
+
+  const popupRef = useRef(null);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (popupRef.current && !popupRef.current.contains(event.target)) {
+        onClose();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [popupRef]);
 
   const handleCheckboxChange = (index) => {
     const updatedColumns = [...localColumns];
@@ -25,7 +40,7 @@ export const ColumnManagementModal = ({ columns, setColumns, onClose }) => {
   };
 
   return (
-    <div className={styles.modalOverlay}>
+    <div className={styles.modalOverlay} ref={popupRef}>
       <div className={styles.modalContent}>
         {/* <h4>Manage Columns</h4> */}
         <div className={styles.checkboxGroup}>

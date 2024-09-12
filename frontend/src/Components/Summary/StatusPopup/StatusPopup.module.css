@@ -2,10 +2,11 @@
     background-color: white !important;
     border: 1px solid #ccc;
     padding: 10px;
-    cursor: pointer;
+    /* cursor: pointer;
     display: flex;
-    align-items: center;
+    align-items: center; */
     color: black !important;
+    min-width: 105px;
   }
   
   .statusPopup {

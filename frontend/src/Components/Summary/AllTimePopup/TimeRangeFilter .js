@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./TimeRangeFilter.module.css"; // Adjust path as necessary
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -14,8 +14,6 @@ export const TimeRangeFilter = ({
   timeRange,
   customStartDate,
   customEndDate,
-  startDate,
-  endDate,
   setCustomStartDate,
   setCustomEndDate,
 }) => {
@@ -30,18 +28,42 @@ export const TimeRangeFilter = ({
     { label: "Custom Period", value: "custom" },
   ];
 
+  const popupRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (popupRef.current && !popupRef.current.contains(event.target)) {
+        setIsVisible(false);
+        setSelectedOption("allTime"); // Reset to default when closing
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [popupRef]);
+
   const handleSelectOption = (option) => {
     setSelectedOption(option);
-    setIsVisible(false);
     setTimeRange(option); // Function to set the time range in the parent component
+    if (option !== "custom") {
+      setIsVisible(false); // Close the popup after selection if not custom
+    }
+  };
+
+  const toggleVisibility = () => {
+    // If popup is already visible and we close it, reset the selected option
+    setIsVisible(!isVisible);
+    if (!isVisible) {
+      setSelectedOption("allTime"); // Reset the selected option when reopening
+    }
   };
 
   return (
-    <div className={styles.timeRangeFilter}>
-      <button
-        className={styles.timeRangeButton}
-        onClick={() => setIsVisible(!isVisible)}
-      >
+    <div className={styles.timeRangeFilter} ref={popupRef}>
+      <button className={styles.timeRangeButton} onClick={toggleVisibility}>
         <FontAwesomeIcon
           icon={faCalendar}
           className={`me-2 ${styles.calender}`}
@@ -52,41 +74,57 @@ export const TimeRangeFilter = ({
           className="ms-2"
         />
       </button>
-      {isVisible && (
-        <>
-          <ul className={styles.timeOptions}>
-            {timeOptions.map((option) => (
-              <li
-                key={option.value}
-                onClick={() => handleSelectOption(option.value)}
-              >
-                {option.label}
-              </li>
-            ))}
-          </ul>
-        </>
+
+      {/* Show time options when visible */}
+      {isVisible && selectedOption !== "custom" && (
+        <ul className={styles.timeOptions}>
+          {timeOptions.map((option) => (
+            <li
+              key={option.value}
+              onClick={() => handleSelectOption(option.value)}
+            >
+              {option.label}
+            </li>
+          ))}
+        </ul>
       )}
-      {timeRange === "custom" && (
+
+      {/* Custom date picker shown only when 'Custom Period' is selected */}
+      {isVisible && selectedOption === "custom" && (
         <div className={styles.customPeriod}>
-          <div className={styles.datePickerContainer}>
-            <div className={styles.datePicker}>
+          <div className={styles.fullCalendarContainer}>
+            <div className={styles.calendarSection}>
               <label>From</label>
               <DatePicker
                 selected={customStartDate}
                 onChange={(date) => setCustomStartDate(date)}
-                // dateFormat="MM/dd/yyyy"
-                placeholderText="Select Start Date"
+                selectsStart
+                startDate={customStartDate}
+                endDate={customEndDate}
+                inline
               />
             </div>
-            <div className={styles.datePicker}>
+            <div className={styles.calendarSection}>
               <label>To</label>
               <DatePicker
                 selected={customEndDate}
                 onChange={(date) => setCustomEndDate(date)}
-                // dateFormat="MM/dd/yyyy"
-                placeholderText="Select End Date"
+                selectsEnd
+                startDate={customStartDate}
+                endDate={customEndDate}
+                minDate={customStartDate}
+                inline
               />
             </div>
+          </div>
+          <div className={styles.buttonsContainer}>
+            <button
+              className={styles.cancelButton}
+              onClick={() => setIsVisible(false)}
+            >
+              Cancel
+            </button>
+            <button className={styles.searchButton}>Search</button>
           </div>
         </div>
       )}

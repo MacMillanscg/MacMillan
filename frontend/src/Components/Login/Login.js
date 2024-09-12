@@ -16,21 +16,22 @@ export const Login = () => {
   // const url = process.env.REACT_APP_API_URL;
 
   const navigate = useNavigate();
+
   const loginUser = async () => {
     let errorOccurred = false;
     if (email.length < 1 && password.length < 1) {
-      toast.error("Please enter your credentials");
+      toast.error("Please enter your credentials", { autoClose: 50000 });
       errorOccurred = true;
     }
 
     if (!errorOccurred) {
       if (email.length < 1) {
-        toast.error("Please enter your email");
+        toast.error("Please enter your email", { autoClose: 50000 });
         errorOccurred = true;
       }
 
       if (password.length < 1) {
-        toast.error("Please enter your Password");
+        toast.error("Please enter your Password", { autoClose: 50000 });
         errorOccurred = true;
       }
     }
@@ -44,33 +45,30 @@ export const Login = () => {
       password,
     };
     try {
-      toast.loading("Loading");
+      // toast.loading("Loading");
       const response = await axios.post(`${url}/auth/login`, userObj);
 
-      toast.dismiss();
+      // toast.dismiss();
       const { success, data, user, message } = response.data;
 
       if (success) {
-        toast.success(message);
+        toast.success(message, { autoClose: 50000 });
         if (rememberMe) {
           localStorage.setItem("rememberMe", response.data.data);
           localStorage.setItem("rememberMeUser", JSON.stringify(user));
-
-          // localStorage.setItem("user");
         } else {
           localStorage.removeItem("rememberMe");
           localStorage.removeItem("rememberMeUser");
         }
-        //  in data we have stored token
         sessionStorage.setItem("user", response.data.data);
         sessionStorage.setItem("userRecord", JSON.stringify(user));
         navigate("/");
       } else {
-        toast.error(response.data.message);
+        toast.error(response.data.message, { autoClose: 50000 });
       }
     } catch (error) {
-      toast.dismiss();
-      toast.error("Something went wrong");
+      // toast.dismiss();
+      toast.error("Something went wrong", { autoClose: 50000 });
     }
   };
 

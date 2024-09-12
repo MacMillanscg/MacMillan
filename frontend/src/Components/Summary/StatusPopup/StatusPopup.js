@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./StatusPopup.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
@@ -12,6 +12,23 @@ export const StatusPopup = ({
   const [tempSelectedStatuses, setTempSelectedStatuses] = useState([
     ...selectedStatuses,
   ]);
+
+  const popupRef = useRef(null);
+
+  // Handle clicks outside the popup
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (popupRef.current && !popupRef.current.contains(event.target)) {
+        setIsPopupVisible(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [popupRef]);
 
   const handleStatusChange = (status) => {
     const updatedStatuses = [...tempSelectedStatuses];
@@ -34,7 +51,7 @@ export const StatusPopup = ({
   };
 
   return (
-    <div className={styles.statusFilter}>
+    <div className={styles.statusFilter} ref={popupRef}>
       <div className={styles.statusWrap}>
         Status:
         <button className={styles.statusButton} onClick={handleButtonClick}>

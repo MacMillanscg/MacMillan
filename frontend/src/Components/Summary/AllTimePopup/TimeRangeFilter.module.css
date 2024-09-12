@@ -95,7 +95,7 @@
   border-radius: 4px;
   padding: 16px;
   margin-top: 10px;
-  width: 320px;
+  width: 530px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: absolute;
   z-index: 100;
@@ -121,6 +121,7 @@
   margin-bottom: 4px;
 }
 
+
 .react-datepicker-wrapper {
   width: 100%;
 }
@@ -140,7 +141,7 @@
 }
 
 .actions button {
-  background-color: #fff;
+  background-color: #fff !important;
   border: 1px solid #ccc;
   border-radius: 4px;
   padding: 8px 12px;
@@ -166,4 +167,11 @@
 
 .actions button:nth-child(2):hover {
   background-color: #0056b3;
+}
+.fullCalendarContainer{
+  display: flex;
+}
+.cancelButton, .searchButton{
+  background-color: #f5f3f3 !important;
+  color: black !important;
 }

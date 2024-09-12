@@ -22,6 +22,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { getUser } from "../../storageUtils/storageUtils";
 import { url } from "../../api";
+import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
 
 export const Summary = () => {
   const { dashboardWidth } = useAppContext();
@@ -30,7 +31,6 @@ export const Summary = () => {
   const [customStartDate, setCustomStartDate] = useState(null);
   const [customEndDate, setCustomEndDate] = useState(null);
   const [data, setData] = useState([]);
-  const [allData, setAllData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [base64Data, setBase64Data] = useState(null);
   const [selectedRows, setSelectedRows] = useState([]);
@@ -118,7 +118,7 @@ export const Summary = () => {
         return createdDate >= customStartDate && createdDate <= customEndDate;
       });
     }
-    return data; // Return all data for "allTime"
+    return data;
   };
 
   const applyFilters = () => {
@@ -166,7 +166,9 @@ export const Summary = () => {
     setIsPrintModalVisible(false);
   };
 
-  const handleSearchChange = (e) => setSearchTerm(e.target.value);
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
 
   const handleRowSelect = (e, rowIndex) => {
     const updatedSelection = [...selectedRows];
@@ -208,12 +210,17 @@ export const Summary = () => {
       const shipData = shipResponse.data;
       const trackData = trackResponse.data;
 
+      const filteredStatuses = Object.entries(trackData.status)
+        .filter(([key, value]) => value)
+        .map(([key]) => key)
+        .join(", ");
+
       const mappedData = {
         orderNumber: shipData.reference.code,
         shipmentNumber: shipData.order.id,
         carrier: shipData.carrier.carrierName,
         platform: "Shopify",
-        shipmentStatus: shipData.carrier.serviceName,
+        shipmentStatus: filteredStatuses,
         client: clients[0]?.clientName,
         customer: trackData.orderDetails.to.attention,
         address: trackData.orderDetails.to.address1,
@@ -248,6 +255,7 @@ export const Summary = () => {
     "8000000010962",
     "8000000010956",
     "8000000011015",
+    "8000000011036",
   ];
 
   const getAllShipments = async () => {
@@ -294,17 +302,45 @@ export const Summary = () => {
     }
   };
 
-  const handleDownloadClick = (rowIndex) => {
+  const handleDownloadClick = async (rowIndex, trackingNumber) => {
     if (base64Data) {
       const blob = decodeBase64(base64Data);
-      const url = URL.createObjectURL(blob);
+
+      const arrayBuffer = await blob.arrayBuffer();
+
+      const pdfDoc = await PDFDocument.load(arrayBuffer);
+
+      const pages = pdfDoc.getPages();
+      const firstPage = pages[0];
+      const { width, height } = firstPage.getSize();
+      const x = width / 3 - 90;
+      const y = height / 3.3;
+      const textWidth = 180;
+      const textHeight = 16;
+
+      firstPage.drawRectangle({
+        x: x - 2,
+        y: y - 2,
+        width: textWidth,
+        height: textHeight,
+        color: rgb(1, 1, 1),
+        // borderColor: rgb(0, 0, 0),
+      });
+
+      firstPage.drawText(`Tracking Number: ${trackingNumber}`, {
+        x,
+        y,
+        size: 10,
+        color: rgb(0, 0, 0),
+      });
+      const pdfBytes = await pdfDoc.save();
+      const modifiedBlob = new Blob([pdfBytes], { type: "application/pdf" });
+      const url = URL.createObjectURL(modifiedBlob);
       const link = document.createElement("a");
       link.href = url;
-      link.download = "label.pdf";
+      link.download = `label_${trackingNumber}.pdf`;
       link.click();
       URL.revokeObjectURL(url);
-
-      // Mark the row as downloaded
       const updatedData = [...data];
       updatedData[rowIndex].downloaded = true;
       setData(updatedData);
@@ -318,6 +354,12 @@ export const Summary = () => {
     const endIndex = startIndex + itemsPerPage;
     return data.slice(startIndex, endIndex);
   };
+
+  // const filteredSearchData = data.filter((item) =>
+  //   item.customer.name.toLowerCase().includes(searchTerm.toLowerCase())
+  // );
+
+  // filteredSearchData();
 
   const handleSelectAll = (e) => {
     const checked = e.target.checked;
@@ -345,68 +387,71 @@ export const Summary = () => {
         <h1 className={styles.title}>Transaction Summary</h1>
 
         <div className={styles.filters}>
-          <input
-            type="text"
-            placeholder="Search..."
-            value={searchTerm}
-            onChange={handleSearchChange}
-            className={`form-control me-4 ${styles.searchBar}`}
-          />
-
-          <div className={`${styles.dateFilters} me-2`}>
-            <TimeRangeFilter
-              setTimeRange={setTimeRange}
-              timeRange={timeRange}
-              customStartDate={customStartDate}
-              customEndDate={customEndDate}
-              startDate="Start Date"
-              endDate="End Date"
-              setCustomStartDate={setCustomStartDate}
-              setCustomEndDate={setCustomEndDate}
+          <div className={styles.searchField}>
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={handleSearchChange}
+              className={`form-control me-4 ${styles.searchBar}`}
             />
           </div>
-          <div className={styles.columnsManagement}>
-            Columns:
-            <button
-              onClick={handleColumnManagerClick}
-              className={styles.manageColumns}
-            >
-              Show Columns
-              <FontAwesomeIcon
-                icon={isColumnManagerVisible ? faChevronUp : faChevronDown}
-                className="ms-2"
-              />
-            </button>
-            {isColumnManagerVisible && (
-              <ColumnManagementModal
-                columns={columns}
-                setColumns={setColumns}
-                onClose={closeColumnManager}
-              />
-            )}
-          </div>
-
-          <div className={styles.statusFilter}>
-            <StatusPopup
-              statuses={uniqueStatuses}
-              selectedStatuses={selectedStatuses}
-              setSelectedStatuses={setSelectedStatuses}
-            />
-          </div>
-          <button className={styles.resetBtn}>Reset</button>
-
-          <div className="dotModal position-relative">
-            <div className={styles.dots}>
-              <FontAwesomeIcon
-                icon={faEllipsisV}
-                onClick={handleMenuClick}
-                className="p-1 cursor-pointer"
+          <div className={styles.filterFields}>
+            <div className={`${styles.dateFilters} me-2`}>
+              <TimeRangeFilter
+                setTimeRange={setTimeRange}
+                timeRange={timeRange}
+                customStartDate={customStartDate}
+                customEndDate={customEndDate}
+                startDate="Start Date"
+                endDate="End Date"
+                setCustomStartDate={setCustomStartDate}
+                setCustomEndDate={setCustomEndDate}
               />
             </div>
-            {isModalVisible && (
-              <DotsModal handlePrintClick={handlePrintClick} />
-            )}
-            {isPrintModalVisible && <PrintModal onclose={closePrintModal} />}
+            <div className={styles.columnsManagement}>
+              Columns:
+              <button
+                onClick={handleColumnManagerClick}
+                className={styles.manageColumns}
+              >
+                Show Columns
+                <FontAwesomeIcon
+                  icon={isColumnManagerVisible ? faChevronUp : faChevronDown}
+                  className="ms-2"
+                />
+              </button>
+              {isColumnManagerVisible && (
+                <ColumnManagementModal
+                  columns={columns}
+                  setColumns={setColumns}
+                  onClose={closeColumnManager}
+                />
+              )}
+            </div>
+
+            <div className={styles.statusFilter}>
+              <StatusPopup
+                statuses={uniqueStatuses}
+                selectedStatuses={selectedStatuses}
+                setSelectedStatuses={setSelectedStatuses}
+              />
+            </div>
+            <button className={styles.resetBtn}>Reset</button>
+
+            <div className="dotModal position-relative">
+              <div className={styles.dots}>
+                <FontAwesomeIcon
+                  icon={faEllipsisV}
+                  onClick={handleMenuClick}
+                  className="p-1 cursor-pointer"
+                />
+              </div>
+              {isModalVisible && (
+                <DotsModal handlePrintClick={handlePrintClick} />
+              )}
+              {isPrintModalVisible && <PrintModal onclose={closePrintModal} />}
+            </div>
           </div>
         </div>
       </div>
@@ -449,7 +494,11 @@ export const Summary = () => {
                           row.downloaded ? (
                             <FontAwesomeIcon icon={faCheck} />
                           ) : (
-                            <button onClick={() => handleDownloadClick(index)}>
+                            <button
+                              onClick={() =>
+                                handleDownloadClick(index, row.trackingNumber)
+                              }
+                            >
                               Download
                             </button>
                           )
