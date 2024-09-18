@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import styles from "./ColumnManagementModal.module.css"; // Add necessary CSS for styling
+import styles from "./ColumnManagementModal.module.css";
 
 export const ColumnManagementModal = ({ columns, setColumns, onClose }) => {
   const [localColumns, setLocalColumns] = useState(columns);

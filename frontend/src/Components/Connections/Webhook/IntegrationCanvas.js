@@ -125,11 +125,7 @@ export const IntegrationCanvas = () => {
         `http://localhost:5000/connections/${id}/api/orders`
       );
       setOrders(response.data.orders);
-      const orderIds = response.data.orders.map((order) => order.id);
-      await axios.post(
-        `http://localhost:5000/connections/${id}/api/saveOrderIds`,
-        { orderIds }
-      );
+
       localStorage.setItem("shopifyInitialized", JSON.stringify(true));
       localStorage.setItem("shopify", JSON.stringify(true));
       closeShopifyPopup();
@@ -140,7 +136,30 @@ export const IntegrationCanvas = () => {
     }
   };
 
-  // console.log("orders", orders);
+  const fetchShopifyIds = async () => {
+    try {
+      const orderIds = orders.map((order) => order.id); // Extract order IDs
+      console.log("orderIDs:", orderIds);
+
+      if (orderIds.length > 0) {
+        await axios.post(
+          `http://localhost:5000/connections/${id}/api/saveOrderIds`,
+          { orderIds }
+        );
+      }
+    } catch (error) {
+      console.error("Error while saving order IDs:", error);
+    }
+  };
+
+  // Call fetchShopifyIds when orders are updated
+  useEffect(() => {
+    if (orders && orders.length > 0) {
+      fetchShopifyIds(); // Fetch Shopify IDs only if orders array is non-empty
+    }
+  }, [orders]); // Add orders as a dependency
+
+  console.log("orders", orders);
 
   useEffect(() => {
     // if (initialized) {
@@ -206,7 +225,6 @@ export const IntegrationCanvas = () => {
         );
         // console.log("xmlreso", response);
         setXmlConversion(response.data.conversionsXML);
-        // setFetchTrigger(!fetchTrigger);
       } catch (error) {
         console.error("Error fetching Shopify details:", error);
       } finally {
@@ -216,8 +234,6 @@ export const IntegrationCanvas = () => {
 
     fetchConversionDetails();
   }, [id, fetchTriggerXml]);
-  // console.log("xmlconversion", xmlConversion);
-  // console.log("fetchTriggerXml", fetchTriggerXml);
 
   useEffect(() => {
     const fetchShopifyDetails = async () => {

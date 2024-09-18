@@ -34,7 +34,6 @@ export const TimeRangeFilter = ({
     const handleClickOutside = (event) => {
       if (popupRef.current && !popupRef.current.contains(event.target)) {
         setIsVisible(false);
-        setSelectedOption("allTime"); // Reset to default when closing
       }
     };
 
@@ -54,11 +53,7 @@ export const TimeRangeFilter = ({
   };
 
   const toggleVisibility = () => {
-    // If popup is already visible and we close it, reset the selected option
-    setIsVisible(!isVisible);
-    if (!isVisible) {
-      setSelectedOption("allTime"); // Reset the selected option when reopening
-    }
+    setIsVisible(!isVisible); // Just toggle, don't reset option
   };
 
   return (
@@ -124,7 +119,15 @@ export const TimeRangeFilter = ({
             >
               Cancel
             </button>
-            <button className={styles.searchButton}>Search</button>
+            <button
+              className={styles.searchButton}
+              onClick={() => {
+                setTimeRange("custom"); // Trigger custom filter
+                setIsVisible(false); // Close popup
+              }}
+            >
+              Search
+            </button>
           </div>
         </div>
       )}

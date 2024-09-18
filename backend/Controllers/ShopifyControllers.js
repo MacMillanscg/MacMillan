@@ -2,6 +2,7 @@ const Connection = require("../Schema/Connection");
 const Transaction = require("../Schema/Transaction");
 const Order = require("../Schema/ShopifyOrderSchema");
 const axios = require("axios");
+const { shofipyOrders } = require("./connectionController");
 
 // create shopify connection
 exports.createShopifyConnection = async (req, res) => {
@@ -218,13 +219,35 @@ exports.getFullFillment = async (req, res) => {
 exports.createShopifyOrdersId = async (req, res) => {
   try {
     const { orderIds } = req.body;
+    console.log(req.body);
 
-    const ordersToInsert = orderIds.map((id) => ({ shopifyId: id }));
-    await Order.insertMany(ordersToInsert, { ordered: false });
+    const bulkOperations = orderIds.map((id) => ({
+      updateOne: {
+        filter: { shopifyId: id },
+        update: { shopifyId: id },
+        upsert: true, // Insert if not exists, otherwise update
+      },
+    }));
+
+    await Order.bulkWrite(bulkOperations);
 
     res.status(200).json({ message: "Order IDs saved successfully" });
   } catch (error) {
     console.error("Error saving order IDs:", error);
     res.status(500).json({ message: "Error saving order IDs", error });
+  }
+};
+
+exports.getAllShopifyOrdersIds = async (req, res) => {
+  try {
+    // Retrieve all the documents and select only the 'shopifyId' field
+    const shopifyOrderIds = await Order.find({}, { shopifyId: 1, _id: 0 });
+    console.log(shopifyOrderIds);
+
+    // Return the shopifyOrderIds
+    res.status(200).json(shopifyOrderIds);
+  } catch (error) {
+    console.error("Error retrieving order IDs:", error);
+    res.status(500).json({ message: "Error retrieving order IDs", error });
   }
 };

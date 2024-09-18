@@ -31,8 +31,9 @@ export const Summary = () => {
   const [customStartDate, setCustomStartDate] = useState(null);
   const [customEndDate, setCustomEndDate] = useState(null);
   const [data, setData] = useState([]);
+  const [filteredClients, setFilteredClients] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
-  const [base64Data, setBase64Data] = useState(null);
+  // const [base64Data, setBase64Data] = useState(null);
   const [selectedRows, setSelectedRows] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(20);
@@ -45,6 +46,7 @@ export const Summary = () => {
   const [isColumnManagerVisible, setIsColumnManagerVisible] = useState(false);
   const [selectedStatuses, setSelectedStatuses] = useState([]);
   const [timeRange, setTimeRange] = useState("allTime");
+  const [shopifyOrderIds, setShopifyOrderIds] = useState([]);
   const [columns, setColumns] = useState([
     { name: "", key: "select", visible: true },
     { name: "Order Number", key: "orderNumber", visible: true },
@@ -67,6 +69,8 @@ export const Summary = () => {
     { name: "Downloaded", key: "downloaded", visible: true },
   ]);
 
+  console.log("filteredClients", filteredClients);
+
   let userId = getUser();
   userId = userId?._id;
   console.log(userId);
@@ -87,16 +91,21 @@ export const Summary = () => {
     };
     fetchAllClients();
   }, [userId]);
-  console.log(clients[0]?.clientName);
 
-  // Filter data by time range
   const filterDataByTimeRange = (data) => {
     const today = new Date();
+
+    const normalizeDate = (date) => {
+      return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    };
 
     if (timeRange === "today") {
       return data.filter((item) => {
         const createdDate = new Date(item.createdDate);
-        return createdDate.toDateString() === today.toDateString();
+        return (
+          normalizeDate(createdDate).getTime() ===
+          normalizeDate(today).getTime()
+        );
       });
     } else if (timeRange === "thisWeek") {
       const startOfWeek = new Date(
@@ -104,18 +113,21 @@ export const Summary = () => {
       );
       return data.filter((item) => {
         const createdDate = new Date(item.createdDate);
-        return createdDate >= startOfWeek;
+        return normalizeDate(createdDate) >= normalizeDate(startOfWeek);
       });
     } else if (timeRange === "thisMonth") {
       const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
       return data.filter((item) => {
         const createdDate = new Date(item.createdDate);
-        return createdDate >= startOfMonth;
+        return normalizeDate(createdDate) >= normalizeDate(startOfMonth);
       });
     } else if (timeRange === "custom" && customStartDate && customEndDate) {
       return data.filter((item) => {
         const createdDate = new Date(item.createdDate);
-        return createdDate >= customStartDate && createdDate <= customEndDate;
+        return (
+          normalizeDate(createdDate) >= normalizeDate(customStartDate) &&
+          normalizeDate(createdDate) <= normalizeDate(customEndDate)
+        );
       });
     }
     return data;
@@ -133,7 +145,7 @@ export const Summary = () => {
     setFilteredData(filtered);
   };
 
-  console.log("filter", filteredData);
+  console.log("filteredData", filteredData);
 
   useEffect(() => {
     applyFilters();
@@ -166,11 +178,22 @@ export const Summary = () => {
     setIsPrintModalVisible(false);
   };
 
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    let newItem = [];
+    if (value.length > 3) {
+      newItem = data.filter((val, i) => {
+        return val.customer.toLowerCase().startsWith(value.toLowerCase());
+      });
+      setFilteredClients(newItem);
+    } else {
+      setFilteredClients(data);
+    }
   };
 
   const handleRowSelect = (e, rowIndex) => {
+    console.log("reowindex", rowIndex);
     const updatedSelection = [...selectedRows];
     if (e.target.checked) {
       updatedSelection.push(rowIndex);
@@ -183,8 +206,10 @@ export const Summary = () => {
     setSelectedRows(updatedSelection);
   };
   // 11007  11006  10963   10962   10956
+
+  console.log("selectedRow", selectedRows);
   const shippmentData = [];
-  console.log("dataaa", shippmentData);
+  console.log("dataaa", data);
 
   const fetchData = async (shipmentId) => {
     setLoading(true);
@@ -238,7 +263,7 @@ export const Summary = () => {
       };
 
       // Set the base64 label data if needed
-      setBase64Data(shipData.labelData.label[0].data);
+      // setBase64Data(shipData.labelData.label[0].data);
       return mappedData;
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -271,6 +296,7 @@ export const Summary = () => {
 
     console.log("All shipments:", shipments);
     setData(shipments);
+    setFilteredClients(shipments);
   };
 
   useEffect(() => {
@@ -302,7 +328,7 @@ export const Summary = () => {
     }
   };
 
-  const handleDownloadClick = async (rowIndex, trackingNumber) => {
+  const handleDownloadClick = async (rowIndex, trackingNumber, base64Data) => {
     if (base64Data) {
       const blob = decodeBase64(base64Data);
 
@@ -355,12 +381,6 @@ export const Summary = () => {
     return data.slice(startIndex, endIndex);
   };
 
-  // const filteredSearchData = data.filter((item) =>
-  //   item.customer.name.toLowerCase().includes(searchTerm.toLowerCase())
-  // );
-
-  // filteredSearchData();
-
   const handleSelectAll = (e) => {
     const checked = e.target.checked;
     const updatedSelection = checked ? data.map((_, i) => i) : [];
@@ -376,10 +396,27 @@ export const Summary = () => {
     );
   };
 
+  const handleReset = () => {
+    setSearchTerm(""); // Clear search input
+    setFilteredClients(data); // Reset filteredClients to show all data
+  };
+
   const filteredDatas = filterDataByStatus(data); // Filter data before paginating
 
-  console.log("timerange", timeRange);
-  console.log("data", data);
+  useEffect(() => {
+    const fetchShopifyOrderIds = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/summary/orders/shopifyIds"
+        );
+        setShopifyOrderIds(response.data);
+      } catch (error) {
+        console.error("Error fetching Shopify order IDs:", error);
+      }
+    };
+
+    fetchShopifyOrderIds();
+  }, []);
 
   return (
     <div className="dashboard" style={{ width: dashboardWidth }}>
@@ -437,7 +474,9 @@ export const Summary = () => {
                 setSelectedStatuses={setSelectedStatuses}
               />
             </div>
-            <button className={styles.resetBtn}>Reset</button>
+            <button className={styles.resetBtn} onClick={handleReset}>
+              Reset
+            </button>
 
             <div className="dotModal position-relative">
               <div className={styles.dots}>
@@ -450,7 +489,13 @@ export const Summary = () => {
               {isModalVisible && (
                 <DotsModal handlePrintClick={handlePrintClick} />
               )}
-              {isPrintModalVisible && <PrintModal onclose={closePrintModal} />}
+              {isPrintModalVisible && (
+                <PrintModal
+                  onclose={closePrintModal}
+                  selectedRows={selectedRows}
+                  filteredClients={filteredClients}
+                />
+              )}
             </div>
           </div>
         </div>
@@ -477,7 +522,7 @@ export const Summary = () => {
               </tr>
             </thead>
             <tbody>
-              {paginateData(data).map((row, index) => (
+              {paginateData(filteredClients).map((row, index) => (
                 <tr key={index}>
                   <td>
                     <input
@@ -496,7 +541,11 @@ export const Summary = () => {
                           ) : (
                             <button
                               onClick={() =>
-                                handleDownloadClick(index, row.trackingNumber)
+                                handleDownloadClick(
+                                  index,
+                                  row.trackingNumber,
+                                  row.label
+                                )
                               }
                             >
                               Download
@@ -515,7 +564,7 @@ export const Summary = () => {
                           // Labels Column
                           <>
                             {/* Assuming row.labels contains some label data */}
-                            {row.labels}
+                            {/* {row.label} */}
 
                             {/* Additional Label Text Below */}
                             <p>

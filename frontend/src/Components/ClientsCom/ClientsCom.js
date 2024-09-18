@@ -19,13 +19,27 @@ export const ClientsCom = () => {
   const [clients, setClients] = useState([]);
   const [fetchTrigger, setFetchTrigger] = useState(false); // A state to trigger re-fetching
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
+  const [filteredClients, setFilteredClients] = useState(clients);
   const dispatch = useDispatch();
 
   // const { clients, loading, error } = useSelector((state) => state.clients);
 
+  const applyFilters = ({ clientName, email }) => {
+    const filteredData = clients.filter((client) => {
+      return (
+        // clientName === "" ||
+        client.clientName.toLowerCase().includes(clientName.toLowerCase())
+      );
+    });
+    setFilteredClients(filteredData);
+  };
+
   const openFilterModal = () => {
     setIsFilterModalOpen(!isFilterModalOpen);
   };
+
+  console.log("recordsss", filteredClients);
+  console.log("recordsss", clients);
 
   let userId = getUser();
   userId = userId?._id;
@@ -84,7 +98,12 @@ export const ClientsCom = () => {
                 className={styles.filterIcon}
               />
             </button>
-            {isFilterModalOpen && <FilterPopup />}
+            {isFilterModalOpen && (
+              <FilterPopup
+                closeModal={closeModal}
+                applyFilters={applyFilters}
+              />
+            )}
           </div>
           <button
             className={`btn btn-success ${styles.addBtn} ms-4`}
@@ -96,30 +115,28 @@ export const ClientsCom = () => {
         </div>
       </div>
       <div className={styles.cardSection}>
-        {clients &&
-          clients.map((client) => {
-            return (
-              <Link
-                to={`/addclients/${client._id}`}
-                key={client._id}
-                className={styles.cardLink}
-                style={{ width: "32%" }}
-              >
-                <div className="card me-1 mb-2">
-                  <div className="card-body">
-                    <h3>{client.clientName}</h3>
-                    <h4 className={styles.heading4}>{client.email}</h4>
-                    <h4 className={styles.heading4}>{client.phone}</h4>
-                    {/* <h4>{new Date(client.createdAt).toLocaleString()}</h4> */}
-                    <p className={styles.text}>
-                      Lorem ipsum dolor sit amet consectetur adipisicing
-                      elitsdf.
-                    </p>
-                  </div>
+        {clients.map((client) => {
+          return (
+            <Link
+              to={`/addclients/${client._id}`}
+              key={client._id}
+              className={styles.cardLink}
+              style={{ width: "32%" }}
+            >
+              <div className="card me-1 mb-2">
+                <div className="card-body">
+                  <h3>{client.clientName}</h3>
+                  <h4 className={styles.heading4}>{client.email}</h4>
+                  <h4 className={styles.heading4}>{client.phone}</h4>
+                  {/* <h4>{new Date(client.createdAt).toLocaleString()}</h4> */}
+                  <p className={styles.text}>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elitsdf.
+                  </p>
                 </div>
-              </Link>
-            );
-          })}
+              </div>
+            </Link>
+          );
+        })}
       </div>
       {isModalOpen && (
         <AddClients closeModal={closeModal} setFetchTrigger={setFetchTrigger} />

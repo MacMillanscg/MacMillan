@@ -5,8 +5,8 @@ const Schema = mongoose.Schema;
 const OrderSchema = new Schema({
   shopifyId: {
     type: String,
-    required: true,
-    unique: true,
+    // required: true,
+    // unique: true,
   },
   createdAt: {
     type: Date,
