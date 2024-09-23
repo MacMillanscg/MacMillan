@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from "./Summary.module.css";
 import { useAppContext } from "../Context/AppContext";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +10,7 @@ import {
   faChevronDown,
   faChevronUp,
   faCheck,
+  faLaptopHouse,
 } from "@fortawesome/free-solid-svg-icons";
 import { DotsModal } from "./DotsModal";
 import { PrintModal } from "./PrintModal";
@@ -23,6 +24,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { getUser } from "../../storageUtils/storageUtils";
 import { url } from "../../api";
 import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
+import { ExportModal } from "./ExportModal/ExportModal";
 
 export const Summary = () => {
   const { dashboardWidth } = useAppContext();
@@ -42,6 +44,7 @@ export const Summary = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [clients, setClients] = useState([]);
   const [isPrintModalVisible, setIsPrintModalVisible] = useState(false);
+  const [showExportModal, setShowExportModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isColumnManagerVisible, setIsColumnManagerVisible] = useState(false);
   const [selectedStatuses, setSelectedStatuses] = useState([]);
@@ -166,7 +169,7 @@ export const Summary = () => {
   };
 
   const handleMenuClick = () => {
-    setIsModalVisible(!isModalVisible);
+    setIsModalVisible(true);
   };
 
   const handlePrintClick = () => {
@@ -176,6 +179,15 @@ export const Summary = () => {
 
   const closePrintModal = () => {
     setIsPrintModalVisible(false);
+  };
+
+  const handleExportClick = () => {
+    setShowExportModal(true); // Open the export modal
+    setIsModalVisible(false);
+  };
+
+  const handleCloseExportModal = () => {
+    setShowExportModal(false); // Close the export modal
   };
 
   const handleSearchChange = (e) => {
@@ -262,8 +274,6 @@ export const Summary = () => {
         downloaded: false,
       };
 
-      // Set the base64 label data if needed
-      // setBase64Data(shipData.labelData.label[0].data);
       return mappedData;
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -487,11 +497,23 @@ export const Summary = () => {
                 />
               </div>
               {isModalVisible && (
-                <DotsModal handlePrintClick={handlePrintClick} />
+                <DotsModal
+                  handlePrintClick={handlePrintClick}
+                  handleExportClick={handleExportClick}
+                  setIsModalVisible={setIsModalVisible}
+                  onclose={closePrintModal}
+                />
               )}
               {isPrintModalVisible && (
                 <PrintModal
                   onclose={closePrintModal}
+                  selectedRows={selectedRows}
+                  filteredClients={filteredClients}
+                />
+              )}
+              {showExportModal && (
+                <ExportModal
+                  onClose={handleCloseExportModal}
                   selectedRows={selectedRows}
                   filteredClients={filteredClients}
                 />

@@ -1,9 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { PDFDocument, rgb } from "pdf-lib"; // Import pdf-lib for PDF modification
 import styles from "./PrintModal.module.css";
 
 export const PrintModal = ({ onclose, selectedRows, filteredClients }) => {
   const [isShippingLabelChecked, setIsShippingLabelChecked] = useState(false);
+
+  const popupRef = useRef(null);
+
+  // Handle clicks outside the popup
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (popupRef.current && !popupRef.current.contains(event.target)) {
+        // setIsPopupVisible(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [popupRef]);
 
   // Handle checkbox state
   const handleCheckboxChange = (e) => {
@@ -35,6 +52,9 @@ export const PrintModal = ({ onclose, selectedRows, filteredClients }) => {
           trackingNumber: client.trackingNumber,
         }));
 
+      // Create a new PDF document to merge all labels
+      const mergedPdfDoc = await PDFDocument.create();
+
       for (const client of filteredData) {
         const { label: base64Data, trackingNumber } = client;
         const blob = decodeBase64(base64Data);
@@ -44,7 +64,7 @@ export const PrintModal = ({ onclose, selectedRows, filteredClients }) => {
           const pdfDoc = await PDFDocument.load(arrayBuffer);
 
           const pages = pdfDoc.getPages();
-          const firstPage = pages[0];
+          const [firstPage] = pages;
 
           const { width, height } = firstPage.getSize();
           const x = width / 3 - 90;
@@ -67,25 +87,23 @@ export const PrintModal = ({ onclose, selectedRows, filteredClients }) => {
             color: rgb(0, 0, 0),
           });
 
-          const pdfBytes = await pdfDoc.save();
-          const modifiedBlob = new Blob([pdfBytes], {
-            type: "application/pdf",
-          });
-          const url = URL.createObjectURL(modifiedBlob);
-
-          // Create an anchor element and trigger download
-          const link = document.createElement("a");
-          link.href = url;
-          link.download = `label_${trackingNumber}.pdf`;
-          link.click();
-
-          // Open the PDF in a new window/tab
-          window.open(url);
-
-          // Revoke the URL after usage
-          URL.revokeObjectURL(url);
+          const copiedPages = await mergedPdfDoc.copyPages(
+            pdfDoc,
+            pdfDoc.getPageIndices()
+          );
+          copiedPages.forEach((page) => mergedPdfDoc.addPage(page));
         }
       }
+
+      const pdfBytes = await mergedPdfDoc.save();
+      const mergedBlob = new Blob([pdfBytes], { type: "application/pdf" });
+      const url = URL.createObjectURL(mergedBlob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `merged_labels.pdf`;
+      link.click();
+      window.open(url);
+      URL.revokeObjectURL(url);
     }
   };
 
@@ -109,11 +127,9 @@ export const PrintModal = ({ onclose, selectedRows, filteredClients }) => {
           </label>
 
           <div className={styles.modalButtons}>
-            <button type="button" onClick={onclose}>
+            <button type="button" onClick={onclose} className={styles.cancel}>
               Cancel
             </button>
-
-            {/* Apply conditional class based on checkbox state */}
             <button
               type="button"
               className={
@@ -121,8 +137,8 @@ export const PrintModal = ({ onclose, selectedRows, filteredClients }) => {
                   ? `${styles.printButtonActive}`
                   : `${styles.printButton}`
               }
-              disabled={!isShippingLabelChecked} // Disable button if checkbox not checked
-              onClick={handlePrint} // Trigger the print/download process
+              disabled={!isShippingLabelChecked}
+              onClick={handlePrint}
             >
               Print
             </button>

@@ -25,14 +25,31 @@ export const ClientsCom = () => {
   // const { clients, loading, error } = useSelector((state) => state.clients);
 
   const applyFilters = ({ clientName, email }) => {
+    console.log("clientName", clientName);
+    console.log("email", email);
+
+    // Filter if either clientName or email has a value
     const filteredData = clients.filter((client) => {
-      return (
-        // clientName === "" ||
-        client.clientName.toLowerCase().includes(clientName.toLowerCase())
-      );
+      const nameMatch = clientName
+        ? client.clientName.toLowerCase().includes(clientName.toLowerCase())
+        : true; // true if clientName is empty
+
+      const emailMatch = email
+        ? client.email.toLowerCase().includes(email.toLowerCase())
+        : true; // true if email is empty
+
+      // Return true if either name or email matches
+      return nameMatch && emailMatch;
     });
+
+    console.log("filteredData", filteredData);
     setFilteredClients(filteredData);
   };
+
+  useEffect(() => {
+    // Display all clients when the page is loaded
+    setFilteredClients(clients);
+  }, [clients]);
 
   const openFilterModal = () => {
     setIsFilterModalOpen(!isFilterModalOpen);
@@ -71,7 +88,7 @@ export const ClientsCom = () => {
   };
 
   const closeModal = () => {
-    setIsModalOpen(false);
+    setIsFilterModalOpen(false);
   };
 
   return (
@@ -115,28 +132,30 @@ export const ClientsCom = () => {
         </div>
       </div>
       <div className={styles.cardSection}>
-        {clients.map((client) => {
-          return (
-            <Link
-              to={`/addclients/${client._id}`}
-              key={client._id}
-              className={styles.cardLink}
-              style={{ width: "32%" }}
-            >
-              <div className="card me-1 mb-2">
-                <div className="card-body">
-                  <h3>{client.clientName}</h3>
-                  <h4 className={styles.heading4}>{client.email}</h4>
-                  <h4 className={styles.heading4}>{client.phone}</h4>
-                  {/* <h4>{new Date(client.createdAt).toLocaleString()}</h4> */}
-                  <p className={styles.text}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elitsdf.
-                  </p>
+        {filteredClients &&
+          filteredClients.map((client) => {
+            return (
+              <Link
+                to={`/addclients/${client._id}`}
+                key={client._id}
+                className={styles.cardLink}
+                // style={{ width: "32%" }}
+              >
+                <div className="card me-1 mb-2">
+                  <div className="card-body">
+                    <h3>{client.clientName}</h3>
+                    <h4 className={styles.heading4}>{client.email}</h4>
+                    <h4 className={styles.heading4}>{client.phone}</h4>
+                    {/* <h4>{new Date(client.createdAt).toLocaleString()}</h4> */}
+                    <p className={styles.text}>
+                      Lorem ipsum dolor sit amet consectetur adipisicing
+                      elitsdf.
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          );
-        })}
+              </Link>
+            );
+          })}
       </div>
       {isModalOpen && (
         <AddClients closeModal={closeModal} setFetchTrigger={setFetchTrigger} />

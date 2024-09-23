@@ -22,7 +22,7 @@ export const FilterPopup = ({ closeModal, applyFilters }) => {
         <div className={styles.tabContent}>
           <div className={styles.filterHeader}>
             <h3>Filters</h3>
-            <span>x</span>
+            <span onClick={closeModal}>x</span>
           </div>
           <div className={styles.tabPanel}>
             <label htmlFor="clientName">Client Name:</label>

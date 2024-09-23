@@ -133,26 +133,28 @@ export const Connections = () => {
             <Link to="#" className={styles.cardWrap} key={index}>
               <div className={`card ${styles.connectionCard}`}>
                 <div className="card-body">
-                  <h3 className={styles.cardTitle}>
-                    {connection?.shopifyDetails?.shopifyTitle}
-                  </h3>
-                  <div className={styles.EditDeleteShow}>
-                    <FontAwesomeIcon
-                      icon={faEllipsisV}
-                      className={styles.dots}
-                    />
-                    <div className={styles.editDelteIconsWrap}>
-                      <Link to={`/connections/${connection._id}`}>
-                        <FontAwesomeIcon
-                          icon={faPencil}
-                          className={styles.editIcon}
-                        />
-                      </Link>
+                  <div className={styles.cardTop}>
+                    <h3 className={styles.cardTitle}>
+                      {connection?.shopifyDetails?.shopifyTitle}
+                    </h3>
+                    <div className={styles.EditDeleteShow}>
                       <FontAwesomeIcon
-                        icon={faTrash}
-                        className={styles.deleteIcon}
-                        onClick={() => handleDeleteConnection(connection._id)} // Pass connection._id here
+                        icon={faEllipsisV}
+                        className={styles.dots}
                       />
+                      <div className={styles.editDelteIconsWrap}>
+                        <Link to={`/connections/${connection._id}`}>
+                          <FontAwesomeIcon
+                            icon={faPencil}
+                            className={styles.editIcon}
+                          />
+                        </Link>
+                        <FontAwesomeIcon
+                          icon={faTrash}
+                          className={styles.deleteIcon}
+                          onClick={() => handleDeleteConnection(connection._id)} // Pass connection._id here
+                        />
+                      </div>
                     </div>
                   </div>
                   <h4 className="fs-5 m-0 mb-2">

@@ -89,7 +89,7 @@
     margin-right: 15px;
 }
 .cardWrap:nth-child(3n) {
-    margin-right: 0; /* Remove margin-right for every third card */
+    margin-right: 0;
   }
 .cardWrap:hover{
     text-decoration: none !important;
@@ -154,6 +154,10 @@
 }
 .externalId{
     margin-bottom: 16px;
+}
+.cardLink{
+    max-width: 295px;
+    width: 100%;
 }
 .cardLink:hover{
     text-decoration: none !important;

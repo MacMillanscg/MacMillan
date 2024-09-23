@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./DotsModal.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,8 +10,27 @@ import {
   faEllipsisV,
 } from "@fortawesome/free-solid-svg-icons";
 import { PrintModal } from "./PrintModal";
+import { ExportModal } from "./ExportModal/ExportModal";
 
-export const DotsModal = ({ handlePrintClick }) => {
+export const DotsModal = ({
+  handlePrintClick,
+  handleExportClick,
+  setIsModalVisible,
+}) => {
+  const popupRef = useRef(null);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (popupRef.current && !popupRef.current.contains(event.target)) {
+        setIsModalVisible(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [popupRef]);
   return (
     <div className={styles.menuIconContainer}>
       <div className={styles.modal}>
@@ -29,7 +48,7 @@ export const DotsModal = ({ handlePrintClick }) => {
             </button>
           </li>
           <li>
-            <button onClick={() => console.log("Export clicked")}>
+            <button onClick={handleExportClick}>
               <FontAwesomeIcon icon={faDownload} className={styles.icon} />{" "}
               Export
             </button>

@@ -800,11 +800,12 @@ export const IntegrationCanvas = () => {
       </div>
 
       <div
-        className={`${styles.bottomBarWrap} ${
+        className={`${styles.bottomBar} ${
           showTestResults ? styles.showBtns : ""
         }`}
       >
-        <div className={`${styles.bottomBar} `}>
+        {/* <div className={`${styles.bottomBar} `}> */}
+        <div>
           <button className={styles.runButton} onClick={handleRunClick}>
             Run
           </button>
@@ -821,6 +822,7 @@ export const IntegrationCanvas = () => {
             <FontAwesomeIcon icon={faChevronUp} className={styles.icon} />
           )}
         </button>
+        {/* </div> */}
       </div>
       <div
         className={`${styles.testResultsContainer} ${

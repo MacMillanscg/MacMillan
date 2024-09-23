@@ -54,7 +54,7 @@
 }
 .connectionCard{
     /* width: 32%; */
-    background: rgb(247, 248, 249);
+    /* background: rgb(247, 248, 249); */
     min-height: 224px;
 }
 .list{
@@ -85,21 +85,22 @@
     font-size: 28px;
     font-weight: 500;
     margin-bottom: 15px;
+  
+}
+.cardTop{
     display: flex;
     justify-content: space-between;
     position: relative;
 }
 .dots{
-    position: absolute;
-    right: 14px;
-    top: 14px;
+
     font-size: 15px;
 }
 .editDelteIconsWrap{
     position: absolute;
-    right: 11px;
-    top: 12px;
-    padding-right: 18px;
+    right: -5px;
+    top: 0px;
+    padding: 8px 25px 8px 13px;
     opacity: 0;
     visibility: hidden;
 }
@@ -107,6 +108,9 @@
     color: gray;
     font-size: 15px;
     margin-right: 15px;
+}
+.EditDeleteShow{
+    padding: 8px;
 }
 
 .EditDeleteShow:hover .editDelteIconsWrap{
