@@ -89,10 +89,8 @@ export const IntegrationCanvas = () => {
   const [filteredConnection, setFilteredConnection] = useState(null);
   const [clientId, setClientId] = useState(null);
   const [integrationId, setIntegrationId] = useState(null);
-  // const [shopifyId, setShopifyId] = useState(null);
-  // console.log("initial", initialized);
-  // console.log("fetchtrigger", fetchTrigger);
-  // console.log("xmldata", xmlConversion);
+  const [shopifyOrderIds, setShopifyOrderIds] = useState([]);
+  const [fullfillmentId, setFullfillmentId] = useState([]);
 
   const dispatch = useDispatch();
   const { connections, error } = useSelector((state) => state.connections);
@@ -109,7 +107,7 @@ export const IntegrationCanvas = () => {
     );
   }, [id, connections]);
 
-  console.log("filteredConnection", filteredConnection?.integrations);
+  // console.log("filteredConnection", filteredConnection?.integrations);
 
   useEffect(() => {
     if (connections.length === 0) {
@@ -139,6 +137,9 @@ export const IntegrationCanvas = () => {
   const fetchShopifyIds = async () => {
     try {
       const orderIds = orders.map((order) => order.id); // Extract order IDs
+      if (orderIds) {
+        setShopifyOrderIds(orderIds);
+      }
       console.log("orderIDs:", orderIds);
 
       if (orderIds.length > 0) {
@@ -151,15 +152,90 @@ export const IntegrationCanvas = () => {
       console.error("Error while saving order IDs:", error);
     }
   };
+  // console.log("shopifyOrderIds", shopifyOrderIds[0]);
 
   // Call fetchShopifyIds when orders are updated
   useEffect(() => {
     if (orders && orders.length > 0) {
-      fetchShopifyIds(); // Fetch Shopify IDs only if orders array is non-empty
+      fetchShopifyIds();
     }
-  }, [orders]); // Add orders as a dependency
+  }, [orders]);
 
   console.log("orders", orders);
+
+  console.log("fullfillmentid", fullfillmentId);
+  const orderid = shopifyOrderIds[0];
+  console.log(orderid);
+
+  // To get id from from those unfullfill orders use this function
+  const getUnFulfillmentOrders = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/connections/${id}/get-fulfillment`
+      );
+      if (response) {
+        setFullfillmentId(response.data.fulfillmentOrderIds);
+        console.log("fulfillmentOrderIds", response.data.fulfillmentOrderIds);
+      }
+    } catch (error) {
+      console.log(
+        "Error fetching fulfillment orders:",
+        error.response ? error.response.data : error.message
+      );
+    }
+  };
+  useEffect(() => {
+    getUnFulfillmentOrders();
+  }, [orders]);
+
+  const sigleFilfullId = fullfillmentId[0];
+  console.log("sdfasdfs", sigleFilfullId);
+
+  const sendFulfillmentsWithDelay = async (fulfillmentIds, delay = 2000) => {
+    for (let i = 0; i < fulfillmentIds.length; i++) {
+      const fulfillment_order_id = fulfillmentIds[i];
+      console.log(`Sending fulfillment for ID: ${fulfillment_order_id}`);
+
+      try {
+        const response = await axios.post(
+          `http://localhost:5000/connections/${id}/create-fulfillment`,
+          {
+            fulfillment_order_id: fulfillment_order_id, // Send the fulfillment order ID
+            message: "The package was shipped this morning.",
+            tracking_info: {
+              number: "1Z001985YW997441234111",
+              url: "https://www.ups.com/WebTracking?loc=en_US&requester=ST&trackNums=1Z001985YW997441234111",
+            },
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        console.log(
+          "Fulfillment created for ID:",
+          fulfillment_order_id,
+          response.data
+        );
+      } catch (error) {
+        console.error(
+          `Error creating fulfillment for ID ${fulfillment_order_id}:`,
+          error.response ? error.response.data : error.message
+        );
+      }
+
+      // Wait for the specified delay before sending the next request
+      await new Promise((resolve) => setTimeout(resolve, delay));
+    }
+  };
+
+  useEffect(() => {
+    if (fullfillmentId.length > 0) {
+      sendFulfillmentsWithDelay(fullfillmentId, 2000); // Delay of 2000ms (2 seconds) between requests
+    }
+  }, [fullfillmentId]); // Runs when fullfillmentId array is updated
 
   useEffect(() => {
     // if (initialized) {
@@ -172,14 +248,6 @@ export const IntegrationCanvas = () => {
       fetchShopifyOrders();
     }
   };
-
-  const shopifyId =
-    orders &&
-    orders.map((order, i) => {
-      return order.id;
-    });
-  // setShopifyId(newOrders);
-  // console.log("neworder", typeof newOrders);
 
   useEffect(() => {
     const fetchShopifyDetails = async () => {
@@ -277,6 +345,20 @@ export const IntegrationCanvas = () => {
 
     fetchConnection();
   }, [id]);
+  // useEffect(() => {
+  //   const fetchShopifyOrderIds = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         "http://localhost:5000/connections/orders/shopifyIds"
+  //       );
+  //       setShopifyOrderIds(response.data);
+  //     } catch (error) {
+  //       console.error("Error fetching Shopify order IDs:", error);
+  //     }
+  //   };
+
+  //   fetchShopifyOrderIds();
+  // }, []);
 
   const openTriggerPopup = () => {
     setIsWebhookTriggerPopup(true);

@@ -25,6 +25,7 @@ import { getUser } from "../../storageUtils/storageUtils";
 import { url } from "../../api";
 import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
 import { ExportModal } from "./ExportModal/ExportModal";
+import { ConfirmCancelPopUp } from "../Common/ConfirmCancelPopUp/ConfirmCancelPopUp";
 
 export const Summary = () => {
   const { dashboardWidth } = useAppContext();
@@ -49,7 +50,7 @@ export const Summary = () => {
   const [isColumnManagerVisible, setIsColumnManagerVisible] = useState(false);
   const [selectedStatuses, setSelectedStatuses] = useState([]);
   const [timeRange, setTimeRange] = useState("allTime");
-  const [shopifyOrderIds, setShopifyOrderIds] = useState([]);
+  const [showDialog, setShowDialog] = useState(false);
   const [columns, setColumns] = useState([
     { name: "", key: "select", visible: true },
     { name: "Order Number", key: "orderNumber", visible: true },
@@ -407,30 +408,36 @@ export const Summary = () => {
   };
 
   const handleReset = () => {
-    setSearchTerm(""); // Clear search input
-    setFilteredClients(data); // Reset filteredClients to show all data
+    // setSearchTerm("");
+    // setFilteredClients(data);
+    setShowDialog(true);
+  };
+
+  const handleOk = () => {
+    setShowDialog(false);
+    setSearchTerm("");
+    setFilteredClients(data);
+  };
+
+  const handleCancel = () => {
+    setShowDialog(false);
   };
 
   const filteredDatas = filterDataByStatus(data); // Filter data before paginating
 
-  useEffect(() => {
-    const fetchShopifyOrderIds = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:5000/summary/orders/shopifyIds"
-        );
-        setShopifyOrderIds(response.data);
-      } catch (error) {
-        console.error("Error fetching Shopify order IDs:", error);
-      }
-    };
-
-    fetchShopifyOrderIds();
-  }, []);
-
   return (
     <div className="dashboard" style={{ width: dashboardWidth }}>
       <div className={styles.summaryHeader}>
+        {showDialog && (
+          <ConfirmCancelPopUp
+            headerText="Warning"
+            bodyText="Do you still want to continue?"
+            onOk={handleOk}
+            onCancel={handleCancel}
+            okButtonText="Ok"
+            cancelButtonText="No"
+          />
+        )}
         <h1 className={styles.title}>Transaction Summary</h1>
 
         <div className={styles.filters}>

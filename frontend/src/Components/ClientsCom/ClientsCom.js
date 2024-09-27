@@ -22,8 +22,6 @@ export const ClientsCom = () => {
   const [filteredClients, setFilteredClients] = useState(clients);
   const dispatch = useDispatch();
 
-  // const { clients, loading, error } = useSelector((state) => state.clients);
-
   const applyFilters = ({ clientName, email }) => {
     console.log("clientName", clientName);
     console.log("email", email);
@@ -32,22 +30,19 @@ export const ClientsCom = () => {
     const filteredData = clients.filter((client) => {
       const nameMatch = clientName
         ? client.clientName.toLowerCase().includes(clientName.toLowerCase())
-        : true; // true if clientName is empty
+        : true;
 
       const emailMatch = email
         ? client.email.toLowerCase().includes(email.toLowerCase())
-        : true; // true if email is empty
+        : true;
 
       // Return true if either name or email matches
       return nameMatch && emailMatch;
     });
-
-    console.log("filteredData", filteredData);
     setFilteredClients(filteredData);
   };
 
   useEffect(() => {
-    // Display all clients when the page is loaded
     setFilteredClients(clients);
   }, [clients]);
 
@@ -55,16 +50,8 @@ export const ClientsCom = () => {
     setIsFilterModalOpen(!isFilterModalOpen);
   };
 
-  console.log("recordsss", filteredClients);
-  console.log("recordsss", clients);
-
   let userId = getUser();
   userId = userId?._id;
-
-  // useEffect(() => {
-  //   dispatch(fetchClients());
-  //   // console.log("clients", clients);
-  // }, [dispatch, fetchTrigger, userId]);
 
   useEffect(() => {
     const fetchAllClients = async () => {

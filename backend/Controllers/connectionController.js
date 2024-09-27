@@ -63,6 +63,7 @@ exports.shofipyOrders = async (req, res) => {
     }
 
     const integration = connection.integrations[0];
+    console.log(integration);
     const { apiKey, storeUrl } = integration;
 
     const response = await axios.get(

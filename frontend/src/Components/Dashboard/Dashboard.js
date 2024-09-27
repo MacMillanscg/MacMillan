@@ -22,6 +22,10 @@ export const Dashboard = () => {
 
   // console.log("data", data);
 
+  useEffect(() => {
+    console.log("rendering");
+  }, []);
+
   return (
     <div className="dashboard" style={{ width: dashboardWidth }}>
       <div className={styles.home}>

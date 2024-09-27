@@ -9,8 +9,6 @@ import {
   faSync,
   faEllipsisV,
 } from "@fortawesome/free-solid-svg-icons";
-import { PrintModal } from "./PrintModal";
-import { ExportModal } from "./ExportModal/ExportModal";
 
 export const DotsModal = ({
   handlePrintClick,

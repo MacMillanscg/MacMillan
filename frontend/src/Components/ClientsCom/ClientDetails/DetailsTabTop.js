@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "./DetailsTab.module.css";
 
-export const DetailsTabTop = ({ handleSave, handleCancel }) => {
+export const DetailsTabTop = ({ handleSave, handleCancel, onhandleCancel }) => {
   return (
     <div>
       <div className="inner-right">
-        <button className={styles.cancel} onClick={handleCancel}>
+        <button className={styles.cancel} onClick={onhandleCancel}>
           Cancel
         </button>
         <button

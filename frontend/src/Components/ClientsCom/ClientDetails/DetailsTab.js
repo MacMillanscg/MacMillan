@@ -6,6 +6,7 @@ import styles from "./DetailsTab.module.css";
 import { useAppContext } from "../../Context/AppContext";
 import { DetailsTabTop } from "./DetailsTabTop";
 import { url } from "../../../api";
+import { ConfirmCancelPopUp } from "../../Common/ConfirmCancelPopUp/ConfirmCancelPopUp";
 
 export const DetailsTab = ({ clientId }) => {
   const [clientName, setClientName] = useState("");
@@ -13,6 +14,13 @@ export const DetailsTab = ({ clientId }) => {
   const [email, setEmail] = useState(null);
   const [isActive, setIsActive] = useState(false);
   const [fetchTrigger, setFetchTrigger] = useState(false);
+  const [showDialog, setShowDialog] = useState(false);
+  const [originalData, setOriginalData] = useState({
+    clientName: "",
+    phone: "",
+    email: "",
+    isActive: "",
+  });
 
   console.log("clientIDDD", clientId);
   const navigate = useNavigate();
@@ -28,6 +36,12 @@ export const DetailsTab = ({ clientId }) => {
         setPhone(client.phone);
         setEmail(client.email);
         setIsActive(client.isActive);
+        setOriginalData({
+          clientName: client.clientName,
+          phone: client.phone,
+          email: client.email,
+          isActive: client.isActive,
+        });
       } catch (error) {
         console.error("Error fetching client details:", error);
         toast.error("Failed to fetch client details");
@@ -68,26 +82,6 @@ export const DetailsTab = ({ clientId }) => {
     setIsActive((prevIsActive) => !prevIsActive);
   };
 
-  const handleCancel = () => {
-    // Reload the client details from the server
-    const fetchClientDetails = async () => {
-      try {
-        const response = await axios.get(`${url}/clients/${clientId}`);
-        const client = response.data;
-        setClientName(client.clientName);
-        setPhone(client.phone);
-        setEmail(client.email);
-        setIsActive(client.isActive);
-      } catch (error) {
-        console.error("Error fetching client details:", error);
-        toast.error("Failed to fetch client details");
-      }
-    };
-
-    fetchClientDetails();
-    toast("Changes have been reverted");
-  };
-
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this client?")) {
       try {
@@ -109,9 +103,45 @@ export const DetailsTab = ({ clientId }) => {
     }
   };
 
+  const onhandleCancel = () => {
+    if (isDirty()) {
+      setShowDialog(true);
+    }
+  };
+
+  const isDirty = () => {
+    return (
+      clientName !== originalData.clientName ||
+      email !== originalData.email ||
+      phone !== originalData.phone ||
+      isActive !== originalData.isActive
+    );
+  };
+
+  const handleOk = () => {
+    setShowDialog(false);
+    setClientName(originalData.clientName);
+    setEmail(originalData.email);
+    setPhone(originalData.phone);
+  };
+
+  const handleCancel = () => {
+    setShowDialog(false);
+  };
+
   return (
     <div>
       <div className={styles.profileDetails} style={{ maxWidth: "1025px" }}>
+        {showDialog && (
+          <ConfirmCancelPopUp
+            headerText="Warning"
+            bodyText="You have unsaved data. Do you want to continue?"
+            onOk={handleOk}
+            onCancel={handleCancel}
+            okButtonText="Ok"
+            cancelButtonText="Cancel"
+          />
+        )}
         <div className={styles.profilebottom}>
           <div className="inputFields" style={{ minWidth: "355px" }}>
             <div className="form-group mb-2">
@@ -168,7 +198,11 @@ export const DetailsTab = ({ clientId }) => {
               </button>
             </div>
           </div>
-          <DetailsTabTop handleSave={handleSave} handleCancel={handleCancel} />
+          <DetailsTabTop
+            handleSave={handleSave}
+            handleCancel={handleCancel}
+            onhandleCancel={onhandleCancel}
+          />
         </div>
       </div>
     </div>
