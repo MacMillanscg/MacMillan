@@ -3,6 +3,7 @@ import styles from "../../AddClients.module.css";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { url } from "../../../../api";
+import { getUser } from "../../../../storageUtils/storageUtils";
 
 export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
   const [activeTab, setActiveTab] = useState("info");
@@ -20,6 +21,9 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
   const [token, setToken] = useState("");
   const [isVerified, setIsVerified] = useState(false);
   const [error, setError] = useState("");
+
+  let userId = getUser();
+  userId = userId?._id;
 
   console.log("clientId", clientId);
 
@@ -167,6 +171,7 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
         selectedPlatform,
         storeUrl: shopifyFields.storeUrl,
         apiKey: shopifyFields.apiKey,
+        userId: userId,
       };
       console.log("newClinet", newClient);
 

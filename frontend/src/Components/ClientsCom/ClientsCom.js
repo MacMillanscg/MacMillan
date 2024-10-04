@@ -76,6 +76,7 @@ export const ClientsCom = () => {
 
   const closeModal = () => {
     setIsFilterModalOpen(false);
+    setIsModalOpen(false);
   };
 
   return (

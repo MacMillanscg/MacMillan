@@ -1,7 +1,7 @@
 // Endpoint to validate Shopify credentials
 const axios = require("axios");
 const Client = require("../Schema/Client");
-const Connection = require("../Schema/Connection");
+const Log = require("../Schema/Log");
 
 exports.addClientVerify = async (req, res) => {
   const { storeUrl, apiKey } = req.body;
@@ -28,7 +28,7 @@ exports.addClientVerify = async (req, res) => {
 
 exports.addClient = async (req, res) => {
   const { clientName, email, phone, userId } = req.body; // also pass url key api token
-  console.log(req.body);
+  console.log(userId);
 
   try {
     const newClient = new Client({
@@ -38,10 +38,26 @@ exports.addClient = async (req, res) => {
       userId,
     });
     const savedClient = await newClient.save();
+    // Log successful client creation
+    const successLog = new Log({
+      message: `Client ${clientName} created successfully.`,
+      title: `Client`,
+      userId: userId,
+      type: "success",
+    });
+    await successLog.save();
     res
       .status(201)
       .json({ message: "Client created successfully", client: savedClient });
   } catch (error) {
+    // Log the error
+    const errorLog = new Log({
+      message: `Error creating client: ${error.message}`,
+      title: `Client`,
+      userId: userId,
+      type: "error",
+    });
+    await errorLog.save();
     console.error("Error creating client:", error);
     res.status(500).json({ error: "Error creating client" });
   }
@@ -75,7 +91,8 @@ exports.getAllClients = (req, res) => {
 exports.addClientIntegration = async (req, res) => {
   const { clientId } = req.params;
   console.log("cliented", clientId);
-  const { integrationName, selectedPlatform, storeUrl, apiKey } = req.body;
+  const { integrationName, selectedPlatform, storeUrl, apiKey, userId } =
+    req.body;
 
   try {
     const client = await Client.findById(clientId);
@@ -92,6 +109,13 @@ exports.addClientIntegration = async (req, res) => {
     );
 
     if (existingIntegration) {
+      const warnLog = new Log({
+        message: `Integration exist with the same storeURL & apiKey: ${error.message}`,
+        title: `Client Integration`,
+        userId: userId,
+        type: "warn",
+      });
+      await warnLog.save();
       return res.status(400).json({
         message:
           "Integration with the same platform, store URL, and API key already exists.",
@@ -109,12 +133,27 @@ exports.addClientIntegration = async (req, res) => {
     client.integrations.push(integrationData);
     const updatedClient = await client.save();
 
+    const successLog = new Log({
+      message: `Client Integration created successfully.`,
+      title: `Client Integration`,
+      userId: userId,
+      type: "success",
+    });
+    await successLog.save();
+
     res.status(200).json({
       message: "Client integration added successfully",
 
       client: updatedClient,
     });
   } catch (error) {
+    const errorLog = new Log({
+      message: `Invalid credentials to create client Integration: ${error.message}`,
+      title: `Client Integration`,
+      userId: userId,
+      type: "error",
+    });
+    await errorLog.save();
     console.error("Error adding client integration:", error);
     res.status(500).json({ error: "Error adding client integration" });
     res.status(404).json({ Err: "Resource not found" });

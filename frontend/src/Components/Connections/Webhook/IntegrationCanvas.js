@@ -90,7 +90,7 @@ export const IntegrationCanvas = () => {
   const [clientId, setClientId] = useState(null);
   const [integrationId, setIntegrationId] = useState(null);
   const [shopifyOrderIds, setShopifyOrderIds] = useState([]);
-  const [fullfillmentId, setFullfillmentId] = useState([]);
+  const [fullfillmentId, setFullfillmentId] = useState(["223417687559"]);
 
   const dispatch = useDispatch();
   const { connections, error } = useSelector((state) => state.connections);
@@ -122,7 +122,15 @@ export const IntegrationCanvas = () => {
       const response = await axios.get(
         `http://localhost:5000/connections/${id}/api/orders`
       );
-      setOrders(response.data.orders);
+      const orders = response.data.orders;
+
+      const ordersWithPhone = orders.map((order) => {
+        const phoneNumber = order.customer?.phone || "No phone provided";
+        console.log("phonenumber", phoneNumber);
+        return { ...order, customerPhone: phoneNumber };
+      });
+
+      setOrders(ordersWithPhone);
 
       localStorage.setItem("shopifyInitialized", JSON.stringify(true));
       localStorage.setItem("shopify", JSON.stringify(true));
@@ -174,7 +182,7 @@ export const IntegrationCanvas = () => {
         `http://localhost:5000/connections/${id}/get-fulfillment`
       );
       if (response) {
-        setFullfillmentId(response.data.fulfillmentOrderIds);
+        // setFullfillmentId(response.data.fulfillmentOrderIds);
         console.log("fulfillmentOrderIds", response.data.fulfillmentOrderIds);
       }
     } catch (error) {

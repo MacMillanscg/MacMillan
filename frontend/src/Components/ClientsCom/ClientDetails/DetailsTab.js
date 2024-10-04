@@ -7,6 +7,8 @@ import { useAppContext } from "../../Context/AppContext";
 import { DetailsTabTop } from "./DetailsTabTop";
 import { url } from "../../../api";
 import { ConfirmCancelPopUp } from "../../Common/ConfirmCancelPopUp/ConfirmCancelPopUp";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export const DetailsTab = ({ clientId }) => {
   const [clientName, setClientName] = useState("");
@@ -21,6 +23,7 @@ export const DetailsTab = ({ clientId }) => {
     email: "",
     isActive: "",
   });
+  const [showdeleteModal, setShowDeleteModal] = useState(false);
 
   console.log("clientIDDD", clientId);
   const navigate = useNavigate();
@@ -82,17 +85,22 @@ export const DetailsTab = ({ clientId }) => {
     setIsActive((prevIsActive) => !prevIsActive);
   };
 
+  const handleDeletModal = () => {
+    setShowDeleteModal(true);
+  };
+  const cancelDeletModal = () => {
+    setShowDeleteModal(false);
+  };
+
   const handleDelete = async () => {
-    if (window.confirm("Are you sure you want to delete this client?")) {
-      try {
-        await axios.delete(`${url}/clients/addclients/${clientId}`);
-        toast.success("Client deleted successfully");
-        navigate("/addclients");
-        // Redirect to clients list
-      } catch (error) {
-        console.error("Error deleting client:", error);
-        toast.error("Failed to delete client");
-      }
+    try {
+      await axios.delete(`${url}/clients/addclients/${clientId}`);
+      toast.success("Client deleted successfully");
+      navigate("/addclients");
+      // Redirect to clients list
+    } catch (error) {
+      console.error("Error deleting client:", error);
+      toast.error("Failed to delete client");
     }
   };
 
@@ -140,6 +148,16 @@ export const DetailsTab = ({ clientId }) => {
             onCancel={handleCancel}
             okButtonText="Ok"
             cancelButtonText="Cancel"
+          />
+        )}
+        {showdeleteModal && (
+          <ConfirmCancelPopUp
+            headerText="Warning"
+            bodyText="Are you sure you want to delete this record?"
+            onOk={handleDelete}
+            onCancel={cancelDeletModal}
+            okButtonText="Ok"
+            cancelButtonText="No"
           />
         )}
         <div className={styles.profilebottom}>
@@ -193,8 +211,8 @@ export const DetailsTab = ({ clientId }) => {
                   {isActive ? "Active" : "Inactive"}
                 </label>
               </div>
-              <button className="btn btn-danger" onClick={handleDelete}>
-                Delete
+              <button className={styles.deleteIcon} onClick={handleDeletModal}>
+                <FontAwesomeIcon icon={faTrash} />
               </button>
             </div>
           </div>

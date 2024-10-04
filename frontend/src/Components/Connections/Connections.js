@@ -18,6 +18,7 @@ import axios from "axios";
 import { url } from "../../api";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { loggingService } from "../../Sources/loggingService";
 
 export const Connections = () => {
   const { dashboardWidth } = useAppContext();

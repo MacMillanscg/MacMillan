@@ -40,18 +40,51 @@ export const OutputLogs = ({ selectedIntegration, orders, shopifyDetails }) => {
     setActiveTab(tab);
   };
 
+  const flattenObject = (obj, prefix = "") => {
+    return Object.keys(obj).reduce((acc, key) => {
+      const fullKey = prefix ? `${prefix}.${key}` : key;
+      if (typeof obj[key] === "object" && obj[key] !== null) {
+        Object.assign(acc, flattenObject(obj[key], fullKey));
+      } else {
+        acc[fullKey] = obj[key];
+      }
+      return acc;
+    }, {});
+  };
+
   const handleExport = () => {
     if (!orders || orders.length === 0) {
       toast.error("No orders available for export.");
       return;
     }
 
-    orders.forEach((order) => {
+    // Sort orders in ascending order based on `order.id`
+    const sortedOrders = [...orders].sort((a, b) => {
+      return String(a.id).localeCompare(String(b.id), undefined, {
+        numeric: true,
+      });
+    });
+
+    sortedOrders.forEach((order) => {
       let content;
+      const flattenedOrder = flattenObject(order);
+
       if (selectedFormat === "csv") {
         // Convert each order to CSV
-        const headers = Object.keys(order);
-        const rows = headers.map((header) => order[header]).join(",");
+        const headers = Object.keys(flattenedOrder);
+
+        // Join headers with commas
+        const rows = headers
+          .map((header) => {
+            const value =
+              flattenedOrder[header] !== undefined
+                ? `"${flattenedOrder[header]}"`
+                : "";
+            return value;
+          })
+          .join(","); // Join values with commas
+
+        // Prepare CSV content
         content = [headers.join(","), rows].join("\n");
       } else if (selectedFormat === "xml") {
         // Convert each order to XML
@@ -59,6 +92,7 @@ export const OutputLogs = ({ selectedIntegration, orders, shopifyDetails }) => {
         content = js2xml(wrappedOrder, { compact: true, spaces: 4 });
       }
 
+      // Proceed with file download
       if (content) {
         const blob = new Blob([content], {
           type: selectedFormat === "csv" ? "text/csv" : "application/xml",
@@ -66,6 +100,7 @@ export const OutputLogs = ({ selectedIntegration, orders, shopifyDetails }) => {
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
+        // The download name is the order ID followed by the selected format
         a.download = `${order.id}.${selectedFormat}`;
         document.body.appendChild(a);
         a.click();
