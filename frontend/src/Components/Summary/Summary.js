@@ -51,6 +51,7 @@ export const Summary = () => {
   const [selectedStatuses, setSelectedStatuses] = useState([]);
   const [timeRange, setTimeRange] = useState("allTime");
   const [showDialog, setShowDialog] = useState(false);
+  const [orders, setOrders] = useState([]);
   const [columns, setColumns] = useState([
     { name: "", key: "select", visible: true },
     { name: "Order Number", key: "orderNumber", visible: true },
@@ -87,7 +88,7 @@ export const Summary = () => {
         const userClients = updatedData.filter(
           (user) => user.userId === userId
         );
-        // console.log("updated", userClients);
+
         setClients(userClients);
       } catch (error) {
         console.log(error);
@@ -95,6 +96,7 @@ export const Summary = () => {
     };
     fetchAllClients();
   }, [userId]);
+  console.log("clients", clients);
 
   const filterDataByTimeRange = (data) => {
     const today = new Date();
@@ -224,10 +226,37 @@ export const Summary = () => {
   const shippmentData = [];
   console.log("dataaa", data);
 
+  // const fetchShopifyOrders = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       `http://localhost:5000/connections/66f2afe793b9bf7ea25dae96/api/orders`
+  //     );
+  //     const orders = response.data.orders;
+
+  //     const ordersWithPhone = orders.map((order) => {
+  //       const phoneNumber = order.customer?.phone || "No phone provided";
+  //       console.log("phonenumber", phoneNumber);
+  //       return { ...order, customerPhone: phoneNumber };
+  //     });
+
+  //     console.log("orderwith", ordersWithPhone);
+  //     setOrders(ordersWithPhone);
+  //     setFilteredClients(ordersWithPhone);
+  //   } catch (error) {
+  //     console.error("Error fetching orders:", error);
+  //   }
+  // };
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     fetchShopifyOrders();
+  //   }, 3000);
+  // }, []);
+
   const fetchData = async (shipmentId) => {
     setLoading(true);
     try {
-      const [shipResponse, trackResponse] = await Promise.all([
+      // Fetch data from eShipper APIs and Shopify API concurrently
+      const [shipResponse, trackResponse, shopifyResponse] = await Promise.all([
         axios.get(`https://uu2.eshipper.com/api/v2/ship/${shipmentId}`, {
           headers: {
             "Content-Type": "application/json",
@@ -240,39 +269,60 @@ export const Summary = () => {
             Authorization: `Bearer ${token}`,
           },
         }),
+        axios.get(
+          `http://localhost:5000/connections/66f2afe793b9bf7ea25dae96/api/orders`
+        ),
       ]);
-      console.log(shipResponse);
-      console.log(trackResponse);
+
+      const data = [
+        { id: 1, name: "John Doe", address: "123 Main St, Springfield" },
+        { id: 2, name: "Jane Smith", address: "456 Oak Ave, Centerville" },
+        { id: 3, name: "Mike Johnson", address: "789 Pine Rd, Riverside" },
+        { id: 4, name: "Emily Davis", address: "101 Maple Blvd, Greenville" },
+      ];
 
       // Process the response from both APIs
       const shipData = shipResponse.data;
       const trackData = trackResponse.data;
+      const shopifyOrders = data;
 
-      const filteredStatuses = Object.entries(trackData.status)
-        .filter(([key, value]) => value)
-        .map(([key]) => key)
-        .join(", ");
+      // Filter and map Shopify order details
+      const ordersWithPhone = shopifyOrders.map((order) => {
+        const phoneNumber = order.customer?.phone || "No phone provided";
+        return { ...order, customerPhone: phoneNumber };
+      });
 
+      console.log("Shopify Orders with Phone:", ordersWithPhone);
+
+      // Process eShipper tracking statuses
+      // const filteredStatuses = Object.entries(trackData.status)
+      //   .filter(([key, value]) => value)
+      //   .map(([key]) => key)
+      //   .join(", ");
+
+      // Map data from both eShipper and Shopify APIs
       const mappedData = {
-        orderNumber: shipData.reference.code,
-        shipmentNumber: shipData.order.id,
-        carrier: shipData.carrier.carrierName,
+        // orderNumber: shipData.reference.code,
+        // shipmentNumber: shipData.order.id,
+        // carrier: shipData.carrier.carrierName,
         platform: "Shopify",
-        shipmentStatus: filteredStatuses,
+        // shipmentStatus: filteredStatuses,
         client: clients[0]?.clientName,
-        customer: trackData.orderDetails.to.attention,
-        address: trackData.orderDetails.to.address1,
-        trackingNumber: shipData.trackingNumber, // From the 'track' API
-        trackingUrl: trackData.trackingUrl,
-        createdDate: "09/06/2024",
-        shippedDate: "07/07/2024",
-        reference: shipData.reference.name,
-        reference2: shipData.reference2.name,
-        reference3: shipData.reference3.name,
-        dimentions: `${trackData.orderDetails.packages.packages[0].length} x ${trackData.orderDetails.packages.packages[0].width} x ${trackData.orderDetails.packages.packages[0].height}`,
-        weight: `${trackData.orderDetails.packages.packages[0].weight} ${trackData.orderDetails.packages.packages[0].weightUnit}`,
-        label: shipData.labelData.label[0].data,
-        downloaded: false,
+        // customer: trackData.orderDetails.to.attention,
+        // address: trackData.orderDetails.to.address1,
+        // trackingNumber: shipData.trackingNumber, // From the 'track' API
+        // trackingUrl: trackData.trackingUrl,
+        // createdDate: "09/06/2024",
+        // shippedDate: "07/07/2024",
+        // reference: shipData.reference.name,
+        // reference2: shipData.reference2.name,
+        // reference3: shipData.reference3.name,
+        // dimentions: `${trackData.orderDetails.packages.packages[0].length} x ${trackData.orderDetails.packages.packages[0].width} x ${trackData.orderDetails.packages.packages[0].height}`,
+        // weight: `${trackData.orderDetails.packages.packages[0].weight} ${trackData.orderDetails.packages.packages[0].weightUnit}`,
+        // label: shipData.labelData.label[0].data,
+        // downloaded: false,
+        // Add Shopify-specific fields here if needed
+        shopifyOrders: ordersWithPhone,
       };
 
       return mappedData;
@@ -282,38 +332,30 @@ export const Summary = () => {
       setLoading(false); // Stop loading after data is fetched
     }
   };
+
   // console.log("allData", allData);
 
-  const shipmentIds = [
-    "8000000011007",
-    "8000000011006",
-    "8000000010963",
-    "8000000010962",
-    "8000000010956",
-    "8000000011015",
-    "8000000011036",
-  ];
-
   const getAllShipments = async () => {
+    const id = "2334523452";
     const shipments = [];
-
     // Loop through each shipment ID
-    for (let id of shipmentIds) {
-      const shipmentData = await fetchData(id);
-      if (shipmentData) {
-        shipments.push(shipmentData);
-      }
+    // for (let id of shipmentIds) {
+    const shipmentData = await fetchData(id);
+    if (shipmentData) {
+      shipments.push(shipmentData);
     }
-
+    // }
     console.log("All shipments:", shipments);
     setData(shipments);
     setFilteredClients(shipments);
   };
+  console.log("ordrs", orders);
+  console.log("filterclients", filteredClients);
 
   useEffect(() => {
     setTimeout(() => {
       getAllShipments();
-    }, 1000);
+    }, 4000);
   }, [token]);
 
   const handleEShipperClick = () => {
@@ -551,63 +593,30 @@ export const Summary = () => {
               </tr>
             </thead>
             <tbody>
-              {paginateData(filteredClients).map((row, index) => (
-                <tr key={index}>
-                  <td>
+              {orders &&
+                orders.map((row, index) => {
+                  return (
+                    <tr key={index}>
+                      {/* <td>
                     <input
                       type="checkbox"
                       checked={selectedRows.includes(index)}
                       onChange={(e) => handleRowSelect(e, index)}
                     />
-                  </td>
-                  {columns
-                    .filter((column) => column.visible)
-                    .map((column) => (
-                      <td key={column.key}>
-                        {column.key === "downloaded" ? (
-                          row.downloaded ? (
-                            <FontAwesomeIcon icon={faCheck} />
-                          ) : (
-                            <button
-                              onClick={() =>
-                                handleDownloadClick(
-                                  index,
-                                  row.trackingNumber,
-                                  row.label
-                                )
-                              }
-                            >
-                              Download
-                            </button>
-                          )
-                        ) : column.key === "trackingUrl" ? (
-                          // Clickable Tracking URL Column
-                          <a
-                            href={row.trackingUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            URL
-                          </a>
-                        ) : column.key === "labels" ? (
-                          // Labels Column
-                          <>
-                            {/* Assuming row.labels contains some label data */}
-                            {/* {row.label} */}
+                  </td> */}
+                      {/* Dynamically render the cells based on column keys */}
 
-                            {/* Additional Label Text Below */}
-                            <p>
-                              {/* Example dynamic or static text */}
-                              Label
-                            </p>
-                          </>
-                        ) : (
-                          row[column.key]
-                        )}
-                      </td>
-                    ))}
-                </tr>
-              ))}
+                      {columns.map(
+                        (column) =>
+                          column.visible && (
+                            <td key={column.key}>
+                              {column.key === "orderNumber" && row.id}
+                            </td>
+                          )
+                      )}
+                    </tr>
+                  );
+                })}
             </tbody>
           </table>
         )}

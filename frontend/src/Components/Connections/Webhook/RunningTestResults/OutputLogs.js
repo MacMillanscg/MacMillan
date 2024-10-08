@@ -46,7 +46,16 @@ export const OutputLogs = ({ selectedIntegration, orders, shopifyDetails }) => {
       if (typeof obj[key] === "object" && obj[key] !== null) {
         Object.assign(acc, flattenObject(obj[key], fullKey));
       } else {
-        acc[fullKey] = obj[key];
+        // Convert large numbers to strings to prevent exponential form
+        if (
+          typeof obj[key] === "number" &&
+          obj[key] > Number.MAX_SAFE_INTEGER
+        ) {
+          // Force large numbers to be treated as strings
+          acc[fullKey] = `"${String(obj[key])}"`;
+        } else {
+          acc[fullKey] = obj[key];
+        }
       }
       return acc;
     }, {});
