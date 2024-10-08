@@ -226,135 +226,128 @@ export const Summary = () => {
   const shippmentData = [];
   console.log("dataaa", data);
 
-  // const fetchShopifyOrders = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       `http://localhost:5000/connections/66f2afe793b9bf7ea25dae96/api/orders`
-  //     );
-  //     const orders = response.data.orders;
-
-  //     const ordersWithPhone = orders.map((order) => {
-  //       const phoneNumber = order.customer?.phone || "No phone provided";
-  //       console.log("phonenumber", phoneNumber);
-  //       return { ...order, customerPhone: phoneNumber };
-  //     });
-
-  //     console.log("orderwith", ordersWithPhone);
-  //     setOrders(ordersWithPhone);
-  //     setFilteredClients(ordersWithPhone);
-  //   } catch (error) {
-  //     console.error("Error fetching orders:", error);
-  //   }
-  // };
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     fetchShopifyOrders();
-  //   }, 3000);
-  // }, []);
-
-  const fetchData = async (shipmentId) => {
-    setLoading(true);
+  const fetchShopifyOrders = async () => {
     try {
-      // Fetch data from eShipper APIs and Shopify API concurrently
-      const [shipResponse, trackResponse, shopifyResponse] = await Promise.all([
-        axios.get(`https://uu2.eshipper.com/api/v2/ship/${shipmentId}`, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }),
-        axios.get(`https://uu2.eshipper.com/api/v2/track/${shipmentId}`, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }),
-        axios.get(
-          `http://localhost:5000/connections/66f2afe793b9bf7ea25dae96/api/orders`
-        ),
-      ]);
+      const response = await axios.get(
+        `http://localhost:5000/connections/67053d4b8a2309ab8db347d7/api/orders`
+      );
+      const orders = response.data.orders;
 
-      const data = [
-        { id: 1, name: "John Doe", address: "123 Main St, Springfield" },
-        { id: 2, name: "Jane Smith", address: "456 Oak Ave, Centerville" },
-        { id: 3, name: "Mike Johnson", address: "789 Pine Rd, Riverside" },
-        { id: 4, name: "Emily Davis", address: "101 Maple Blvd, Greenville" },
-      ];
-
-      // Process the response from both APIs
-      const shipData = shipResponse.data;
-      const trackData = trackResponse.data;
-      const shopifyOrders = data;
-
-      // Filter and map Shopify order details
-      const ordersWithPhone = shopifyOrders.map((order) => {
+      const ordersWithPhone = orders.map((order) => {
         const phoneNumber = order.customer?.phone || "No phone provided";
+        console.log("phonenumber", phoneNumber);
         return { ...order, customerPhone: phoneNumber };
       });
 
-      console.log("Shopify Orders with Phone:", ordersWithPhone);
-
-      // Process eShipper tracking statuses
-      // const filteredStatuses = Object.entries(trackData.status)
-      //   .filter(([key, value]) => value)
-      //   .map(([key]) => key)
-      //   .join(", ");
-
-      // Map data from both eShipper and Shopify APIs
-      const mappedData = {
-        // orderNumber: shipData.reference.code,
-        // shipmentNumber: shipData.order.id,
-        // carrier: shipData.carrier.carrierName,
-        platform: "Shopify",
-        // shipmentStatus: filteredStatuses,
-        client: clients[0]?.clientName,
-        // customer: trackData.orderDetails.to.attention,
-        // address: trackData.orderDetails.to.address1,
-        // trackingNumber: shipData.trackingNumber, // From the 'track' API
-        // trackingUrl: trackData.trackingUrl,
-        // createdDate: "09/06/2024",
-        // shippedDate: "07/07/2024",
-        // reference: shipData.reference.name,
-        // reference2: shipData.reference2.name,
-        // reference3: shipData.reference3.name,
-        // dimentions: `${trackData.orderDetails.packages.packages[0].length} x ${trackData.orderDetails.packages.packages[0].width} x ${trackData.orderDetails.packages.packages[0].height}`,
-        // weight: `${trackData.orderDetails.packages.packages[0].weight} ${trackData.orderDetails.packages.packages[0].weightUnit}`,
-        // label: shipData.labelData.label[0].data,
-        // downloaded: false,
-        // Add Shopify-specific fields here if needed
-        shopifyOrders: ordersWithPhone,
-      };
-
-      return mappedData;
+      console.log("orderwith", ordersWithPhone);
+      setOrders(ordersWithPhone);
+      setFilteredClients(ordersWithPhone);
     } catch (error) {
-      console.error("Error fetching data:", error);
-    } finally {
-      setLoading(false); // Stop loading after data is fetched
+      console.error("Error fetching orders:", error);
     }
   };
+  useEffect(() => {
+    setTimeout(() => {
+      fetchShopifyOrders();
+    }, 3000);
+  }, []);
+
+  // const fetchData = async (shipmentId) => {
+  //   setLoading(true);
+  //   try {
+  // Fetch data from eShipper APIs and Shopify API concurrently
+  // const [shipResponse, trackResponse, shopifyResponse] = await Promise.all([
+  // axios.get(`https://uu2.eshipper.com/api/v2/ship/${shipmentId}`, {
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //     Authorization: `Bearer ${token}`,
+  //   },
+  // }),
+  // axios.get(`https://uu2.eshipper.com/api/v2/track/${shipmentId}`, {
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //     Authorization: `Bearer ${token}`,
+  //   },
+  // }),
+  //   axios.get(
+  //     `http://localhost:5000/connections/67053d4b8a2309ab8db347d7/api/orders`
+  //   ),
+  // ]);
+
+  // Process the response from both APIs
+  // const shipData = shipResponse.data;
+  // const trackData = trackResponse.data;
+  // const shopifyOrders = shopifyResponse.data.orders;
+
+  // Filter and map Shopify order details
+  // const ordersWithPhone = shopifyOrders.map((order) => {
+  //   const phoneNumber = order.customer?.phone || "No phone provided";
+  //   return { ...order, customerPhone: phoneNumber };
+  // });
+
+  // console.log("Shopify Orders with Phone:", shopifyOrders);
+
+  // Process eShipper tracking statuses
+  // const filteredStatuses = Object.entries(trackData.status)
+  //   .filter(([key, value]) => value)
+  //   .map(([key]) => key)
+  //   .join(", ");
+
+  // Map data from both eShipper and Shopify APIs
+  // const mappedData = {
+  // orderNumber: shipData.reference.code,
+  // shipmentNumber: shipData.order.id,
+  // carrier: shipData.carrier.carrierName,
+  // platform: "Shopify",
+  // shipmentStatus: filteredStatuses,
+  // client: clients[0]?.clientName,
+  // customer: trackData.orderDetails.to.attention,
+  // address: trackData.orderDetails.to.address1,
+  // trackingNumber: shipData.trackingNumber, // From the 'track' API
+  // trackingUrl: trackData.trackingUrl,
+  // createdDate: "09/06/2024",
+  // shippedDate: "07/07/2024",
+  // reference: shipData.reference.name,
+  // reference2: shipData.reference2.name,
+  // reference3: shipData.reference3.name,
+  // dimentions: `${trackData.orderDetails.packages.packages[0].length} x ${trackData.orderDetails.packages.packages[0].width} x ${trackData.orderDetails.packages.packages[0].height}`,
+  // weight: `${trackData.orderDetails.packages.packages[0].weight} ${trackData.orderDetails.packages.packages[0].weightUnit}`,
+  // label: shipData.labelData.label[0].data,
+  // downloaded: false,
+  // Add Shopify-specific fields here if needed
+  // shopifyOrders: ordersWithPhone,
+  // };
+
+  //     return mappedData;
+  //   } catch (error) {
+  //     console.error("Error fetching data:", error);
+  //   } finally {
+  //     setLoading(false); // Stop loading after data is fetched
+  //   }
+  // };
 
   // console.log("allData", allData);
 
-  const getAllShipments = async () => {
-    const id = "2334523452";
-    const shipments = [];
-    // Loop through each shipment ID
-    // for (let id of shipmentIds) {
-    const shipmentData = await fetchData(id);
-    if (shipmentData) {
-      shipments.push(shipmentData);
-    }
-    // }
-    console.log("All shipments:", shipments);
-    setData(shipments);
-    setFilteredClients(shipments);
-  };
-  console.log("ordrs", orders);
-  console.log("filterclients", filteredClients);
+  // const getAllShipments = async () => {
+  //   const id = "2334523452";
+  //   const shipments = [];
+  // Loop through each shipment ID
+  // for (let id of shipmentIds) {
+  // const shipmentData = await fetchData(id);
+  // if (shipmentData) {
+  //   shipments.push(shipmentData);
+  // }
+  // }
+  //   console.log("All shipments:", shipments);
+  //   setData(shipments);
+  //   setFilteredClients(shipments);
+  // };
+  // console.log("ordrs", orders);
+  // console.log("filterclients", filteredClients);
 
   useEffect(() => {
     setTimeout(() => {
-      getAllShipments();
+      // getAllShipments();
     }, 4000);
   }, [token]);
 
@@ -611,6 +604,23 @@ export const Summary = () => {
                           column.visible && (
                             <td key={column.key}>
                               {column.key === "orderNumber" && row.id}
+                              {column.key === "platform" && "Shopify"}
+                              {column.key === "client" &&
+                                clients[0]?.clientName}
+                              {column.key === "customer" && (
+                                <>
+                                  {`${row.customer.first_name} ${row.customer.last_name}`}
+                                </>
+                              )}
+                              {column.key === "address" && (
+                                <>
+                                  {`${row.customer.default_address.address1} ${row.customer.default_address.city}`}
+                                </>
+                              )}
+                              {column.key === "createdDate" &&
+                                new Date(row.created_at)
+                                  .toISOString()
+                                  .split("T")[0]}
                             </td>
                           )
                       )}
