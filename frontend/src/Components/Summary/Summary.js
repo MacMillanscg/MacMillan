@@ -165,7 +165,7 @@ export const Summary = () => {
   const uniqueStatuses = getUniqueStatuses(MockData);
 
   const handleColumnManagerClick = () => {
-    setIsColumnManagerVisible(!isColumnManagerVisible);
+    setIsColumnManagerVisible(true);
   };
 
   const closeColumnManager = () => {

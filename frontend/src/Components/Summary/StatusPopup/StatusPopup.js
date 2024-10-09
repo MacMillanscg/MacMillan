@@ -13,6 +13,11 @@ export const StatusPopup = ({
     ...selectedStatuses,
   ]);
 
+  useEffect(() => {
+    // Initialize all statuses as selected by default when the component mounts
+    setTempSelectedStatuses(statuses);
+  }, [statuses]);
+
   const popupRef = useRef(null);
 
   // Handle clicks outside the popup
@@ -31,13 +36,37 @@ export const StatusPopup = ({
   }, [popupRef]);
 
   const handleStatusChange = (status) => {
-    const updatedStatuses = [...tempSelectedStatuses];
-    if (updatedStatuses.includes(status)) {
-      const index = updatedStatuses.indexOf(status);
-      updatedStatuses.splice(index, 1);
+    let updatedStatuses = [...tempSelectedStatuses];
+
+    if (status === "All") {
+      // If "All" is clicked, either select or deselect everything
+      if (updatedStatuses.includes("All")) {
+        updatedStatuses = []; // Uncheck all if "All" is already selected
+      } else {
+        updatedStatuses = [...statuses]; // Check all statuses including "All"
+      }
     } else {
-      updatedStatuses.push(status);
+      // For other statuses, toggle them individually
+      if (updatedStatuses.includes(status)) {
+        updatedStatuses = updatedStatuses.filter((s) => s !== status);
+      } else {
+        updatedStatuses.push(status);
+      }
+
+      // If any status other than "All" is unchecked, uncheck "All"
+      if (updatedStatuses.length !== statuses.length) {
+        updatedStatuses = updatedStatuses.filter((s) => s !== "All");
+      }
+
+      // If all statuses except "All" are selected, automatically check "All"
+      if (
+        updatedStatuses.length === statuses.length - 1 &&
+        !updatedStatuses.includes("All")
+      ) {
+        updatedStatuses.push("All");
+      }
     }
+
     setTempSelectedStatuses(updatedStatuses);
   };
 

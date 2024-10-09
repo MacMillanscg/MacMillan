@@ -1,5 +1,19 @@
 export const MockData = [
   {
+    orderNumber: "ORDALL001",
+    shipmentNumber: "SHIPALL001",
+    platform: "Amazon",
+    shipmentStatus: "All",
+    client: "John Doe",
+    trackingNumber: "TRKALL001",
+    // trackingUrl: "https://trackingurl.com/TRK001",
+    trackingUrl: "Url",
+    downloaded: false,
+    status: "ALL", // Added status
+    createdDate: "2024-09-05", // Added created date
+    shippedDate: "2024-09-05", // Added shipped date
+  },
+  {
     orderNumber: "ORD001",
     shipmentNumber: "SHIP001",
     platform: "Amazon",
