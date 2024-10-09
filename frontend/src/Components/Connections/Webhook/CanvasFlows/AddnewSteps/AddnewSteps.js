@@ -71,7 +71,7 @@ export const AddnewSteps = ({ closeModal, onclose }) => {
       // navigate(`/connections/${newConnectionId}`);
       // console.log("newconnected", newConnectionId);
 
-      // console.log("Server response success:", response.data);
+      console.log("Server response success:", response.data);
     } catch (error) {
       console.log("Error creating connection:", error);
     }

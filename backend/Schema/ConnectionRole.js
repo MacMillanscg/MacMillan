@@ -8,10 +8,17 @@ const ConnectionRole = new mongoose.Schema({
   connectionName: {
     type: String,
     required: true,
+    ref: "Connection",
   },
   webhookTrigger: {
-    type: String,
-    default: null,
+    description: {
+      type: String,
+      default: null,
+    },
+    name: {
+      type: String,
+      default: null,
+    },
   },
   managementTrigger: {
     type: String,

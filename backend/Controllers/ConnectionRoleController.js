@@ -30,3 +30,13 @@ exports.addConnectionRole = async (req, res) => {
     res.status(500).json({ error: "Server error while creating connection" });
   }
 };
+
+exports.getAllConnections = async (req, res) => {
+  try {
+    const connections = await Connection.find(); // Fetch all connections
+    res.status(200).json(connections);
+  } catch (error) {
+    console.error("Error fetching connections:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};

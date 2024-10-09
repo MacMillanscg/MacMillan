@@ -485,7 +485,12 @@ export const Summary = () => {
       reference2: { name: "#1002" },
       reference3: { name: "24653" },
     },
-    { orderNumber: 67890, extraInfo: "Extra data 2" },
+    {
+      orderNumber: 6296729157937,
+      reference: { name: 6296729157937 },
+      reference2: { name: "#1003" },
+      reference3: { name: "24655" },
+    },
   ];
 
   const filteredDatas = filterDataByStatus(data); // Filter data before paginating
@@ -684,6 +689,21 @@ export const Summary = () => {
                               {column.key === "dimentions" &&
                                 row.id === 6296516985137 &&
                                 `8 x 8 x 8 in`}
+                              {column.key === "reference" &&
+                                row.id === 6296729157937 &&
+                                "6296729157937"}
+                              {column.key === "reference2" &&
+                                row.id === 6296729157937 &&
+                                "#1003"}
+                              {column.key === "reference3" &&
+                                row.id === 6296729157937 &&
+                                "24655"}
+                              {column.key === "weight" &&
+                                row.id === 6296729157937 &&
+                                "5.000 lb"}
+                              {column.key === "dimentions" &&
+                                row.id === 6296729157937 &&
+                                `12 x 12 x 12 in`}
                             </td>
                           )
                       )}
