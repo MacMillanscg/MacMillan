@@ -22,16 +22,13 @@ import { getUser } from "../../../../../storageUtils/storageUtils";
 
 export const AddnewSteps = ({ closeModal, onclose }) => {
   const { id } = useParams();
-  // console.log("sdfasf", id);
+  console.log("sdfasf", id);
   const { dashboardWidth } = useAppContext();
   const [connectionName, setConnectionName] = useState("");
   const [clients, setClients] = useState([]);
-  const [client, setClient] = useState("");
+
   const [option, setOption] = useState("");
   const [search, setSearch] = useState("");
-  const [selectedClientIntegrations, setSelectedClientIntegrations] = useState(
-    []
-  );
   const [cronExpression, setCronExpression] = useState("");
   const [schedule, setSchedule] = useState("");
   const [webhookUrl, setWebhookUrl] = useState("");
@@ -39,14 +36,9 @@ export const AddnewSteps = ({ closeModal, onclose }) => {
   const [selectedWebhookTrigger, setSelectedWebhookTrigger] = useState(null);
   const [selectedManagementTrigger, setSelectedManagementTrigger] =
     useState(null);
-  const [selectedClient, setSelectedClient] = useState(null);
-  const [selectedIntegration, setSelectedIntegration] = useState(null);
   const navigate = useNavigate();
   let userId = getUser();
   userId = userId._id;
-
-  // console.log("selectedWebhookTrigger", selectedWebhookTrigger);
-  console.log("selectedIntegration", selectedIntegration);
 
   useEffect(() => {
     const fetchAllClients = async () => {
@@ -64,22 +56,6 @@ export const AddnewSteps = ({ closeModal, onclose }) => {
     };
     fetchAllClients();
   }, [userId]);
-  // console.log("clients", clients);
-
-  const handleClientChange = (e) => {
-    const clientName = e.target.value;
-    const selectedClient = clients.find(
-      (client) => client.clientName === clientName
-    );
-    setSelectedClient(selectedClient);
-    setClient(clientName);
-    if (selectedClient) {
-      setSelectedClientIntegrations(selectedClient.integrations || []);
-    } else {
-      setSelectedClientIntegrations([]);
-    }
-  };
-  console.log("selectintegration", selectedClientIntegrations);
 
   const handleWebhookTriggerClick = (trigger) => {
     setSelectedWebhookTrigger(trigger);
@@ -88,37 +64,13 @@ export const AddnewSteps = ({ closeModal, onclose }) => {
   const handleManagementTriggerClick = (trigger) => {
     setSelectedManagementTrigger(trigger);
   };
-  console.log("select client", selectedClient?.clientName);
-
-  const handleIntegrationClick = (integration) => {
-    setSelectedIntegration(integration);
-  };
 
   // console.log("client1", client);
   const handleCreate = async () => {
     try {
-      const selectedClientObj = clients.find(
-        (client) => client.clientName === client
-      );
-
-      const formattedIntegrations = {
-        integrationId: selectedIntegration?._id,
-        integrationName: selectedIntegration?.integrationName,
-        platform: selectedIntegration?.platform,
-        storeUrl: selectedIntegration?.storeUrl,
-        apiKey: selectedIntegration?.apiKey,
-      };
-
-      // console.log("selcted", selectedClient);
       const dataToStore = {
-        connectionName,
-        client: {
-          clientId: selectedClient._id,
-          clientName: selectedClient.clientName,
-        },
-        // Send the client ID
-        integrations: formattedIntegrations,
-        // Send integration IDs
+        connectionId: id,
+        connectionName: connectionName,
         webhookTrigger: option === "Webhook" ? selectedWebhookTrigger : null,
         managementTrigger:
           option === "Management" ? selectedManagementTrigger : null,
@@ -128,14 +80,15 @@ export const AddnewSteps = ({ closeModal, onclose }) => {
       console.log("Create connection:", dataToStore);
       // Send dataToStore to the server
       const response = await axios.post(
-        `${url}/connections/addConnections`,
+        `${url}/connections/addConnections/${id}`,
         dataToStore
       );
-      const newConnectionId = response.data.id;
-      navigate(`/connections/${newConnectionId}`);
+      onclose();
+      // const newConnectionId = response.data.id;
+      // navigate(`/connections/${newConnectionId}`);
       // console.log("newconnected", newConnectionId);
 
-      console.log("Server response success:", response.data);
+      // console.log("Server response success:", response.data);
     } catch (error) {
       console.log("Error creating connection:", error);
     }

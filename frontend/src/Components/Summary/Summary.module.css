@@ -113,9 +113,9 @@
       padding: 12px 8px;
     }
   }
-  /* .table td:nth-child(2){
+  .table td:nth-child(2){
     display: none;
-  } */
+  }
   .table th:nth-child(2){
     display: none;
   }

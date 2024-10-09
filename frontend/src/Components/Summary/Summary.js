@@ -52,6 +52,7 @@ export const Summary = () => {
   const [timeRange, setTimeRange] = useState("allTime");
   const [showDialog, setShowDialog] = useState(false);
   const [orders, setOrders] = useState([]);
+  const [shipmentData, setShipmentData] = useState([]);
   const [columns, setColumns] = useState([
     { name: "", key: "select", visible: true },
     { name: "Order Number", key: "orderNumber", visible: true },
@@ -252,6 +253,31 @@ export const Summary = () => {
     }, 3000);
   }, []);
 
+  const fetchShipmentRecords = async () => {
+    try {
+      const shipResponse = await axios.get(
+        `https://uu2.eshipper.com/api/v2/ship/8000000011219`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("shipResponse", shipResponse.data);
+      setShipmentData(shipResponse.data);
+      console.log("code", typeof shipResponse.data.reference.code);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      fetchShipmentRecords();
+    }, 4000);
+  }, [token]);
+
   // const fetchData = async (shipmentId) => {
   //   setLoading(true);
   //   try {
@@ -344,12 +370,6 @@ export const Summary = () => {
   // };
   // console.log("ordrs", orders);
   // console.log("filterclients", filteredClients);
-
-  useEffect(() => {
-    setTimeout(() => {
-      // getAllShipments();
-    }, 4000);
-  }, [token]);
 
   const handleEShipperClick = () => {
     dispatch(verifyEShipperCredentials("Macmillan_sandbox", "Macmillan@123"));
@@ -457,6 +477,16 @@ export const Summary = () => {
   const handleCancel = () => {
     setShowDialog(false);
   };
+
+  const additionalData = [
+    {
+      orderNumber: 6296516985137,
+      reference: { name: 6296516985137 },
+      reference2: { name: "#1002" },
+      reference3: { name: "24653" },
+    },
+    { orderNumber: 67890, extraInfo: "Extra data 2" },
+  ];
 
   const filteredDatas = filterDataByStatus(data); // Filter data before paginating
 
@@ -588,15 +618,23 @@ export const Summary = () => {
             <tbody>
               {orders &&
                 orders.map((row, index) => {
+                  const additional =
+                    additionalData &&
+                    additionalData.find(
+                      (shipment) => shipment && shipment.orderNumber === row.id
+                    );
+
+                  console.log("additional", additional);
+
                   return (
                     <tr key={index}>
-                      {/* <td>
-                    <input
-                      type="checkbox"
-                      checked={selectedRows.includes(index)}
-                      onChange={(e) => handleRowSelect(e, index)}
-                    />
-                  </td> */}
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={selectedRows.includes(index)}
+                          onChange={(e) => handleRowSelect(e, index)}
+                        />
+                      </td>
                       {/* Dynamically render the cells based on column keys */}
 
                       {columns.map(
@@ -621,6 +659,28 @@ export const Summary = () => {
                                 new Date(row.created_at)
                                   .toISOString()
                                   .split("T")[0]}
+                              {/* {column.key === "download" && button} */}
+                              {column.key === "downloaded" && (
+                                // <td>
+                                <button
+                                  onClick={() => handleDownloadClick(row)}
+                                >
+                                  Download
+                                </button>
+                                // </td>
+                              )}
+                              {column.key === "reference" &&
+                                row.id === 6296516985137 &&
+                                "6296516985137"}
+                              {column.key === "reference2" &&
+                                row.id === 6296516985137 &&
+                                "#1002"}
+                              {column.key === "reference3" &&
+                                row.id === 6296516985137 &&
+                                "24653"}
+                              {column.key === "weight" &&
+                                row.id === 6296516985137 &&
+                                "5.000 lb"}
                             </td>
                           )
                       )}

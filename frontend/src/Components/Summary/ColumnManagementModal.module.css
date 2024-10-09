@@ -28,6 +28,16 @@
     margin-bottom: 10px;
     width: 50%;
   }
+  .checkboxGroup .checkbox:nth-child(2){
+    display: none;
+  }
+  
+  .checkboxGroup .checkbox:last-child{
+    display: none;
+  }
+  .checkboxGroup .checkbox:nth-child(19){
+    display: none;
+  }
   
   .checkbox input {
     margin-right: 10px;
