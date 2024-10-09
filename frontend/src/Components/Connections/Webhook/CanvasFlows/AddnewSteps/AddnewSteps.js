@@ -40,23 +40,6 @@ export const AddnewSteps = ({ closeModal, onclose }) => {
   let userId = getUser();
   userId = userId._id;
 
-  useEffect(() => {
-    const fetchAllClients = async () => {
-      try {
-        const response = await axios.get(`${url}/clients`);
-        const updatedData = response.data;
-        const userClients = updatedData.filter(
-          (user) => user.userId === userId
-        );
-        // console.log("updated clients", userClients);
-        setClients(userClients);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchAllClients();
-  }, [userId]);
-
   const handleWebhookTriggerClick = (trigger) => {
     setSelectedWebhookTrigger(trigger);
   };

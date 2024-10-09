@@ -681,6 +681,9 @@ export const Summary = () => {
                               {column.key === "weight" &&
                                 row.id === 6296516985137 &&
                                 "5.000 lb"}
+                              {column.key === "dimentions" &&
+                                row.id === 6296516985137 &&
+                                `8 x 8 x 8`}
                             </td>
                           )
                       )}

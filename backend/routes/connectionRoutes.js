@@ -2,6 +2,7 @@ const router = require("express").Router();
 
 const connectionController = require("../Controllers/connectionController");
 const shopifyControllers = require("../Controllers/ShopifyControllers");
+const connectionRoleController = require("../Controllers/ConnectionRoleController");
 // const eShipperController = require("../Controllers/eShipperController");
 
 router.post("/addConnections", connectionController.createConnection);
@@ -30,5 +31,7 @@ router.post(
   "/:id/verify-eshipper",
   connectionController.verifyEShipperCredentials
 );
+
+router.post("/addConnections/:id", connectionRoleController.addConnectionRole);
 
 module.exports = router;
