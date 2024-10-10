@@ -53,6 +53,7 @@ export const Summary = () => {
   const [showDialog, setShowDialog] = useState(false);
   const [orders, setOrders] = useState([]);
   const [shipmentData, setShipmentData] = useState([]);
+  const [trackingUrl, setTrackingUrl] = useState(null);
   const [base64Data, setBase64Data] = useState(null);
   const [columns, setColumns] = useState([
     { name: "", key: "select", visible: true },
@@ -254,10 +255,10 @@ export const Summary = () => {
     }, 3000);
   }, []);
 
-  const fetchShipmentRecords = async () => {
+  const fetchShipmentRecords = async (shipmentId) => {
     try {
       const shipResponse = await axios.get(
-        `https://uu2.eshipper.com/api/v2/ship/8000000011219`,
+        `https://uu2.eshipper.com/api/v2/ship/${shipmentId}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -269,16 +270,24 @@ export const Summary = () => {
       setShipmentData(shipResponse.data);
       console.log("code", typeof shipResponse.data.reference.code);
       setBase64Data(shipResponse.data.labelData.label[0].data);
+      setTrackingUrl(shipResponse.data.trackingUrl);
     } catch (error) {
       console.log(error);
     }
   };
   console.log("label", base64Data);
+  console.log("trackingUrl", trackingUrl);
+
+  const shipmentIds = [
+    8000000011219, 8000000011224, 8000000011225, 8000000011226, 8000000011227,
+  ]; // Your shipment IDs
 
   useEffect(() => {
-    setTimeout(() => {
-      fetchShipmentRecords();
-    }, 4000);
+    if (token) {
+      shipmentIds.forEach((shipmentId) => {
+        fetchShipmentRecords(shipmentId); // Pass each shipment ID one by one
+      });
+    }
   }, [token]);
 
   // const fetchData = async (shipmentId) => {
@@ -398,7 +407,7 @@ export const Summary = () => {
   };
 
   const handleDownloadClick = async (rowIndex) => {
-    const trackingNumber = 12343531234;
+    const trackingNumber = 123456789012;
     if (base64Data) {
       const blob = decodeBase64(base64Data);
 
@@ -758,9 +767,25 @@ export const Summary = () => {
                                 row.id === 6299446542641 &&
                                 `8 x 8 x 8 in`}
 
-                              {column.key === "labels" &&
-                                row.id === 6296516985137 &&
-                                "Label"}
+                              {column.key === "shippedDate" && "10/11/2024"}
+                              {/* {column.key === "shippedDate" &&
+                                row.id === 6299445821745 &&
+                                "s234234 "} */}
+                              {column.key === "carrier" && "Canada post"}
+                              {column.key === "shipmentStatus" &&
+                                "Ready for shipping"}
+                              {column.key === "trackingNumber" &&
+                                "123456789012"}
+                              {column.key === "labels" && "Label"}
+                              {column.key === "trackingUrl" && (
+                                <a
+                                  href={trackingUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  URL
+                                </a>
+                              )}
 
                               {/* new */}
                             </td>
