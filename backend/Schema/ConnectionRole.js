@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const ConnectionRole = new mongoose.Schema({
+const ConnectionSchema = new mongoose.Schema({
   connectionId: {
     type: mongoose.Schema.Types.ObjectId, // Assuming you're storing it as an ObjectId
     required: true,
@@ -34,4 +34,5 @@ const ConnectionRole = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("ConnectionRole", ConnectionRole);
+const ConnectionRole = mongoose.model("ConnectionRole", ConnectionSchema);
+module.exports = ConnectionRole;

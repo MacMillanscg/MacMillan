@@ -1,7 +1,7 @@
 const ConnectionRole = require("../Schema/ConnectionRole");
 
 // Create a new connection
-exports.addConnectionRole = async (req, res) => {
+exports.addConnectionStep = async (req, res) => {
   const {
     connectionId,
     connectionName,
@@ -31,12 +31,13 @@ exports.addConnectionRole = async (req, res) => {
   }
 };
 
-exports.getAllConnections = async (req, res) => {
+exports.getAllConnectionsStep = async (req, res) => {
   try {
-    const connections = await Connection.find(); // Fetch all connections
-    res.status(200).json(connections);
+    const connectionsRole = await ConnectionRole.find(); // Fetch all connections
+    console.log("connectionROle", connectionsRole);
+    res.status(200).json(connectionsRole);
   } catch (error) {
-    console.error("Error fetching connections:", error);
+    console.error("Error fetching connectionsRole:", error);
     res.status(500).json({ message: "Server error" });
   }
 };

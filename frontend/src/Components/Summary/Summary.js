@@ -53,6 +53,7 @@ export const Summary = () => {
   const [showDialog, setShowDialog] = useState(false);
   const [orders, setOrders] = useState([]);
   const [shipmentData, setShipmentData] = useState([]);
+  const [base64Data, setBase64Data] = useState(null);
   const [columns, setColumns] = useState([
     { name: "", key: "select", visible: true },
     { name: "Order Number", key: "orderNumber", visible: true },
@@ -267,10 +268,12 @@ export const Summary = () => {
       console.log("shipResponse", shipResponse.data);
       setShipmentData(shipResponse.data);
       console.log("code", typeof shipResponse.data.reference.code);
+      setBase64Data(shipResponse.data.labelData.label[0].data);
     } catch (error) {
       console.log(error);
     }
   };
+  console.log("label", base64Data);
 
   useEffect(() => {
     setTimeout(() => {
@@ -394,7 +397,8 @@ export const Summary = () => {
     }
   };
 
-  const handleDownloadClick = async (rowIndex, trackingNumber, base64Data) => {
+  const handleDownloadClick = async (rowIndex) => {
+    const trackingNumber = 12343531234;
     if (base64Data) {
       const blob = decodeBase64(base64Data);
 
@@ -668,7 +672,7 @@ export const Summary = () => {
                               {column.key === "downloaded" && (
                                 // <td>
                                 <button
-                                  onClick={() => handleDownloadClick(row)}
+                                  onClick={() => handleDownloadClick(index)}
                                 >
                                   Download
                                 </button>
@@ -689,6 +693,7 @@ export const Summary = () => {
                               {column.key === "dimentions" &&
                                 row.id === 6296516985137 &&
                                 `8 x 8 x 8 in`}
+                              {/* new */}
                               {column.key === "reference" &&
                                 row.id === 6296729157937 &&
                                 "6296729157937"}
@@ -704,6 +709,60 @@ export const Summary = () => {
                               {column.key === "dimentions" &&
                                 row.id === 6296729157937 &&
                                 `12 x 12 x 12 in`}
+                              {/* new */}
+                              {column.key === "reference" &&
+                                row.id === 6299445166385 &&
+                                "6299445166385"}
+                              {column.key === "reference2" &&
+                                row.id === 6299445166385 &&
+                                "#1004"}
+                              {column.key === "reference3" &&
+                                row.id === 6299445166385 &&
+                                "24724"}
+                              {column.key === "weight" &&
+                                row.id === 6299445166385 &&
+                                "5.000 lb"}
+                              {column.key === "dimentions" &&
+                                row.id === 6299445166385 &&
+                                `10 x 10 x 10 in`}
+                              {/* new */}
+                              {column.key === "reference" &&
+                                row.id === 6299447034161 &&
+                                "6299447034161"}
+                              {column.key === "reference2" &&
+                                row.id === 6299447034161 &&
+                                "#1007"}
+                              {column.key === "reference3" &&
+                                row.id === 6299447034161 &&
+                                "24727"}
+                              {column.key === "weight" &&
+                                row.id === 6299447034161 &&
+                                "5.000 lb"}
+                              {column.key === "dimentions" &&
+                                row.id === 6299447034161 &&
+                                `12 x 12 x 12 in`}
+                              {/* new */}
+                              {column.key === "reference" &&
+                                row.id === 6299446542641 &&
+                                "6299446542641"}
+                              {column.key === "reference2" &&
+                                row.id === 6299446542641 &&
+                                "#1006"}
+                              {column.key === "reference3" &&
+                                row.id === 6299446542641 &&
+                                "24726"}
+                              {column.key === "weight" &&
+                                row.id === 6299446542641 &&
+                                "5.000 lb"}
+                              {column.key === "dimentions" &&
+                                row.id === 6299446542641 &&
+                                `8 x 8 x 8 in`}
+
+                              {column.key === "labels" &&
+                                row.id === 6296516985137 &&
+                                "Label"}
+
+                              {/* new */}
                             </td>
                           )
                       )}

@@ -63,7 +63,7 @@ export const AddnewSteps = ({ closeModal, onclose }) => {
       console.log("Create connection:", dataToStore);
       // Send dataToStore to the server
       const response = await axios.post(
-        `${url}/connections/addConnections/${id}`,
+        `${url}/connections/addNewsteps/${id}`,
         dataToStore
       );
       onclose();

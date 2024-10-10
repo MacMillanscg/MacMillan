@@ -32,6 +32,11 @@ router.post(
   connectionController.verifyEShipperCredentials
 );
 
-router.post("/addConnections/:id", connectionRoleController.addConnectionRole);
+// connection role routes
+router.post("/addNewsteps/:id", connectionRoleController.addConnectionStep);
+router.get(
+  "/:id/connectionSteps",
+  connectionRoleController.getAllConnectionsStep
+);
 
 module.exports = router;
