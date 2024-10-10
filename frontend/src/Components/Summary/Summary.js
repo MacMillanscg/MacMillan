@@ -507,6 +507,9 @@ export const Summary = () => {
   ];
 
   const filteredDatas = filterDataByStatus(data); // Filter data before paginating
+  const idsToShowData = [
+    6299447034161, 6299446542641, 6299445166385, 6296729157937, 6296516985137,
+  ];
 
   return (
     <div className="dashboard" style={{ width: dashboardWidth }}>
@@ -767,25 +770,32 @@ export const Summary = () => {
                                 row.id === 6299446542641 &&
                                 `8 x 8 x 8 in`}
 
-                              {column.key === "shippedDate" && "10/11/2024"}
-                              {/* {column.key === "shippedDate" &&
-                                row.id === 6299445821745 &&
-                                "s234234 "} */}
-                              {column.key === "carrier" && "Canada post"}
+                              {/* {column.key === "shippedDate" && "10/11/2024"} */}
+                              {column.key === "shippedDate" &&
+                                idsToShowData.includes(row.id) &&
+                                "10/11/2024"}
+                              {column.key === "carrier" &&
+                                idsToShowData.includes(row.id) &&
+                                "Canada post"}
                               {column.key === "shipmentStatus" &&
+                                idsToShowData.includes(row.id) &&
                                 "Ready for shipping"}
                               {column.key === "trackingNumber" &&
+                                idsToShowData.includes(row.id) &&
                                 "123456789012"}
-                              {column.key === "labels" && "Label"}
-                              {column.key === "trackingUrl" && (
-                                <a
-                                  href={trackingUrl}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  URL
-                                </a>
-                              )}
+                              {column.key === "labels" &&
+                                // idsToShowData.includes(row.id) &&
+                                "Label"}
+                              {column.key === "trackingUrl" &&
+                                idsToShowData.includes(row.id) && (
+                                  <a
+                                    href={trackingUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    URL
+                                  </a>
+                                )}
 
                               {/* new */}
                             </td>
