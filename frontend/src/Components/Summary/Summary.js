@@ -53,8 +53,11 @@ export const Summary = () => {
   const [showDialog, setShowDialog] = useState(false);
   const [orders, setOrders] = useState([]);
   const [shipmentData, setShipmentData] = useState([]);
+  const [shipmentDataList, setShipmentDataList] = useState([]);
+  const [base64DataList, setBase64DataList] = useState([]);
   const [trackingUrl, setTrackingUrl] = useState(null);
   const [base64Data, setBase64Data] = useState(null);
+  const [trackShipmentList, setTrackShipmentList] = useState([]);
   const [columns, setColumns] = useState([
     { name: "", key: "select", visible: true },
     { name: "Order Number", key: "orderNumber", visible: true },
@@ -255,6 +258,25 @@ export const Summary = () => {
     }, 3000);
   }, []);
 
+  const trackShipmentRecords = async (shipmentId) => {
+    try {
+      const trackShipResponse = await axios.get(
+        `https://uu2.eshipper.com/api/v2/track/${shipmentId}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("trackShipResponse", trackShipResponse.data);
+      setTrackShipmentList((prev) => [...prev, trackShipResponse.data]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  console.log("trackShipmentList", trackShipmentList);
+
   const fetchShipmentRecords = async (shipmentId) => {
     try {
       const shipResponse = await axios.get(
@@ -268,24 +290,28 @@ export const Summary = () => {
       );
       console.log("shipResponse", shipResponse.data);
       setShipmentData(shipResponse.data);
+      setShipmentDataList((prevData) => [...prevData, shipResponse.data]);
       console.log("code", typeof shipResponse.data.reference.code);
       setBase64Data(shipResponse.data.labelData.label[0].data);
-      setTrackingUrl(shipResponse.data.trackingUrl);
+      setBase64DataList((prevData) => [
+        ...prevData,
+        shipResponse.data.labelData.label[0].data,
+      ]);
     } catch (error) {
       console.log(error);
     }
   };
-  console.log("label", base64Data);
-  console.log("trackingUrl", trackingUrl);
+  console.log("shipmentDataList", shipmentDataList);
 
   const shipmentIds = [
     8000000011219, 8000000011224, 8000000011225, 8000000011226, 8000000011227,
-  ]; // Your shipment IDs
+  ];
 
   useEffect(() => {
     if (token) {
       shipmentIds.forEach((shipmentId) => {
         fetchShipmentRecords(shipmentId); // Pass each shipment ID one by one
+        trackShipmentRecords(shipmentId);
       });
     }
   }, [token]);
@@ -307,9 +333,6 @@ export const Summary = () => {
   //     Authorization: `Bearer ${token}`,
   //   },
   // }),
-  //   axios.get(
-  //     `http://localhost:5000/connections/67053d4b8a2309ab8db347d7/api/orders`
-  //   ),
   // ]);
 
   // Process the response from both APIs
@@ -406,7 +429,7 @@ export const Summary = () => {
     }
   };
 
-  const handleDownloadClick = async (rowIndex) => {
+  const handleDownloadClick = async (rowIndex, base64Data) => {
     const trackingNumber = 123456789012;
     if (base64Data) {
       const blob = decodeBase64(base64Data);
@@ -490,21 +513,6 @@ export const Summary = () => {
   const handleCancel = () => {
     setShowDialog(false);
   };
-
-  const additionalData = [
-    {
-      orderNumber: 6296516985137,
-      reference: { name: 6296516985137 },
-      reference2: { name: "#1002" },
-      reference3: { name: "24653" },
-    },
-    {
-      orderNumber: 6296729157937,
-      reference: { name: 6296729157937 },
-      reference2: { name: "#1003" },
-      reference3: { name: "24655" },
-    },
-  ];
 
   const filteredDatas = filterDataByStatus(data); // Filter data before paginating
   const idsToShowData = [
@@ -640,12 +648,16 @@ export const Summary = () => {
               {orders &&
                 orders.map((row, index) => {
                   const additional =
-                    additionalData &&
-                    additionalData.find(
-                      (shipment) => shipment && shipment.orderNumber === row.id
+                    shipmentDataList &&
+                    shipmentDataList.find(
+                      (shipment) =>
+                        shipment && shipment.reference.name === String(row.id)
                     );
 
                   console.log("additional", additional);
+
+                  const label =
+                    additional && additional.labelData.label[0].data;
 
                   return (
                     <tr key={index}>
@@ -684,21 +696,24 @@ export const Summary = () => {
                               {column.key === "downloaded" && (
                                 // <td>
                                 <button
-                                  onClick={() => handleDownloadClick(index)}
+                                  onClick={() =>
+                                    handleDownloadClick(index, label)
+                                  }
                                 >
                                   Download
                                 </button>
                                 // </td>
                               )}
                               {column.key === "reference" &&
-                                row.id === 6296516985137 &&
-                                "6296516985137"}
+                                additional &&
+                                additional.reference?.name}
                               {column.key === "reference2" &&
-                                row.id === 6296516985137 &&
-                                "#1002"}
+                                additional &&
+                                additional.reference2?.name}
                               {column.key === "reference3" &&
-                                row.id === 6296516985137 &&
-                                "24653"}
+                                additional &&
+                                additional.reference3?.name}
+
                               {column.key === "weight" &&
                                 row.id === 6296516985137 &&
                                 "5.000 lb"}
@@ -706,15 +721,7 @@ export const Summary = () => {
                                 row.id === 6296516985137 &&
                                 `8 x 8 x 8 in`}
                               {/* new */}
-                              {column.key === "reference" &&
-                                row.id === 6296729157937 &&
-                                "6296729157937"}
-                              {column.key === "reference2" &&
-                                row.id === 6296729157937 &&
-                                "#1003"}
-                              {column.key === "reference3" &&
-                                row.id === 6296729157937 &&
-                                "24655"}
+
                               {column.key === "weight" &&
                                 row.id === 6296729157937 &&
                                 "5.000 lb"}
@@ -722,15 +729,7 @@ export const Summary = () => {
                                 row.id === 6296729157937 &&
                                 `12 x 12 x 12 in`}
                               {/* new */}
-                              {column.key === "reference" &&
-                                row.id === 6299445166385 &&
-                                "6299445166385"}
-                              {column.key === "reference2" &&
-                                row.id === 6299445166385 &&
-                                "#1004"}
-                              {column.key === "reference3" &&
-                                row.id === 6299445166385 &&
-                                "24724"}
+
                               {column.key === "weight" &&
                                 row.id === 6299445166385 &&
                                 "5.000 lb"}
@@ -738,15 +737,7 @@ export const Summary = () => {
                                 row.id === 6299445166385 &&
                                 `10 x 10 x 10 in`}
                               {/* new */}
-                              {column.key === "reference" &&
-                                row.id === 6299447034161 &&
-                                "6299447034161"}
-                              {column.key === "reference2" &&
-                                row.id === 6299447034161 &&
-                                "#1007"}
-                              {column.key === "reference3" &&
-                                row.id === 6299447034161 &&
-                                "24727"}
+
                               {column.key === "weight" &&
                                 row.id === 6299447034161 &&
                                 "5.000 lb"}
@@ -754,15 +745,7 @@ export const Summary = () => {
                                 row.id === 6299447034161 &&
                                 `12 x 12 x 12 in`}
                               {/* new */}
-                              {column.key === "reference" &&
-                                row.id === 6299446542641 &&
-                                "6299446542641"}
-                              {column.key === "reference2" &&
-                                row.id === 6299446542641 &&
-                                "#1006"}
-                              {column.key === "reference3" &&
-                                row.id === 6299446542641 &&
-                                "24726"}
+
                               {column.key === "weight" &&
                                 row.id === 6299446542641 &&
                                 "5.000 lb"}
@@ -770,24 +753,24 @@ export const Summary = () => {
                                 row.id === 6299446542641 &&
                                 `8 x 8 x 8 in`}
 
-                              {/* {column.key === "shippedDate" && "10/11/2024"} */}
                               {column.key === "shippedDate" &&
                                 idsToShowData.includes(row.id) &&
                                 "10/11/2024"}
                               {column.key === "carrier" &&
-                                idsToShowData.includes(row.id) &&
-                                "Canada post"}
+                                additional &&
+                                additional.carrier?.carrierName}
                               {column.key === "shipmentStatus" &&
                                 idsToShowData.includes(row.id) &&
                                 "Ready for shipping"}
                               {column.key === "trackingNumber" &&
-                                idsToShowData.includes(row.id) &&
-                                "123456789012"}
+                                additional &&
+                                additional.trackingNumber}
                               {column.key === "labels" &&
-                                // idsToShowData.includes(row.id) &&
+                                idsToShowData.includes(row.id) &&
                                 "Label"}
                               {column.key === "trackingUrl" &&
-                                idsToShowData.includes(row.id) && (
+                                additional &&
+                                additional.trackingUrl && (
                                   <a
                                     href={trackingUrl}
                                     target="_blank"

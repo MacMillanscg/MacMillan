@@ -1,30 +1,27 @@
-const ConnectionRole = require("../Schema/ConnectionRole");
+const Connection = require("../Schema/Connection");
 
 // Create a new connection
 exports.addConnectionStep = async (req, res) => {
-  const {
-    connectionId,
-    connectionName,
-    webhookTrigger,
-    managementTrigger,
-    schedule,
-    cronExpression,
-  } = req.body;
+  const { connectionId, connectionName, webhookTrigger } = req.body;
   console.log("reqbodydaf", req.body);
 
   try {
-    const newConnection = new ConnectionRole({
+    const connection = await Connection.findById(connectionId);
+
+    if (!connection) {
+      return res.status(404).json({ error: "Connection not found" });
+    }
+
+    const newConnectionStep = {
       connectionId,
       connectionName,
       webhookTrigger,
-      managementTrigger,
-      schedule,
-      cronExpression,
-    });
+    };
 
-    const savedConnection = await newConnection.save();
+    connection.connectionRule.push(newConnectionStep);
 
-    res.status(201).json(savedConnection);
+    const updatedConnection = await connection.save();
+    res.status(201).json(updatedConnection);
   } catch (error) {
     console.error("Error creating connection:", error);
     res.status(500).json({ error: "Server error while creating connection" });
@@ -32,12 +29,24 @@ exports.addConnectionStep = async (req, res) => {
 };
 
 exports.getAllConnectionsStep = async (req, res) => {
+  const { id } = req.params;
+
   try {
-    const connectionsRole = await ConnectionRole.find(); // Fetch all connections
-    console.log("connectionROle", connectionsRole);
-    res.status(200).json(connectionsRole);
+    // Find the main connection by ID and populate the sub-schema (ConnectionRule)
+    const connection = await Connection.findById(id)
+      .populate("connectionRule.connectionId") // Populate the connectionId if it's a reference
+      .exec(); // Execute the query
+
+    if (!connection) {
+      return res.status(404).json({ error: "Connection not found" });
+    }
+
+    // Send the main connection along with its steps (sub-schema data)
+    res.status(200).json(connection);
   } catch (error) {
-    console.error("Error fetching connectionsRole:", error);
-    res.status(500).json({ message: "Server error" });
+    console.error("Error fetching connection data:", error);
+    res
+      .status(500)
+      .json({ error: "Server error while fetching connection data" });
   }
 };

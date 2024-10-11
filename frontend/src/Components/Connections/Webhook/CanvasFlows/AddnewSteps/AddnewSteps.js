@@ -48,17 +48,12 @@ export const AddnewSteps = ({ closeModal, onclose }) => {
     setSelectedManagementTrigger(trigger);
   };
 
-  // console.log("client1", client);
   const handleCreate = async () => {
     try {
       const dataToStore = {
         connectionId: id,
         connectionName: connectionName,
         webhookTrigger: option === "Webhook" ? selectedWebhookTrigger : null,
-        managementTrigger:
-          option === "Management" ? selectedManagementTrigger : null,
-        schedule: option === "Schedule" ? schedule : undefined,
-        cronExpression: option === "Schedule" ? cronExpression : undefined,
       };
       console.log("Create connection:", dataToStore);
       // Send dataToStore to the server
@@ -67,9 +62,6 @@ export const AddnewSteps = ({ closeModal, onclose }) => {
         dataToStore
       );
       onclose();
-      // const newConnectionId = response.data.id;
-      // navigate(`/connections/${newConnectionId}`);
-      // console.log("newconnected", newConnectionId);
 
       console.log("Server response success:", response.data);
     } catch (error) {

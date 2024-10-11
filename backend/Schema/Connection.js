@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const shopifyDetailsSchema = require("./ShopifySchema");
 const conversionActionSchema = require("./conversionSchema");
 const PostFulfillmentSchema = require("./FullfillmentSchema");
+const ConnectionRule = require("./ConnectionRole");
 
 const IntegrationSchema = new mongoose.Schema({
   integrationId: {
@@ -60,6 +61,7 @@ const ConnectionSchema = new mongoose.Schema({
   shopifyDetails: shopifyDetailsSchema,
   conversionsXML: conversionActionSchema,
   postFulfillments: [PostFulfillmentSchema],
+  connectionRule: [ConnectionRule], //  To create connection rules
   createdAt: { type: Date, default: Date.now },
 });
 

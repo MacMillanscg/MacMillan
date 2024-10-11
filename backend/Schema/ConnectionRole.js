@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 
-const ConnectionSchema = new mongoose.Schema({
+const ConnectionRule = new mongoose.Schema({
   connectionId: {
     type: mongoose.Schema.Types.ObjectId, // Assuming you're storing it as an ObjectId
+    ref: "Connection",
     required: true,
   },
   connectionName: {
     type: String,
     required: true,
-    ref: "Connection",
   },
   webhookTrigger: {
     description: {
@@ -20,19 +20,7 @@ const ConnectionSchema = new mongoose.Schema({
       default: null,
     },
   },
-  managementTrigger: {
-    type: String,
-    default: null,
-  },
-  schedule: {
-    type: String,
-    default: null,
-  },
-  cronExpression: {
-    type: String,
-    default: null,
-  },
 });
 
-const ConnectionRole = mongoose.model("ConnectionRole", ConnectionSchema);
-module.exports = ConnectionRole;
+// const ConnectionRole = mongoose.model("ConnectionRole", ConnectionSchema);
+module.exports = ConnectionRule;

@@ -18,7 +18,7 @@ export const CanvasFlow = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showAddNewStep, setShowAddNewStep] = useState(false);
   const [connectionsSteps, setConnectionsSteps] = useState([]);
-  const [selectedStep, setSelectedStep] = useState(null);
+  const [selectedStep, setSelectedStep] = useState("Rule 1");
   const { id } = useParams();
 
   const fetchConnections = async () => {
@@ -64,8 +64,8 @@ export const CanvasFlow = () => {
   return (
     <div className={styles.dropdownContainer}>
       <button onClick={handleToggleMenu} className={styles.dropdownToggle}>
-        {selectedStep ? selectedStep.connectionName : "Role 1"}
-        {/* {selectedStep} */}
+        {/* {selectedStep ? selectedStep : selectedStep} */}
+        {selectedStep}
         <FontAwesomeIcon icon={faChevronDown} className={styles.flowIconDown} />
       </button>
       {showAddNewStep && <AddnewSteps onclose={handleCloseAddNewStep} />}
@@ -79,9 +79,9 @@ export const CanvasFlow = () => {
             <FontAwesomeIcon icon={faEllipsisV} className="me-2" />{" "}
             <span
               className={styles.flowName}
-              onClick={() => handleStepSelect("Step 1")}
+              onClick={() => handleStepSelect("Rule 1")}
             >
-              Role 1
+              Rule 1
             </span>
             <span className={styles.flowActions}>
               <FontAwesomeIcon icon={faCopy} title="Copy" />
@@ -107,7 +107,7 @@ export const CanvasFlow = () => {
                 <div
                   key={index}
                   className={styles.dropdownItem}
-                  onClick={() => handleStepSelect(step)}
+                  onClick={() => handleStepSelect(step.connectionName)}
                 >
                   <FontAwesomeIcon icon={faEllipsisV} className="me-1" />{" "}
                   <FontAwesomeIcon icon={faEllipsisV} className="me-2" />{" "}
