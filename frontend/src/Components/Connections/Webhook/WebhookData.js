@@ -37,8 +37,13 @@ export const managementTriggers = [
 
 export const scheduleOptions = [
   { value: "", label: "No Schedule" },
-  { value: "* * * * *", label: "Every Minute" },
-  { value: "0 0 * * *", label: "Every Day" },
-  { value: "0 * * * WED", label: "Every Wednesday" },
-  { value: "0 0 1 * *", label: "First Day of Every Month" },
+  { value: "* * * * *", label: "1 min" },
+  { value: "* * * * *", label: "2 mins" },
+  { value: "* * * * *", label: "5 mins" },
+  { value: "* * * * *", label: "10 mins" },
+  { value: "* * * * *", label: "15 mins" },
+  { value: "* * * * *", label: "20 mins" },
+  { value: "* * * * *", label: "30 mins" },
+  { value: "* * * * *", label: "1 hr" },
+  // { value: "0 * * * WED", label: "Custom" },
 ];

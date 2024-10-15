@@ -111,7 +111,7 @@ export const IntegrationCanvas = () => {
     );
   }, [id, connections]);
 
-  console.log("filteredConnection", filteredConnection?.newRulesId);
+  console.log("filteredConnection", filteredConnection);
 
   useEffect(() => {
     if (connections.length === 0) {

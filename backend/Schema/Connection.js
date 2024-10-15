@@ -63,6 +63,7 @@ const ConnectionSchema = new mongoose.Schema({
   postFulfillments: [PostFulfillmentSchema],
   connectionRule: [connectionRule], //  To create connection rules
   newRulesId: [String],
+  newRulesSchedule: [String],
   createdAt: { type: Date, default: Date.now },
 });
 

@@ -2,8 +2,15 @@ const Connection = require("../Schema/Connection");
 
 // Create a new connection
 exports.addConnectionStep = async (req, res) => {
-  const { connectionId, connectionName, webhookTrigger, shopifyDetails } =
-    req.body;
+  const {
+    connectionId,
+    connectionName,
+    webhookTrigger,
+    managementTrigger,
+    scheduleDetails,
+    shopifyDetails,
+    option,
+  } = req.body;
   console.log("reqbodydaf", req.body);
 
   try {
@@ -16,8 +23,11 @@ exports.addConnectionStep = async (req, res) => {
     const newConnectionStep = {
       connectionId,
       connectionName,
-      webhookTrigger,
+      webhookTrigger: webhookTrigger ? webhookTrigger : null,
+      managementTrigger: managementTrigger ? managementTrigger : null,
+      scheduleDetails: scheduleDetails ? scheduleDetails : null,
       shopifyDetails,
+      option,
     };
 
     connection.connectionRule.push(newConnectionStep);

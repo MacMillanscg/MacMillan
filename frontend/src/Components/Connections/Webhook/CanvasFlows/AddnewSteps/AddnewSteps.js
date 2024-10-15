@@ -19,7 +19,7 @@ import {
 import { useNavigate, useParams } from "react-router-dom";
 import { getUser } from "../../../../../storageUtils/storageUtils";
 
-export const AddnewSteps = ({ closeModal, onclose }) => {
+export const AddnewSteps = ({ onclose, onStepCreated, oncloseMenu }) => {
   const { id } = useParams();
   console.log("sdfasf", id);
   const { dashboardWidth } = useAppContext();
@@ -38,6 +38,8 @@ export const AddnewSteps = ({ closeModal, onclose }) => {
   const navigate = useNavigate();
   let userId = getUser();
   userId = userId._id;
+  console.log("schedule", schedule);
+  console.log("cronExpression", cronExpression);
 
   const handleWebhookTriggerClick = (trigger) => {
     setSelectedWebhookTrigger(trigger);
@@ -53,10 +55,15 @@ export const AddnewSteps = ({ closeModal, onclose }) => {
         connectionId: id,
         connectionName: connectionName,
         webhookTrigger: option === "Webhook" ? selectedWebhookTrigger : null,
+        managementTrigger:
+          option === "Management" ? selectedManagementTrigger : null,
+        scheduleDetails:
+          option === "Schedule" ? { schedule, cronExpression, option } : null,
         shopifyDetails: {
           shopifyTitle: "Shopify",
           shopifyDetails: "Get orders",
         },
+        // option: option === "Schedule" ? "Schedule" : null,
       };
       console.log("Create connection:", dataToStore);
       // Send dataToStore to the server
@@ -64,7 +71,17 @@ export const AddnewSteps = ({ closeModal, onclose }) => {
         `${url}/connections/addNewsteps/${id}`,
         dataToStore
       );
+      const connectionRule = response.data.connectionRule;
+
+      if (Array.isArray(connectionRule) && connectionRule.length > 0) {
+        const lastRule = connectionRule[connectionRule.length - 1];
+        console.log("Last created rule:", lastRule);
+
+        // Pass the last rule to the parent or do any further processing
+        onStepCreated(lastRule);
+      }
       onclose();
+      oncloseMenu();
 
       console.log("Server response success:", response.data);
     } catch (error) {
@@ -72,19 +89,21 @@ export const AddnewSteps = ({ closeModal, onclose }) => {
     }
   };
 
+  console.log("option", option);
+
   return (
     <div className="dashboard" style={{ width: dashboardWidth }}>
       <div className={styles.modalBackground}>
         <div className={styles.modalContainer}>
           <div className={styles.modalHeader}>
-            <h2>Create New Flow</h2>
+            <h2>Create New Rule</h2>
             <span className={styles.close} onClick={onclose}>
               &times;
             </span>
           </div>
           <div className={styles.tabContent}>
             <div className={styles.formGroup}>
-              <label htmlFor="connectionName">Flow Name</label>
+              <label htmlFor="connectionName">Rule Name</label>
               <input
                 type="text"
                 id="connectionName"
@@ -230,14 +249,14 @@ export const AddnewSteps = ({ closeModal, onclose }) => {
                     onChange={(e) => setSchedule(e.target.value)}
                   >
                     {scheduleOptions.map((option, index) => (
-                      <option key={index} value={option.value}>
+                      <option key={index} value={option.label}>
                         {option.label}
                       </option>
                     ))}
                   </select>
                 </div>
                 <div className={styles.formGroup}>
-                  <label htmlFor="cronExpression">Cron Expression</label>
+                  {/* <label htmlFor="cronExpression">Duration</label>
                   <input
                     type="text"
                     id="cronExpression"
@@ -245,7 +264,7 @@ export const AddnewSteps = ({ closeModal, onclose }) => {
                     placeholder="* * * * *"
                     value={cronExpression}
                     onChange={(e) => setCronExpression(e.target.value)}
-                  />
+                  /> */}
                   <small className={styles.cronHelp}>
                     A cron expression for this config variable. You can use `* *
                     * * *` for every minute, `0 0 * * *` for every day, and `0 *

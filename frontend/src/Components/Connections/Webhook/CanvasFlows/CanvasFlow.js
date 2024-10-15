@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./CanvasFlow.module.css"; // Import the CSS module
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useParams } from "react-router-dom";
@@ -11,6 +11,7 @@ import {
   faChevronDown,
   faTh,
   faEllipsisV,
+  faSleigh,
 } from "@fortawesome/free-solid-svg-icons";
 import { AddnewSteps } from "./AddnewSteps/AddnewSteps";
 
@@ -25,6 +26,7 @@ export const CanvasFlow = ({
   const [connectionsSteps, setConnectionsSteps] = useState([]);
   // const [selectedStep, setSelectedStep] = useState("Rule 1");
   const { id } = useParams();
+  const menuRef = useRef(null);
 
   const fetchConnections = async () => {
     try {
@@ -42,12 +44,18 @@ export const CanvasFlow = ({
     }
   };
   console.log("selectedStep", selectedStep);
-  console.log("selectedStepId", selectedStepId);
+  console.log("selectedStepId", typeof selectedStepId);
 
   useEffect(() => {
     fetchConnections();
   }, [showAddNewStep]);
   console.log("connectionsStep", connectionsSteps);
+
+  const idsWithScheduleOption = connectionsSteps
+    .filter((item) => item.scheduleDetails.option === "Schedule")
+    .map((item) => item._id);
+
+  console.log("idsWithScheduleOption", typeof idsWithScheduleOption[0]);
 
   const handleAddNewStep = () => {
     setShowAddNewStep(true);
@@ -57,13 +65,24 @@ export const CanvasFlow = ({
   };
 
   const handleToggleMenu = () => {
-    setShowMenu(!showMenu);
+    setShowMenu(true);
+  };
+
+  const handleCoseMenu = () => {
+    setShowMenu(false);
   };
 
   const handleStepSelect = (stepName, stepId) => {
     setSelectedStep(stepName, stepId);
     setSelectedStepId(stepId);
     setShowMenu(false);
+  };
+
+  const handleNewStepCreated = (newStep) => {
+    console.log("NEWSTEP", newStep);
+    setSelectedStep(newStep.connectionName);
+    setSelectedStepId(newStep._id);
+    setConnectionsSteps((prevSteps) => [...prevSteps, newStep]); // Add the new step to the list
   };
 
   const deleteConnectionStep = async (stepId) => {
@@ -85,6 +104,19 @@ export const CanvasFlow = ({
     }
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setShowMenu(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuRef]);
+
   console.log("selctedstep", selectedStep);
 
   return (
@@ -94,9 +126,15 @@ export const CanvasFlow = ({
         {selectedStep}
         <FontAwesomeIcon icon={faChevronDown} className={styles.flowIconDown} />
       </button>
-      {showAddNewStep && <AddnewSteps onclose={handleCloseAddNewStep} />}
+      {showAddNewStep && (
+        <AddnewSteps
+          onclose={handleCloseAddNewStep}
+          onStepCreated={handleNewStepCreated}
+          oncloseMenu={handleCoseMenu}
+        />
+      )}
       {showMenu && (
-        <div className={styles.dropdownMenu}>
+        <div className={styles.dropdownMenu} ref={menuRef}>
           <div className={styles.dropdownAddItem} onClick={handleAddNewStep}>
             <FontAwesomeIcon icon={faPlus} /> Add new Rule
           </div>
@@ -109,16 +147,6 @@ export const CanvasFlow = ({
             >
               Rule 1
             </span>
-            <span className={styles.flowActions}>
-              <FontAwesomeIcon icon={faCopy} title="Copy" />
-              <FontAwesomeIcon icon={faEdit} title="Edit" />
-              <FontAwesomeIcon icon={faTrash} title="Delete" />
-            </span>
-          </div>
-          <div className={styles.dropdownItem}>
-            <FontAwesomeIcon icon={faEllipsisV} className="me-1" />{" "}
-            <FontAwesomeIcon icon={faEllipsisV} className="me-2" />{" "}
-            <span className={styles.flowName}>Get Orders</span>
             <span className={styles.flowActions}>
               <FontAwesomeIcon icon={faCopy} title="Copy" />
               <FontAwesomeIcon icon={faEdit} title="Edit" />

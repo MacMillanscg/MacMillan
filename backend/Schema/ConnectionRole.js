@@ -21,8 +21,30 @@ const connectionRule = new mongoose.Schema({
       default: null,
     },
   },
+  managementTrigger: {
+    description: {
+      type: String,
+      default: null,
+    },
+    name: {
+      type: String,
+      default: null,
+    },
+  },
+  scheduleDetails: {
+    schedule: {
+      type: String,
+      default: null, // Store the type of schedule
+    },
+    cronExpression: {
+      type: String,
+      default: null, // To store the cron expression
+    },
+    option: {
+      type: String,
+    },
+  },
   shopifyDetails: ShopifyDetailsSchema,
 });
 
-// const ConnectionRole = mongoose.model("ConnectionRole", ConnectionSchema);
 module.exports = connectionRule;
