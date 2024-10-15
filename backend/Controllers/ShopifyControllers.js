@@ -5,14 +5,21 @@ const axios = require("axios");
 const { shofipyOrders } = require("./connectionController");
 
 // create shopify connection
+
 exports.createShopifyConnection = async (req, res) => {
   try {
     const { id } = req.params;
-    const { shopifyTitle, shopifyDetails } = req.body;
+    const { shopifyTitle, shopifyDetails, newRules, selectedStepId } = req.body;
 
+    console.log("newRules", newRules);
+    console.log("selectedStepId", selectedStepId);
+
+    // First, update the shopifyDetails at the connection level
     const updatedConnection = await Connection.findByIdAndUpdate(
       id,
-      { shopifyDetails: { shopifyTitle, shopifyDetails } },
+      {
+        shopifyDetails: { shopifyTitle, shopifyDetails }, // Update the main shopifyDetails field
+      },
       { new: true, runValidators: true }
     );
 
@@ -20,12 +27,26 @@ exports.createShopifyConnection = async (req, res) => {
       return res.status(404).json({ error: "Connection not found" });
     }
 
+    // Next, update the newRulesId array to include the selectedStepId
+    const updatedNewRulesIdConnection = await Connection.findByIdAndUpdate(
+      id,
+      {
+        $addToSet: { newRulesId: selectedStepId }, // Add selectedStepId to newRulesId array, ensuring no duplicates
+      },
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedNewRulesIdConnection) {
+      return res.status(404).json({ error: "Unable to update newRulesId" });
+    }
+
     res.status(200).json({
-      message: "Shopify created successfully",
-      shopify: updatedConnection,
+      message: "Shopify connection updated successfully",
+      shopify: updatedNewRulesIdConnection,
+      newRulesId: updatedNewRulesIdConnection.newRulesId,
     });
   } catch (error) {
-    console.error("Error updating Shopify details:", error);
+    console.error("Error updating Shopify connection:", error);
     res.status(500).json({ error: error.message });
   }
 };

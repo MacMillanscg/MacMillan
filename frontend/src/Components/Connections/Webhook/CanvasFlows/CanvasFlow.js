@@ -14,11 +14,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { AddnewSteps } from "./AddnewSteps/AddnewSteps";
 
-export const CanvasFlow = () => {
+export const CanvasFlow = ({
+  selectedStep,
+  setSelectedStep,
+  selectedStepId,
+  setSelectedStepId,
+}) => {
   const [showMenu, setShowMenu] = useState(false);
   const [showAddNewStep, setShowAddNewStep] = useState(false);
   const [connectionsSteps, setConnectionsSteps] = useState([]);
-  const [selectedStep, setSelectedStep] = useState("Rule 1");
+  // const [selectedStep, setSelectedStep] = useState("Rule 1");
   const { id } = useParams();
 
   const fetchConnections = async () => {
@@ -26,10 +31,10 @@ export const CanvasFlow = () => {
       const response = await axios.get(
         `http://localhost:5000/connections/${id}/connectionSteps`
       );
-      const filteredSteps = response.data.filter(
-        (step) => step.connectionId === id // Replace 'specificRole' with the actual role
-      );
-      setConnectionsSteps(filteredSteps);
+      console.log("connection Rules", response.data.connectionRule);
+      if (response.data) {
+        setConnectionsSteps(response.data.connectionRule);
+      }
     } catch (error) {
       console.error("Error fetching connections:", error);
     } finally {
@@ -37,10 +42,11 @@ export const CanvasFlow = () => {
     }
   };
   console.log("selectedStep", selectedStep);
+  console.log("selectedStepId", selectedStepId);
 
   useEffect(() => {
     fetchConnections();
-  }, []);
+  }, [showAddNewStep]);
   console.log("connectionsStep", connectionsSteps);
 
   const handleAddNewStep = () => {
@@ -54,9 +60,29 @@ export const CanvasFlow = () => {
     setShowMenu(!showMenu);
   };
 
-  const handleStepSelect = (stepName) => {
-    setSelectedStep(stepName);
+  const handleStepSelect = (stepName, stepId) => {
+    setSelectedStep(stepName, stepId);
+    setSelectedStepId(stepId);
     setShowMenu(false);
+  };
+
+  const deleteConnectionStep = async (stepId) => {
+    console.log("setrpid", stepId);
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this step?"
+    );
+    if (!confirmDelete) return; // exit if not confirmed
+
+    try {
+      await axios.delete(
+        `http://localhost:5000/connections/${id}/connectionSteps/${stepId}`
+      );
+      setConnectionsSteps(
+        connectionsSteps.filter((step) => step._id !== stepId)
+      );
+    } catch (error) {
+      console.error("Error deleting step:", error);
+    }
   };
 
   console.log("selctedstep", selectedStep);
@@ -72,7 +98,7 @@ export const CanvasFlow = () => {
       {showMenu && (
         <div className={styles.dropdownMenu}>
           <div className={styles.dropdownAddItem} onClick={handleAddNewStep}>
-            <FontAwesomeIcon icon={faPlus} /> Add new Role
+            <FontAwesomeIcon icon={faPlus} /> Add new Rule
           </div>
           <div className={styles.dropdownItem}>
             <FontAwesomeIcon icon={faEllipsisV} className="me-1" />{" "}
@@ -107,7 +133,9 @@ export const CanvasFlow = () => {
                 <div
                   key={index}
                   className={styles.dropdownItem}
-                  onClick={() => handleStepSelect(step.connectionName)}
+                  onClick={() =>
+                    handleStepSelect(step.connectionName, step._id)
+                  }
                 >
                   <FontAwesomeIcon icon={faEllipsisV} className="me-1" />{" "}
                   <FontAwesomeIcon icon={faEllipsisV} className="me-2" />{" "}
@@ -115,7 +143,11 @@ export const CanvasFlow = () => {
                   <span className={styles.flowActions}>
                     <FontAwesomeIcon icon={faCopy} title="Copy" />
                     <FontAwesomeIcon icon={faEdit} title="Edit" />
-                    <FontAwesomeIcon icon={faTrash} title="Delete" />
+                    <FontAwesomeIcon
+                      icon={faTrash}
+                      title="Delete"
+                      onClick={() => deleteConnectionStep(step._id)}
+                    />
                   </span>
                 </div>
               ))}

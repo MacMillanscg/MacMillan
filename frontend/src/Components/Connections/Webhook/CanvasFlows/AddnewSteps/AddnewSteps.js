@@ -11,7 +11,6 @@ import { useAppContext } from "../../../../Context/AppContext";
 import styles from "./AddnewSteps.module.css";
 import axios from "axios";
 import { url } from "../../../../../api";
-import { MaskedToken } from "../../../../ClientsCom/ClientDetails/Integrations/MaskedToken";
 import {
   webhookTriggers,
   managementTriggers,
@@ -54,6 +53,10 @@ export const AddnewSteps = ({ closeModal, onclose }) => {
         connectionId: id,
         connectionName: connectionName,
         webhookTrigger: option === "Webhook" ? selectedWebhookTrigger : null,
+        shopifyDetails: {
+          shopifyTitle: "Shopify",
+          shopifyDetails: "Get orders",
+        },
       };
       console.log("Create connection:", dataToStore);
       // Send dataToStore to the server

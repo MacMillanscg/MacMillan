@@ -1,13 +1,14 @@
 .popupContainer {
     position: absolute;
     bottom: 2px;
-    right: -150px;
+    right: -180px;
     width: 100%;
     justify-content: center;
     align-items: center;
     z-index: 1000;
     width: 390px;
     max-height: 75vh;
+    bottom: 26%;
   }
   
   .popupContent {

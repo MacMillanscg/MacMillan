@@ -13,6 +13,7 @@ import {
   faLariSign,
   faEdit,
   faTrash,
+  faSleigh,
 } from "@fortawesome/free-solid-svg-icons";
 import { ConnectionPopup } from "../Popups/ConnectionDetailsPopup/ConnectionPopup";
 import { ClientPopup } from "../Popups/ClientPopup/ClientPopup";
@@ -91,6 +92,9 @@ export const IntegrationCanvas = () => {
   const [integrationId, setIntegrationId] = useState(null);
   const [shopifyOrderIds, setShopifyOrderIds] = useState([]);
   const [fullfillmentId, setFullfillmentId] = useState(["223417687559"]);
+  const [selectedStep, setSelectedStep] = useState("Rule 1");
+  const [selectedStepId, setSelectedStepId] = useState(null);
+  const [newRules, setNewRules] = useState(false);
 
   const dispatch = useDispatch();
   const { connections, error } = useSelector((state) => state.connections);
@@ -107,7 +111,7 @@ export const IntegrationCanvas = () => {
     );
   }, [id, connections]);
 
-  // console.log("filteredConnection", filteredConnection?.integrations);
+  console.log("filteredConnection", filteredConnection?.newRulesId);
 
   useEffect(() => {
     if (connections.length === 0) {
@@ -135,6 +139,7 @@ export const IntegrationCanvas = () => {
       localStorage.setItem("shopifyInitialized", JSON.stringify(true));
       localStorage.setItem("shopify", JSON.stringify(true));
       closeShopifyPopup();
+
       // setInitialized(true);
       setFetchTrigger(!fetchTrigger);
     } catch (error) {
@@ -275,6 +280,17 @@ export const IntegrationCanvas = () => {
   }, [id, fetchTrigger]);
   // console.log("shopifyDetails", shopifyDetails);
   // console.log("ordrs", orders);
+
+  // Use useEffect to handle state updates when selectedStep or selectedStepId changes
+  useEffect(() => {
+    if (selectedStep !== "Rule 1" && selectedStepId !== id) {
+      setNewRules(true);
+      console.log("new step");
+    } else {
+      // setNewRules(false);
+      console.log("Rule 1 step");
+    }
+  }, [selectedStep, selectedStepId, id]); // This effect runs only when selectedStep, selectedStepId, or id changes
 
   const addShopifyOrders = async () => {
     try {
@@ -545,6 +561,8 @@ export const IntegrationCanvas = () => {
     setInitialized(false);
   };
 
+  console.log("selectedRULE", selectedStep);
+
   return (
     <div>
       <div className={styles.topBar}>
@@ -603,7 +621,12 @@ export const IntegrationCanvas = () => {
             </div>
           </div>
           <div className={styles.stepContainer}>
-            <CanvasFlow />
+            <CanvasFlow
+              selectedStep={selectedStep}
+              setSelectedStep={setSelectedStep}
+              selectedStepId={selectedStepId}
+              setSelectedStepId={setSelectedStepId}
+            />
 
             <div className={styles.webhook} onClick={openTriggerPopup}>
               <div className={styles.imageContainer}>
@@ -633,44 +656,46 @@ export const IntegrationCanvas = () => {
               </div>
             </div>
             {/* from here the shopify started */}
-            {shopifyDetails && (
-              <div className={styles.webhook}>
-                <div className={styles.imageContainer}>
-                  <div className={styles.editDeleteWrap}>
-                    <div
-                      className={`${styles.imgWrapper} ${styles.shopifyImgHover}`}
-                    >
-                      <img src={Shopify} alt="Shopify" />
+            {shopifyDetails &&
+              (selectedStep === "Rule 1" ||
+                filteredConnection?.newRulesId.includes(selectedStepId)) && (
+                <div className={styles.webhook}>
+                  <div className={styles.imageContainer}>
+                    <div className={styles.editDeleteWrap}>
+                      <div
+                        className={`${styles.imgWrapper} ${styles.shopifyImgHover}`}
+                      >
+                        <img src={Shopify} alt="Shopify" />
+                      </div>
+                      <div className={styles.iconsWrapper}>
+                        <FontAwesomeIcon
+                          icon={faTrash}
+                          className={styles.editDeleteIcon}
+                          onClick={() => setShowWarningModal(true)}
+                        />
+                        <FontAwesomeIcon
+                          icon={faEdit}
+                          className={styles.editDeleteIcon}
+                        />
+                      </div>
                     </div>
-                    <div className={styles.iconsWrapper}>
+
+                    <div className={styles.iconHoverWrap}>
+                      <span className={styles.iconBorder}></span>
                       <FontAwesomeIcon
-                        icon={faTrash}
-                        className={styles.editDeleteIcon}
-                        onClick={() => setShowWarningModal(true)}
-                      />
-                      <FontAwesomeIcon
-                        icon={faEdit}
-                        className={styles.editDeleteIcon}
+                        icon={faArrowDown}
+                        className={styles.imgIcon}
                       />
                     </div>
                   </div>
 
-                  <div className={styles.iconHoverWrap}>
-                    <span className={styles.iconBorder}></span>
-                    <FontAwesomeIcon
-                      icon={faArrowDown}
-                      className={styles.imgIcon}
-                    />
+                  <div className={styles.imageContent}>
+                    <h3>{shopifyDetails.shopifyTitle}</h3>
+                    <p>{shopifyDetails.shopifyDetails}</p>
                   </div>
                 </div>
-
-                <div className={styles.imageContent}>
-                  <h3>{shopifyDetails.shopifyTitle}</h3>
-                  <p>{shopifyDetails.shopifyDetails}</p>
-                </div>
-              </div>
-            )}
-            {xmlConversion && (
+              )}
+            {xmlConversion && selectedStep === "Rule 1" && (
               <div className={styles.webhook}>
                 <div className={styles.imageContainer}>
                   <div className={styles.editDeleteWrap}>
@@ -804,6 +829,8 @@ export const IntegrationCanvas = () => {
                   openEShipperPopup={openEShipperPopup}
                   openHttpPopup={openHttpPopup}
                   openOrdersPopup={openOrderPopup}
+                  newRules={newRules}
+                  selectedStepId={selectedStepId}
                 />
               </StepPopup>
             )}

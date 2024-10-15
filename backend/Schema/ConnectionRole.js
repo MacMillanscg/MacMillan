@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+const ShopifyDetailsSchema = require("./ShopifySchema");
 
-const ConnectionRule = new mongoose.Schema({
+const connectionRule = new mongoose.Schema({
   connectionId: {
     type: mongoose.Schema.Types.ObjectId, // Assuming you're storing it as an ObjectId
     ref: "Connection",
@@ -20,7 +21,8 @@ const ConnectionRule = new mongoose.Schema({
       default: null,
     },
   },
+  shopifyDetails: ShopifyDetailsSchema,
 });
 
 // const ConnectionRole = mongoose.model("ConnectionRole", ConnectionSchema);
-module.exports = ConnectionRule;
+module.exports = connectionRule;

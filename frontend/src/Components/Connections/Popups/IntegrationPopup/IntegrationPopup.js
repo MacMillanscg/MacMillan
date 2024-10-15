@@ -11,6 +11,8 @@ export const IntegrationPopup = ({
   openEShipperPopup,
   openHttpPopup,
   openOrdersPopup,
+  newRules,
+  selectedStepId,
 }) => {
   const [searchInput, setSearchInput] = useState("");
   // const [token, setToken] = useState("");
@@ -29,6 +31,8 @@ export const IntegrationPopup = ({
     const shopifyData = {
       shopifyTitle: "Shopify", // Replace with actual data
       shopifyDetails: "Get Orders", // Replace with actual data
+      newRules,
+      selectedStepId,
     };
 
     axios

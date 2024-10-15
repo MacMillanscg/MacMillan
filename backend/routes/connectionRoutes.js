@@ -38,5 +38,9 @@ router.get(
   "/:id/connectionSteps",
   connectionRoleController.getAllConnectionsStep
 );
+router.delete(
+  "/:id/connectionSteps/:stepId",
+  connectionRoleController.deleteConnectionStep
+);
 
 module.exports = router;
