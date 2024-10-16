@@ -42,5 +42,6 @@ router.delete(
   "/:id/connectionSteps/:stepId",
   connectionRoleController.deleteConnectionStep
 );
+router.put("/:id/:stepId", connectionRoleController.updateConnectionStep);
 
 module.exports = router;

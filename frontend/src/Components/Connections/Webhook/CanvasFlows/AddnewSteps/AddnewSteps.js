@@ -19,13 +19,26 @@ import {
 import { useNavigate, useParams } from "react-router-dom";
 import { getUser } from "../../../../../storageUtils/storageUtils";
 
-export const AddnewSteps = ({ onclose, onStepCreated, oncloseMenu }) => {
+export const AddnewSteps = ({
+  onclose,
+  onStepCreated,
+  oncloseMenu,
+  selectedStep,
+  selectedStepId,
+  setConnectionsSteps,
+  connectionsSteps,
+  setSelectedStep,
+  setSelectedStepId,
+  setSeletedEditStep,
+  seletedEditStep,
+  setSeletedEditStepId,
+  seletedEditStepId,
+}) => {
   const { id } = useParams();
   console.log("sdfasf", id);
   const { dashboardWidth } = useAppContext();
   const [connectionName, setConnectionName] = useState("");
-  const [clients, setClients] = useState([]);
-
+  const [scheduleDetails, setScheduleDetails] = useState({ option: "" });
   const [option, setOption] = useState("");
   const [search, setSearch] = useState("");
   const [cronExpression, setCronExpression] = useState("");
@@ -50,45 +63,82 @@ export const AddnewSteps = ({ onclose, onStepCreated, oncloseMenu }) => {
   };
 
   const handleCreate = async () => {
+    const dataToStore = {
+      connectionId: id,
+      connectionName: connectionName,
+      webhookTrigger: option === "Webhook" ? selectedWebhookTrigger : null,
+      managementTrigger:
+        option === "Management" ? selectedManagementTrigger : null,
+      scheduleDetails:
+        option === "Schedule" ? { schedule, cronExpression, option } : null,
+      shopifyDetails: {
+        shopifyTitle: "Shopify",
+        shopifyDetails: "Get orders",
+      },
+      // option: option === "Schedule" ? "Schedule" : null,
+    };
+    console.log("Create connection:", dataToStore);
     try {
-      const dataToStore = {
-        connectionId: id,
-        connectionName: connectionName,
-        webhookTrigger: option === "Webhook" ? selectedWebhookTrigger : null,
-        managementTrigger:
-          option === "Management" ? selectedManagementTrigger : null,
-        scheduleDetails:
-          option === "Schedule" ? { schedule, cronExpression, option } : null,
-        shopifyDetails: {
-          shopifyTitle: "Shopify",
-          shopifyDetails: "Get orders",
-        },
-        // option: option === "Schedule" ? "Schedule" : null,
-      };
-      console.log("Create connection:", dataToStore);
       // Send dataToStore to the server
-      const response = await axios.post(
-        `${url}/connections/addNewsteps/${id}`,
-        dataToStore
-      );
-      const connectionRule = response.data.connectionRule;
+      if (seletedEditStepId) {
+        await axios.put(
+          `http://localhost:5000/connections/${id}/${selectedStepId}`,
+          dataToStore
+        );
+        const updatedStep = connectionsSteps.find((step) => {
+          return (
+            step._id === selectedStepId &&
+            step.connectionName !== connectionName
+          );
+        });
 
-      if (Array.isArray(connectionRule) && connectionRule.length > 0) {
-        const lastRule = connectionRule[connectionRule.length - 1];
-        console.log("Last created rule:", lastRule);
+        console.log("Updated Step:", updatedStep);
+        onStepCreated(updatedStep);
+        if (updatedStep) {
+          setConnectionsSteps((prevSteps) =>
+            prevSteps.map((step) =>
+              step._id === selectedStepId ? { ...step, connectionName } : step
+            )
+          );
+        }
+        // selectedStepId(null);
+        onclose();
+        oncloseMenu();
+        setSeletedEditStepId(null);
+        setSeletedEditStep(null);
+        // setConnectionName("");
+        // setSelectedStep(null);
+        // resetSelectedStep();
+      } else {
+        const response = await axios.post(
+          `${url}/connections/addNewsteps/${id}`,
+          dataToStore
+        );
+        const connectionRule = response.data.connectionRule;
 
-        // Pass the last rule to the parent or do any further processing
-        onStepCreated(lastRule);
+        if (Array.isArray(connectionRule) && connectionRule.length > 0) {
+          const lastRule = connectionRule[connectionRule.length - 1];
+          console.log("Last created rule:", lastRule);
+          onStepCreated(lastRule);
+        }
+        onclose();
+        oncloseMenu();
+
+        console.log("Server response success:", response.data);
       }
-      onclose();
-      oncloseMenu();
-
-      console.log("Server response success:", response.data);
     } catch (error) {
       console.log("Error creating connection:", error);
     }
   };
 
+  useEffect(() => {
+    if (selectedStep && selectedStepId) {
+      setConnectionName(selectedStep);
+    }
+  }, [selectedStep, selectedStepId]);
+
+  console.log("editSelected", selectedStep);
+  console.log("editSelectedID", selectedStepId);
   console.log("option", option);
 
   return (
@@ -276,7 +326,7 @@ export const AddnewSteps = ({ onclose, onStepCreated, oncloseMenu }) => {
           </div>
           <div className={styles.buttonContainer}>
             <button className={styles.addButton} onClick={handleCreate}>
-              Create
+              {seletedEditStepId ? "Update Step" : "Add Step"}
             </button>
           </div>
         </div>

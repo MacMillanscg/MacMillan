@@ -103,3 +103,68 @@ exports.deleteConnectionStep = async (req, res) => {
       .json({ error: "Server error while deleting connection step" });
   }
 };
+
+exports.updateConnectionStep = async (req, res) => {
+  const {
+    connectionId,
+    connectionName,
+    webhookTrigger,
+    managementTrigger,
+    scheduleDetails,
+    shopifyDetails,
+    option,
+  } = req.body;
+
+  const { stepId } = req.params; // Get the stepId from the route params
+
+  try {
+    // Find the connection by connectionId
+    const connection = await Connection.findById(connectionId);
+
+    if (!connection) {
+      return res.status(404).json({ error: "Connection not found" });
+    }
+
+    // Find the index of the step by stepId
+    const stepIndex = connection.connectionRule.findIndex(
+      (step) => step._id.toString() === stepId
+    );
+    console.log("Stepindex", stepIndex);
+
+    if (stepIndex === -1) {
+      return res.status(404).json({ error: "Step not found" });
+    }
+
+    // Update the step's fields
+    connection.connectionRule[stepIndex] = {
+      ...connection.connectionRule[stepIndex].toObject(), // Keep old fields
+      connectionName: connectionName
+        ? connectionName
+        : connection.connectionRule[stepIndex].connectionName,
+      webhookTrigger: webhookTrigger
+        ? webhookTrigger
+        : connection.connectionRule[stepIndex].webhookTrigger,
+      managementTrigger: managementTrigger
+        ? managementTrigger
+        : connection.connectionRule[stepIndex].managementTrigger,
+      scheduleDetails: scheduleDetails
+        ? scheduleDetails
+        : connection.connectionRule[stepIndex].scheduleDetails,
+      shopifyDetails: shopifyDetails
+        ? shopifyDetails
+        : connection.connectionRule[stepIndex].shopifyDetails,
+      option: option ? option : connection.connectionRule[stepIndex].option,
+    };
+
+    // Save the updated connection
+    const updatedConnection = await connection.save();
+
+    res.status(200).json({
+      message: "Step updated successfully",
+      updatedStep: connection.connectionRule[stepIndex], // Send the updated step in the response
+    });
+  } catch (error) {
+    console.error("Error updating step:", error);
+    res.status(500).json({ error: "Server error while updating step" });
+  }
+};

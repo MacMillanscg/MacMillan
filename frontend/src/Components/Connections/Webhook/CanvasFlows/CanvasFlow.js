@@ -20,12 +20,13 @@ export const CanvasFlow = ({
   setSelectedStep,
   selectedStepId,
   setSelectedStepId,
-  scheduleIds,
   setScheduleIds,
 }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [showAddNewStep, setShowAddNewStep] = useState(false);
   const [connectionsSteps, setConnectionsSteps] = useState([]);
+  const [seletedEditStep, setSeletedEditStep] = useState(null);
+  const [seletedEditStepId, setSeletedEditStepId] = useState(null);
   // const [selectedStep, setSelectedStep] = useState("Rule 1");
   const { id } = useParams();
   const menuRef = useRef(null);
@@ -88,6 +89,14 @@ export const CanvasFlow = ({
     setConnectionsSteps((prevSteps) => [...prevSteps, newStep]); // Add the new step to the list
   };
 
+  const handleEditStep = (step) => {
+    // setSelectedStep(step.connectionName);
+    setSeletedEditStep(step.connectionName);
+    setSeletedEditStepId(step._id);
+    // setSelectedStepId(step._id);
+    setShowAddNewStep(true); // Open the modal for editing
+  };
+
   const deleteConnectionStep = async (stepId) => {
     console.log("setrpid", stepId);
     const confirmDelete = window.confirm(
@@ -134,6 +143,16 @@ export const CanvasFlow = ({
           onclose={handleCloseAddNewStep}
           onStepCreated={handleNewStepCreated}
           oncloseMenu={handleCoseMenu}
+          selectedStep={selectedStep}
+          selectedStepId={selectedStepId}
+          setConnectionsSteps={setConnectionsSteps}
+          connectionsSteps={connectionsSteps}
+          setSelectedStep={setSelectedStep}
+          setSelectedStepId={setSelectedStepId}
+          setSeletedEditStep={setSeletedEditStep}
+          seletedEditStep={seletedEditStep}
+          setSeletedEditStepId={setSeletedEditStepId}
+          seletedEditStepId={seletedEditStepId}
         />
       )}
       {showMenu && (
@@ -173,7 +192,11 @@ export const CanvasFlow = ({
                   <span className={styles.flowName}>{step.connectionName}</span>
                   <span className={styles.flowActions}>
                     <FontAwesomeIcon icon={faCopy} title="Copy" />
-                    <FontAwesomeIcon icon={faEdit} title="Edit" />
+                    <FontAwesomeIcon
+                      icon={faEdit}
+                      title="Edit"
+                      onClick={() => handleEditStep(step)}
+                    />
                     <FontAwesomeIcon
                       icon={faTrash}
                       title="Delete"
