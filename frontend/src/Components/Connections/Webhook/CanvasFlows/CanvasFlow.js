@@ -20,6 +20,8 @@ export const CanvasFlow = ({
   setSelectedStep,
   selectedStepId,
   setSelectedStepId,
+  scheduleIds,
+  setScheduleIds,
 }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [showAddNewStep, setShowAddNewStep] = useState(false);
@@ -44,18 +46,19 @@ export const CanvasFlow = ({
     }
   };
   console.log("selectedStep", selectedStep);
-  console.log("selectedStepId", typeof selectedStepId);
+  console.log("selectedStepId", selectedStepId);
 
   useEffect(() => {
     fetchConnections();
   }, [showAddNewStep]);
   console.log("connectionsStep", connectionsSteps);
 
-  const idsWithScheduleOption = connectionsSteps
-    .filter((item) => item.scheduleDetails.option === "Schedule")
-    .map((item) => item._id);
-
-  console.log("idsWithScheduleOption", typeof idsWithScheduleOption[0]);
+  useEffect(() => {
+    const filteredIds = connectionsSteps
+      .filter((item) => item.scheduleDetails.option === "Schedule")
+      .map((item) => item._id);
+    setScheduleIds(filteredIds);
+  }, [connectionsSteps]);
 
   const handleAddNewStep = () => {
     setShowAddNewStep(true);

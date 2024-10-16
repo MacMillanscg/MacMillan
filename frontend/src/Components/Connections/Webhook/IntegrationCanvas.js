@@ -95,6 +95,7 @@ export const IntegrationCanvas = () => {
   const [selectedStep, setSelectedStep] = useState("Rule 1");
   const [selectedStepId, setSelectedStepId] = useState(null);
   const [newRules, setNewRules] = useState(false);
+  const [scheduleIds, setScheduleIds] = useState([]);
 
   const dispatch = useDispatch();
   const { connections, error } = useSelector((state) => state.connections);
@@ -561,6 +562,11 @@ export const IntegrationCanvas = () => {
     setInitialized(false);
   };
 
+  console.log("idsWithScheduleOption", scheduleIds);
+  // this is used to show the schedule instead of trigger title
+  const isSelected = scheduleIds.includes(selectedStepId);
+  console.log("isSelected", isSelected);
+
   console.log("selectedRULE", selectedStep);
 
   return (
@@ -626,6 +632,8 @@ export const IntegrationCanvas = () => {
               setSelectedStep={setSelectedStep}
               selectedStepId={selectedStepId}
               setSelectedStepId={setSelectedStepId}
+              scheduleIds={scheduleIds}
+              setScheduleIds={setScheduleIds}
             />
 
             <div className={styles.webhook} onClick={openTriggerPopup}>
@@ -651,8 +659,8 @@ export const IntegrationCanvas = () => {
               </div>
 
               <div className={styles.imageContent}>
-                <h3>Trigger</h3>
-                <p>Universal webhook - webhook</p>
+                <h3> {isSelected ? "Schedule" : "Trigger"}</h3>
+                <p>{!isSelected ? "Universal webhook - webhook" : ""} </p>
               </div>
             </div>
             {/* from here the shopify started */}
