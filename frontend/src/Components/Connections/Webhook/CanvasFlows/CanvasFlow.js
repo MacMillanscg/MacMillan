@@ -14,6 +14,7 @@ import {
   faSleigh,
 } from "@fortawesome/free-solid-svg-icons";
 import { AddnewSteps } from "./AddnewSteps/AddnewSteps";
+import { ConfirmCancelPopUp } from "../../../Common/ConfirmCancelPopUp/ConfirmCancelPopUp";
 
 export const CanvasFlow = ({
   selectedStep,
@@ -28,6 +29,9 @@ export const CanvasFlow = ({
   const [seletedEditStep, setSeletedEditStep] = useState(null);
   const [seletedEditStepId, setSeletedEditStepId] = useState(null);
   const [connectionName, setConnectionName] = useState("");
+  const [copyStep, setCopyStep] = useState(false);
+  const [showdeleteModal, setShowDeleteModal] = useState(false);
+  const [stepIdToDelete, setStepIdToDelete] = useState(null);
   // const [selectedStep, setSelectedStep] = useState("Rule 1");
   const { id } = useParams();
   const menuRef = useRef(null);
@@ -108,46 +112,40 @@ export const CanvasFlow = ({
     setShowAddNewStep(true); // Open the modal for editing
   };
 
+  const handleCopyStep = (step) => {
+    setSeletedEditStep(step);
+    setConnectionName(`${step.connectionName} (Copy)`);
+    setShowAddNewStep(true); // Open the modal for copying
+    setCopyStep(true);
+  };
+
   console.log("selectedEditStep ", seletedEditStep);
   console.log("selectedEditStep ", seletedEditStepId);
 
-  const deleteConnectionStep = async (stepId) => {
-    console.log("setrpid", stepId);
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this step?"
-    );
-    if (!confirmDelete) return; // exit if not confirmed
+  const handleDeletModal = (stepId) => {
+    setStepIdToDelete(stepId);
+    setShowDeleteModal(true);
+  };
+  const cancelDeletModal = () => {
+    setStepIdToDelete(null);
+    setShowDeleteModal(false);
+  };
+
+  const deleteConnectionStep = async () => {
+    if (!stepIdToDelete) return;
+    console.log("Deleting step with ID:", stepIdToDelete);
 
     try {
       await axios.delete(
-        `http://localhost:5000/connections/${id}/connectionSteps/${stepId}`
+        `http://localhost:5000/connections/${id}/connectionSteps/${stepIdToDelete}`
       );
       setConnectionsSteps(
-        connectionsSteps.filter((step) => step._id !== stepId)
+        connectionsSteps.filter((step) => step._id !== stepIdToDelete)
       );
+      setSelectedStep("Rule 1");
+      cancelDeletModal();
     } catch (error) {
       console.error("Error deleting step:", error);
-    }
-  };
-
-  const handleCloneStep = async (step) => {
-    const clonedStep = {
-      ...step,
-      _id: new Date().getTime(),
-      connectionName: `${step.connectionName} (Copy)`,
-    };
-
-    try {
-      const response = await axios.post(
-        `http://localhost:5000/connections/${id}/cloneSteps`, // Assuming this endpoint exists
-        clonedStep
-      );
-
-      setConnectionsSteps((prevSteps) => [...prevSteps, response.data]);
-
-      console.log("Cloned step added:", response.data);
-    } catch (error) {
-      console.error("Error cloning step:", error);
     }
   };
 
@@ -190,6 +188,18 @@ export const CanvasFlow = ({
           seletedEditStepId={seletedEditStepId}
           setConnectionName={setConnectionName}
           connectionName={connectionName}
+          copyStep={copyStep}
+          setCopyStep={setCopyStep}
+        />
+      )}
+      {showdeleteModal && (
+        <ConfirmCancelPopUp
+          headerText="Warning"
+          bodyText="Are you sure you want to delete this record?"
+          onOk={deleteConnectionStep}
+          onCancel={cancelDeletModal}
+          okButtonText="Ok"
+          cancelButtonText="No"
         />
       )}
       {showMenu && (
@@ -231,7 +241,7 @@ export const CanvasFlow = ({
                     <FontAwesomeIcon
                       icon={faCopy}
                       title="Copy"
-                      onClick={() => handleCloneStep(step)}
+                      onClick={() => handleCopyStep(step)}
                     />
                     <FontAwesomeIcon
                       icon={faEdit}
@@ -241,7 +251,7 @@ export const CanvasFlow = ({
                     <FontAwesomeIcon
                       icon={faTrash}
                       title="Delete"
-                      onClick={() => deleteConnectionStep(step._id)}
+                      onClick={() => handleDeletModal(step._id)}
                     />
                   </span>
                 </div>

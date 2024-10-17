@@ -35,6 +35,8 @@ export const AddnewSteps = ({
   seletedEditStepId,
   setConnectionName,
   connectionName,
+  copyStep,
+  setCopyStep,
 }) => {
   const { id } = useParams();
   console.log("sdfasf", id);
@@ -48,6 +50,7 @@ export const AddnewSteps = ({
   const [webhookUrl, setWebhookUrl] = useState("");
   const [webhookSecret, setWebhookSecret] = useState("");
   const [selectedWebhookTrigger, setSelectedWebhookTrigger] = useState(null);
+
   const [selectedManagementTrigger, setSelectedManagementTrigger] =
     useState(null);
   const navigate = useNavigate();
@@ -103,14 +106,11 @@ export const AddnewSteps = ({
             )
           );
         }
-        // selectedStepId(null);
+
         onclose();
         oncloseMenu();
         setSeletedEditStepId(null);
         setSeletedEditStep(null);
-        // setConnectionName("");
-        // setSelectedStep(null);
-        // resetSelectedStep();
       } else {
         const response = await axios.post(
           `${url}/connections/addNewsteps/${id}`,
@@ -125,6 +125,7 @@ export const AddnewSteps = ({
         }
         onclose();
         oncloseMenu();
+        setCopyStep(false);
 
         console.log("Server response success:", response.data);
       }
@@ -146,9 +147,13 @@ export const AddnewSteps = ({
   return (
     <div className="dashboard" style={{ width: dashboardWidth }}>
       <div className={styles.modalBackground}>
-        <div className={styles.modalContainer}>
+        <div
+          className={` ${styles.modalContainer} ${
+            copyStep ? styles.modalCopyStep : ""
+          }`}
+        >
           <div className={styles.modalHeader}>
-            <h2>Create New Rule</h2>
+            <h2>{copyStep ? "Copy Rule" : "Create New Rule"} </h2>
             <span className={styles.close} onClick={onclose}>
               &times;
             </span>
@@ -164,48 +169,49 @@ export const AddnewSteps = ({
                 onChange={(e) => setConnectionName(e.target.value)}
               />
             </div>
-
-            <div className={styles.formGroup}>
-              <label>Select your trigger</label>
-              <div className={styles.options}>
-                <button
-                  className={`${styles.optionButton} ${
-                    option === "Webhook" ? styles.active : ""
-                  }`}
-                  onClick={() => setOption("Webhook")}
-                >
-                  <FontAwesomeIcon
-                    icon={faLink}
-                    className={styles.optionIcon}
-                  />
-                  Webhook
-                </button>
-                <button
-                  className={`${styles.optionButton} ${
-                    option === "Schedule" ? styles.active : ""
-                  }`}
-                  onClick={() => setOption("Schedule")}
-                >
-                  <FontAwesomeIcon
-                    icon={faCalendarAlt}
-                    className={styles.optionIcon}
-                  />
-                  Schedule
-                </button>
-                <button
-                  className={`${styles.optionButton} ${
-                    option === "Management" ? styles.active : ""
-                  }`}
-                  onClick={() => setOption("Management")}
-                >
-                  <FontAwesomeIcon
-                    icon={faCogs}
-                    className={styles.optionIcon}
-                  />
-                  Management
-                </button>
+            {!copyStep && (
+              <div className={styles.formGroup}>
+                <label>Select your trigger</label>
+                <div className={styles.options}>
+                  <button
+                    className={`${styles.optionButton} ${
+                      option === "Webhook" ? styles.active : ""
+                    }`}
+                    onClick={() => setOption("Webhook")}
+                  >
+                    <FontAwesomeIcon
+                      icon={faLink}
+                      className={styles.optionIcon}
+                    />
+                    Webhook
+                  </button>
+                  <button
+                    className={`${styles.optionButton} ${
+                      option === "Schedule" ? styles.active : ""
+                    }`}
+                    onClick={() => setOption("Schedule")}
+                  >
+                    <FontAwesomeIcon
+                      icon={faCalendarAlt}
+                      className={styles.optionIcon}
+                    />
+                    Schedule
+                  </button>
+                  <button
+                    className={`${styles.optionButton} ${
+                      option === "Management" ? styles.active : ""
+                    }`}
+                    onClick={() => setOption("Management")}
+                  >
+                    <FontAwesomeIcon
+                      icon={faCogs}
+                      className={styles.optionIcon}
+                    />
+                    Management
+                  </button>
+                </div>
               </div>
-            </div>
+            )}
 
             {option === "Webhook" && (
               <div className={styles.webhookForm}>
@@ -328,7 +334,7 @@ export const AddnewSteps = ({
           </div>
           <div className={styles.buttonContainer}>
             <button className={styles.addButton} onClick={handleCreate}>
-              {seletedEditStepId ? "Update Step" : "Add Step"}
+              {selectedStep ? (copyStep ? "Copy" : "Add") : "Edit"}
             </button>
           </div>
         </div>

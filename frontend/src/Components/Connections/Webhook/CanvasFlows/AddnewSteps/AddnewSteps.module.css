@@ -23,6 +23,9 @@
     max-height: 100%;
     overflow-y:scroll ;
   }
+  .modalCopyStep {
+    min-height: 300px;
+  }
   .modalContainer::-webkit-scrollbar { 
     width: 8px; 
   } 
@@ -113,8 +116,9 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: 120px;
-    height: 50px;
+    width: 91px;
+    height: 45px;
+    font-size: 16px;
   }
   
   .cancelButton:hover,
