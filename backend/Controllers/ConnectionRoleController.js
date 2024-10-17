@@ -168,3 +168,47 @@ exports.updateConnectionStep = async (req, res) => {
     res.status(500).json({ error: "Server error while updating step" });
   }
 };
+
+exports.cloneConnectionStep = async (req, res) => {
+  const { id, stepId } = req.params;
+
+  try {
+    // Find the connection by ID
+    const connection = await Connection.findById(id);
+
+    if (!connection) {
+      return res.status(404).json({ error: "Connection not found" });
+    }
+
+    // Find the step to be cloned
+    const stepToClone = connection.connectionRule.find(
+      (step) => step._id.toString() === stepId
+    );
+
+    if (!stepToClone) {
+      return res.status(404).json({ error: "Step not found" });
+    }
+
+    // Create a new cloned step with a new unique ID
+    const clonedStep = {
+      ...stepToClone._doc, // Copy all fields from the original step
+      _id: new mongoose.Types.ObjectId(), // Generate a new unique ID for the cloned step
+      connectionName: `${stepToClone.connectionName} (Copy)`, // Optional: add "Copy" to the name
+    };
+
+    // Add the cloned step to the connectionRule array
+    connection.connectionRule.push(clonedStep);
+
+    // Save the updated connection
+    const updatedConnection = await connection.save();
+
+    res.status(201).json({
+      message: "Step cloned successfully",
+      clonedStep,
+      updatedConnection,
+    });
+  } catch (error) {
+    console.error("Error cloning connection step:", error);
+    res.status(500).json({ error: "Server error while cloning step" });
+  }
+};

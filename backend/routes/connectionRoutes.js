@@ -44,4 +44,6 @@ router.delete(
 );
 router.put("/:id/:stepId", connectionRoleController.updateConnectionStep);
 
+router.post("/:id/cloneSteps", connectionRoleController.cloneConnectionStep);
+
 module.exports = router;

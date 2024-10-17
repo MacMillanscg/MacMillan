@@ -33,11 +33,13 @@ export const AddnewSteps = ({
   seletedEditStep,
   setSeletedEditStepId,
   seletedEditStepId,
+  setConnectionName,
+  connectionName,
 }) => {
   const { id } = useParams();
   console.log("sdfasf", id);
   const { dashboardWidth } = useAppContext();
-  const [connectionName, setConnectionName] = useState("");
+
   const [scheduleDetails, setScheduleDetails] = useState({ option: "" });
   const [option, setOption] = useState("");
   const [search, setSearch] = useState("");
@@ -133,7 +135,7 @@ export const AddnewSteps = ({
 
   useEffect(() => {
     if (selectedStep && selectedStepId) {
-      setConnectionName(selectedStep);
+      setSelectedStep(selectedStep);
     }
   }, [selectedStep, selectedStepId]);
 

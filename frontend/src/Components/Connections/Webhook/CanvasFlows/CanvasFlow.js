@@ -27,6 +27,7 @@ export const CanvasFlow = ({
   const [connectionsSteps, setConnectionsSteps] = useState([]);
   const [seletedEditStep, setSeletedEditStep] = useState(null);
   const [seletedEditStepId, setSeletedEditStepId] = useState(null);
+  const [connectionName, setConnectionName] = useState("");
   // const [selectedStep, setSelectedStep] = useState("Rule 1");
   const { id } = useParams();
   const menuRef = useRef(null);
@@ -63,6 +64,7 @@ export const CanvasFlow = ({
 
   const handleAddNewStep = () => {
     setShowAddNewStep(true);
+    setConnectionName("");
   };
   const handleCloseAddNewStep = () => {
     setShowAddNewStep(false);
@@ -82,6 +84,14 @@ export const CanvasFlow = ({
     setShowMenu(false);
   };
 
+  const updatedData = connectionsSteps.find(
+    (data) => data._id === selectedStepId
+  );
+  if (updatedData && selectedStep !== "Rule 1") {
+    setSelectedStep(updatedData?.connectionName); // Store the object directly in the state
+  }
+
+  console.log("newUpdatedData", updatedData?.connectionName);
   const handleNewStepCreated = (newStep) => {
     console.log("NEWSTEP", newStep);
     setSelectedStep(newStep.connectionName);
@@ -92,10 +102,14 @@ export const CanvasFlow = ({
   const handleEditStep = (step) => {
     // setSelectedStep(step.connectionName);
     setSeletedEditStep(step.connectionName);
+    setConnectionName(step.connectionName);
     setSeletedEditStepId(step._id);
     // setSelectedStepId(step._id);
     setShowAddNewStep(true); // Open the modal for editing
   };
+
+  console.log("selectedEditStep ", seletedEditStep);
+  console.log("selectedEditStep ", seletedEditStepId);
 
   const deleteConnectionStep = async (stepId) => {
     console.log("setrpid", stepId);
@@ -113,6 +127,27 @@ export const CanvasFlow = ({
       );
     } catch (error) {
       console.error("Error deleting step:", error);
+    }
+  };
+
+  const handleCloneStep = async (step) => {
+    const clonedStep = {
+      ...step,
+      _id: new Date().getTime(),
+      connectionName: `${step.connectionName} (Copy)`,
+    };
+
+    try {
+      const response = await axios.post(
+        `http://localhost:5000/connections/${id}/cloneSteps`, // Assuming this endpoint exists
+        clonedStep
+      );
+
+      setConnectionsSteps((prevSteps) => [...prevSteps, response.data]);
+
+      console.log("Cloned step added:", response.data);
+    } catch (error) {
+      console.error("Error cloning step:", error);
     }
   };
 
@@ -153,6 +188,8 @@ export const CanvasFlow = ({
           seletedEditStep={seletedEditStep}
           setSeletedEditStepId={setSeletedEditStepId}
           seletedEditStepId={seletedEditStepId}
+          setConnectionName={setConnectionName}
+          connectionName={connectionName}
         />
       )}
       {showMenu && (
@@ -191,7 +228,11 @@ export const CanvasFlow = ({
                   <FontAwesomeIcon icon={faEllipsisV} className="me-2" />{" "}
                   <span className={styles.flowName}>{step.connectionName}</span>
                   <span className={styles.flowActions}>
-                    <FontAwesomeIcon icon={faCopy} title="Copy" />
+                    <FontAwesomeIcon
+                      icon={faCopy}
+                      title="Copy"
+                      onClick={() => handleCloneStep(step)}
+                    />
                     <FontAwesomeIcon
                       icon={faEdit}
                       title="Edit"
