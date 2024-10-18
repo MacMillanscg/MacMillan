@@ -822,7 +822,7 @@ export const IntegrationCanvas = () => {
                   setIsConverterPopup(true);
                 }}
               >
-                <XmlPopup xmlContent={xmlContents} />
+                <XmlPopup orders={orders} />
               </StepPopup>
             )}
             {isIntegratioPopup && (

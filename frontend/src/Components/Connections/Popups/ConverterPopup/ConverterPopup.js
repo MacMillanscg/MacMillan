@@ -33,6 +33,8 @@ export const ConverterPopup = ({
   const { id } = useParams();
   console.log("id", id);
 
+  console.log("orders in json", orders);
+
   const handleActionClick = async (action, actions) => {
     setSelectedJsonData(actions);
     console.log("actionsss", actions);
@@ -74,7 +76,16 @@ export const ConverterPopup = ({
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
       />
-      <input type="file" className="form-control mb-4" />
+      {/* <input type="file" className="form-control mb-4" /> */}
+      <div className={styles.popupContent}>
+        <button
+          // onClick={handleDownload}
+          className={`btn btn-primary ${styles.exportBtn}`}
+        >
+          Choose path
+        </button>
+        <button className={styles.noFile}>No path chosen</button>
+      </div>
       <div className={styles.loopOptionsWrap}>
         {filteredActions.map((action, index) => (
           <div

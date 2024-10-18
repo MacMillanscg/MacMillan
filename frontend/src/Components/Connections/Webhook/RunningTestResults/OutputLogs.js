@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { JSONTree } from "react-json-tree";
 import styles from "./OutputLogs.module.css";
 import toast from "react-hot-toast";
@@ -34,7 +34,9 @@ const DataTreeView = ({ data }) => {
 export const OutputLogs = ({ selectedIntegration, orders, shopifyDetails }) => {
   const [activeTab, setActiveTab] = useState("output");
   const [showExportOptions, setShowExportOptions] = useState(false);
-  const [selectedFormat, setSelectedFormat] = useState("");
+  const [selectedFormat, setSelectedFormat] = useState("xml");
+  const previousOrdersRef = useRef([]);
+  const downloadTimerRef = useRef(null); // Timer reference
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -46,12 +48,10 @@ export const OutputLogs = ({ selectedIntegration, orders, shopifyDetails }) => {
       if (typeof obj[key] === "object" && obj[key] !== null) {
         Object.assign(acc, flattenObject(obj[key], fullKey));
       } else {
-        // Convert large numbers to strings to prevent exponential form
         if (
           typeof obj[key] === "number" &&
           obj[key] > Number.MAX_SAFE_INTEGER
         ) {
-          // Force large numbers to be treated as strings
           acc[fullKey] = `"${String(obj[key])}"`;
         } else {
           acc[fullKey] = obj[key];
@@ -61,14 +61,17 @@ export const OutputLogs = ({ selectedIntegration, orders, shopifyDetails }) => {
     }, {});
   };
 
-  const handleExport = () => {
-    if (!orders || orders.length === 0) {
-      toast.error("No orders available for export.");
+  const handleExport = (newOrders) => {
+    if (!newOrders || newOrders.length === 0) {
+      toast.error("No new orders available for export.");
       return;
     }
 
-    // Sort orders in ascending order based on `order.id`
-    const sortedOrders = [...orders].sort((a, b) => {
+    // Get stored order IDs from localStorage
+    const storedOrderIds =
+      JSON.parse(localStorage.getItem("storedOrderIds")) || [];
+
+    const sortedOrders = [...newOrders].sort((a, b) => {
       return String(a.id).localeCompare(String(b.id), undefined, {
         numeric: true,
       });
@@ -79,10 +82,7 @@ export const OutputLogs = ({ selectedIntegration, orders, shopifyDetails }) => {
       const flattenedOrder = flattenObject(order);
 
       if (selectedFormat === "csv") {
-        // Convert each order to CSV
         const headers = Object.keys(flattenedOrder);
-
-        // Join headers with commas
         const rows = headers
           .map((header) => {
             const value =
@@ -91,17 +91,14 @@ export const OutputLogs = ({ selectedIntegration, orders, shopifyDetails }) => {
                 : "";
             return value;
           })
-          .join(","); // Join values with commas
+          .join(",");
 
-        // Prepare CSV content
         content = [headers.join(","), rows].join("\n");
       } else if (selectedFormat === "xml") {
-        // Convert each order to XML
         const wrappedOrder = { order };
         content = js2xml(wrappedOrder, { compact: true, spaces: 4 });
       }
 
-      // Proceed with file download
       if (content) {
         const blob = new Blob([content], {
           type: selectedFormat === "csv" ? "text/csv" : "application/xml",
@@ -109,7 +106,6 @@ export const OutputLogs = ({ selectedIntegration, orders, shopifyDetails }) => {
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
-        // The download name is the order ID followed by the selected format
         a.download = `${order.id}.${selectedFormat}`;
         document.body.appendChild(a);
         a.click();
@@ -118,10 +114,40 @@ export const OutputLogs = ({ selectedIntegration, orders, shopifyDetails }) => {
       }
     });
 
+    // Update stored order IDs
+    const updatedStoredOrderIds = [
+      ...new Set([...storedOrderIds, ...sortedOrders.map((order) => order.id)]),
+    ];
+    localStorage.setItem(
+      "storedOrderIds",
+      JSON.stringify(updatedStoredOrderIds)
+    );
+
     toast.success(
-      `Files downloaded successfully as ${selectedFormat.toUpperCase()}!`
+      `New files downloaded successfully as ${selectedFormat.toUpperCase()}!`
     );
   };
+
+  useEffect(() => {
+    // Check if orders have changed and set timer to download new orders
+    if (previousOrdersRef.current !== orders && orders.length > 0) {
+      const storedOrderIds =
+        JSON.parse(localStorage.getItem("storedOrderIds")) || [];
+      const newOrders = orders.filter(
+        (order) => !storedOrderIds.includes(order.id)
+      );
+
+      if (newOrders.length > 0) {
+        // Set a timer to download new orders after 10 seconds
+        downloadTimerRef.current = setTimeout(() => {
+          handleExport(newOrders);
+        }, 10000); // 10000 milliseconds = 10 seconds
+      }
+    }
+
+    // Cleanup function to clear the timer if component unmounts
+    return () => clearTimeout(downloadTimerRef.current);
+  }, [orders]);
 
   return (
     <div className={styles.tabsContainer}>
@@ -172,6 +198,7 @@ export const OutputLogs = ({ selectedIntegration, orders, shopifyDetails }) => {
                   name="format"
                   value="xml"
                   onChange={() => setSelectedFormat("xml")}
+                  defaultChecked
                 />
                 <label className={styles.label} htmlFor="xml">
                   XML
@@ -182,7 +209,7 @@ export const OutputLogs = ({ selectedIntegration, orders, shopifyDetails }) => {
                 <button
                   onClick={() => {
                     if (selectedFormat) {
-                      handleExport();
+                      handleExport(orders); // Export current orders when clicked
                     } else {
                       toast.error("Please select a format.");
                     }

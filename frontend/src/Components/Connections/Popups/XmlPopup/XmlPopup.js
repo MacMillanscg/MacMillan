@@ -1,54 +1,55 @@
 import React, { useState, useEffect } from "react";
 import styles from "./XmlPopup.module.css";
 import toast from "react-hot-toast";
+import { js2xml } from "xml-js"; // Same XML conversion as in OutputLogs
 
-export const XmlPopup = ({ onClose, xmlContent }) => {
-  const [fileName, setFileName] = useState("");
+export const XmlPopup = ({ onClose, orders }) => {
+  const [fileName, setFileName] = useState("all_orders.xml");
   const [directoryPath, setDirectoryPath] = useState("");
-  const [savedFileName, setSavedFileName] = useState("");
 
+  // Set default file name based on orders
   useEffect(() => {
-    if (xmlContent) {
-      setFileName("converted.xml"); // Default file name
+    if (orders && Array.isArray(orders)) {
+      setFileName("all_orders.xml"); // Default file name
     }
-  }, [xmlContent]);
+  }, [orders]);
 
   const handleDownload = async () => {
-    if (!xmlContent || typeof xmlContent !== "string") {
-      const toastId = toast.error("Invalid XML content.");
-      setTimeout(() => toast.dismiss(toastId), 4000); // Dismiss after 4 seconds
-      console.error("Invalid XML content.");
+    if (!orders || !Array.isArray(orders)) {
+      toast.error("Invalid orders content.");
       return;
     }
 
     try {
-      // Prompt the user to select a directory
+      // Prompt the user to select a directory for saving files
       const directoryHandle = await window.showDirectoryPicker();
-      const fileHandle = await directoryHandle.getFileHandle(
-        fileName || "converted.xml",
-        { create: true }
-      );
-      const writable = await fileHandle.createWritable();
-      await writable.write(xmlContent);
-      await writable.close();
 
-      // Set the directory path and saved file name
-      setDirectoryPath(directoryHandle.name); // Note: This will only give the directory name, not the full path
-      setSavedFileName(fileName);
+      // Loop through each order in the `orders` array
+      for (let order of orders) {
+        // Generate the XML content for each individual order
+        const xmlContent = js2xml({ order }, { compact: true, spaces: 4 });
 
-      const toastId = toast.success("File saved successfully!");
-      setTimeout(() => toast.dismiss(toastId), 4000); // Dismiss after 4 seconds
+        // Create a file name using the order ID or any unique field
+        const orderFileName = `order_${order.id}.xml`; // Change this to the field you want to use
+
+        // Create a new file in the selected directory for each order
+        const fileHandle = await directoryHandle.getFileHandle(orderFileName, {
+          create: true,
+        });
+
+        const writable = await fileHandle.createWritable();
+        await writable.write(xmlContent); // Write XML content for this order
+        await writable.close();
+      }
+
+      // Update the UI with the directory name
+      setDirectoryPath(directoryHandle.name);
+      toast.success("All files saved successfully!");
     } catch (error) {
-      // Handle user cancellation gracefully
       if (error.name === "AbortError") {
-        const toastId = toast.error("File save cancelled.");
-        setTimeout(() => toast.dismiss(toastId), 4000); // Dismiss after 4 seconds
+        toast.error("File save cancelled.");
       } else {
-        const toastId = toast.error(
-          `Failed to save the file: ${error.message}`
-        );
-        setTimeout(() => toast.dismiss(toastId), 4000); // Dismiss after 4 seconds
-        console.error("Save Error:", error);
+        toast.error(`Failed to save files: ${error.message}`);
       }
     }
   };
@@ -59,10 +60,10 @@ export const XmlPopup = ({ onClose, xmlContent }) => {
         onClick={handleDownload}
         className={`btn btn-primary ${styles.exportBtn}`}
       >
-        Choose path
+        Choose Path
       </button>
       <button className={styles.noFile}>
-        {directoryPath ? `${directoryPath}` : "No file chosen"}
+        {directoryPath ? `${directoryPath}` : "No path chosen"}
       </button>
     </div>
   );
