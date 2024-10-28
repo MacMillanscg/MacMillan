@@ -21,7 +21,6 @@
     "jsbarcode": "^3.11.6",
     "json2csv": "^6.0.0-alpha.2",
     "jspdf": "^2.5.2",
-    "path-browserify": "^1.0.1",
     "pdf-lib": "^1.17.1",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.4",
@@ -45,9 +44,9 @@
     "zxcvbn": "^4.4.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -69,6 +68,8 @@
     ]
   },
   "devDependencies": {
-    "electron": "^31.2.1"
+    "electron": "^31.2.1",
+    "path-browserify": "^1.0.1",
+    "react-app-rewired": "^2.2.1"
   }
 }
