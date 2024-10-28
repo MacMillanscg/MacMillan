@@ -690,13 +690,13 @@ export const Summary = () => {
                     (shipment) =>
                       shipment.shopifyOrderId === order.id.toString()
                   );
-                // const scheduledShipDated =
-                //   formattedData &&
-                //   formattedData.find(
-                //     (data) => data.reference1 === order.id.toString()
-                //   );
+                const scheduledShipDated =
+                  formattedData &&
+                  formattedData.find(
+                    (data) => data.reference1 === order.id.toString()
+                  );
                 console.log("Shipment", shipment);
-                // console.log("scheduledShipDated", scheduledShipDated);
+                console.log("scheduledShipDated", scheduledShipDated);
                 return (
                   <tr key={index}>
                     <td>
@@ -738,7 +738,7 @@ export const Summary = () => {
                     <td>
                       {new Date(order.created_at).toISOString().split("T")[0]}
                     </td>
-                    <td>Need to update (??)</td>
+                    <td>{scheduledShipDated?.scheduledShipDate}</td>
                     <td>{shipment ? shipment.reference : ""}</td>
                     <td>{shipment ? shipment.reference2 : ""}</td>
                     <td>{shipment ? shipment.reference3 : ""}</td>
