@@ -1,4 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
+// At the top of Summary.js
+import path from "path-browserify";
+
 import styles from "./Summary.module.css";
 import { useAppContext } from "../Context/AppContext";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,6 +29,8 @@ import { url } from "../../api";
 import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
 import { ExportModal } from "./ExportModal/ExportModal";
 import { ConfirmCancelPopUp } from "../Common/ConfirmCancelPopUp/ConfirmCancelPopUp";
+import { useFetchXmlData } from "./hooks/useFetchXmlData";
+import { format } from "path";
 
 export const Summary = () => {
   const { dashboardWidth } = useAppContext();
@@ -58,6 +63,7 @@ export const Summary = () => {
   const [trackingUrl, setTrackingUrl] = useState(null);
   const [base64Data, setBase64Data] = useState(null);
   const [trackShipmentList, setTrackShipmentList] = useState([]);
+  const [allShipmentData, setAllShipmentData] = useState([]);
   const [columns, setColumns] = useState([
     { name: "", key: "select", visible: true },
     { name: "Order Number", key: "orderNumber", visible: true },
@@ -80,11 +86,18 @@ export const Summary = () => {
     { name: "Downloaded", key: "downloaded", visible: true },
   ]);
 
-  console.log("filteredClients", filteredClients);
+  const { xmlData, formattedData, shipmentsId, setShipmentsId } =
+    useFetchXmlData();
+
+  console.log("xmlDataSUmmary", xmlData);
+  console.log("formattedData", formattedData);
+  console.log("formattedData", formattedData[0]?.scheduledShipDate);
+  console.log("shipmentsId", shipmentsId);
+  // console.log("filteredClients", filteredClients);
 
   let userId = getUser();
   userId = userId?._id;
-  console.log(userId);
+  // console.log(userId);
 
   useEffect(() => {
     const fetchAllClients = async () => {
@@ -102,7 +115,7 @@ export const Summary = () => {
     };
     fetchAllClients();
   }, [userId]);
-  console.log("clients", clients);
+  // console.log("clients", clients);
 
   const filterDataByTimeRange = (data) => {
     const today = new Date();
@@ -157,7 +170,7 @@ export const Summary = () => {
     setFilteredData(filtered);
   };
 
-  console.log("filteredData", filteredData);
+  // console.log("filteredData", filteredData);
 
   useEffect(() => {
     applyFilters();
@@ -214,7 +227,7 @@ export const Summary = () => {
   };
 
   const handleRowSelect = (e, rowIndex) => {
-    console.log("reowindex", rowIndex);
+    // console.log("reowindex", rowIndex);
     const updatedSelection = [...selectedRows];
     if (e.target.checked) {
       updatedSelection.push(rowIndex);
@@ -228,9 +241,9 @@ export const Summary = () => {
   };
   // 11007  11006  10963   10962   10956
 
-  console.log("selectedRow", selectedRows);
+  // console.log("selectedRow", selectedRows);
   const shippmentData = [];
-  console.log("dataaa", data);
+  // console.log("dataaa", data);
 
   const fetchShopifyOrders = async () => {
     try {
@@ -241,11 +254,11 @@ export const Summary = () => {
 
       const ordersWithPhone = orders.map((order) => {
         const phoneNumber = order.customer?.phone || "No phone provided";
-        console.log("phonenumber", phoneNumber);
+        // console.log("phonenumber", phoneNumber);
         return { ...order, customerPhone: phoneNumber };
       });
 
-      console.log("orderwith", ordersWithPhone);
+      // console.log("orderwith", ordersWithPhone);
       setOrders(ordersWithPhone);
       setFilteredClients(ordersWithPhone);
     } catch (error) {
@@ -269,13 +282,13 @@ export const Summary = () => {
           },
         }
       );
-      console.log("trackShipResponse", trackShipResponse.data);
+      // console.log("trackShipResponse", trackShipResponse.data);
       setTrackShipmentList((prev) => [...prev, trackShipResponse.data]);
     } catch (error) {
       console.log(error);
     }
   };
-  console.log("trackShipmentList", trackShipmentList);
+  // console.log("trackShipmentList", trackShipmentList);
 
   const fetchShipmentRecords = async (shipmentId) => {
     try {
@@ -288,8 +301,8 @@ export const Summary = () => {
           },
         }
       );
-      console.log("shipResponse", shipResponse.data);
-      setShipmentData(shipResponse.data);
+      // console.log("shipResponse", shipResponse.data);
+      // setShipmentData(shipResponse.data);
       setShipmentDataList((prevData) => [...prevData, shipResponse.data]);
       console.log("code", typeof shipResponse.data.reference.code);
       setBase64Data(shipResponse.data.labelData.label[0].data);
@@ -316,94 +329,107 @@ export const Summary = () => {
     }
   }, [token]);
 
-  // const fetchData = async (shipmentId) => {
-  //   setLoading(true);
-  //   try {
-  // Fetch data from eShipper APIs and Shopify API concurrently
-  // const [shipResponse, trackResponse, shopifyResponse] = await Promise.all([
-  // axios.get(`https://uu2.eshipper.com/api/v2/ship/${shipmentId}`, {
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     Authorization: `Bearer ${token}`,
-  //   },
-  // }),
-  // axios.get(`https://uu2.eshipper.com/api/v2/track/${shipmentId}`, {
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     Authorization: `Bearer ${token}`,
-  //   },
-  // }),
-  // ]);
+  const sendToEShipper = async () => {
+    if (formattedData.length === 0) return;
 
-  // Process the response from both APIs
-  // const shipData = shipResponse.data;
-  // const trackData = trackResponse.data;
-  // const shopifyOrders = shopifyResponse.data.orders;
+    const newShipmentsData = formattedData.filter(
+      (dataItem) =>
+        !shipmentsId.some(
+          (idItem) => idItem.shopifyOrderId === dataItem.reference1
+        )
+    );
 
-  // Filter and map Shopify order details
-  // const ordersWithPhone = shopifyOrders.map((order) => {
-  //   const phoneNumber = order.customer?.phone || "No phone provided";
-  //   return { ...order, customerPhone: phoneNumber };
-  // });
+    console.log("newShipmentsData", newShipmentsData);
 
-  // console.log("Shopify Orders with Phone:", shopifyOrders);
+    if (newShipmentsData.length === 0) {
+      console.log("All shipments are already created.");
+      return; // Skip if there are no new shipments
+    }
 
-  // Process eShipper tracking statuses
-  // const filteredStatuses = Object.entries(trackData.status)
-  //   .filter(([key, value]) => value)
-  //   .map(([key]) => key)
-  //   .join(", ");
+    try {
+      const data = {
+        extractedData: [newShipmentsData[0]], // Only send new shipments
+        token,
+      };
 
-  // Map data from both eShipper and Shopify APIs
-  // const mappedData = {
-  // orderNumber: shipData.reference.code,
-  // shipmentNumber: shipData.order.id,
-  // carrier: shipData.carrier.carrierName,
-  // platform: "Shopify",
-  // shipmentStatus: filteredStatuses,
-  // client: clients[0]?.clientName,
-  // customer: trackData.orderDetails.to.attention,
-  // address: trackData.orderDetails.to.address1,
-  // trackingNumber: shipData.trackingNumber, // From the 'track' API
-  // trackingUrl: trackData.trackingUrl,
-  // createdDate: "09/06/2024",
-  // shippedDate: "07/07/2024",
-  // reference: shipData.reference.name,
-  // reference2: shipData.reference2.name,
-  // reference3: shipData.reference3.name,
-  // dimentions: `${trackData.orderDetails.packages.packages[0].length} x ${trackData.orderDetails.packages.packages[0].width} x ${trackData.orderDetails.packages.packages[0].height}`,
-  // weight: `${trackData.orderDetails.packages.packages[0].weight} ${trackData.orderDetails.packages.packages[0].weightUnit}`,
-  // label: shipData.labelData.label[0].data,
-  // downloaded: false,
-  // Add Shopify-specific fields here if needed
-  // shopifyOrders: ordersWithPhone,
-  // };
+      // Send request to backend
+      const response = await axios.put(
+        "http://localhost:5000/summary/create-shipment",
+        data
+      );
 
-  //     return mappedData;
-  //   } catch (error) {
-  //     console.error("Error fetching data:", error);
-  //   } finally {
-  //     setLoading(false); // Stop loading after data is fetched
-  //   }
-  // };
+      // Handle success and failed responses from backend
+      console.log("eShipper Response:", response.data?.successResponses[0]);
+      const newShipmentIds = response.data.successResponses.map((res) => res);
+      console.log("newshipmentIds", newShipmentIds);
+      setShipmentsId((prev) => [...prev, ...newShipmentIds]);
+    } catch (error) {
+      console.error("Error sending data to eShipper:", error);
+    }
+  };
 
-  // console.log("allData", allData);
+  useEffect(() => {
+    // const intervalId = setInterval(() => {
+    sendToEShipper();
+    // }, 3000000000000);
 
-  // const getAllShipments = async () => {
-  //   const id = "2334523452";
-  //   const shipments = [];
-  // Loop through each shipment ID
-  // for (let id of shipmentIds) {
-  // const shipmentData = await fetchData(id);
-  // if (shipmentData) {
-  //   shipments.push(shipmentData);
-  // }
-  // }
-  //   console.log("All shipments:", shipments);
-  //   setData(shipments);
-  //   setFilteredClients(shipments);
-  // };
-  // console.log("ordrs", orders);
+    //return () => clearInterval(intervalId); // Clear interval on component unmount
+  }, [formattedData, token, shipmentsId]);
+
+  const fetchShipmentDetails = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:5000/summary/getShipments"
+      );
+
+      console.log("Shipment Details:", response.data.shipments);
+      setShipmentData(response.data.shipments);
+    } catch (error) {
+      console.error("Error fetching shipment details:", error);
+    }
+  };
+  console.log("shipmentData", shipmentData);
+
+  useEffect(() => {
+    fetchShipmentDetails();
+  }, []);
+
+  const cleanShipmentData = (data) => {
+    return data.map((item) => {
+      const { shipmentData, trackingData, shopifyOrderId, shipmentId } = item;
+      const { dimensionUnit, height, length, weight, weightUnit, width } =
+        trackingData?.orderDetails?.packages?.packages[0];
+      // Extracting necessary fields from shipmentData
+      const cleanedData = {
+        carrier: shipmentData?.carrier?.carrierName || "",
+        shipmentId: shipmentId || "",
+        trackingNumber: shipmentData?.trackingNumber || "",
+        trackingUrl: shipmentData?.trackingUrl || "",
+        reference: shipmentData?.reference?.name || "",
+        reference2: shipmentData?.reference2?.name || "",
+        reference3: shipmentData?.reference3?.name || "",
+        labels: shipmentData?.labelData?.label[0]?.data || "",
+        shopifyOrderId: shopifyOrderId || "",
+
+        // Extracting necessary fields from trackingData
+        status: trackingData?.status || "",
+        dimentions: `${width} x ${length} x ${height} ${dimensionUnit}`,
+        weight: `${weight} ${weightUnit}`,
+      };
+
+      return cleanedData;
+    });
+  };
+
+  useEffect(() => {
+    const cleanData = cleanShipmentData(shipmentData);
+    setAllShipmentData(cleanData);
+  }, [shipmentData]);
+
+  // Example usage with shipmentData
+  console.log("allShipmentData", allShipmentData);
+
+  console.log("ordrs", orders);
   // console.log("filterclients", filteredClients);
 
   const handleEShipperClick = () => {
@@ -625,171 +651,118 @@ export const Summary = () => {
       </div>
 
       <div className={styles.tableContainer}>
-        {loading ? (
-          <div className={styles.loading}></div>
-        ) : (
-          <table className={`${styles.table} mt-4`}>
-            <thead>
-              <tr>
-                <th>
-                  <input
-                    type="checkbox"
-                    checked={selectedRows.length === filteredDatas.length}
-                    onChange={handleSelectAll}
-                  />
-                </th>
-                {columns.map(
-                  (column) =>
-                    column.visible && <th key={column.key}>{column.name}</th>
-                )}
-              </tr>
-            </thead>
-            <tbody>
-              {orders &&
-                orders.map((row, index) => {
-                  const additional =
-                    shipmentDataList &&
-                    shipmentDataList.find(
-                      (shipment) =>
-                        shipment && shipment.reference.name === String(row.id)
-                    );
-
-                  console.log("additional", additional);
-
-                  const label =
-                    additional && additional.labelData.label[0].data;
-
-                  return (
-                    <tr key={index}>
-                      <td>
-                        <input
-                          type="checkbox"
-                          checked={selectedRows.includes(index)}
-                          onChange={(e) => handleRowSelect(e, index)}
-                        />
-                      </td>
-                      {/* Dynamically render the cells based on column keys */}
-
-                      {columns.map(
-                        (column) =>
-                          column.visible && (
-                            <td key={column.key}>
-                              {column.key === "orderNumber" && row.id}
-                              {column.key === "platform" && "Shopify"}
-                              {column.key === "client" &&
-                                clients[0]?.clientName}
-                              {column.key === "customer" && (
-                                <>
-                                  {`${row.customer.first_name} ${row.customer.last_name}`}
-                                </>
-                              )}
-                              {column.key === "address" && (
-                                <>
-                                  {`${row.customer.default_address.address1} ${row.customer.default_address.city}`}
-                                </>
-                              )}
-                              {column.key === "createdDate" &&
-                                new Date(row.created_at)
-                                  .toISOString()
-                                  .split("T")[0]}
-                              {/* {column.key === "download" && button} */}
-                              {column.key === "downloaded" && (
-                                // <td>
-                                <button
-                                  onClick={() =>
-                                    handleDownloadClick(index, label)
-                                  }
-                                >
-                                  Download
-                                </button>
-                                // </td>
-                              )}
-                              {column.key === "reference" &&
-                                additional &&
-                                additional.reference?.name}
-                              {column.key === "reference2" &&
-                                additional &&
-                                additional.reference2?.name}
-                              {column.key === "reference3" &&
-                                additional &&
-                                additional.reference3?.name}
-
-                              {column.key === "weight" &&
-                                row.id === 6296516985137 &&
-                                "5.000 lb"}
-                              {column.key === "dimentions" &&
-                                row.id === 6296516985137 &&
-                                `8 x 8 x 8 in`}
-                              {/* new */}
-
-                              {column.key === "weight" &&
-                                row.id === 6296729157937 &&
-                                "5.000 lb"}
-                              {column.key === "dimentions" &&
-                                row.id === 6296729157937 &&
-                                `12 x 12 x 12 in`}
-                              {/* new */}
-
-                              {column.key === "weight" &&
-                                row.id === 6299445166385 &&
-                                "5.000 lb"}
-                              {column.key === "dimentions" &&
-                                row.id === 6299445166385 &&
-                                `10 x 10 x 10 in`}
-                              {/* new */}
-
-                              {column.key === "weight" &&
-                                row.id === 6299447034161 &&
-                                "5.000 lb"}
-                              {column.key === "dimentions" &&
-                                row.id === 6299447034161 &&
-                                `12 x 12 x 12 in`}
-                              {/* new */}
-
-                              {column.key === "weight" &&
-                                row.id === 6299446542641 &&
-                                "5.000 lb"}
-                              {column.key === "dimentions" &&
-                                row.id === 6299446542641 &&
-                                `8 x 8 x 8 in`}
-
-                              {column.key === "shippedDate" &&
-                                idsToShowData.includes(row.id) &&
-                                "10/11/2024"}
-                              {column.key === "carrier" &&
-                                additional &&
-                                additional.carrier?.carrierName}
-                              {column.key === "shipmentStatus" &&
-                                idsToShowData.includes(row.id) &&
-                                "Ready for shipping"}
-                              {column.key === "trackingNumber" &&
-                                additional &&
-                                additional.trackingNumber}
-                              {column.key === "labels" &&
-                                idsToShowData.includes(row.id) &&
-                                "Label"}
-                              {column.key === "trackingUrl" &&
-                                additional &&
-                                additional.trackingUrl && (
-                                  <a
-                                    href={trackingUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                  >
-                                    URL
-                                  </a>
-                                )}
-
-                              {/* new */}
-                            </td>
-                          )
-                      )}
-                    </tr>
+        <table className={`${styles.table} mt-4`}>
+          <thead>
+            <tr>
+              <th>
+                <input
+                  type="checkbox"
+                  // checked={selectedRows.length === filteredDatas.length}
+                  // onChange={handleSelectAll}
+                />
+              </th>
+              <th>Order Number</th>
+              <th>Plateform</th>
+              <th>Shipment Status</th>
+              <th>Carrier</th>
+              <th>Client</th>
+              <th>Customer</th>
+              <th>Address</th>
+              <th>Tracking Number</th>
+              <th>Tracking URL</th>
+              <th>Created Date</th>
+              <th>Shipped Date</th>
+              <th>Reference </th>
+              <th>Reference 2</th>
+              <th>Reference 3</th>
+              <th>Dimensions</th>
+              <th>Weight</th>
+              <th>Label</th>
+              <th>Downloaded</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders &&
+              orders.map((order, index) => {
+                const shipment =
+                  allShipmentData &&
+                  allShipmentData.find(
+                    (shipment) =>
+                      shipment.shopifyOrderId === order.id.toString()
                   );
-                })}
-            </tbody>
-          </table>
-        )}
+                // const scheduledShipDated =
+                //   formattedData &&
+                //   formattedData.find(
+                //     (data) => data.reference1 === order.id.toString()
+                //   );
+                console.log("Shipment", shipment);
+                // console.log("scheduledShipDated", scheduledShipDated);
+                return (
+                  <tr key={index}>
+                    <td>
+                      <input
+                        type="checkbox"
+                        // checked={selectedRows.includes(index)}
+                        // onChange={(e) => handleRowSelect(e, index)}
+                      />
+                    </td>
+                    <td>{order.id}</td>
+                    <td>Shopify</td>
+                    <td>{shipment ? "Ready for shipping" : null}</td>
+                    <td>{shipment ? shipment.carrier : ""}</td>
+                    <td>Jibran</td>
+                    <td>
+                      {" "}
+                      {`${order.customer.first_name} ${order.customer.last_name}`}
+                    </td>
+
+                    <td>
+                      {" "}
+                      {`${order.customer.default_address.address1} ${order.customer.default_address.city}`}
+                    </td>
+                    <td>{shipment ? shipment.trackingNumber : ""}</td>
+                    <td>
+                      {shipment && shipment.trackingUrl ? (
+                        <a
+                          href={shipment.trackingUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Url
+                        </a>
+                      ) : (
+                        ""
+                      )}
+                    </td>
+
+                    <td>
+                      {new Date(order.created_at).toISOString().split("T")[0]}
+                    </td>
+                    <td>Need to update (??)</td>
+                    <td>{shipment ? shipment.reference : ""}</td>
+                    <td>{shipment ? shipment.reference2 : ""}</td>
+                    <td>{shipment ? shipment.reference3 : ""}</td>
+                    <td>{shipment ? shipment.dimentions : ""}</td>
+                    <td>{shipment ? shipment.weight : ""}</td>
+                    <td>Label</td>
+                    <td>
+                      {shipment && shipment.labels ? (
+                        <button
+                          onClick={() =>
+                            handleDownloadClick(index, shipment.labels)
+                          }
+                        >
+                          Download
+                        </button>
+                      ) : (
+                        ""
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
+          </tbody>
+        </table>
       </div>
 
       <CustomPagination

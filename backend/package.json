@@ -13,6 +13,7 @@
     "axios": "^1.7.2",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.1",
+    "chokidar": "^4.0.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
@@ -29,7 +30,8 @@
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.1"
+    "swagger-ui-express": "^5.0.1",
+    "xml2js": "^0.6.2"
   },
   "devDependencies": {
     "swagger-autogen": "^2.23.7"

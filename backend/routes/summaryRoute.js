@@ -5,6 +5,10 @@ const shopifyControllers = require("../Controllers/ShopifyControllers");
 
 router.post("/verify-eshipper", summaryController.verifyEShipperCredential);
 router.get("/orders/shopifyIds", shopifyControllers.getAllShopifyOrdersIds);
+router.get("/convert-xml", summaryController.convertXmlFilesToJson);
+router.put("/create-shipment", summaryController.sendDataToEShipper);
+router.get("/getShipments", summaryController.getShipmentDetails);
+router.get("/getShipmentsId", summaryController.getAllShipmentIds);
 // router.get("/api/orders", summaryController.shopifyOrders);
 
 module.exports = router;
