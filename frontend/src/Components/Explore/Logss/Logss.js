@@ -120,8 +120,9 @@ export const Logss = () => {
               <th>Type</th>
               <th>Message</th>
               <th>Timestamp</th>
-              <th>Connection</th>
-              {/* <th>Client</th> */}
+              {/* <th>Clients</th> */}
+              <th>Connections</th>
+              <th>Client</th>
             </tr>
           </thead>
           <tbody>

@@ -2,6 +2,7 @@
 const axios = require("axios");
 const Client = require("../Schema/Client");
 const Log = require("../Schema/Log");
+const logger = require("../logger");
 
 exports.addClientVerify = async (req, res) => {
   const { storeUrl, apiKey } = req.body;
@@ -75,8 +76,13 @@ exports.getClients = async (req, res) => {
   try {
     const userId = req.params.userId;
     const clients = await Client.find({ userId });
+    logger.info("Fetched clients successfully", {
+      userId,
+      count: clients.length,
+    });
     res.status(200).send(clients);
   } catch (error) {
+    logger.error("Error fetching clients", { error: error.message });
     res.status(400).send(error);
   }
 };
@@ -84,8 +90,14 @@ exports.getClients = async (req, res) => {
 // Get All Clients
 exports.getAllClients = (req, res) => {
   Client.find()
-    .then((users) => res.json(users))
-    .catch((err) => res.status(400).json("Err:" + err));
+    .then((users) => {
+      logger.info("Fetched all clients successfully", { count: users.length });
+      res.json(users);
+    })
+    .catch((error) => {
+      logger.error("Error fetching all clients", { error: error.message });
+      res.status(400).json("Err:" + error);
+    });
 };
 
 exports.addClientIntegration = async (req, res) => {

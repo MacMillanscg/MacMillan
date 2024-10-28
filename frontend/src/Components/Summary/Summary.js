@@ -51,18 +51,13 @@ export const Summary = () => {
   const [clients, setClients] = useState([]);
   const [isPrintModalVisible, setIsPrintModalVisible] = useState(false);
   const [showExportModal, setShowExportModal] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [isColumnManagerVisible, setIsColumnManagerVisible] = useState(false);
   const [selectedStatuses, setSelectedStatuses] = useState([]);
   const [timeRange, setTimeRange] = useState("allTime");
   const [showDialog, setShowDialog] = useState(false);
   const [orders, setOrders] = useState([]);
   const [shipmentData, setShipmentData] = useState([]);
-  const [shipmentDataList, setShipmentDataList] = useState([]);
-  const [base64DataList, setBase64DataList] = useState([]);
-  const [trackingUrl, setTrackingUrl] = useState(null);
-  const [base64Data, setBase64Data] = useState(null);
-  const [trackShipmentList, setTrackShipmentList] = useState([]);
+
   const [allShipmentData, setAllShipmentData] = useState([]);
   const [columns, setColumns] = useState([
     { name: "", key: "select", visible: true },
@@ -239,11 +234,6 @@ export const Summary = () => {
     }
     setSelectedRows(updatedSelection);
   };
-  // 11007  11006  10963   10962   10956
-
-  // console.log("selectedRow", selectedRows);
-  const shippmentData = [];
-  // console.log("dataaa", data);
 
   const fetchShopifyOrders = async () => {
     try {
@@ -270,64 +260,6 @@ export const Summary = () => {
       fetchShopifyOrders();
     }, 3000);
   }, []);
-
-  const trackShipmentRecords = async (shipmentId) => {
-    try {
-      const trackShipResponse = await axios.get(
-        `https://uu2.eshipper.com/api/v2/track/${shipmentId}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      // console.log("trackShipResponse", trackShipResponse.data);
-      setTrackShipmentList((prev) => [...prev, trackShipResponse.data]);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  // console.log("trackShipmentList", trackShipmentList);
-
-  const fetchShipmentRecords = async (shipmentId) => {
-    try {
-      const shipResponse = await axios.get(
-        `https://uu2.eshipper.com/api/v2/ship/${shipmentId}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      // console.log("shipResponse", shipResponse.data);
-      // setShipmentData(shipResponse.data);
-      setShipmentDataList((prevData) => [...prevData, shipResponse.data]);
-      console.log("code", typeof shipResponse.data.reference.code);
-      setBase64Data(shipResponse.data.labelData.label[0].data);
-      setBase64DataList((prevData) => [
-        ...prevData,
-        shipResponse.data.labelData.label[0].data,
-      ]);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  console.log("shipmentDataList", shipmentDataList);
-
-  const shipmentIds = [
-    8000000011219, 8000000011224, 8000000011225, 8000000011226, 8000000011227,
-  ];
-
-  useEffect(() => {
-    if (token) {
-      shipmentIds.forEach((shipmentId) => {
-        fetchShipmentRecords(shipmentId); // Pass each shipment ID one by one
-        trackShipmentRecords(shipmentId);
-      });
-    }
-  }, [token]);
 
   const sendToEShipper = async () => {
     if (formattedData.length === 0) return;
@@ -371,7 +303,7 @@ export const Summary = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       sendToEShipper();
-    }, 40000);
+    }, 40000000);
 
     return () => clearInterval(intervalId); // Clear interval on component unmount
   }, [formattedData, token, shipmentsId]);
@@ -501,8 +433,6 @@ export const Summary = () => {
     }
   };
 
-  const totalItems = data.length;
-
   const paginateData = (data) => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
@@ -511,7 +441,7 @@ export const Summary = () => {
 
   const handleSelectAll = (e) => {
     const checked = e.target.checked;
-    const updatedSelection = checked ? data.map((_, i) => i) : [];
+    const updatedSelection = checked ? orders.map((_, index) => index) : [];
     setSelectedRows(updatedSelection);
   };
 
@@ -540,10 +470,7 @@ export const Summary = () => {
     setShowDialog(false);
   };
 
-  const filteredDatas = filterDataByStatus(data); // Filter data before paginating
-  const idsToShowData = [
-    6299447034161, 6299446542641, 6299445166385, 6296729157937, 6296516985137,
-  ];
+  const filteredDatas = filterDataByStatus(data);
 
   return (
     <div className="dashboard" style={{ width: dashboardWidth }}>
@@ -657,8 +584,8 @@ export const Summary = () => {
               <th>
                 <input
                   type="checkbox"
-                  // checked={selectedRows.length === filteredDatas.length}
-                  // onChange={handleSelectAll}
+                  checked={selectedRows.length === filteredDatas.length}
+                  onChange={handleSelectAll}
                 />
               </th>
               <th>Order Number</th>
@@ -702,15 +629,15 @@ export const Summary = () => {
                     <td>
                       <input
                         type="checkbox"
-                        // checked={selectedRows.includes(index)}
-                        // onChange={(e) => handleRowSelect(e, index)}
+                        checked={selectedRows.includes(index)}
+                        onChange={(e) => handleRowSelect(e, index)}
                       />
                     </td>
                     <td>{order.id}</td>
                     <td>Shopify</td>
                     <td>{shipment ? "Ready for shipping" : null}</td>
                     <td>{shipment ? shipment.carrier : ""}</td>
-                    <td>Jibran</td>
+                    <td>{clients[0]?.clientName}</td>
                     <td>
                       {" "}
                       {`${order.customer.first_name} ${order.customer.last_name}`}
