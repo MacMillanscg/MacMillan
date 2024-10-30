@@ -12,6 +12,7 @@ import {
 import { useAppContext } from "../Context/AppContext";
 import { useCustomFetch } from "../../customsHooks/useCustomFetch";
 import { getUser } from "../../storageUtils/storageUtils";
+import axios from "axios";
 
 export const Dashboard = () => {
   const { dashboardWidth } = useAppContext();
@@ -24,6 +25,20 @@ export const Dashboard = () => {
 
   useEffect(() => {
     console.log("rendering");
+  }, []);
+
+  useEffect(() => {
+    const fetchLogs = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000");
+        const logs = response.data; // Logs data from the response
+        console.log("logssss", logs); // You can display logs or set them in state
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchLogs();
   }, []);
 
   return (

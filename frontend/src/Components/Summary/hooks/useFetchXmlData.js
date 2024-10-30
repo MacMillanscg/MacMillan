@@ -45,7 +45,8 @@ export const useFetchXmlData = () => {
 
           // Format the data as required
           return {
-            scheduledShipDate: data?.Header[0]?.scheduledShipDate[0],
+            // scheduledShipDate: data?.Header[0]?.scheduledShipDate[0],
+            scheduledShipDate: "2024-10-31 19:35",
             from: {
               attention: data?.Header[0]?.attention[0] || "",
               company: data?.Header[0]?.company[0] || "",
@@ -105,7 +106,8 @@ export const useFetchXmlData = () => {
             pickup: {
               contactName: data?.Header[0]?.contactName[0],
               phoneNumber: data?.Header[0]?.phoneNumber[0],
-              pickupDate: data?.Header[0]?.pickupDate[0],
+              // pickupDate: data?.Header[0]?.pickupDate[0],
+              pickupDate: "2024-10-31",
               pickupTime: data?.Header[0]?.pickupTime[0] || "",
               closingTime: data?.Header[0]?.closingTime[0] || "",
               location: data?.Header[0]?.location[0] || "",

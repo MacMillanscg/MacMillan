@@ -12,6 +12,8 @@ router.get("/addclients/:clientId", clientController.getClientIntegrations);
 router.get("/", clientController.getAllClients);
 router.get("/:id", clientController.getUserById);
 router.get("/:userId", clientController.getClients);
+// router.get("/addclients/:id/log", clientController.getLogs);
+router.get("/addclients/logs", clientController.getLogFile);
 
 // router.post("/addclients/filter", clientController.filterClients);
 

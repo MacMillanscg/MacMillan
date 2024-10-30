@@ -13,6 +13,7 @@ const mongoose = require("mongoose");
 const PORT = process.env.PORT || 5000;
 const path = require("path");
 const cookieParser = require("cookie-parser");
+const fs = require("fs");
 
 // app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
@@ -55,6 +56,23 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Methods", "GET, POST");
   res.header("Access-Control-Allow-Headers", "Content-Type");
   next();
+});
+
+app.get("/", (req, res) => {
+  const logFilePath = path.join(__dirname, "./logs/app.log");
+
+  fs.readFile(logFilePath, "utf8", (err, data) => {
+    if (err) {
+      return res.status(500).json({ error: "Error reading log file" });
+    }
+
+    const logs = data
+      .split("\n")
+      .filter((line) => line)
+      .map((line) => JSON.parse(line));
+
+    res.json(logs);
+  });
 });
 
 app.listen(PORT, () => {

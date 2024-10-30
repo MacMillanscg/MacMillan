@@ -93,8 +93,43 @@ export const LogsTab = () => {
 
   const [expandedLog, setExpandedLog] = useState(null);
   const [client, setClient] = useState([]);
-
+  const [logss, setLogss] = useState([]);
+  const [singleClientLog, setSingleClientLog] = useState([]);
   const { id } = useParams();
+
+  // useEffect(() => {
+  //   const fetchLogs = async () => {
+  //     try {
+  //       const response = await axios.get(`${url}/clients/addclients/${id}/log`);
+  //       setLogss(response.data);
+  //     } catch (error) {
+  //       console.error("Error fetching logs:", error);
+  //     }
+  //   };
+
+  //   fetchLogs();
+  // }, []);
+
+  useEffect(() => {
+    const fetchLogsss = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/clients/addclients/logs`
+        );
+        // setLogs(response.data);
+        console.log("response", response);
+      } catch (error) {
+        console.error("Error fetching log file data:", error);
+      }
+    };
+
+    fetchLogsss();
+  }, []);
+
+  // const updatedLog = logss.filter((log) => log.userId === client.userId);
+  // console.log("updatedLog", updatedLog);
+
+  // console.log("logss", logss);
 
   useEffect(() => {
     const fetchClientSingleRecord = async () => {
@@ -112,6 +147,7 @@ export const LogsTab = () => {
   const handleExpand = (logId) => {
     setExpandedLog(expandedLog === logId ? null : logId);
   };
+  console.log("clinets", client);
   return (
     <div>
       <div className="d-flex justify-content-between mb-4">

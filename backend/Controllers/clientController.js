@@ -4,6 +4,9 @@ const Client = require("../Schema/Client");
 const Log = require("../Schema/Log");
 const logger = require("../logger");
 
+const fs = require("fs");
+const path = require("path");
+
 exports.addClientVerify = async (req, res) => {
   const { storeUrl, apiKey } = req.body;
 
@@ -29,7 +32,7 @@ exports.addClientVerify = async (req, res) => {
 
 exports.addClient = async (req, res) => {
   const { clientName, email, phone, userId } = req.body; // also pass url key api token
-  console.log(userId);
+  // console.log(userId);
 
   try {
     const newClient = new Client({
@@ -66,9 +69,23 @@ exports.addClient = async (req, res) => {
 
 // Get User By ID
 exports.getUserById = (req, res) => {
-  Client.findById(req.params.id)
-    .then((user) => res.json(user))
-    .catch((err) => res.status(400).json("Err :" + err));
+  const { id } = req.params;
+  console.log("idddd ", id);
+
+  Client.findById(id)
+    .then((user) => {
+      if (user) {
+        logger.info("Fetched user by ID successfully", { id });
+        res.json(user);
+      } else {
+        logger.warn("User not found", { id });
+        res.status(404).json({ error: "User not found" });
+      }
+    })
+    .catch((err) => {
+      logger.error("Error fetching user by ID", { id, error: err.message });
+      res.status(400).json({ error: "Error fetching user by ID" });
+    });
 };
 
 // get cliens by id
@@ -102,7 +119,7 @@ exports.getAllClients = (req, res) => {
 
 exports.addClientIntegration = async (req, res) => {
   const { clientId } = req.params;
-  console.log("cliented", clientId);
+  // console.log("cliented", clientId);
   const { integrationName, selectedPlatform, storeUrl, apiKey, userId } =
     req.body;
 
@@ -140,7 +157,7 @@ exports.addClientIntegration = async (req, res) => {
       storeUrl,
       apiKey,
     };
-    console.log("client", client);
+    // console.log("client", client);
 
     client.integrations.push(integrationData);
     const updatedClient = await client.save();
@@ -191,11 +208,11 @@ exports.getClientIntegrations = async (req, res) => {
 exports.updateClient = async (req, res) => {
   try {
     const { clientName, phone, email, isActive } = req.body;
-    console.log("reqq", req.body);
+    // console.log("reqq", req.body);
 
     // Find the client by ID
     const client = await Client.findById(req.params.id);
-    console.log("updaed client", client);
+    // console.log("updaed client", client);
     if (!client) return res.status(404).send("Client not found");
 
     // Update the client's details
@@ -223,4 +240,33 @@ exports.deleteClient = async (req, res) => {
   } catch (error) {
     res.status(500).send("Server error");
   }
+};
+
+// logs for clients
+// exports.getLogs = async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const logs = await Log.find({ id }).sort({ createdAt: -1 });
+//     res.status(200).json(logs);
+//   } catch (error) {
+//     res.status(500).json({ error: "Error fetching logs" });
+//   }
+// };
+
+exports.getLogFile = (req, res) => {
+  const logFilePath = path.join(__dirname, "../logs/app.log");
+  console.log("chekcing");
+
+  fs.readFile(logFilePath, "utf8", (err, data) => {
+    if (err) {
+      return res.status(500).json({ error: "Error reading log file" });
+    }
+
+    // Split by lines and parse each line as JSON
+    const logs = data
+      .split("\n")
+      .filter((line) => line)
+      .map((line) => JSON.parse(line));
+    res.json(logs);
+  });
 };
