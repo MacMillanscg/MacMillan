@@ -75,7 +75,7 @@ exports.getUserById = (req, res) => {
   Client.findById(id)
     .then((user) => {
       if (user) {
-        logger.info("Fetched user by ID successfully", { id });
+        logger.info("Fetched client with connection successfully", { id });
         res.json(user);
       } else {
         logger.warn("User not found", { id });
@@ -93,6 +93,7 @@ exports.getClients = async (req, res) => {
   try {
     const userId = req.params.userId;
     const clients = await Client.find({ userId });
+    console.log("clients", clients);
     logger.info("Fetched clients successfully", {
       userId,
       count: clients.length,
@@ -119,13 +120,13 @@ exports.getAllClients = (req, res) => {
 
 exports.addClientIntegration = async (req, res) => {
   const { clientId } = req.params;
-  // console.log("cliented", clientId);
   const { integrationName, selectedPlatform, storeUrl, apiKey, userId } =
     req.body;
 
   try {
     const client = await Client.findById(clientId);
     if (!client) {
+      logger.warn("Client not found", { clientId, userId });
       return res.status(404).json({ error: "Client not found" });
     }
 
@@ -138,13 +139,16 @@ exports.addClientIntegration = async (req, res) => {
     );
 
     if (existingIntegration) {
-      const warnLog = new Log({
-        message: `Integration exist with the same storeURL & apiKey: ${error.message}`,
-        title: `Client Integration`,
-        userId: userId,
-        type: "warn",
-      });
-      await warnLog.save();
+      logger.warn(
+        "Integration with the same platform, store URL, and API key already exists",
+        {
+          clientId,
+          platform: selectedPlatform,
+          storeUrl,
+          apiKey,
+          userId,
+        }
+      );
       return res.status(400).json({
         message:
           "Integration with the same platform, store URL, and API key already exists.",
@@ -157,63 +161,71 @@ exports.addClientIntegration = async (req, res) => {
       storeUrl,
       apiKey,
     };
-    // console.log("client", client);
 
     client.integrations.push(integrationData);
     const updatedClient = await client.save();
 
-    const successLog = new Log({
-      message: `Client Integration created successfully.`,
-      title: `Client Integration`,
-      userId: userId,
-      type: "success",
+    logger.info("Client integration created successfully", {
+      clientId,
+      integrationName,
+      platform: selectedPlatform,
+      storeUrl,
+      apiKey,
+      userId,
     });
-    await successLog.save();
 
     res.status(200).json({
       message: "Client integration added successfully",
-
       client: updatedClient,
     });
   } catch (error) {
-    const errorLog = new Log({
-      message: `Invalid credentials to create client Integration: ${error.message}`,
-      title: `Client Integration`,
-      userId: userId,
-      type: "error",
+    logger.error("Error adding client integration", {
+      clientId,
+      integrationName,
+      platform: selectedPlatform,
+      storeUrl,
+      apiKey,
+      userId,
+      error: error.message,
     });
-    await errorLog.save();
-    console.error("Error adding client integration:", error);
     res.status(500).json({ error: "Error adding client integration" });
-    res.status(404).json({ Err: "Resource not found" });
   }
 };
 
 exports.getClientIntegrations = async (req, res) => {
   const { clientId } = req.params;
+
   try {
     const client = await Client.findById(clientId);
+
     if (!client) {
+      logger.warn("Client not found when fetching integrations", { clientId });
       return res.status(404).json({ error: "Client not found" });
     }
 
+    logger.info("Fetched client integrations successfully", { clientId });
     res
       .status(200)
-      .json({ msg: "Connection established successfully", client: client });
+      .json({ msg: "Connection established successfully", client });
   } catch (error) {
-    console.error("Error fetching client data:", error);
+    logger.error("Error fetching client integrations", {
+      clientId,
+      error: error.message,
+    });
     res.status(500).json({ error: "Error fetching client data" });
   }
 };
+
 exports.updateClient = async (req, res) => {
   try {
     const { clientName, phone, email, isActive } = req.body;
-    // console.log("reqq", req.body);
 
     // Find the client by ID
     const client = await Client.findById(req.params.id);
-    // console.log("updaed client", client);
-    if (!client) return res.status(404).send("Client not found");
+    if (!client) {
+      logger.warn("Client not found for update", { clientId: req.params.id });
+      return res.status(404).send("Client not found");
+    }
 
     // Update the client's details
     client.clientName = clientName;
@@ -223,9 +235,14 @@ exports.updateClient = async (req, res) => {
 
     // Save the updated client
     await client.save();
+
+    logger.info("Client updated successfully", { clientId: req.params.id });
     res.json(client);
   } catch (error) {
-    console.error("Error updating client:", error);
+    logger.error("Error updating client", {
+      clientId: req.params.id,
+      error: error.message,
+    });
     res.status(500).send("Server error");
   }
 };
@@ -258,6 +275,7 @@ exports.getLogFile = (req, res) => {
   console.log("chekcing");
 
   fs.readFile(logFilePath, "utf8", (err, data) => {
+    console.log("data", data);
     if (err) {
       return res.status(500).json({ error: "Error reading log file" });
     }

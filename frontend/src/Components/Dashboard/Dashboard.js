@@ -19,27 +19,7 @@ export const Dashboard = () => {
   const user = getUser();
 
   // console.log("user1", user);
-  const { data, loading, error } = useCustomFetch(url, user._id);
-
-  // console.log("data", data);
-
-  useEffect(() => {
-    console.log("rendering");
-  }, []);
-
-  useEffect(() => {
-    const fetchLogs = async () => {
-      try {
-        const response = await axios.get("http://localhost:5000");
-        const logs = response.data; // Logs data from the response
-        console.log("logssss", logs); // You can display logs or set them in state
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchLogs();
-  }, []);
+  const { data } = useCustomFetch(url, user._id);
 
   return (
     <div className="dashboard" style={{ width: dashboardWidth }}>

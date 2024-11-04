@@ -84,4 +84,34 @@
   .expandedContent p{
     margin-bottom: 10px;
   }
+
+  /* Pagination.module.css */
+
+.paginationContainer {
+  margin-top: 20px;
+  display: flex;
+    justify-content: end;
+}
+
+.paginationButton {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #fff;
+  color: #007bff;
+}
+
+.paginationButton:disabled {
+  background-color: #ddd;
+  color: #888;
+  cursor: not-allowed;
+}
+
+.activeButton {
+  background-color: #007bff;
+  color: #fff;
+}
+
   

@@ -10,7 +10,7 @@ import { url } from "../../api";
 import { getUser } from "../../storageUtils/storageUtils";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FilterPopup } from "./ClientDetails/FilterPopup/FilterPopup";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchClients } from "../../Redux/Actions/ClientsActions";
 
 export const ClientsCom = () => {
@@ -43,6 +43,10 @@ export const ClientsCom = () => {
   };
 
   useEffect(() => {
+    dispatch(fetchClients());
+  }, []);
+
+  useEffect(() => {
     setFilteredClients(clients);
   }, [clients]);
 
@@ -57,6 +61,7 @@ export const ClientsCom = () => {
     const fetchAllClients = async () => {
       try {
         const response = await axios.get(`${url}/clients`);
+        console.log("clients", response.data);
         const updatedData = response.data;
         const userClients = updatedData.filter(
           (user) => user.userId === userId

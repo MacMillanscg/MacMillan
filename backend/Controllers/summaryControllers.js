@@ -4,7 +4,6 @@ const fs = require("fs").promises; // Use the promise-based version of fs
 const path = require("path");
 const xml2js = require("xml2js");
 const Shipment = require("../Schema/ShipmentSchema");
-const chokidar = require("chokidar");
 
 exports.verifyEShipperCredential = async (req, res) => {
   const { url, principal, credential } = req.body;

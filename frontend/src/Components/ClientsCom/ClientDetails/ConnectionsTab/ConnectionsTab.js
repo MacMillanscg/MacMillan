@@ -13,7 +13,6 @@ export const ConnectionsTab = () => {
   const [connections, setConnections] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const { id } = useParams();
   console.log("connectionTabId", id);
 
@@ -37,10 +36,6 @@ export const ConnectionsTab = () => {
   const filteredConnections = connections?.filter(
     (connection) => connection.client.clientId === id
   );
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
 
   return (
     <>

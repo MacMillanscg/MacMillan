@@ -17,8 +17,6 @@ import { WarningPopup } from "./Popups/WarningPopup/WarningPopup";
 import axios from "axios";
 import { url } from "../../api";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-import { loggingService } from "../../Sources/loggingService";
 
 export const Connections = () => {
   const { dashboardWidth } = useAppContext();
@@ -31,34 +29,6 @@ export const Connections = () => {
   );
   const token = useSelector((state) => state.eshipper.token);
   console.log("toekn", token);
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(
-        "https://uu2.eshipper.com/api/v2/ship/8000000010963",
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`, // Replace with your actual token
-          },
-        }
-      );
-
-      console.log("Fetched data:", response.data);
-      // Use the data as needed
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const navigate = useNavigate();
-
-  const handleEditConnection = (id) => {
-    navigate(`/connections/${id}`);
-  };
 
   useEffect(() => {
     dispatch(fetchConnections());
@@ -96,7 +66,7 @@ export const Connections = () => {
         <WarningPopup
           show={showWarningModal}
           onClose={() => setShowWarningModal(false)}
-          onConfirm={confirmDeleteConnection} // Confirm delete on this action
+          onConfirm={confirmDeleteConnection}
         />{" "}
         <div className={styles.connectionsRight}>
           <div className="form-group me-4">

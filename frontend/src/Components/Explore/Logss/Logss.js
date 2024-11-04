@@ -13,31 +13,36 @@ import {
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { url } from "../../../api";
+import { fetchLogs } from "../../../Redux/Actions/LoggerActions";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchConnections } from "../../../Redux/Actions/ConnectionsActions";
+import { fetchClients } from "../../../Redux/Actions/ClientsActions";
+import { getUser } from "../../../storageUtils/storageUtils";
 
 const getIconForLogType = (type) => {
   switch (type) {
-    case "Debug":
+    case "debug":
       return (
         <FontAwesomeIcon
           icon={faBug}
           className={`${styles.logIcon} ${styles.debug}`}
         />
       );
-    case "Info":
+    case "info":
       return (
         <FontAwesomeIcon
           icon={faInfoCircle}
           className={`${styles.logIcon} ${styles.info}`}
         />
       );
-    case "Warn":
+    case "warn":
       return (
         <FontAwesomeIcon
           icon={faExclamationTriangle}
           className={`${styles.logIcon} ${styles.warn}`}
         />
       );
-    case "Error":
+    case "error":
       return (
         <FontAwesomeIcon
           icon={faTimesCircle}
@@ -50,60 +55,102 @@ const getIconForLogType = (type) => {
 };
 
 export const Logss = () => {
+  const [filteredClients, setFilteredClients] = useState([]);
+  const [filteredLogClients, setFilteredLogClients] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const logsPerPage = 6;
+
   const { dashboardWidth } = useAppContext();
   const localStorageUser = JSON.parse(localStorage.getItem("rememberMeUser"));
   const sessionStorageUser = JSON.parse(sessionStorage.getItem("userRecord"));
   const user = localStorageUser || sessionStorageUser;
   console.log("userssss", user._id);
+  const dispatch = useDispatch();
+  const { id } = useParams();
 
-  const logs = [
-    {
-      id: 1,
-      type: "Debug",
-      timestamp: "08/25/2023 16:30:29",
-      client: "client 1",
-      integration: "Monday",
-      connection: "Shopify",
-      message: "Need to debug",
-      details: "Execution started successfully...",
-    },
-    {
-      id: 2,
-      type: "Info",
-      timestamp: "08/25/2023 16:30:29",
-      client: "client 2",
-      integration: "Tuesday",
-      connection: "Amazon",
-      message: "Execution successfully'",
-      details: "Execution started successfully...",
-    },
-    {
-      id: 3,
-      type: "Warn",
-      timestamp: "08/25/2023 16:30:29",
-      client: "client 3",
-      integration: "Wednesday",
-      connection: "Eshipers",
-      message: "Its the last time to check it",
-      details: "Execution started successfully...",
-    },
-    {
-      id: 4,
-      type: "Error",
-      timestamp: "08/25/2023 16:30:29",
-      client: "client 4",
-      integration: "Friday",
-      connection: "",
-      message: "Error in connection",
-      details: "Execution started successfully...",
-    },
-  ];
+  const { logs } = useSelector((state) => state.logs);
+  const { clients } = useSelector((state) => state.clients);
+  const { connections } = useSelector((state) => state.connections);
+  console.log("Log", logs);
+  console.log("clients", clients);
+  console.log("connections", connections);
 
-  const [expandedLog, setExpandedLog] = useState(null);
-  const [client, setClient] = useState([]);
+  let userId = getUser();
+  userId = userId?._id;
 
-  const handleExpand = (logId) => {
-    setExpandedLog(expandedLog === logId ? null : logId);
+  useEffect(() => {
+    dispatch(fetchLogs());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchConnections());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchClients());
+  }, []);
+
+  useEffect(() => {
+    // Filter clients only once when clients or userId changes
+    if (userId) {
+      const matchedClients = clients.filter(
+        (client) => client.userId === userId
+      );
+      setFilteredClients(matchedClients);
+    }
+  }, [clients, userId, logs]);
+
+  useEffect(() => {
+    // if (filteredClients.length > 0) {
+    const clientIds = filteredClients.map((client) => client._id); // Extract client IDs
+    console.log("Clientsids", clientIds);
+
+    const matchedClientsLogs = logs
+      .filter((log) => clientIds.includes(log.id))
+      .map((log) => {
+        // Find the connection for the current log based on clientId
+
+        const matchingConnections = connections
+          .filter((conn) => conn.client.clientId === log.id)
+          .map((conn) => conn.connectionName);
+
+        const client = clients.find((client) => client._id === log.id);
+        const clientName = client ? client.clientName : "";
+        return {
+          ...log,
+          connectionNames:
+            matchingConnections.length > 0 ? matchingConnections : [],
+          clientName,
+        };
+      });
+    setFilteredLogClients(matchedClientsLogs);
+    console.log("matchedClientsLogs", matchedClientsLogs);
+
+    // }
+  }, [logs, filteredClients, connections]);
+
+  console.log("filteredclietns", filteredClients);
+  console.log("filteredclietnsLogs", filteredLogClients);
+
+  const indexOfLastLog = currentPage * logsPerPage;
+  const indexOfFirstLog = indexOfLastLog - logsPerPage;
+  const currentLogs = filteredLogClients.slice(indexOfFirstLog, indexOfLastLog);
+
+  // Handle page change
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const totalPages = Math.ceil(filteredLogClients.length / logsPerPage);
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
   };
 
   return (
@@ -126,40 +173,58 @@ export const Logss = () => {
             </tr>
           </thead>
           <tbody>
-            {logs.map((log) => (
-              <React.Fragment key={log.id}>
-                <tr
-                  onClick={() => handleExpand(log.id)}
-                  className={styles.logRow}
-                >
+            {currentLogs.map((log, i) => {
+              return (
+                <tr key={i}>
                   <td>
-                    {getIconForLogType(log.type)}
-                    {log.type}
+                    {getIconForLogType(log.level)}
+                    {log.level}
                   </td>
                   <td>{log.message}</td>
-                  {/* <td>{log.timestamp}</td> */}
                   <td>{log.timestamp}</td>
-                  <td>{log.connection}</td>
-                  {/* <td>{log.client}</td> */}
+                  <td>
+                    {log?.connectionNames.map((connection) => connection)}
+                  </td>
+                  <td>{log.clientName}</td>
                 </tr>
-                {expandedLog === log.id && (
-                  <tr className={styles.expandedRow}>
-                    <td className="pt-0">
-                      <div className={styles.expandedContent}>
-                        <p>
-                          <strong>Instance:</strong> {log.integration}
-                        </p>
-                        <p>
-                          <strong>Execution:</strong> {log.message}
-                        </p>
-                      </div>
-                    </td>
-                  </tr>
-                )}
-              </React.Fragment>
-            ))}
+              );
+            })}
           </tbody>
         </table>
+      </div>
+      <div className={styles.paginationContainer}>
+        <button
+          onClick={handlePreviousPage}
+          disabled={currentPage === 1}
+          className={`${styles.paginationButton} ${
+            currentPage === 1 ? "" : styles.activeButton
+          }`}
+        >
+          Previous
+        </button>
+
+        {Array.from({ length: totalPages }, (_, i) => (
+          <button
+            key={i + 1}
+            onClick={() => paginate(i + 1)}
+            disabled={currentPage === i + 1}
+            className={`${styles.paginationButton} ${
+              currentPage === i + 1 ? styles.activeButton : ""
+            }`}
+          >
+            {i + 1}
+          </button>
+        ))}
+
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+          className={`${styles.paginationButton} ${
+            currentPage === totalPages ? "" : styles.activeButton
+          }`}
+        >
+          Next
+        </button>
       </div>
     </div>
   );

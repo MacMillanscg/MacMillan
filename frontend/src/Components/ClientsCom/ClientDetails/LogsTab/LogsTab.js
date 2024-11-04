@@ -11,31 +11,33 @@ import {
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { url } from "../../../../api";
+import { fetchLogs } from "../../../../Redux/Actions/LoggerActions";
+import { useSelector, useDispatch } from "react-redux";
 
 const getIconForLogType = (type) => {
   switch (type) {
-    case "Debug":
+    case "debug":
       return (
         <FontAwesomeIcon
           icon={faBug}
           className={`${styles.logIcon} ${styles.debug}`}
         />
       );
-    case "Info":
+    case "info":
       return (
         <FontAwesomeIcon
           icon={faInfoCircle}
           className={`${styles.logIcon} ${styles.info}`}
         />
       );
-    case "Warn":
+    case "warn":
       return (
         <FontAwesomeIcon
           icon={faExclamationTriangle}
           className={`${styles.logIcon} ${styles.warn}`}
         />
       );
-    case "Error":
+    case "error":
       return (
         <FontAwesomeIcon
           icon={faTimesCircle}
@@ -48,88 +50,26 @@ const getIconForLogType = (type) => {
 };
 
 export const LogsTab = () => {
-  const logs = [
-    {
-      id: 1,
-      type: "Debug",
-      timestamp: "08/25/2023 16:30:29",
-      client: "client 1",
-      integration: "Monday",
-      connection: "Shopify",
-      message: "Need to debug",
-      details: "Execution started successfully...",
-    },
-    {
-      id: 2,
-      type: "Info",
-      timestamp: "08/25/2023 16:30:29",
-      client: "client 2",
-      integration: "Tuesday",
-      connection: "Amazon",
-      message: "Execution successfully'",
-      details: "Execution started successfully...",
-    },
-    {
-      id: 3,
-      type: "Warn",
-      timestamp: "08/25/2023 16:30:29",
-      client: "client 3",
-      integration: "Wednesday",
-      connection: "Eshipers",
-      message: "Its the last time to check it",
-      details: "Execution started successfully...",
-    },
-    {
-      id: 4,
-      type: "Error",
-      timestamp: "08/25/2023 16:30:29",
-      client: "client 4",
-      integration: "Friday",
-      connection: "",
-      message: "Error in connection",
-      details: "Execution started successfully...",
-    },
-  ];
-
-  const [expandedLog, setExpandedLog] = useState(null);
   const [client, setClient] = useState([]);
-  const [logss, setLogss] = useState([]);
-  const [singleClientLog, setSingleClientLog] = useState([]);
+  const [updatedLogs, setUpdatedLogs] = useState([]);
+  const [connections, setConnections] = useState([]);
+  const [error, setError] = useState(null);
   const { id } = useParams();
+  const [currentPage, setCurrentPage] = useState(1);
+  const logsPerPage = 6;
 
-  // useEffect(() => {
-  //   const fetchLogs = async () => {
-  //     try {
-  //       const response = await axios.get(`${url}/clients/addclients/${id}/log`);
-  //       setLogss(response.data);
-  //     } catch (error) {
-  //       console.error("Error fetching logs:", error);
-  //     }
-  //   };
-
-  //   fetchLogs();
-  // }, []);
+  const dispatch = useDispatch();
+  const { logs } = useSelector((state) => state.logs);
+  console.log("Log", logs);
 
   useEffect(() => {
-    const fetchLogsss = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:5000/clients/addclients/logs`
-        );
-        // setLogs(response.data);
-        console.log("response", response);
-      } catch (error) {
-        console.error("Error fetching log file data:", error);
-      }
-    };
-
-    fetchLogsss();
+    dispatch(fetchLogs());
   }, []);
 
-  // const updatedLog = logss.filter((log) => log.userId === client.userId);
-  // console.log("updatedLog", updatedLog);
-
-  // console.log("logss", logss);
+  useEffect(() => {
+    setUpdatedLogs(logs && logs.filter((log) => log.id === id));
+  }, []);
+  console.log("updatedlog", updatedLogs);
 
   useEffect(() => {
     const fetchClientSingleRecord = async () => {
@@ -142,18 +82,54 @@ export const LogsTab = () => {
       }
     };
     fetchClientSingleRecord();
+  }, [id]);
+
+  useEffect(() => {
+    const getConnections = async () => {
+      setError(null);
+      try {
+        const response = await axios.get(`${url}/connections`);
+        setConnections(response.data);
+      } catch (err) {
+        setError("Error fetching connections");
+      }
+    };
+    getConnections();
   }, []);
 
-  const handleExpand = (logId) => {
-    setExpandedLog(expandedLog === logId ? null : logId);
+  // Filter connections by clientId
+  const filteredConnections = connections?.filter(
+    (connection) => connection.client.clientId === id
+  );
+
+  const indexOfLastLog = currentPage * logsPerPage;
+  const indexOfFirstLog = indexOfLastLog - logsPerPage;
+  const currentLogs = filteredLogClients.slice(indexOfFirstLog, indexOfLastLog);
+
+  // Handle page change
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const totalPages = Math.ceil(filteredLogClients.length / logsPerPage);
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
   };
-  console.log("clinets", client);
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
   return (
     <div>
       <div className="d-flex justify-content-between mb-4">
         <h2>Logs</h2>
         <LogsTabHeader />
       </div>
+
       <div className={styles.logsContainer}>
         <table className={styles.logsTable}>
           <thead className={styles.tableHead}>
@@ -162,42 +138,21 @@ export const LogsTab = () => {
               <th>Message</th>
               <th>Timestamp</th>
               <th>Connection</th>
-              {/* <th>Client</th> */}
             </tr>
           </thead>
           <tbody>
-            {logs.map((log) => (
-              <React.Fragment key={log.id}>
-                <tr
-                  onClick={() => handleExpand(log.id)}
-                  className={styles.logRow}
-                >
-                  <td>
-                    {getIconForLogType(log.type)}
-                    {log.type}
+            {updatedLogs &&
+              updatedLogs.map((log, i) => (
+                <tr className={styles.logRow} key={i}>
+                  <td className="d-flex">
+                    {getIconForLogType(log.level)}
+                    {log.level}
                   </td>
                   <td>{log.message}</td>
-                  {/* <td>{log.timestamp}</td> */}
-                  <td>{new Date(client.createdAt).toLocaleString()}</td>
-                  <td>{log.connection}</td>
-                  {/* <td>{log.client}</td> */}
+                  <td>{log.timestamp}</td>
+                  <td>{filteredConnections[0]?.connectionName}</td>
                 </tr>
-                {expandedLog === log.id && (
-                  <tr className={styles.expandedRow}>
-                    <td className="pt-0">
-                      <div className={styles.expandedContent}>
-                        <p>
-                          <strong>Instance:</strong> {log.integration}
-                        </p>
-                        <p>
-                          <strong>Execution:</strong> {log.message}
-                        </p>
-                      </div>
-                    </td>
-                  </tr>
-                )}
-              </React.Fragment>
-            ))}
+              ))}
           </tbody>
         </table>
       </div>
