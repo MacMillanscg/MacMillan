@@ -93,14 +93,14 @@ exports.getClients = async (req, res) => {
   try {
     const userId = req.params.userId;
     const clients = await Client.find({ userId });
-    console.log("clients", clients);
-    logger.info("Fetched clients successfully", {
-      userId,
-      count: clients.length,
-    });
+    // console.log("clients", clients);
+    // logger.info("Fetched clients successfully", {
+    //   userId,
+    //   count: clients.length,
+    // });
     res.status(200).send(clients);
   } catch (error) {
-    logger.error("Error fetching clients", { error: error.message });
+    // logger.error("Error fetching clients", { error: error.message });
     res.status(400).send(error);
   }
 };
@@ -109,11 +109,11 @@ exports.getClients = async (req, res) => {
 exports.getAllClients = (req, res) => {
   Client.find()
     .then((users) => {
-      logger.info("Fetched all clients successfully", { count: users.length });
+      // logger.info("Fetched all clients successfully", { count: users.length });
       res.json(users);
     })
     .catch((error) => {
-      logger.error("Error fetching all clients", { error: error.message });
+      // logger.error("Error fetching all clients", { error: error.message });
       res.status(400).json("Err:" + error);
     });
 };

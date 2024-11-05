@@ -56,7 +56,7 @@ export const LogsTab = () => {
   const [error, setError] = useState(null);
   const { id } = useParams();
   const [currentPage, setCurrentPage] = useState(1);
-  const logsPerPage = 6;
+  const logsPerPage = 10;
 
   const dispatch = useDispatch();
   const { logs } = useSelector((state) => state.logs);
@@ -156,7 +156,7 @@ export const LogsTab = () => {
           </tbody>
         </table>
       </div>
-      <div className={styles.paginationContainer}>
+      <div className={styles.pageControls}>
         <button
           onClick={handlePreviousPage}
           disabled={currentPage === 1}

@@ -1,7 +1,26 @@
 .logsContainer {
     margin-top: 20px;
+    overflow-y: auto;
+    height: 623px;
   }
-  
+  @media(max-width:1873px){
+    .logsContainer{
+      height: 469px;
+    }
+  }
+  @media(max-width:1440px){
+    .logsContainer{
+      height: 389px;
+    }
+  }
+  /*
+  @media(max-width:1200px){
+    .logsContainer{}
+  } */
+  .dashboardLog{
+    height: unset;
+    z-index: 999;
+  }
   .logsTable {
     width: 100%;
     border-collapse: collapse;
@@ -10,33 +29,34 @@
     border-bottom: 1px solid lightgray;
   }
   
-  .logsTable th, .logsTable td {
+   th,  td {
     /* border: 1px solid #ddd; */
     padding: 8px;
   }
-  .logsTable thead th{
+  thead th{
     padding-bottom: 30px;
   }
-  .logsTable td{
+   td{
     padding-top: 25px;
   }
   
-  .logsTable th {
+  th {
     background-color: #f4f4f4;
     text-align: left;
   }
 
-  .logsTable tbody{
+  tbody{
     position: relative;
   }
-  .logsTable td{
+   td{
     padding-top: 25px;
   }
   
-  .logsTable th {
+   th {
     background-color: #f4f4f4;
     text-align: left;
   }
+
   
   .logRow:hover {
     background-color: #f9f9f9;
@@ -117,6 +137,13 @@
   display: flex;
   justify-content: end;
   margin-top: 10px;
+  position: fixed;
+  right: 42px;
+  bottom: 1px;
+  width: 100%;
+  background: rgb(247, 248, 249);
+  padding: 13px;
+  /* z-index: -1; */
 }
 
 .pageControls button {

@@ -7,6 +7,7 @@
     /* width: 20%; */
     width: 235px;
     transition: width 0.3s ease;
+    z-index:999999;
 }
 .sidebarLogo{
     color: #fff !important;

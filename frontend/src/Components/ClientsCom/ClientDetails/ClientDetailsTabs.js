@@ -44,7 +44,10 @@ export const ClientDetailsTabs = () => {
   }, []);
 
   return (
-    <div className="dashboard" style={{ width: dashboardWidth }}>
+    <div
+      className={`dashboard ${styles.dashboardLog}`}
+      style={{ width: dashboardWidth }}
+    >
       <div className="topheader">
         <ClientDetailTop />
       </div>

@@ -58,7 +58,7 @@ export const Logss = () => {
   const [filteredClients, setFilteredClients] = useState([]);
   const [filteredLogClients, setFilteredLogClients] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const logsPerPage = 6;
+  const logsPerPage = 10;
 
   const { dashboardWidth } = useAppContext();
   const localStorageUser = JSON.parse(localStorage.getItem("rememberMeUser"));
@@ -154,7 +154,10 @@ export const Logss = () => {
   };
 
   return (
-    <div className="dashboard" style={{ width: dashboardWidth }}>
+    <div
+      className={`dashboard ${styles.dashboardLog}`}
+      style={{ width: dashboardWidth }}
+    >
       <div className="d-flex justify-content-between mb-4">
         <h2>Logs</h2>
         <LogsTabHeader />
