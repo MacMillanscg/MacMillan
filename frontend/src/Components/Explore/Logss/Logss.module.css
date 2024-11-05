@@ -113,5 +113,27 @@
   background-color: #007bff;
   color: #fff;
 }
+.pageControls{
+  display: flex;
+  justify-content: end;
+  margin-top: 10px;
+}
+
+.pageControls button {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  background-color: #fff !important;
+  color: black !important;
+  cursor: pointer;
+  border-radius: 4px;
+  margin: 0 5px;
+  height: 42px;
+}
+
+.pageControls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.9;
+ 
+}
 
   

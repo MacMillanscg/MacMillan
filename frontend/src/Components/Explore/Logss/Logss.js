@@ -192,7 +192,7 @@ export const Logss = () => {
           </tbody>
         </table>
       </div>
-      <div className={styles.paginationContainer}>
+      <div className={styles.pageControls}>
         <button
           onClick={handlePreviousPage}
           disabled={currentPage === 1}

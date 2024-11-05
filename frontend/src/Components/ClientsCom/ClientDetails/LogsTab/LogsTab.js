@@ -68,7 +68,7 @@ export const LogsTab = () => {
 
   useEffect(() => {
     setUpdatedLogs(logs && logs.filter((log) => log.id === id));
-  }, []);
+  }, [logs]);
   console.log("updatedlog", updatedLogs);
 
   useEffect(() => {
@@ -104,12 +104,12 @@ export const LogsTab = () => {
 
   const indexOfLastLog = currentPage * logsPerPage;
   const indexOfFirstLog = indexOfLastLog - logsPerPage;
-  const currentLogs = filteredLogClients.slice(indexOfFirstLog, indexOfLastLog);
+  const currentLogs = updatedLogs.slice(indexOfFirstLog, indexOfLastLog);
 
   // Handle page change
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const totalPages = Math.ceil(filteredLogClients.length / logsPerPage);
+  const totalPages = Math.ceil(updatedLogs.length / logsPerPage);
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
@@ -141,8 +141,8 @@ export const LogsTab = () => {
             </tr>
           </thead>
           <tbody>
-            {updatedLogs &&
-              updatedLogs.map((log, i) => (
+            {currentLogs &&
+              currentLogs.map((log, i) => (
                 <tr className={styles.logRow} key={i}>
                   <td className="d-flex">
                     {getIconForLogType(log.level)}
@@ -155,6 +155,40 @@ export const LogsTab = () => {
               ))}
           </tbody>
         </table>
+      </div>
+      <div className={styles.paginationContainer}>
+        <button
+          onClick={handlePreviousPage}
+          disabled={currentPage === 1}
+          className={`${styles.paginationButton} ${
+            currentPage === 1 ? "" : styles.activeButton
+          }`}
+        >
+          Previous
+        </button>
+
+        {Array.from({ length: totalPages }, (_, i) => (
+          <button
+            key={i + 1}
+            onClick={() => paginate(i + 1)}
+            disabled={currentPage === i + 1}
+            className={`${styles.paginationButton} ${
+              currentPage === i + 1 ? styles.activeButton : ""
+            }`}
+          >
+            {i + 1}
+          </button>
+        ))}
+
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+          className={`${styles.paginationButton} ${
+            currentPage === totalPages ? "" : styles.activeButton
+          }`}
+        >
+          Next
+        </button>
       </div>
     </div>
   );
