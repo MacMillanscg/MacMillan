@@ -58,40 +58,29 @@ export const Logss = () => {
   const [filteredClients, setFilteredClients] = useState([]);
   const [filteredLogClients, setFilteredLogClients] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const logsPerPage = 10;
+  const [logsPerPage, setLogsPerPage] = useState(10); // Initial logs per page set to 10
 
   const { dashboardWidth } = useAppContext();
   const localStorageUser = JSON.parse(localStorage.getItem("rememberMeUser"));
   const sessionStorageUser = JSON.parse(sessionStorage.getItem("userRecord"));
   const user = localStorageUser || sessionStorageUser;
-  console.log("userssss", user._id);
   const dispatch = useDispatch();
   const { id } = useParams();
 
   const { logs } = useSelector((state) => state.logs);
   const { clients } = useSelector((state) => state.clients);
   const { connections } = useSelector((state) => state.connections);
-  console.log("Log", logs);
-  console.log("clients", clients);
-  console.log("connections", connections);
 
   let userId = getUser();
   userId = userId?._id;
 
   useEffect(() => {
     dispatch(fetchLogs());
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(fetchConnections());
+    dispatch(fetchClients());
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchClients());
-  }, []);
-
-  useEffect(() => {
-    // Filter clients only once when clients or userId changes
     if (userId) {
       const matchedClients = clients.filter(
         (client) => client.userId === userId
@@ -101,15 +90,11 @@ export const Logss = () => {
   }, [clients, userId, logs]);
 
   useEffect(() => {
-    // if (filteredClients.length > 0) {
-    const clientIds = filteredClients.map((client) => client._id); // Extract client IDs
-    console.log("Clientsids", clientIds);
+    const clientIds = filteredClients.map((client) => client._id);
 
     const matchedClientsLogs = logs
       .filter((log) => clientIds.includes(log.id))
       .map((log) => {
-        // Find the connection for the current log based on clientId
-
         const matchingConnections = connections
           .filter((conn) => conn.client.clientId === log.id)
           .map((conn) => conn.connectionName);
@@ -124,19 +109,12 @@ export const Logss = () => {
         };
       });
     setFilteredLogClients(matchedClientsLogs);
-    console.log("matchedClientsLogs", matchedClientsLogs);
-
-    // }
   }, [logs, filteredClients, connections]);
-
-  console.log("filteredclietns", filteredClients);
-  console.log("filteredclietnsLogs", filteredLogClients);
 
   const indexOfLastLog = currentPage * logsPerPage;
   const indexOfFirstLog = indexOfLastLog - logsPerPage;
   const currentLogs = filteredLogClients.slice(indexOfFirstLog, indexOfLastLog);
 
-  // Handle page change
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const totalPages = Math.ceil(filteredLogClients.length / logsPerPage);
@@ -151,6 +129,12 @@ export const Logss = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
+  };
+
+  // Handle the change in the number of logs per page
+  const handleLogsPerPageChange = (e) => {
+    setLogsPerPage(Number(e.target.value));
+    setCurrentPage(1); // Reset to the first page on selection change
   };
 
   return (
@@ -170,64 +154,78 @@ export const Logss = () => {
               <th>Type</th>
               <th>Message</th>
               <th>Timestamp</th>
-              {/* <th>Clients</th> */}
               <th>Connections</th>
               <th>Client</th>
             </tr>
           </thead>
           <tbody>
-            {currentLogs.map((log, i) => {
-              return (
-                <tr key={i}>
-                  <td>
-                    {getIconForLogType(log.level)}
-                    {log.level}
-                  </td>
-                  <td>{log.message}</td>
-                  <td>{log.timestamp}</td>
-                  <td>
-                    {log?.connectionNames.map((connection) => connection)}
-                  </td>
-                  <td>{log.clientName}</td>
-                </tr>
-              );
-            })}
+            {currentLogs.map((log, i) => (
+              <tr key={i}>
+                <td>
+                  {getIconForLogType(log.level)}
+                  {log.level}
+                </td>
+                <td>{log.message}</td>
+                <td>{log.timestamp}</td>
+                <td>
+                  {log?.connectionNames.map((connection, index) => (
+                    <div key={index}>{connection}</div>
+                  ))}
+                </td>
+                <td>{log.clientName}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
-      <div className={styles.pageControls}>
-        <button
-          onClick={handlePreviousPage}
-          disabled={currentPage === 1}
-          className={`${styles.paginationButton} ${
-            currentPage === 1 ? "" : styles.activeButton
-          }`}
-        >
-          Previous
-        </button>
 
-        {Array.from({ length: totalPages }, (_, i) => (
+      <div className={styles.pageControls}>
+        <div className={styles.logsRecordsOption}>
+          <select
+            onChange={handleLogsPerPageChange}
+            value={logsPerPage}
+            className={styles.logsPerPageSelect}
+          >
+            <option value={5}>5</option>
+            <option value={10}>10</option>
+            <option value={15}>15</option>
+            <option value={20}>20</option>
+          </select>
+        </div>
+        <div className={styles.pagination}>
           <button
-            key={i + 1}
-            onClick={() => paginate(i + 1)}
-            disabled={currentPage === i + 1}
+            onClick={handlePreviousPage}
+            disabled={currentPage === 1}
             className={`${styles.paginationButton} ${
-              currentPage === i + 1 ? styles.activeButton : ""
+              currentPage === 1 ? "" : styles.activeButton
             }`}
           >
-            {i + 1}
+            Previous
           </button>
-        ))}
 
-        <button
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages}
-          className={`${styles.paginationButton} ${
-            currentPage === totalPages ? "" : styles.activeButton
-          }`}
-        >
-          Next
-        </button>
+          {Array.from({ length: totalPages }, (_, i) => (
+            <button
+              key={i + 1}
+              onClick={() => paginate(i + 1)}
+              disabled={currentPage === i + 1}
+              className={`${styles.paginationButton} ${
+                currentPage === i + 1 ? styles.activeButton : ""
+              }`}
+            >
+              {i + 1}
+            </button>
+          ))}
+
+          <button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+            className={`${styles.paginationButton} ${
+              currentPage === totalPages ? "" : styles.activeButton
+            }`}
+          >
+            Next
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -56,7 +56,7 @@ export const LogsTab = () => {
   const [error, setError] = useState(null);
   const { id } = useParams();
   const [currentPage, setCurrentPage] = useState(1);
-  const logsPerPage = 10;
+  const [logsPerPage, setLogsPerPage] = useState(10); // Updated to be stateful
 
   const dispatch = useDispatch();
   const { logs } = useSelector((state) => state.logs);
@@ -97,7 +97,6 @@ export const LogsTab = () => {
     getConnections();
   }, []);
 
-  // Filter connections by clientId
   const filteredConnections = connections?.filter(
     (connection) => connection.client.clientId === id
   );
@@ -106,7 +105,6 @@ export const LogsTab = () => {
   const indexOfFirstLog = indexOfLastLog - logsPerPage;
   const currentLogs = updatedLogs.slice(indexOfFirstLog, indexOfLastLog);
 
-  // Handle page change
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const totalPages = Math.ceil(updatedLogs.length / logsPerPage);
@@ -121,6 +119,12 @@ export const LogsTab = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
+  };
+
+  // Handle logs per page change
+  const handleLogsPerPageChange = (event) => {
+    setLogsPerPage(Number(event.target.value));
+    setCurrentPage(1); // Reset to the first page when changing logs per page
   };
 
   return (
@@ -156,39 +160,56 @@ export const LogsTab = () => {
           </tbody>
         </table>
       </div>
-      <div className={styles.pageControls}>
-        <button
-          onClick={handlePreviousPage}
-          disabled={currentPage === 1}
-          className={`${styles.paginationButton} ${
-            currentPage === 1 ? "" : styles.activeButton
-          }`}
-        >
-          Previous
-        </button>
 
-        {Array.from({ length: totalPages }, (_, i) => (
+      <div className={styles.pageControls}>
+        <div className={styles.recordsPerPage}>
+          <select
+            id="logsPerPage"
+            value={logsPerPage}
+            onChange={handleLogsPerPageChange}
+            className={styles.selectDropdown}
+          >
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+          </select>
+        </div>
+
+        <div className={styles.pagination}>
           <button
-            key={i + 1}
-            onClick={() => paginate(i + 1)}
-            disabled={currentPage === i + 1}
+            onClick={handlePreviousPage}
+            disabled={currentPage === 1}
             className={`${styles.paginationButton} ${
-              currentPage === i + 1 ? styles.activeButton : ""
+              currentPage === 1 ? "" : styles.activeButton
             }`}
           >
-            {i + 1}
+            Previous
           </button>
-        ))}
 
-        <button
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages}
-          className={`${styles.paginationButton} ${
-            currentPage === totalPages ? "" : styles.activeButton
-          }`}
-        >
-          Next
-        </button>
+          {Array.from({ length: totalPages }, (_, i) => (
+            <button
+              key={i + 1}
+              onClick={() => paginate(i + 1)}
+              disabled={currentPage === i + 1}
+              className={`${styles.paginationButton} ${
+                currentPage === i + 1 ? styles.activeButton : ""
+              }`}
+            >
+              {i + 1}
+            </button>
+          ))}
+
+          <button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+            className={`${styles.paginationButton} ${
+              currentPage === totalPages ? "" : styles.activeButton
+            }`}
+          >
+            Next
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -2,9 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import styles from "./ColumnManagementModal.module.css";
 
 export const ColumnManagementModal = ({ columns, setColumns, onClose }) => {
-  const [localColumns, setLocalColumns] = useState(columns);
-
+  const [localColumns, setLocalColumns] = useState(columns); // Temporary state for column visibility
   const popupRef = useRef(null);
+
+  // Handle the click outside of modal to close it
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (popupRef.current && !popupRef.current.contains(event.target)) {
@@ -19,36 +20,38 @@ export const ColumnManagementModal = ({ columns, setColumns, onClose }) => {
     };
   }, [popupRef]);
 
+  // Handle individual checkbox change
   const handleCheckboxChange = (index) => {
     const updatedColumns = [...localColumns];
     updatedColumns[index].visible = !updatedColumns[index].visible;
-    console.log("updatedcolum", updatedColumns);
     setLocalColumns(updatedColumns);
   };
 
-  const handleApply = () => {
-    setColumns(localColumns);
-    onClose();
-  };
-
-  const handleSelectAllChange = (e) => {
+  // Handle the "All" checkbox for toggling all columns
+  const handleSelectAll = () => {
+    const allVisible = localColumns.every((col) => col.visible);
     const updatedColumns = localColumns.map((col) => ({
       ...col,
-      visible: e.target.checked,
+      visible: !allVisible,
     }));
     setLocalColumns(updatedColumns);
+  };
+
+  // Apply the changes and update the parent state
+  const handleApply = () => {
+    setColumns(localColumns); // Apply changes to parent component
+    onClose(); // Close the modal
   };
 
   return (
     <div className={styles.modalOverlay} ref={popupRef}>
       <div className={styles.modalContent}>
-        {/* <h4>Manage Columns</h4> */}
         <div className={styles.checkboxGroup}>
           <div className={styles.checkbox}>
             <input
               type="checkbox"
               checked={localColumns.every((col) => col.visible)}
-              onChange={handleSelectAllChange}
+              onChange={handleSelectAll}
             />
             <label>All</label>
           </div>

@@ -20,6 +20,8 @@ export const TimeRangeFilter = ({
   const [isVisible, setIsVisible] = useState(false);
   const [selectedOption, setSelectedOption] = useState("allTime");
 
+  console.log("timeRabge", timeRange);
+
   const timeOptions = [
     { label: "All Time", value: "allTime" },
     { label: "Today", value: "today" },
@@ -63,7 +65,7 @@ export const TimeRangeFilter = ({
           icon={faCalendar}
           className={`me-2 ${styles.calender}`}
         />
-        Time Range
+        {timeRange === "allTime" ? "Time Range" : timeRange}
         <FontAwesomeIcon
           icon={isVisible ? faChevronUp : faChevronDown}
           className="ms-2"

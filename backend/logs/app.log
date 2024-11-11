@@ -1,0 +1,740 @@
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-06 01:47:45"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-06 01:47:52"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-06 01:48:35"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-06 01:48:40"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-06 01:49:10"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-06 01:49:10"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-06 01:49:11"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-06 01:49:11"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-06 01:49:15"}
+{"id":"66faf342403726acdad3dc8f","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-06 01:49:26"}
+{"id":"66faf342403726acdad3dc8f","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-06 01:49:27"}
+{"id":"66faf342403726acdad3dc8f","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-06 01:49:27"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-06 01:49:27"}
+{"id":"66be3b36a331471ffcfedab3","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-06 01:49:30"}
+{"id":"66be3b36a331471ffcfedab3","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-06 01:49:30"}
+{"id":"66be3b36a331471ffcfedab3","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-06 01:49:31"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-06 01:49:31"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-06 01:49:33"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-06 01:49:33"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-06 01:49:34"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-06 01:49:34"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-06 01:49:36"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-06 01:50:48"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-06 01:51:12"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-06 01:52:37"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-06 01:55:33"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 01:55:33"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 01:55:34"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-06 01:55:43"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-06 01:59:46"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-06 01:59:46"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-06 01:59:48"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-06 01:59:48"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-06 02:04:31"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-06 02:04:31"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-06 02:05:54"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-06 02:05:54"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-06 02:06:44"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-06 02:06:44"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-06 02:07:02"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-06 02:07:02"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-06 02:09:31"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-06 02:09:31"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-06 02:09:38"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-06 02:09:38"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-06 02:12:30"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 02:12:31"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 02:12:31"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-06 02:14:55"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 02:14:55"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 02:14:56"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-06 02:16:39"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 02:16:39"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 02:16:40"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-06 02:17:45"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 02:17:45"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 02:17:45"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-06 02:22:55"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 02:22:55"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 02:22:56"}
+{"email":"jkfiverr1@gmail.com","level":"info","message":"User logged in successfully","timestamp":"2024-11-06 17:35:47"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-06 19:31:01"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 19:31:01"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 19:31:02"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-06 19:41:38"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 19:41:38"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 19:41:39"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-06 19:44:15"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 19:44:15"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 19:44:16"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-06 22:21:24"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 22:21:24"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 22:21:25"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-06 22:21:46"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 22:21:46"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 22:21:47"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-06 22:26:36"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 22:26:36"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 22:26:37"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-06 22:36:39"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 22:36:39"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 22:36:40"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-06 22:36:56"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 22:36:56"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 22:36:56"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-06 23:28:47"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 23:28:47"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 23:28:48"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-06 23:31:45"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 23:31:45"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 23:31:46"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-06 23:42:17"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 23:42:17"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 23:42:18"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-06 23:42:33"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 23:42:33"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 23:42:34"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-06 23:43:47"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 23:43:47"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 23:43:48"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-06 23:55:34"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 23:55:34"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 23:55:35"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-06 23:55:41"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 23:55:41"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 23:55:42"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-06 23:56:43"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 23:56:43"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 23:56:44"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-06 23:56:51"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 23:56:51"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-06 23:56:51"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 00:14:18"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 00:14:18"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 00:14:19"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 00:14:35"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 00:14:35"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 00:14:36"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 00:14:49"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 00:14:50"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 00:14:50"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 00:15:07"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 00:15:07"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 00:15:08"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 00:15:24"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 00:15:24"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 00:15:24"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-07 00:15:35"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 00:16:00"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 00:16:00"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 00:16:00"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 00:25:08"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 00:25:08"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 00:25:09"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 00:25:29"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 00:25:29"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 00:25:30"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 00:26:40"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 00:26:40"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 00:26:41"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 00:26:45"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 00:26:45"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 00:26:46"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 00:28:16"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 00:28:16"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 00:28:17"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 00:52:11"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 00:52:11"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 00:52:11"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 00:59:14"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 00:59:14"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 00:59:14"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 01:01:15"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 01:01:15"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 01:01:16"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 01:07:41"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 01:07:41"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 01:07:42"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 01:09:33"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 01:09:33"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 01:09:33"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 01:10:09"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 01:10:09"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 01:10:09"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 01:12:00"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 01:12:00"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 01:12:01"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 01:16:37"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 01:16:37"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 01:16:38"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 01:20:08"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 01:20:08"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 01:20:09"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 01:28:21"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 01:28:21"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 01:28:22"}
+{"email":"jkfiverr1@gmail.com","level":"info","message":"User logged in successfully","timestamp":"2024-11-07 15:53:07"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-07 18:28:34"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 18:28:40"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 18:28:40"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 18:28:41"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-07 18:41:31"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 18:41:38"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 18:41:38"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 18:41:38"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 19:10:40"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 19:10:40"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 19:10:40"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 22:10:45"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 22:10:45"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 22:10:46"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 22:12:48"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 22:12:48"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 22:12:48"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 22:15:49"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 22:15:49"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 22:15:49"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 22:16:10"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 22:16:11"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 22:16:11"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 22:24:26"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 22:24:26"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 22:24:26"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 22:24:38"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 22:24:38"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 22:24:39"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 22:28:44"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 22:28:44"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 22:28:44"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 22:29:23"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 22:29:23"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 22:29:23"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 23:24:50"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 23:24:50"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 23:24:51"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 23:34:31"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 23:34:31"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 23:34:32"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 23:34:37"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 23:34:37"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 23:34:37"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 23:36:44"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 23:36:45"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 23:36:45"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 23:43:13"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 23:43:13"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 23:43:14"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 23:49:21"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 23:49:21"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 23:49:22"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 23:49:49"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 23:49:49"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 23:49:49"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 23:50:48"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 23:50:48"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 23:50:48"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-07 23:53:37"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 23:53:37"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-07 23:53:38"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 00:07:09"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 00:07:09"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 00:07:09"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 00:13:24"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 00:13:24"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 00:13:25"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 00:38:31"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 00:38:31"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 00:38:32"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 00:38:45"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 00:38:45"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 00:38:46"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 00:40:08"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 00:40:08"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 00:40:08"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 00:40:18"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 00:40:18"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 00:40:18"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 00:43:12"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 00:43:12"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 00:43:13"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 00:43:19"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 00:43:19"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 00:43:20"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 00:54:00"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 00:54:00"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 00:54:01"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 00:54:16"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 00:54:16"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 00:54:17"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 00:55:08"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 00:55:08"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 00:55:08"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 00:55:16"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 00:55:16"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 00:55:16"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 01:02:55"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:02:55"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:02:56"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 01:03:12"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:03:12"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:03:13"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 01:04:13"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:04:13"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:04:13"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 01:04:22"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:04:22"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:04:22"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 01:04:37"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:04:37"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:04:37"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 01:04:50"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:04:50"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:04:50"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 01:06:20"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:06:20"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:06:20"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 01:10:45"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:10:45"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:10:45"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 01:11:33"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:11:33"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:11:33"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 01:23:29"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:23:29"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:23:30"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 01:28:54"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:28:54"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:28:54"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 01:39:29"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:39:29"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:39:30"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 01:42:50"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:42:50"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:42:51"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 01:43:13"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:43:13"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:43:14"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 01:43:59"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:43:59"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:43:59"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 01:50:54"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:50:54"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:50:55"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 01:50:59"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:50:59"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:50:59"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 01:51:47"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:51:47"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:51:48"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 01:55:12"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:55:12"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 01:55:12"}
+{"email":"jkfiverr1@gmail.com","level":"info","message":"User logged in successfully","timestamp":"2024-11-08 18:03:12"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 18:17:13"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 18:17:13"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 18:17:14"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 18:21:07"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 18:21:07"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 18:21:07"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-08 18:50:07"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-08 18:50:08"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-08 18:50:35"}
+{"clientId":"670539f78a2309ab8db34773","level":"info","message":"Client updated successfully","timestamp":"2024-11-08 18:50:41"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-08 18:50:41"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-08 18:50:43"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-08 18:50:43"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-08 18:50:46"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-08 18:51:24"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-08 18:51:24"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-08 18:51:25"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-08 18:53:44"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-08 18:53:44"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-08 18:53:46"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-08 18:53:48"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-08 18:53:48"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-08 18:55:23"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-08 18:55:26"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-08 18:55:26"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-08 18:55:28"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-08 18:55:31"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-08 18:55:31"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-08 18:55:39"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-08 18:55:41"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-08 18:55:43"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-08 18:55:46"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-08 18:55:46"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-08 18:55:47"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-08 18:55:49"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-08 18:55:49"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 19:22:32"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 19:22:32"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 19:22:33"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 19:52:57"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 19:52:57"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 19:52:57"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 20:39:38"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 20:39:39"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 20:39:39"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 20:41:00"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 20:41:00"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 20:41:01"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 20:54:09"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 20:54:09"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 20:54:09"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 20:54:16"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 20:54:17"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 20:54:17"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-08 20:56:14"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-08 20:56:16"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 20:56:17"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 20:56:17"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 20:56:18"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 20:56:21"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 20:56:21"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 20:56:21"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 20:57:25"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 20:57:26"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 20:57:26"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-08 21:00:06"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 21:00:12"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 21:00:12"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 21:00:12"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 21:06:20"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 21:06:21"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 21:06:21"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 21:07:24"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 21:07:25"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 21:07:25"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 21:10:58"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 21:10:59"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 21:10:59"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 21:13:48"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 21:13:48"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 21:13:48"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 21:14:12"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 21:14:12"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 21:14:12"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 22:59:23"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 22:59:23"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 22:59:24"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 22:59:30"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 22:59:30"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 22:59:31"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:02:59"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:02:59"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:02:59"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:03:08"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:03:08"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:03:08"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:03:44"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:03:45"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:03:45"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:03:49"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:03:49"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:03:50"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:03:56"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:03:56"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:03:56"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:05:04"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:05:04"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:05:04"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:06:11"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:06:11"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:06:11"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:06:36"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:06:36"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:06:36"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:07:08"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:07:08"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:07:08"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:07:15"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:07:15"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:07:15"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:07:22"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:07:22"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:07:22"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:07:32"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:07:32"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:07:32"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:07:38"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:07:38"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:07:38"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:08:23"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:08:23"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:08:24"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:09:15"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:09:16"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:09:16"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:09:24"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:09:24"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:09:24"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:09:44"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:09:44"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:09:45"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:09:52"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:09:52"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:09:52"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:14:47"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:14:47"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:14:47"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:14:53"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:14:53"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:14:53"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:15:40"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:15:40"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:15:41"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:16:04"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:16:04"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:16:04"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:16:10"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:16:10"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:16:11"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:16:49"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:16:49"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:16:50"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:16:59"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:16:59"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:17:00"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:17:11"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:17:11"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:17:12"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:17:27"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:17:27"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:17:28"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:17:53"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:17:54"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:17:54"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:18:01"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:18:02"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:18:02"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:18:23"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:18:23"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:18:23"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:18:36"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:18:36"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:18:37"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:19:51"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:19:52"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:19:52"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:20:01"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:20:01"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:20:02"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:21:46"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:21:47"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:22:14"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:22:14"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:22:14"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:23:55"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:23:56"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:23:56"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:23:59"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:23:59"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:23:59"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:24:51"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:24:51"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:24:51"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:25:30"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:25:31"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:25:31"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:26:37"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:26:38"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:26:38"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:26:50"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:26:50"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:26:50"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:27:08"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:27:09"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:27:09"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:27:23"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:27:23"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:27:23"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:31:28"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:31:28"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:31:29"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:33:13"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:33:13"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:33:13"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:33:37"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:33:37"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:33:37"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:33:49"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:33:49"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:33:49"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:33:53"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:33:53"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:33:53"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:33:59"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:33:59"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:33:59"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:34:05"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:34:05"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:34:06"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:34:15"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:34:15"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:34:15"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:35:08"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:35:08"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:35:08"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:35:11"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:35:11"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:35:12"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:35:23"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:35:23"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:35:24"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:35:43"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:35:43"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:35:44"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:36:01"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:36:01"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:36:01"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:36:19"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:36:19"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:36:19"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:36:44"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:36:44"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:36:44"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:37:40"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:37:40"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:37:40"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-08 23:38:01"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:38:08"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:38:08"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:38:08"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:38:56"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:38:56"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:38:57"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:39:07"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:39:07"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:39:07"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:39:40"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:39:42"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:39:42"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-08 23:39:58"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:40:04"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:40:04"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:40:05"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:40:54"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:40:54"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:40:55"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:41:12"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:41:12"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:41:13"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:52:57"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:52:57"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:52:57"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:53:26"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:53:26"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:53:26"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:53:37"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:53:37"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:53:37"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:53:48"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:53:49"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:53:49"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:54:12"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:54:12"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:54:12"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:54:19"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:54:19"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:54:19"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-08 23:54:28"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:54:28"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-08 23:54:29"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-09 00:00:37"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:00:37"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:00:38"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-09 00:05:49"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:05:50"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:05:50"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-09 00:06:03"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:06:03"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:06:03"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-09 00:06:39"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:06:39"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:06:40"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-09 00:06:46"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:06:47"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:06:47"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-09 00:07:31"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:07:31"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:07:31"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-09 00:07:37"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:07:37"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:07:37"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-09 00:33:17"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:33:17"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:33:17"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-09 00:33:21"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:33:21"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:33:22"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-09 00:33:28"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:33:29"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:33:29"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-09 00:35:44"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:35:45"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:35:45"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-09 00:43:08"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:43:08"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:43:08"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-09 00:43:13"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:43:13"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:43:13"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-09 00:43:24"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:43:24"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:43:25"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-09 00:43:43"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:43:43"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:43:44"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-09 00:43:52"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:43:52"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:43:53"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-09 00:45:18"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:45:19"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 00:45:19"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-09 01:02:35"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 01:02:36"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 01:02:36"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-09 01:02:45"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 01:02:45"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 01:02:45"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-09 01:03:28"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 01:03:28"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 01:03:29"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-09 01:09:00"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 01:09:01"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 01:09:01"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-09 01:09:38"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 01:09:38"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 01:09:38"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-09 01:09:48"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 01:09:48"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 01:09:48"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-09 01:10:47"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 01:10:47"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 01:10:47"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-09 01:11:53"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 01:11:53"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 01:11:53"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-09 01:11:59"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 01:11:59"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 01:12:00"}
+{"count":13,"level":"info","message":"Fetched all connections successfully","timestamp":"2024-11-09 01:12:51"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-09 01:12:58"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 01:12:58"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 01:12:59"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-09 01:21:30"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 01:21:31"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 01:21:31"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-09 01:27:48"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 01:27:49"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 01:27:49"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-09 01:27:57"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 01:27:57"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-09 01:27:58"}
+{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-11 18:18:43"}
+{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-11 18:18:44"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-11 18:18:45"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-11 18:21:18"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-11 18:21:18"}
+{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-11 18:21:20"}

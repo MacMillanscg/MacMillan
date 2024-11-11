@@ -15,7 +15,14 @@
   
   .pageControls {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
+    justify-content: space-between;
+    position: fixed;
+    right: 1px;
+    bottom: 1px;
+    background: rgb(247, 248, 249);
+    width: calc(100% - 242px);
+    padding: 13px 43px;
   }
   
   .pageControls button {
@@ -42,8 +49,13 @@
     border-radius: 4px;
     width: 63px;
     height: 42px;
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
+  }
+
+  .activeButton {
+    background-color: #007bff;
+    color: white;
   }
   
