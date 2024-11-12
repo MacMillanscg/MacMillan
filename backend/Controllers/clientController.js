@@ -259,23 +259,93 @@ exports.deleteClient = async (req, res) => {
   }
 };
 
-// logs for clients
-// exports.getLogs = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const logs = await Log.find({ id }).sort({ createdAt: -1 });
-//     res.status(200).json(logs);
-//   } catch (error) {
-//     res.status(500).json({ error: "Error fetching logs" });
-//   }
-// };
+// controllers/clientController.js
+
+// controllers/clientController.js
+
+exports.updateClientIntegration = async (req, res) => {
+  const { clientId } = req.params;
+  const { integrationName, storeUrl, apiKey } = req.body;
+
+  try {
+    const client = await Client.findById(clientId);
+    if (!client) {
+      return res.status(404).json({ error: "Client not found" });
+    }
+
+    // Find the existing integration to update
+    const integration = client.integrations.find(
+      (integration) =>
+        integration.storeUrl === storeUrl && integration.storeUrl === storeUrl
+    );
+
+    if (!integration) {
+      return res.status(404).json({
+        message:
+          "Integration not found for the specified platform and store URL.",
+      });
+    }
+
+    // Update the integration fields
+    integration.integrationName =
+      integrationName || integration.integrationName;
+    integration.apiKey = apiKey || integration.apiKey;
+    integration.storeUrl = storeUrl || integration.storeUrl;
+
+    // Save the updated client document
+    const updatedClient = await client.save();
+
+    res.status(200).json({
+      message: "Client integration updated successfully",
+      client: updatedClient,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Error updating client integration" });
+  }
+};
+
+// delete client integration
+exports.deleteIntegration = async (req, res) => {
+  const { clientId, integrationId } = req.params;
+
+  try {
+    // Find the client by ID
+    const client = await Client.findById(clientId);
+
+    if (!client) {
+      return res.status(404).json({ message: "Client not found" });
+    }
+
+    // Filter out the integration with the specified integrationId
+    const updatedIntegrations = client.integrations.filter(
+      (integration) => integration._id.toString() !== integrationId
+    );
+
+    // Check if the integration existed
+    if (updatedIntegrations.length === client.integrations.length) {
+      return res.status(404).json({ message: "Integration not found" });
+    }
+
+    // Update the client integrations and save
+    client.integrations = updatedIntegrations;
+    await client.save();
+
+    return res
+      .status(200)
+      .json({ message: "Integration deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting integration:", error);
+    return res.status(500).json({ message: "Server error" });
+  }
+};
 
 exports.getLogFile = (req, res) => {
   const logFilePath = path.join(__dirname, "../logs/app.log");
-  console.log("chekcing");
+  // console.log("chekcing");
 
   fs.readFile(logFilePath, "utf8", (err, data) => {
-    console.log("data", data);
+    // console.log("data", data);
     if (err) {
       return res.status(500).json({ error: "Error reading log file" });
     }

@@ -18,7 +18,15 @@ router.get("/addclients/logs", clientController.getLogFile);
 // router.post("/addclients/filter", clientController.filterClients);
 
 router.put("/addclients/:id", clientController.updateClient);
+router.post(
+  "/addclients/editClient/:clientId",
+  clientController.updateClientIntegration
+);
 router.delete("/addclients/:id", clientController.deleteClient);
+router.delete(
+  "/addclients/:clientId/integrations/:integrationId",
+  clientController.deleteIntegration
+);
 // router.get("/addclients/get-token", eShipperController.eShipperGetToken);
 
 router.post("/verify-eshipper", eShipperController.verifyEShipperCredentials);

@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import styles from "../../ClientsCom.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import {
+  faEllipsisV,
+  faPencilAlt,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 import { AddIntegration } from "./AddIntegration";
 import axios from "axios";
 import { url } from "../../../../api";
@@ -11,7 +14,7 @@ import style from "./IntegrationTab.module.css";
 import { EditIntegration } from "./EditIntegration";
 import { IntegrationTabHeader } from "./IntegrationTabHeader";
 import { TestConnectionPopUp } from "./TestConnectionPopUp";
-import { IntegrationList } from "./IntegrationTab/IntegrationList";
+import { ConfirmCancelPopUp } from "../../../Common/ConfirmCancelPopUp/ConfirmCancelPopUp";
 
 export const IntegrationTab = ({
   clientId,
@@ -20,18 +23,14 @@ export const IntegrationTab = ({
   openModal,
 }) => {
   const [clients, setClients] = useState([]);
-  const [fetchTrigger, setFetchTrigger] = useState(false); // A state to trigger re-fetching
-  const [popupVisible, setPopupVisible] = useState(false);
-  const [popupPosition, setPopupPosition] = useState({ top: 0, left: 0 });
+  const [fetchTrigger, setFetchTrigger] = useState(false);
   const [selectedClient, setSelectedClient] = useState(null);
   const [showIntegration, setShowIntegration] = useState(false);
   const [testPopUp, setTestPopUp] = useState(false);
   const [errorResponse, setErrorResponse] = useState("");
   const [responseData, setResponseData] = useState("");
   const [loading, setLoading] = useState(false);
-  const popupRef = useRef();
-
-  console.log("loading", loading);
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
   useEffect(() => {
     const fetchAllIntegration = async () => {
@@ -47,49 +46,38 @@ export const IntegrationTab = ({
         setErrorResponse(error);
         console.log(error);
       } finally {
-        setLoading(false); // End loading
+        setLoading(false);
       }
     };
     fetchAllIntegration();
   }, [fetchTrigger]);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (popupRef.current && !popupRef.current.contains(event.target)) {
-        setPopupVisible(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [popupRef]);
-
-  const handleDotClick = (event, client) => {
-    const rect = event.target.getBoundingClientRect();
-    setPopupPosition({ top: rect.bottom, left: rect.right });
-    setSelectedClient(client);
-    setPopupVisible(true);
-  };
-
   const handleEdit = () => {
-    // Implement your edit functionality here
     setShowIntegration(true);
-    setPopupVisible(false);
   };
+
   const closeIntegration = () => {
     setShowIntegration(false);
   };
 
   const handleDelete = () => {
-    // Implement your delete functionality here
-    setPopupVisible(false);
+    setConfirmDelete(true);
+  };
+
+  const onConfirmDelete = async () => {
+    setConfirmDelete(false);
+    try {
+      await axios.delete(
+        `${url}/clients/addclients/${clientId}/integrations/${selectedClient._id}`
+      );
+      setFetchTrigger((prev) => !prev);
+    } catch (error) {
+      console.error("Failed to delete the integration:", error);
+    }
   };
 
   const handleTestPopUp = (index) => {
     setTestPopUp((prev) => ({
-      // ...prev,
       [index]: !prev[index],
     }));
   };
@@ -99,7 +87,6 @@ export const IntegrationTab = ({
       const timeout = setTimeout(() => {
         setTestPopUp(false);
       }, 3000);
-
       return () => clearTimeout(timeout);
     }
   }, [testPopUp]);
@@ -108,21 +95,39 @@ export const IntegrationTab = ({
     <>
       <IntegrationTabHeader openModal={openModal} />
       <div className={styles.cardSection}>
-        {/* <IntegrationList integrations={clients} /> */}
         {clients?.map((client, i) => {
           return (
             <div
-              className={`card  me-1 ${styles.cardSection} ${style.cardSection}`}
+              className={`card me-1 ${styles.cardSection} ${style.cardSection}`}
               key={i}
             >
               <div className="card-body pb-5">
                 <div className={style.cardTop}>
                   <h3 className="card-title">{client.platform}</h3>
                   <div
-                    className="cardDetails"
-                    onClick={(e) => handleDotClick(e, client)}
+                    className={`${style.cardDetails} cardDetails`}
+                    onMouseEnter={() => setSelectedClient(client)}
+                    onMouseLeave={() => setSelectedClient(null)}
                   >
                     <FontAwesomeIcon icon={faEllipsisV} />
+
+                    {/* Popup menu that shows on hover */}
+                    {selectedClient === client && (
+                      <div className={style.popup}>
+                        <button
+                          className={`${styles.editIcon}`}
+                          onClick={handleEdit}
+                        >
+                          <FontAwesomeIcon icon={faPencilAlt} />
+                        </button>
+                        <button
+                          className={`${styles.deleteIcon}`}
+                          onClick={handleDelete}
+                        >
+                          <FontAwesomeIcon icon={faTrash} />
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
                 <h4>{client?.integrationName}</h4>
@@ -132,7 +137,6 @@ export const IntegrationTab = ({
                   token={client?.apiKey}
                   style={{ marginBottom: "20px" }}
                 />
-
                 <p className="mb-1 mt-0">{client.username}</p>
                 <MaskedToken token={client?.password} />
 
@@ -154,6 +158,7 @@ export const IntegrationTab = ({
           );
         })}
       </div>
+
       {isModalOpen && (
         <AddIntegration
           closeModal={closeModal}
@@ -162,22 +167,25 @@ export const IntegrationTab = ({
           openModal={openModal}
         />
       )}
-      {popupVisible && (
-        <div
-          className={style.popup}
-          style={{ top: popupPosition.top, left: popupPosition.left }}
-          ref={popupRef}
-        >
-          <button className="btn btn-success mb-1" onClick={handleEdit}>
-            Edit
-          </button>
-          <button className="btn btn-danger" onClick={handleDelete}>
-            Delete
-          </button>
-        </div>
-      )}
+
       {showIntegration && (
-        <EditIntegration closeIntegration={closeIntegration} />
+        <EditIntegration
+          clientId={clientId}
+          setFetchTrigger={setFetchTrigger}
+          closeIntegration={closeIntegration}
+          selectedClient={selectedClient}
+        />
+      )}
+
+      {confirmDelete && (
+        <ConfirmCancelPopUp
+          headerText="Confirm Deletion"
+          bodyText="Are you sure you want to delete this integration?"
+          onOk={onConfirmDelete}
+          onCancel={() => setConfirmDelete(false)}
+          okButtonText="Delete"
+          cancelButtonText="Cancel"
+        />
       )}
     </>
   );
