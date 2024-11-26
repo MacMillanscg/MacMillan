@@ -8,12 +8,21 @@ export const ConfirmCancelPopUp = ({
   onCancel,
   okButtonText,
   cancelButtonText,
+  showErrorModal,
+  crossBtn,
 }) => {
   return (
     <div>
       <div className={styles.dialog}>
         <div className={styles.dialogHeader}>
           <h3 className={styles.warning}>{headerText}</h3>
+          {showErrorModal ? (
+            <span className={styles.cross} onClick={crossBtn}>
+              x
+            </span>
+          ) : (
+            ""
+          )}
         </div>
         <div className={styles.dialogBody}>
           <p className={styles.continue}>{bodyText}</p>
@@ -22,12 +31,16 @@ export const ConfirmCancelPopUp = ({
           <button className={`${styles.btn} ${styles.btnOk}`} onClick={onOk}>
             {okButtonText}
           </button>
-          <button
-            className={`${styles.btn} ${styles.btnCancel}`}
-            onClick={onCancel}
-          >
-            {cancelButtonText}
-          </button>
+          {!showErrorModal ? (
+            <button
+              className={`${styles.btn} ${styles.btnCancel}`}
+              onClick={onCancel}
+            >
+              {cancelButtonText}
+            </button>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>

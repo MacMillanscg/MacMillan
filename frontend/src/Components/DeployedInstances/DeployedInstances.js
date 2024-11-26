@@ -1,6 +1,12 @@
 import React from "react";
 import styles from "./DeployedInstances.module.css";
+import { useAppContext } from "../Context/AppContext";
 
 export const DeployedInstances = () => {
-  return <div className="dashboard">DeployedInstances is in progress....</div>;
+  const { dashboardWidth } = useAppContext();
+  return (
+    <div className="dashboard" style={{ width: dashboardWidth }}>
+      DeployedInstances is in progress....
+    </div>
+  );
 };

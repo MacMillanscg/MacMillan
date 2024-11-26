@@ -34,5 +34,6 @@ router.post(
   "/addclients/:clientId/addEShipper",
   eShipperController.addEShipperRecord
 );
+router.get("/addclients/logss", clientController.getAllLogs);
 
 module.exports = router;

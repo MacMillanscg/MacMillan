@@ -37,7 +37,9 @@ export const Sidebar = () => {
   };
 
   const toggleExploreDropdown = () => {
-    setIsExploreExpanded(!isExploreExpanded);
+    if (!sidebarMinimized) {
+      setIsExploreExpanded(!isExploreExpanded);
+    }
   };
 
   return (
@@ -190,7 +192,7 @@ export const Sidebar = () => {
               <FontAwesomeIcon icon={faCalendarAlt} className={styles.icon} />
             )}
           </div>
-          {isExploreExpanded && showText && (
+          {isExploreExpanded && !sidebarMinimized && showText && (
             <ul className={styles.dropdown}>
               <li>
                 <Link

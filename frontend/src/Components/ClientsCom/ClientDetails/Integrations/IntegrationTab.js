@@ -179,8 +179,8 @@ export const IntegrationTab = ({
 
       {confirmDelete && (
         <ConfirmCancelPopUp
-          headerText="Confirm Deletion"
-          bodyText="Are you sure you want to delete this integration?"
+          headerText="Warning"
+          bodyText="Are you sure you want to delete this record?"
           onOk={onConfirmDelete}
           onCancel={() => setConfirmDelete(false)}
           okButtonText="Delete"

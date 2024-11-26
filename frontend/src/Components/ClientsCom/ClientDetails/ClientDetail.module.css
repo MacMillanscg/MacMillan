@@ -41,4 +41,11 @@
     height: unset;
     z-index: 999;
   }
-  
+  .clientDetailsName{
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+  }
+
+.clientDetailsName:hover{
+    text-decoration: underline !important;
+}

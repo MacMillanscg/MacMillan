@@ -632,6 +632,7 @@ export const Summary = () => {
                   formattedData.find(
                     (data) => data.reference1 === order.id.toString()
                   );
+                console.log("formattedData", formattedData);
 
                 return (
                   <tr key={index}>

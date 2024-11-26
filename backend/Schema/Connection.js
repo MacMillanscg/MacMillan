@@ -4,6 +4,11 @@ const conversionActionSchema = require("./conversionSchema");
 const PostFulfillmentSchema = require("./FullfillmentSchema");
 const connectionRule = require("./ConnectionRole");
 
+const VersionSchema = new mongoose.Schema({
+  versionNumber: { type: Number }, // Auto-incremented version number
+  createdAt: { type: Date, default: Date.now }, // Timestamp for the version
+});
+
 const IntegrationSchema = new mongoose.Schema({
   integrationId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -65,6 +70,7 @@ const ConnectionSchema = new mongoose.Schema({
   newRulesId: [String],
   newRulesSchedule: [String],
   createdAt: { type: Date, default: Date.now },
+  versions: [VersionSchema], // Store version history
 });
 
 const Connection = mongoose.model("Connection", ConnectionSchema);

@@ -57,10 +57,31 @@ export const LogsTab = () => {
   const { id } = useParams();
   const [currentPage, setCurrentPage] = useState(1);
   const [logsPerPage, setLogsPerPage] = useState(10); // Updated to be stateful
+  const [logss, setLogss] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
   const { logs } = useSelector((state) => state.logs);
   console.log("Log", logs);
+  console.log("Logsss", logss);
+
+  useEffect(() => {
+    const fetchLogs = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/clients/addclients/logss"
+        );
+        setLogss(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching logs:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchLogs();
+  }, []);
 
   useEffect(() => {
     dispatch(fetchLogs());

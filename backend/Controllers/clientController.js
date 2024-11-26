@@ -33,12 +33,19 @@ exports.addClientVerify = async (req, res) => {
 exports.addClient = async (req, res) => {
   const { clientName, email, phone, userId } = req.body; // also pass url key api token
   // console.log(userId);
+  const phoneRegex = /^[+\d\s()-]*$/;
+  if (!phoneRegex.test(phone)) {
+    return res.status(400).json({ error: "Invalid phone number format" });
+  }
+
+  // Normalize phone number (optional)
+  const cleanedPhone = phone.replace(/[^\d\s+]/g, "");
 
   try {
     const newClient = new Client({
       clientName,
       email,
-      phone,
+      phone: cleanedPhone,
       userId,
     });
     const savedClient = await newClient.save();
@@ -75,14 +82,39 @@ exports.getUserById = (req, res) => {
   Client.findById(id)
     .then((user) => {
       if (user) {
+        const logEntry = new Log({
+          message: `Fetched client with ID: ${id} successfully`,
+          title: "Fetch Success",
+          type: "success",
+          userId: id,
+        });
+
+        logEntry.save();
+
         logger.info("Fetched client with connection successfully", { id });
         res.json(user);
       } else {
+        const logEntry = new Log({
+          message: `User not found with ID: ${id}`,
+          title: "User Not Found",
+          type: "warning",
+          userId: id,
+        });
+
+        logEntry.save();
         logger.warn("User not found", { id });
         res.status(404).json({ error: "User not found" });
       }
     })
     .catch((err) => {
+      const logEntry = new Log({
+        message: `Error fetching user with ID: ${id}`,
+        title: "Fetch Error",
+        type: "error",
+        userId: id,
+      });
+
+      logEntry.save();
       logger.error("Error fetching user by ID", { id, error: err.message });
       res.status(400).json({ error: "Error fetching user by ID" });
     });
@@ -199,19 +231,19 @@ exports.getClientIntegrations = async (req, res) => {
     const client = await Client.findById(clientId);
 
     if (!client) {
-      logger.warn("Client not found when fetching integrations", { clientId });
+      // logger.warn("Client not found when fetching integrations", { clientId });
       return res.status(404).json({ error: "Client not found" });
     }
 
-    logger.info("Fetched client integrations successfully", { clientId });
+    // logger.info("Fetched client integrations successfully", { clientId });
     res
       .status(200)
       .json({ msg: "Connection established successfully", client });
   } catch (error) {
-    logger.error("Error fetching client integrations", {
-      clientId,
-      error: error.message,
-    });
+    // logger.error("Error fetching client integrations", {
+    //   clientId,
+    //   error: error.message,
+    // });
     res.status(500).json({ error: "Error fetching client data" });
   }
 };
@@ -357,4 +389,15 @@ exports.getLogFile = (req, res) => {
       .map((line) => JSON.parse(line));
     res.json(logs);
   });
+};
+
+exports.getAllLogs = async (req, res) => {
+  try {
+    const logs = await Log.find().sort({ timestamp: -1 }); // Sort by newest logs first
+    console.log("Logs", logs);
+    res.status(200).json(logs);
+  } catch (error) {
+    console.error("Error fetching logs:", error);
+    res.status(500).json({ error: "Failed to fetch logs" });
+  }
 };

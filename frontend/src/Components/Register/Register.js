@@ -34,6 +34,7 @@ export const Register = () => {
   const handleCheckboxChange = () => {
     setAgreedToTerms(!agreedToTerms);
   };
+  console.log("agreedTerms", agreedToTerms);
 
   const calculatePasswordStrength = (password) => {
     let strength = 0;
@@ -57,6 +58,10 @@ export const Register = () => {
   };
 
   const registerUser = async () => {
+    if (!agreedToTerms) {
+      toast.error("You must agree to the terms and conditions.");
+      return;
+    }
     // Validation checks
     let errorOccurred = false;
     if (!name.trim()) {
@@ -193,7 +198,7 @@ export const Register = () => {
             />
             <span
               className={`position-absolute end-0 top-50 translate-middle-y ${styles.eyeIcon}`}
-              onClick={() => setPasswordVisible(!passwordVisible)} // Toggle password visibility on click
+              onClick={() => setPasswordVisible(!passwordVisible)}
             >
               {passwordVisible ? (
                 <FontAwesomeIcon icon={faEye} />
@@ -301,7 +306,14 @@ export const Register = () => {
           </div>
         </div>
       </div>
-      {isModalOpen && <Terms closeModal={closeModal} />}
+      {isModalOpen && (
+        <Terms
+          closeModal={closeModal}
+          setAgreedToTerms={setAgreedToTerms}
+          agreedToTerms={agreedToTerms}
+          passwordStrength={passwordStrength}
+        />
+      )}
     </div>
   );
 };

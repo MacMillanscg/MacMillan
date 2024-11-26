@@ -17,6 +17,7 @@ export const DetailsTab = ({ clientId }) => {
   const [isActive, setIsActive] = useState(false);
   const [fetchTrigger, setFetchTrigger] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
   const [originalData, setOriginalData] = useState({
     clientName: "",
     phone: "",
@@ -86,10 +87,19 @@ export const DetailsTab = ({ clientId }) => {
   };
 
   const handleDeletModal = () => {
-    setShowDeleteModal(true);
+    if (isActive) {
+      setShowErrorModal(true); // Show error modal if client is active
+    } else {
+      setShowDeleteModal(true); // Show delete confirmation modal
+    }
   };
+
   const cancelDeletModal = () => {
     setShowDeleteModal(false);
+  };
+
+  const closeErrorModal = () => {
+    setShowErrorModal(false);
   };
 
   const handleDelete = async () => {
@@ -158,6 +168,18 @@ export const DetailsTab = ({ clientId }) => {
             onCancel={cancelDeletModal}
             okButtonText="Ok"
             cancelButtonText="No"
+          />
+        )}
+        {showErrorModal && (
+          <ConfirmCancelPopUp
+            headerText="Error"
+            bodyText="Unable to complete this action as the selected client is in Active status"
+            onOk={closeErrorModal}
+            okButtonText="OK"
+            cancelButtonText=""
+            showCancel={false} // Hide cancel button
+            showErrorModal={showErrorModal}
+            crossBtn={closeErrorModal}
           />
         )}
         <div className={styles.profilebottom}>

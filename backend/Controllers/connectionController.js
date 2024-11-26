@@ -7,12 +7,12 @@ exports.getAllConnections = async (req, res) => {
   try {
     const connections = await Connection.find();
 
-    logger.info("Fetched all connections successfully", {
-      count: connections.length,
-    });
+    // logger.info("Fetched all connections successfully", {
+    //   count: connections.length,
+    // });
     res.status(200).json(connections);
   } catch (error) {
-    logger.error("Error fetching connections", { error: error.message });
+    // logger.error("Error fetching connections", { error: error.message });
     res.status(500).json({ error: "Error fetching connections" });
   }
 };
@@ -103,18 +103,18 @@ exports.shofipyOrders = async (req, res) => {
 exports.getConnectionById = async (req, res) => {
   try {
     const { id } = req.params;
-    logger.info("Fetching connection by ID", { connectionId: id });
+    // logger.info("Fetching connection by ID", { connectionId: id });
 
     const connection = await Connection.findById(id);
     // .populate("client")
     // .populate("integrations");
 
     if (!connection) {
-      logger.warn("Connection not found", { connectionId: id });
+      // logger.warn("Connection not found", { connectionId: id });
       return res.status(404).json({ message: "Connection not found" });
     }
 
-    logger.info("Connection fetched successfully", { connectionId: id });
+    // logger.info("Connection fetched successfully", { connectionId: id });
     res.status(200).json(connection);
   } catch (error) {
     logger.error("Error fetching connection", {
@@ -236,5 +236,43 @@ exports.verifyEShipperCredentials = async (req, res) => {
       error: error.message,
     }); // Log the error
     res.status(500).json({ error: "Authentication failed" });
+  }
+};
+
+// Controller to publish a new version
+exports.publishVersion = async (req, res) => {
+  try {
+    const { id } = req.params; // Connection ID
+    console.log("verions id", id);
+
+    // Fetch the connection
+    const connection = await Connection.findById(id);
+    console.log("connecitons", connection);
+    if (!connection) {
+      return res.status(404).json({ error: "Connection not found" });
+    }
+
+    // // Determine the new version number
+    const latestVersionNumber =
+      connection.versions.length > 0
+        ? connection.versions[connection.versions.length - 1].versionNumber
+        : 0;
+    const newVersionNumber = latestVersionNumber + 1;
+
+    // // Add the new version to the `versions` array
+    connection.versions.push({
+      versionNumber: newVersionNumber,
+    });
+
+    // // Save the updated connection
+    await connection.save();
+
+    res.status(200).json({
+      message: "New version published successfully!",
+      version: newVersionNumber,
+    });
+  } catch (error) {
+    console.error("Error publishing version:", error);
+    res.status(500).json({ error: "Failed to publish the version" });
   }
 };

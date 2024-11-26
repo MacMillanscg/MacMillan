@@ -172,4 +172,8 @@
     opacity: 0.9;
    
   }
+
+  .logsTable thead th:nth-child(2) {
+    display: block !important;
+}
   

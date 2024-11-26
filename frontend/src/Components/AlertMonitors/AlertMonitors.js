@@ -3,20 +3,22 @@ import styles from "./AlertMonitors.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { useAppContext } from "../Context/AppContext";
 
 export const AlertMonitors = () => {
+  const { dashboardWidth } = useAppContext();
   return (
-    <div className="dashboard">
+    <div className="dashboard" style={{ width: dashboardWidth }}>
       <div className={styles.alertMonitors}>
         <h1 className={styles.heading1}>Instance monitors</h1>
         <div className={styles.monitorRight}>
           <div className={`form-group ${styles.formGroup}`}>
-            <span className={styles.search}>
+            {/* <span className={styles.search}>
               <FontAwesomeIcon icon={faSearch} className={styles.searchIcon} />
-            </span>
+            </span> */}
             <input
               type="search"
-              className="form-control"
+              className={`form-control ${styles.searchField} `}
               id="exampleInputEmail"
               placeholder="Search monitors"
             />

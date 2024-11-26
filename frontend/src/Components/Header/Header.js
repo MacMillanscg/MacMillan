@@ -38,7 +38,11 @@ export const Header = () => {
           <li className={styles.item}>
             <button
               onClick={toggleProfile}
-              className={`${styles.navlink} nav-link`}
+              className={
+                !user.profileImage
+                  ? `${styles.navlink} nav-link`
+                  : styles.userProfile
+              }
               ref={toggleButtonRef}
             >
               {user.profileImage ? (

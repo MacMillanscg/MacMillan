@@ -45,8 +45,8 @@ export const useFetchXmlData = () => {
 
           // Format the data as required
           return {
-            // scheduledShipDate: data?.Header[0]?.scheduledShipDate[0],
-            scheduledShipDate: "2024-10-31 19:35",
+            scheduledShipDate: data?.Header[0]?.scheduledShipDate[0],
+            // scheduledShipDate: "2024-10-31 19:35",
             from: {
               attention: data?.Header[0]?.attention[0] || "",
               company: data?.Header[0]?.company[0] || "",

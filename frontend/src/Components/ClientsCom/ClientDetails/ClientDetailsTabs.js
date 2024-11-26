@@ -53,7 +53,7 @@ export const ClientDetailsTabs = () => {
       </div>
       <div className={styles.tabsHeaderSection}>
         <div className={styles.leftTabSection}>
-          <h2>{client}</h2>
+          <h2 className={styles.clientDetailsName}>{client}</h2>
         </div>
       </div>
       <div className={styles.tabContainer}>

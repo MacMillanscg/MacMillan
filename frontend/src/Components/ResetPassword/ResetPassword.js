@@ -4,10 +4,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import logo from "../../assets/images/logo.jpg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 export const ResetPassword = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfimPassword] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   const navigate = useNavigate();
   const { id, token } = useParams();
 
@@ -61,25 +65,47 @@ export const ResetPassword = () => {
           Enter a new password for the API Integration application
         </p>
 
-        <div className={`form-group mt-4 mb-2 ${styles.formGroup}`}>
+        <div
+          className={`form-group mt-4 mb-2 position-relative ${styles.formGroup}`}
+        >
           <label className={styles.label}>Password:</label>
           <input
-            type="password"
+            type={passwordVisible ? "text" : "password"}
             className={`form-control ${styles.formControl}`}
             id="exampleInputEmail"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-          />
+          />{" "}
+          <span
+            className={`position-absolute end-0 top-50 ${styles.eyeIcon}`}
+            onClick={() => setPasswordVisible(!passwordVisible)}
+          >
+            {passwordVisible ? (
+              <FontAwesomeIcon icon={faEye} />
+            ) : (
+              <FontAwesomeIcon icon={faEyeSlash} />
+            )}{" "}
+          </span>
         </div>
-        <div className={`form-group ${styles.formGroup}`}>
+        <div className={`form-group position-relative ${styles.formGroup}`}>
           <label className={styles.label}>Confirm Password:</label>
           <input
-            type="password"
+            type={confirmPasswordVisible ? "text" : "password"}
             className={`form-control ${styles.formControl}`}
             id="exampleInputEmail"
             value={confirmPassword}
             onChange={(e) => setConfimPassword(e.target.value)}
           />
+          <span
+            className={`position-absolute end-0 top-50 ${styles.eyeIcon}`}
+            onClick={() => setConfirmPasswordVisible(!confirmPasswordVisible)}
+          >
+            {confirmPasswordVisible ? (
+              <FontAwesomeIcon icon={faEye} />
+            ) : (
+              <FontAwesomeIcon icon={faEyeSlash} />
+            )}{" "}
+          </span>
         </div>
         <button
           className={`btn submit  ${styles.resetBtn} mt-4`}

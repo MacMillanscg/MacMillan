@@ -4,13 +4,19 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ConfirmationDialog } from "./ConfirmationDialog";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignOutAlt, faHeadset } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSignOutAlt,
+  faHeadset,
+  faLaptopHouse,
+} from "@fortawesome/free-solid-svg-icons";
 import { getUser } from "../../storageUtils/storageUtils";
+import { useAppContext } from "../Context/AppContext";
 
 export const Profile = () => {
   const navigate = useNavigate();
   const [showDialog, setShowDialog] = useState(false);
   const [showProfile, setShowProfile] = useState(true);
+  const { setSidebarMinimized } = useAppContext();
 
   const user = getUser();
 
@@ -21,6 +27,7 @@ export const Profile = () => {
     // Clear local storage
     localStorage.clear();
     sessionStorage.removeItem("user");
+    setSidebarMinimized(false);
     navigate("/login");
   };
   const openDialog = () => {

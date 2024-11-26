@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { url } from "../../api";
 import axios from "axios";
 import { getUser } from "../../storageUtils/storageUtils";
+import { ConfirmCancelPopUp } from "../Common/ConfirmCancelPopUp/ConfirmCancelPopUp";
 
 export const AddClients = ({ closeModal, setFetchTrigger }) => {
   const [activeTab, setActiveTab] = useState("info");
@@ -17,6 +18,8 @@ export const AddClients = ({ closeModal, setFetchTrigger }) => {
     storeUrl: "",
     apiKey: "",
   });
+  const [showWarningPopup, setShowWarningPopup] = useState(false); // State for warning popup
+  const [isDirty, setIsDirty] = useState(false);
 
   let userId = getUser();
   userId = userId?._id;
@@ -77,12 +80,13 @@ export const AddClients = ({ closeModal, setFetchTrigger }) => {
       toast.error("Please fill in all required fields.");
       return;
     }
+    const cleanedPhone = phone.replace(/[^\d\s+]/g, "");
 
     try {
       const newClient = {
         clientName,
         email,
-        phone,
+        phone: cleanedPhone,
         userId,
       };
       // console.log("newClinet", newClient);
@@ -92,6 +96,7 @@ export const AddClients = ({ closeModal, setFetchTrigger }) => {
 
       console.log("New client created:", response.data);
       toast.success("New client created successfully!");
+      setIsDirty(false);
       closeModal();
     } catch (error) {
       console.error("Error creating new client:", error);
@@ -104,6 +109,40 @@ export const AddClients = ({ closeModal, setFetchTrigger }) => {
     if (!/[a-zA-Z ]/.test(char)) {
       e.preventDefault();
     }
+  };
+
+  const handleInputChange = (setter) => (e) => {
+    setter(e.target.value);
+    setIsDirty(true); // Mark the form as dirty when any input changes
+  };
+
+  const handlePhoneChange = (e) => {
+    const value = e.target.value;
+    const phoneRegex = /^[+\d\s()-]*$/;
+
+    if (phoneRegex.test(value)) {
+      setPhone(value.trim());
+      setIsDirty(true);
+    } else {
+      toast.error("Invalid character in phone number.");
+    }
+  };
+
+  const handleCancelModal = () => {
+    if (isDirty) {
+      setShowWarningPopup(true); // Show warning if there are unsaved changes
+    } else {
+      closeModal(); // Close modal directly if no changes
+    }
+  };
+
+  const handleWarningOk = () => {
+    setShowWarningPopup(false);
+    closeModal(); // Proceed to close the modal
+  };
+
+  const handleWarningCancel = () => {
+    setShowWarningPopup(false); // Dismiss the warning popup
   };
 
   return (
@@ -149,7 +188,7 @@ export const AddClients = ({ closeModal, setFetchTrigger }) => {
                       className={`form-control ${styles.formControl}`}
                       id="contactId"
                       value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
+                      onChange={handlePhoneChange} // Use the validation handler
                     />
                   </div>
                 </div>
@@ -286,7 +325,7 @@ export const AddClients = ({ closeModal, setFetchTrigger }) => {
             )}
           </div>
           <div className={styles.buttonContainer}>
-            <button className={styles.cancelButton} onClick={closeModal}>
+            <button className={styles.cancelButton} onClick={handleCancelModal}>
               Cancel
             </button>
             <button onClick={handleSubmit} className={styles.addButton}>
@@ -295,6 +334,16 @@ export const AddClients = ({ closeModal, setFetchTrigger }) => {
           </div>
         </div>
       </div>
+      {showWarningPopup && (
+        <ConfirmCancelPopUp
+          headerText="Warning"
+          bodyText="You have unsaved data. Do you want to continue?"
+          onOk={handleWarningOk}
+          onCancel={handleWarningCancel}
+          okButtonText="Yes"
+          cancelButtonText="No"
+        />
+      )}
     </div>
   );
 };
