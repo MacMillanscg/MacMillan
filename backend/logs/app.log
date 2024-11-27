@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 {"id":"670539d78a2309ab8db34764","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-29 23:46:06"}
 {"id":"670539d78a2309ab8db34764","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-29 23:46:06"}
 {"id":"670539d78a2309ab8db34764","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-29 23:46:10"}
@@ -41,8 +41,7 @@
 {"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-30 00:28:37"}
 {"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-30 00:28:41"}
 {"count":15,"level":"info","message":"Fetched all clients successfully","timestamp":"2024-10-30 09:23:49"}
-=======
->>>>>>> 7e91d1137c6a5896a06cac7c6e811135c2409c9d
+
 {"email":"sagrika@macmillanscg.com","level":"info","message":"User logged in successfully","timestamp":"2024-11-26 13:14:22"}
 {"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 13:14:33"}
 {"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-26 13:14:33"}
