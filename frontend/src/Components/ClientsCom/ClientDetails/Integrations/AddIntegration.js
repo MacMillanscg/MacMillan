@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { url } from "../../../../api";
 import { getUser } from "../../../../storageUtils/storageUtils";
+import { ConfirmCancelPopUp } from "../../../Common/ConfirmCancelPopUp/ConfirmCancelPopUp";
 
 export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
   const [activeTab, setActiveTab] = useState("info");
@@ -21,6 +22,8 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
   const [token, setToken] = useState("");
   const [isVerified, setIsVerified] = useState(false);
   const [error, setError] = useState("");
+  const [showWarningPopup, setShowWarningPopup] = useState(false);
+  const [isDirty, setIsDirty] = useState(false);
 
   let userId = getUser();
   userId = userId?._id;
@@ -47,6 +50,7 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    setIsDirty(true);
     setIsVerified(false);
   };
 
@@ -92,6 +96,7 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
         eShipper
       );
       toast.success("New integration created successfully!");
+
       closeModal();
 
       // setFormData({
@@ -183,6 +188,7 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
 
       console.log("New integration created:", response.data);
       toast.success("New integration created successfully!");
+      setIsDirty(false);
       closeModal();
     } catch (error) {
       if (error.response && error.response.status === 400) {
@@ -196,10 +202,24 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
 
   // To manage all functions for submitting
   const handleSubmit = () => {
+    // Validation for integrationName and selectedPlatform
+    if (!integrationName.trim()) {
+      toast.error("Please provide an Integration Name.");
+      return;
+    }
+
+    if (!selectedPlatform) {
+      toast.error("Please select a Platform.");
+      return;
+    }
+
+    // Call appropriate function based on selectedPlatform
     if (selectedPlatform === "Shopify") {
       addShopifyRecord();
     } else if (selectedPlatform === "EShipper") {
       addEShipperRecord();
+    } else {
+      toast.error("This platform integration is not supported yet.");
     }
   };
 
@@ -209,6 +229,29 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
       e.preventDefault();
     }
   };
+
+  const handleWarningCancel = () => {
+    setShowWarningPopup(false); // Dismiss the warning popup
+  };
+
+  const handleIntegrationNameChange = (e) => {
+    setIntegrationName(e.target.value);
+    setIsDirty(true);
+  };
+
+  const handleCancelModal = () => {
+    if (isDirty) {
+      setShowWarningPopup(true); // Show warning if there are unsaved changes
+    } else {
+      closeModal(); // Close modal directly if no changes
+    }
+  };
+
+  const handleWarningOk = () => {
+    setShowWarningPopup(false); // Hide the warning popup
+    closeModal(); // Proceed to close the modal
+  };
+  console.log("ISDirty", isDirty);
 
   console.log("token", token);
 
@@ -248,8 +291,8 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
                       className={`form-control ${styles.formControl}`}
                       id="name"
                       value={integrationName}
-                      onChange={(e) => setIntegrationName(e.target.value)}
-                      // onKeyPress={handleNameKeyPress}
+                      onChange={handleIntegrationNameChange}
+                      onKeyPress={handleNameKeyPress}
                     />
                   </div>
                 </div>
@@ -446,7 +489,7 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
             )}
           </div>
           <div className={styles.buttonContainer}>
-            <button className={styles.cancelButton} onClick={closeModal}>
+            <button className={styles.cancelButton} onClick={handleCancelModal}>
               Cancel
             </button>
             <button onClick={handleSubmit} className={styles.addButton}>
@@ -455,6 +498,16 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
           </div>
         </div>
       </div>
+      {showWarningPopup && (
+        <ConfirmCancelPopUp
+          headerText="Warning"
+          bodyText="You have unsaved data. Do you want to continue?"
+          onOk={handleWarningOk}
+          onCancel={handleWarningCancel}
+          okButtonText="Yes"
+          cancelButtonText="No"
+        />
+      )}
     </div>
   );
 };

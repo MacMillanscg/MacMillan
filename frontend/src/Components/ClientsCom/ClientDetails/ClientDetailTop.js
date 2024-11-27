@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { url } from "../../../api";
+import styles from "./ClientDetailTop.module.css";
 
 export const ClientDetailTop = () => {
   const [client, setClient] = useState("");
@@ -23,7 +24,10 @@ export const ClientDetailTop = () => {
 
   return (
     <div>
-      <span>Clients</span> / <span>{client}</span>
+      <Link to="/addclients">
+        <span className={styles.clients}>Clients</span>
+      </Link>{" "}
+      / <span className={styles.clientName}>{client}</span>
     </div>
   );
 };

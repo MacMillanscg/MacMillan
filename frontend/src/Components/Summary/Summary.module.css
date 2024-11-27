@@ -4,6 +4,10 @@
     box-sizing: border-box;
   } */
   
+  .summaryWrap{
+    height: unset;
+    z-index: 999;
+  }
   .title {
     font-size: 24px;
     margin-bottom: 20px;
@@ -59,6 +63,34 @@
     padding-bottom: 23px;
     position: relative;
   }
+  .tableContainer {
+    /* margin-top: 20px; */
+    overflow-y: auto;
+    height: 543px;
+    position: relative;
+  }
+  .tableContainer::-webkit-scrollbar {
+    width: 8px; /* Adjust the width of the vertical scrollbar */
+  }
+   @media(max-width:1873px){
+    .tableContainer{
+      height: 495px;
+    }
+  }
+   @media(max-width:1800px){
+    .tableContainer{
+      height: 419px;
+    }
+  }
+  @media(max-width:1440px){
+    .tableContainer{
+      height: 326px;
+    }
+  } 
+  
+   /* @media(max-width:1200px){
+    .logsContainer{}
+  }  */
   @media (min-width: 768px) {
     .filters {
       flex-direction: row;
@@ -116,9 +148,11 @@
   /* .table td:nth-child(2){
     display: none;
   }
-  .table th:nth-child(2){
+   */
+
+   table thead th:nth-child(2){
     display: none;
-  } */
+  }
 
   .columnManagement {
     margin-bottom: 15px;
@@ -195,27 +229,43 @@
 .tableContainer::-webkit-scrollbar-button { 
   display: none; 
 }
-.loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100px;
-}
 
-.loading::after {
-  content: "";
-  width: 40px;
-  height: 40px;
-  border: 4px solid #ccc;
-  border-top-color: #007bff;
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
 .filterFields{
   display: flex;
   align-items: center;
 }
 
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* Spinner style */
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loadingText{
+  margin-top: 10px;
+  font-size: 1.2em;
+  color: #555;
+}
+
+/* Keyframes for spinner animation */
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -224,6 +274,8 @@
     transform: rotate(360deg);
   }
 }
+
+
 
   
   

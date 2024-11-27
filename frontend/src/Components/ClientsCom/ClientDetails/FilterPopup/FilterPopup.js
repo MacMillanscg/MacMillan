@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useAppContext } from "../../../Context/AppContext";
 import styles from "./FilterPopup.module.css";
 import { getUser } from "../../../../storageUtils/storageUtils";
@@ -16,8 +16,35 @@ export const FilterPopup = ({ closeModal, applyFilters }) => {
   let userId = getUser();
   userId = userId?._id;
 
+  const popupRef = useRef(null);
+
+  const handleClear = () => {
+    // Clear filter inputs
+    setClientName("");
+    setEmail("");
+
+    // Reset filters in the parent component
+    applyFilters({ clientName: "", email: "" });
+    closeModal();
+  };
+
+  // Handle clicks outside the popup
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (popupRef.current && !popupRef.current.contains(event.target)) {
+        closeModal();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [popupRef]);
+
   return (
-    <div className={styles.modalBackground}>
+    <div className={styles.modalBackground} ref={popupRef}>
       <div className={styles.modalContainer}>
         <div className={styles.tabContent}>
           <div className={styles.filterHeader}>
@@ -53,7 +80,7 @@ export const FilterPopup = ({ closeModal, applyFilters }) => {
           <button className={styles.applyBtn} onClick={handleApply}>
             Apply
           </button>
-          <button className={styles.filterButton} onClick={closeModal}>
+          <button className={styles.filterButton} onClick={handleClear}>
             Clear Filter
           </button>
         </div>

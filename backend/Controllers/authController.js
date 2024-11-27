@@ -2,11 +2,24 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const User = require("../Schema/userModel");
+const logger = require("../logger");
 
 exports.getAllUsers = (req, res) => {
   User.find()
-    .then((users) => res.json(users))
-    .catch((err) => console.log(err));
+    .then((users) => {
+      logger.info("Fetched all users successfully", {
+        count: users.length,
+        users: users, // Optionally include user data (be cautious with sensitive information)
+      });
+      res.json(users);
+    })
+    .catch((err) => {
+      logger.error("Error fetching users", {
+        message: err.message,
+        stack: err.stack, // Optionally log the stack trace for debugging
+      });
+      res.status(500).json({ error: "Error fetching users" });
+    });
 };
 
 // Register User
@@ -14,6 +27,9 @@ exports.register = async (req, res) => {
   try {
     const existingUser = await User.findOne({ email: req.body.email });
     if (existingUser) {
+      logger.warn("Registration attempt with existing email", {
+        email: req.body.email,
+      });
       return res
         .status(200)
         .send({ success: false, message: "User already registered" });
@@ -25,10 +41,16 @@ exports.register = async (req, res) => {
 
     const newUser = new User(req.body);
     await newUser.save();
+
+    logger.info("User registered successfully", { email: req.body.email });
     res
       .status(200)
       .send({ success: true, message: "User Registered successfully" });
   } catch (error) {
+    logger.error("Error registering user", {
+      message: error.message,
+      stack: error.stack, // Optionally log the stack trace for debugging
+    });
     res.status(400).json("Err" + error);
   }
 };
@@ -51,6 +73,9 @@ exports.login = async (req, res) => {
         const token = jwt.sign(dataToBeSentToFrontend, "SHEY", {
           expiresIn: 60 * 60,
         });
+
+        logger.info("User logged in successfully", { email: user.email });
+
         res.status(200).send({
           success: true,
           message: "User login successfully",
@@ -58,14 +83,22 @@ exports.login = async (req, res) => {
           user: dataToBeSentToFrontend,
         });
       } else {
+        logger.warn("Incorrect password attempt", { email: req.body.email });
         res.status(200).send({ success: false, message: "Incorrect password" });
       }
     } else {
+      logger.warn("Login attempt for non-existent user", {
+        email: req.body.email,
+      });
       res
         .status(400)
         .send({ success: false, message: "User does not exist", data: null });
     }
   } catch (error) {
+    logger.error("Error during login", {
+      message: error.message,
+      stack: error.stack, // Optionally log the stack trace for debugging
+    });
     res.status(400).send(error);
   }
 };

@@ -97,6 +97,27 @@ export const AddConnections = ({ closeModal }) => {
   };
   console.log("selectintegration", selectedClientIntegrations);
 
+  useEffect(() => {
+    if (!client && clients.length > 0) {
+      // Set the first integration for the first client
+      const defaultClient = clients[0];
+      console.log("DefaultClient", defaultClient);
+
+      // Select the first integration or an empty array if none exist
+      const firstIntegration =
+        defaultClient.integrations && defaultClient.integrations[0]
+          ? [defaultClient.integrations[0]]
+          : [];
+
+      // Set the first integration in the state
+      setSelectedClientIntegrations(firstIntegration);
+
+      // Dispatch actions to update the Redux state
+      dispatch(setSelectedClient(defaultClient));
+      dispatch(setSelectedClientIntegrations(firstIntegration));
+    }
+  }, [clients, client, dispatch]);
+
   const handleWebhookTriggerClick = (trigger) => {
     if (selectedWebhookTrigger === trigger) {
       setSelectedWebhookTrigger(null);
@@ -166,6 +187,13 @@ export const AddConnections = ({ closeModal }) => {
     }
   };
 
+  const handleNameKeyPress = (e) => {
+    const char = String.fromCharCode(e.which);
+    if (!/[a-zA-Z ]/.test(char)) {
+      e.preventDefault();
+    }
+  };
+
   return (
     <div className="dashboard" style={{ width: dashboardWidth }}>
       <div className={styles.modalBackground}>
@@ -185,6 +213,7 @@ export const AddConnections = ({ closeModal }) => {
                 className="form-control"
                 value={connectionName}
                 onChange={(e) => setConnectionName(e.target.value)}
+                onKeyPress={handleNameKeyPress}
               />
             </div>
             <div className={styles.formGroup}>

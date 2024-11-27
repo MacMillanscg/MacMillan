@@ -3,43 +3,51 @@ import styles from "./CustomPagination.module.css"; // Assuming you'll add custo
 
 export const CustomPagination = ({
   currentPage,
-  totalItems,
   itemsPerPage,
-  onPageChange,
-  onItemsPerPageChange,
+  handlePageChange,
+  handleItemsPerPageChange,
+  totalPages,
 }) => {
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
-
   return (
     <div className={styles.paginationContainer}>
-      <div className={styles.itemsPerPage}>
-        <select
-          value={itemsPerPage}
-          onChange={(e) => onItemsPerPageChange(parseInt(e.target.value))}
-        >
-          {[5, 10, 20, 50, 100].map((size) => (
-            <option key={size} value={size}>
-              {size}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className={styles.currentPage}>{currentPage}</div>
-
       <div className={styles.pageControls}>
-        <button
-          onClick={() => onPageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-        >
-          &larr; Previous
-        </button>
-
-        <button
-          onClick={() => onPageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-        >
-          Next &rarr;
-        </button>
+        <div className={styles.itemsPerPage}>
+          <select
+            id="itemsPerPage"
+            value={itemsPerPage}
+            onChange={handleItemsPerPageChange}
+          >
+            <option value={20}>20</option>
+            <option value={50}>50</option>
+            <option value={100}>100</option>
+          </select>
+        </div>
+        <div className={styles.pagination}>
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            Previous
+          </button>
+          {Array.from({ length: totalPages }, (_, i) => (
+            <button
+              key={i + 1}
+              onClick={() => handlePageChange(i + 1)}
+              disabled={currentPage === i + 1}
+              className={`${styles.paginationButton} ${
+                currentPage === i + 1 ? styles.activeButton : ""
+              }`}
+            >
+              {i + 1}
+            </button>
+          ))}
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            Next
+          </button>
+        </div>
       </div>
     </div>
   );

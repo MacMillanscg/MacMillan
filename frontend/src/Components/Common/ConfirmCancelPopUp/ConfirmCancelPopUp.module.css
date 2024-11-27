@@ -73,3 +73,14 @@
     padding-bottom: 38px;
     margin: 0 3px 15px;
   }
+  .dialogHeader{
+    position: relative;
+  }
+  .cross{
+    position: absolute;
+    right: 13px;
+    top: 11px;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+  }

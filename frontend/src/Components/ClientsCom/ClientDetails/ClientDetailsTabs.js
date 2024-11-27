@@ -44,13 +44,16 @@ export const ClientDetailsTabs = () => {
   }, []);
 
   return (
-    <div className="dashboard" style={{ width: dashboardWidth }}>
+    <div
+      className={`dashboard ${styles.dashboardLog}`}
+      style={{ width: dashboardWidth }}
+    >
       <div className="topheader">
         <ClientDetailTop />
       </div>
       <div className={styles.tabsHeaderSection}>
         <div className={styles.leftTabSection}>
-          <h2>{client}</h2>
+          <h2 className={styles.clientDetailsName}>{client}</h2>
         </div>
       </div>
       <div className={styles.tabContainer}>

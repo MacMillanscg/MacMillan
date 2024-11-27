@@ -31,6 +31,11 @@
   .popup button:hover {
     background-color: #f0f0f0;
   }
+  .dotsIcon{
+    height: 21px;
+    padding: 4px;
+  }
+
   .testConnection{
     width: 100%;
     background: lightgray;
@@ -75,4 +80,40 @@
   }
   .addCustom{
     margin-bottom: 30px !important;
+  }
+
+  .cardDetails {
+    position: relative;
+  }
+  
+  .popup {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: -5px;
+    right: 5px;
+    z-index: 10;
+    background: white;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow:none;
+    transition: opacity 0.2s ease;
+    padding-right: 24px;
+    display: flex;
+  }
+  
+  .cardDetails:hover .popup,
+  .popup:hover {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .editIcon, .deleteIcon{
+    background-color: unset !important;
+    color: gray !important;
+  }
+  .popup button{
+    background: #fff !important;
+    color: gray !important;
   }

@@ -1,7 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
-// At the top of Summary.js
-import path from "path-browserify";
-
+import React, { useEffect, useState } from "react";
 import styles from "./Summary.module.css";
 import { useAppContext } from "../Context/AppContext";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,8 +9,6 @@ import {
   faEllipsisV,
   faChevronDown,
   faChevronUp,
-  faCheck,
-  faLaptopHouse,
 } from "@fortawesome/free-solid-svg-icons";
 import { DotsModal } from "./DotsModal";
 import { PrintModal } from "./PrintModal";
@@ -22,15 +17,13 @@ import { ColumnManagementModal } from "./ColumnManagementModal";
 import { StatusPopup } from "./StatusPopup/StatusPopup";
 import { TimeRangeFilter } from "./AllTimePopup/TimeRangeFilter ";
 import { CustomPagination } from "./CustomPagination/CustomPagination";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { getUser } from "../../storageUtils/storageUtils";
 import { url } from "../../api";
-import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
+import { PDFDocument, rgb } from "pdf-lib";
 import { ExportModal } from "./ExportModal/ExportModal";
 import { ConfirmCancelPopUp } from "../Common/ConfirmCancelPopUp/ConfirmCancelPopUp";
 import { useFetchXmlData } from "./hooks/useFetchXmlData";
-import { format } from "path";
 
 export const Summary = () => {
   const { dashboardWidth } = useAppContext();
@@ -41,11 +34,7 @@ export const Summary = () => {
   const [data, setData] = useState([]);
   const [filteredClients, setFilteredClients] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
-  // const [base64Data, setBase64Data] = useState(null);
   const [selectedRows, setSelectedRows] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(20);
-  const dispatch = useDispatch();
   const token = useSelector((state) => state.eshipper.token);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [clients, setClients] = useState([]);
@@ -57,9 +46,11 @@ export const Summary = () => {
   const [showDialog, setShowDialog] = useState(false);
   const [orders, setOrders] = useState([]);
   const [shipmentData, setShipmentData] = useState([]);
-
+  const [currentPage, setCurrentPage] = useState(1); // Track the current page
+  const [itemsPerPage, setItemsPerPage] = useState(20);
+  const [loading, setLoading] = useState(true);
   const [allShipmentData, setAllShipmentData] = useState([]);
-  const [columns, setColumns] = useState([
+  const initialColumns = [
     { name: "", key: "select", visible: true },
     { name: "Order Number", key: "orderNumber", visible: true },
     { name: "Platform", key: "platform", visible: true },
@@ -79,20 +70,15 @@ export const Summary = () => {
     { name: "Weight", key: "weight", visible: true },
     { name: "Labels", key: "labels", visible: true },
     { name: "Downloaded", key: "downloaded", visible: true },
-  ]);
+  ];
+  const [columns, setColumns] = useState(initialColumns);
+  const dispatch = useDispatch();
 
   const { xmlData, formattedData, shipmentsId, setShipmentsId } =
     useFetchXmlData();
 
-  console.log("xmlDataSUmmary", xmlData);
-  console.log("formattedData", formattedData);
-  console.log("formattedData", formattedData[0]?.scheduledShipDate);
-  console.log("shipmentsId", shipmentsId);
-  // console.log("filteredClients", filteredClients);
-
   let userId = getUser();
   userId = userId?._id;
-  // console.log(userId);
 
   useEffect(() => {
     const fetchAllClients = async () => {
@@ -115,67 +101,85 @@ export const Summary = () => {
   const filterDataByTimeRange = (data) => {
     const today = new Date();
 
-    const normalizeDate = (date) => {
-      return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-    };
+    // Helper function to normalize dates to remove time components
+    const normalizeDate = (date) =>
+      new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+    console.log("Original data:", data); // Log the input data
+
+    if (timeRange === "allTime") {
+      return data;
+    }
 
     if (timeRange === "today") {
       return data.filter((item) => {
-        const createdDate = new Date(item.createdDate);
-        return (
+        const createdDate = new Date(item.created_at);
+        const isToday =
           normalizeDate(createdDate).getTime() ===
-          normalizeDate(today).getTime()
+          normalizeDate(today).getTime();
+        console.log(
+          "Today Filter - Created Date:",
+          createdDate,
+          "Normalized Created Date:",
+          normalizeDate(createdDate),
+          "Normalized Today:",
+          normalizeDate(today),
+          "Match:",
+          isToday
         );
+        return isToday;
       });
     } else if (timeRange === "thisWeek") {
-      const startOfWeek = new Date(
-        today.setDate(today.getDate() - today.getDay())
-      );
+      const startOfWeek = new Date(today);
+      startOfWeek.setDate(today.getDate() - today.getDay());
       return data.filter((item) => {
-        const createdDate = new Date(item.createdDate);
-        return normalizeDate(createdDate) >= normalizeDate(startOfWeek);
+        const createdDate = new Date(item.created_at);
+        const isThisWeek =
+          normalizeDate(createdDate) >= normalizeDate(startOfWeek);
+
+        return isThisWeek;
       });
     } else if (timeRange === "thisMonth") {
       const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
       return data.filter((item) => {
-        const createdDate = new Date(item.createdDate);
-        return normalizeDate(createdDate) >= normalizeDate(startOfMonth);
+        const createdDate = new Date(item.created_at);
+        const isThisMonth =
+          normalizeDate(createdDate) >= normalizeDate(startOfMonth);
+
+        return isThisMonth;
       });
     } else if (timeRange === "custom" && customStartDate && customEndDate) {
       return data.filter((item) => {
-        const createdDate = new Date(item.createdDate);
-        return (
+        const createdDate = new Date(item.created_at);
+        const isInCustomRange =
           normalizeDate(createdDate) >= normalizeDate(customStartDate) &&
-          normalizeDate(createdDate) <= normalizeDate(customEndDate)
+          normalizeDate(createdDate) <= normalizeDate(customEndDate);
+        console.log(
+          "Custom Range Filter - Created Date:",
+          createdDate,
+          "Normalized Created Date:",
+          normalizeDate(createdDate),
+          "Custom Start Date:",
+          normalizeDate(customStartDate),
+          "Custom End Date:",
+          normalizeDate(customEndDate),
+          "Match:",
+          isInCustomRange
         );
+        return isInCustomRange;
       });
     }
+
+    console.log("No filtering applied, returning all data:", data);
     return data;
   };
 
-  const applyFilters = () => {
-    let filtered = [...data];
-    if (selectedStatuses.length > 0) {
-      filtered = filtered.filter((item) =>
-        selectedStatuses.includes(item.shipmentStatus)
-      );
-    }
-    // Filter by time range
-    filtered = filterDataByTimeRange(filtered);
-    setFilteredData(filtered);
-  };
-
-  // console.log("filteredData", filteredData);
-
+  // Example usage in useEffect
   useEffect(() => {
-    applyFilters();
-  }, [timeRange, selectedStatuses, customStartDate, customEndDate]);
-
-  const getUniqueStatuses = (data) => {
-    const statuses = data.map((item) => item.shipmentStatus);
-    return [...new Set(statuses)];
-  };
-  const uniqueStatuses = getUniqueStatuses(MockData);
+    const filtered = filterDataByTimeRange(orders);
+    console.log("Filtered data based on selected time range:", filtered);
+    setFilteredData(filtered);
+  }, [orders, timeRange, customStartDate, customEndDate]);
 
   const handleColumnManagerClick = () => {
     setIsColumnManagerVisible(true);
@@ -212,12 +216,12 @@ export const Summary = () => {
     setSearchTerm(value);
     let newItem = [];
     if (value.length > 3) {
-      newItem = data.filter((val, i) => {
+      newItem = orders.filter((val, i) => {
         return val.customer.toLowerCase().startsWith(value.toLowerCase());
       });
-      setFilteredClients(newItem);
+      setFilteredData(newItem);
     } else {
-      setFilteredClients(data);
+      setFilteredData(orders);
     }
   };
 
@@ -253,12 +257,17 @@ export const Summary = () => {
       setFilteredClients(ordersWithPhone);
     } catch (error) {
       console.error("Error fetching orders:", error);
+    } finally {
+      setLoading(false); // Set loading to false after fetching data
     }
   };
+
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       fetchShopifyOrders();
     }, 3000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const sendToEShipper = async () => {
@@ -303,7 +312,7 @@ export const Summary = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       sendToEShipper();
-    }, 40000000);
+    }, 50000);
 
     return () => clearInterval(intervalId); // Clear interval on component unmount
   }, [formattedData, token, shipmentsId]);
@@ -433,47 +442,57 @@ export const Summary = () => {
     }
   };
 
-  const paginateData = (data) => {
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    return data.slice(startIndex, endIndex);
-  };
-
   const handleSelectAll = (e) => {
     const checked = e.target.checked;
     const updatedSelection = checked ? orders.map((_, index) => index) : [];
     setSelectedRows(updatedSelection);
   };
 
-  const filterDataByStatus = (data) => {
-    if (selectedStatuses.length === 0) {
-      return data; // If no status is selected, return all data
-    }
-    return data.filter((item) =>
-      selectedStatuses.includes(item.shipmentStatus)
-    );
-  };
-
   const handleReset = () => {
-    // setSearchTerm("");
-    // setFilteredClients(data);
     setShowDialog(true);
   };
 
   const handleOk = () => {
-    setShowDialog(false);
     setSearchTerm("");
-    setFilteredClients(data);
+    setSelectedStatuses([]);
+    setTimeRange("allTime");
+    setCustomStartDate(null);
+    setCustomEndDate(null);
+    setFilteredData(orders);
+    setCurrentPage(1);
+    setSelectedRows([]);
+    setColumns(initialColumns);
+    setShowDialog(false);
   };
 
   const handleCancel = () => {
     setShowDialog(false);
   };
 
-  const filteredDatas = filterDataByStatus(data);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentOrders = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
+  // Handle page change
+  const handlePageChange = (pageNumber) => {
+    if (pageNumber >= 1 && pageNumber <= totalPages) {
+      setCurrentPage(pageNumber);
+    }
+  };
+
+  // Handle change in items per page
+  const handleItemsPerPageChange = (e) => {
+    setItemsPerPage(Number(e.target.value));
+    setCurrentPage(1); // Reset to first page when items per page is changed
+  };
 
   return (
-    <div className="dashboard" style={{ width: dashboardWidth }}>
+    <div
+      className={`dashboard ${styles.summaryWrap}`}
+      style={{ width: dashboardWidth }}
+    >
       <div className={styles.summaryHeader}>
         {showDialog && (
           <ConfirmCancelPopUp
@@ -533,7 +552,7 @@ export const Summary = () => {
 
             <div className={styles.statusFilter}>
               <StatusPopup
-                statuses={uniqueStatuses}
+                // statuses={uniqueStatuses}
                 selectedStatuses={selectedStatuses}
                 setSelectedStatuses={setSelectedStatuses}
               />
@@ -578,39 +597,30 @@ export const Summary = () => {
       </div>
 
       <div className={styles.tableContainer}>
+        {loading && (
+          <div className={styles.overlay}>
+            <div className={styles.spinner}></div>
+            <p className={styles.loadingText}>Loading data, please wait...</p>
+          </div>
+        )}
         <table className={`${styles.table} mt-4`}>
           <thead>
             <tr>
               <th>
                 <input
                   type="checkbox"
-                  checked={selectedRows.length === filteredDatas.length}
-                  onChange={handleSelectAll}
+                  checked={selectedRows.length === orders.length}
+                  onChange={(e) => handleSelectAll(e)}
                 />
               </th>
-              <th>Order Number</th>
-              <th>Plateform</th>
-              <th>Shipment Status</th>
-              <th>Carrier</th>
-              <th>Client</th>
-              <th>Customer</th>
-              <th>Address</th>
-              <th>Tracking Number</th>
-              <th>Tracking URL</th>
-              <th>Created Date</th>
-              <th>Shipped Date</th>
-              <th>Reference </th>
-              <th>Reference 2</th>
-              <th>Reference 3</th>
-              <th>Dimensions</th>
-              <th>Weight</th>
-              <th>Label</th>
-              <th>Downloaded</th>
+              {columns.map((col) =>
+                col.visible ? <th key={col.name}>{col.name}</th> : null
+              )}
             </tr>
           </thead>
           <tbody>
-            {orders &&
-              orders.map((order, index) => {
+            {currentOrders &&
+              currentOrders.map((order, index) => {
                 const shipment =
                   allShipmentData &&
                   allShipmentData.find(
@@ -622,82 +632,127 @@ export const Summary = () => {
                   formattedData.find(
                     (data) => data.reference1 === order.id.toString()
                   );
-                console.log("Shipment", shipment);
-                console.log("scheduledShipDated", scheduledShipDated);
+                console.log("formattedData", formattedData);
+
                 return (
                   <tr key={index}>
-                    <td>
-                      <input
-                        type="checkbox"
-                        checked={selectedRows.includes(index)}
-                        onChange={(e) => handleRowSelect(e, index)}
-                      />
-                    </td>
-                    <td>{order.id}</td>
-                    <td>Shopify</td>
-                    <td>{shipment ? "Ready for shipping" : null}</td>
-                    <td>{shipment ? shipment.carrier : ""}</td>
-                    <td>{clients[0]?.clientName}</td>
-                    <td>
-                      {" "}
-                      {`${order.customer.first_name} ${order.customer.last_name}`}
-                    </td>
+                    {columns.map((col, colIndex) => {
+                      if (!col.visible) return null; // Skip invisible columns
 
-                    <td>
-                      {" "}
-                      {`${order.customer.default_address.address1} ${order.customer.default_address.city}`}
-                    </td>
-                    <td>{shipment ? shipment.trackingNumber : ""}</td>
-                    <td>
-                      {shipment && shipment.trackingUrl ? (
-                        <a
-                          href={shipment.trackingUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Url
-                        </a>
-                      ) : (
-                        ""
-                      )}
-                    </td>
+                      let value = "";
+                      switch (col.key) {
+                        case "select":
+                          value = (
+                            <input
+                              type="checkbox"
+                              checked={selectedRows.includes(index)}
+                              onChange={(e) => handleRowSelect(e, index)}
+                            />
+                          );
+                          break;
+                        case "orderNumber":
+                          value = order.id;
+                          break;
+                        case "platform":
+                          value = "Shopify";
+                          break;
+                        case "shipmentStatus":
+                          value = shipment ? "Ready for shipping" : "";
+                          break;
+                        case "carrier":
+                          value = shipment ? shipment.carrier : "";
+                          break;
+                        case "client":
+                          value = clients[0]?.clientName;
+                          break;
+                        case "customer":
+                          value = `${order.customer.first_name} ${order.customer.last_name}`;
+                          break;
+                        case "address":
+                          value = `${order.customer.default_address.address1} ${order.customer.default_address.city}`;
+                          break;
+                        case "trackingNumber":
+                          value = shipment ? shipment.trackingNumber : "";
+                          break;
+                        case "trackingUrl":
+                          value =
+                            shipment && shipment.trackingUrl ? (
+                              <a
+                                href={shipment.trackingUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                Url
+                              </a>
+                            ) : (
+                              ""
+                            );
+                          break;
+                        case "createdDate":
+                          value = new Date(order.created_at)
+                            .toISOString()
+                            .split("T")[0];
+                          break;
+                        case "shippedDate":
+                          value =
+                            scheduledShipDated?.scheduledShipDate.split(
+                              " "
+                            )[0] || "";
+                          break;
+                        case "reference":
+                          value = shipment ? shipment.reference : "";
+                          break;
+                        case "reference2":
+                          value = shipment ? shipment.reference2 : "";
+                          break;
+                        case "reference3":
+                          value = shipment ? shipment.reference3 : "";
+                          break;
+                        case "dimentions":
+                          value = shipment ? shipment.dimentions : "";
+                          break;
+                        case "weight":
+                          value = shipment ? shipment.weight : "";
+                          break;
+                        case "labels":
+                          value = shipment ? "Label" : ""; // Placeholder
+                          break;
+                        case "downloaded":
+                          value =
+                            shipment && shipment.labels ? (
+                              <button
+                                onClick={() =>
+                                  handleDownloadClick(index, shipment.labels)
+                                }
+                              >
+                                Download
+                              </button>
+                            ) : (
+                              ""
+                            );
+                          break;
+                        default:
+                          value = "-";
+                          break;
+                      }
 
-                    <td>
-                      {new Date(order.created_at).toISOString().split("T")[0]}
-                    </td>
-                    <td>{scheduledShipDated?.scheduledShipDate}</td>
-                    <td>{shipment ? shipment.reference : ""}</td>
-                    <td>{shipment ? shipment.reference2 : ""}</td>
-                    <td>{shipment ? shipment.reference3 : ""}</td>
-                    <td>{shipment ? shipment.dimentions : ""}</td>
-                    <td>{shipment ? shipment.weight : ""}</td>
-                    <td>Label</td>
-                    <td>
-                      {shipment && shipment.labels ? (
-                        <button
-                          onClick={() =>
-                            handleDownloadClick(index, shipment.labels)
-                          }
-                        >
-                          Download
-                        </button>
-                      ) : (
-                        ""
-                      )}
-                    </td>
+                      return <td key={colIndex}>{value}</td>;
+                    })}
                   </tr>
                 );
               })}
           </tbody>
         </table>
       </div>
-
-      <CustomPagination
-        currentPage={currentPage}
-        totalItems={filteredDatas.length}
-        itemsPerPage={itemsPerPage}
-        onPageChange={setCurrentPage}
-      />
+      {!loading && (
+        <CustomPagination
+          currentPage={currentPage}
+          itemsPerPage={itemsPerPage}
+          handlePageChange={handlePageChange}
+          handleItemsPerPageChange={handleItemsPerPageChange}
+          totalPages={totalPages}
+        />
+      )}
     </div>
   );
 };

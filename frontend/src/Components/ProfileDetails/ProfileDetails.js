@@ -141,7 +141,9 @@ export const ProfileDetails = () => {
           <span className={`ms-2 ${styles.profilename}`}>{userCapitalize}</span>
           <div className={styles.inner}>
             <div className="inner-left">
-              <span className={styles.subtitle}>
+              <span
+                className={!userProfile?.profileImage ? styles.subtitle : ""}
+              >
                 {userProfile?.profileImage ? (
                   <img
                     className={styles.profileImage0}
@@ -187,7 +189,7 @@ export const ProfileDetails = () => {
         <div className={styles.profilebottom}>
           <div className="form-section d-flex">
             <div className="left">
-              <span className={styles.img}>
+              <span className={!userProfile?.profileImage ? styles.img : ""}>
                 {userProfile?.profileImage ? (
                   <img
                     className={styles.profileImage}

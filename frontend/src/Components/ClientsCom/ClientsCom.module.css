@@ -188,3 +188,29 @@
         flex-direction: column;
     } */
 }
+.clientName{
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+    /* color: #007bff; */
+}
+.clientName:hover{
+    text-decoration: underline !important;
+}
+.activeDot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: green; /* Green dot for active */
+    border-radius: 50%;
+    margin-left: 8px;
+  }
+  
+  .inactiveDot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: red; /* Red dot for inactive */
+    border-radius: 50%;
+    margin-left: 8px;
+  }
+  

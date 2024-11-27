@@ -46,7 +46,7 @@ const ClientSchema = new mongoose.Schema({
     type: String,
   },
   phone: {
-    type: Number,
+    type: String,
   },
   isActive: {
     type: Boolean,
@@ -57,6 +57,7 @@ const ClientSchema = new mongoose.Schema({
     // required: true,
   },
   integrations: [IntegrationSchema], // Array of integration objects
+
   createdAt: {
     type: Date,
     default: Date.now,

@@ -58,18 +58,28 @@ app.use((req, res, next) => {
   next();
 });
 
+// In your server.js or log controller
 app.get("/", (req, res) => {
   const logFilePath = path.join(__dirname, "./logs/app.log");
 
   fs.readFile(logFilePath, "utf8", (err, data) => {
     if (err) {
+      console.error("Error reading log file:", err);
       return res.status(500).json({ error: "Error reading log file" });
     }
 
     const logs = data
       .split("\n")
-      .filter((line) => line)
-      .map((line) => JSON.parse(line));
+      .filter((line) => line.trim())
+      .map((line) => {
+        try {
+          return JSON.parse(line);
+        } catch (parseError) {
+          console.error("Error parsing log line:", parseError);
+          return null;
+        }
+      })
+      .filter(Boolean);
 
     res.json(logs);
   });

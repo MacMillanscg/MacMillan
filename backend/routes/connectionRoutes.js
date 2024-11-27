@@ -46,4 +46,6 @@ router.put("/:id/:stepId", connectionRoleController.updateConnectionStep);
 
 router.post("/:id/cloneSteps", connectionRoleController.cloneConnectionStep);
 
+router.patch("/:id/publish", connectionController.publishVersion);
+
 module.exports = router;

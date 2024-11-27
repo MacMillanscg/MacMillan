@@ -13,7 +13,6 @@ export const ConnectionsTab = () => {
   const [connections, setConnections] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const { id } = useParams();
   console.log("connectionTabId", id);
 
@@ -37,10 +36,6 @@ export const ConnectionsTab = () => {
   const filteredConnections = connections?.filter(
     (connection) => connection.client.clientId === id
   );
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
 
   return (
     <>
@@ -82,44 +77,60 @@ export const ConnectionsTab = () => {
         </div>
         <div className={styles.cardSection}>
           {loading ? (
-            <div className={style.loaderContainer}>
+            <div className={styles.loaderContainer}>
               <ClipLoader size={50} color={"#123abc"} loading={loading} />
             </div>
           ) : (
-            filteredConnections.map((connection, index) => (
-              <Link
-                to={`/connections/connectionList`}
-                className={styles.cardWrap}
-                key={index}
-              >
-                <div className={`card ${styles.connectionCard}`}>
-                  <div className="card-body">
-                    <h3 className={styles.cardTitle}>
-                      {connection.shopifyDetails?.shopifyTitle}
-                    </h3>
-                    <h4 className="fs-5 m-0 mb-2">
-                      {connection.connectionName}
-                    </h4>
-                    <div className="category">
-                      <ul className={styles.list}>
-                        <li className={styles.listItem}>
-                          <Link to="#" className={styles.listText}>
-                            Version
-                          </Link>{" "}
-                        </li>
+            filteredConnections.map((connection, index) => {
+              // Extract the latest version
+              const latestVersion = connection.versions
+                ? connection.versions.reduce(
+                    (latest, version) =>
+                      latest === null ||
+                      new Date(version.createdAt) > new Date(latest.createdAt)
+                        ? version
+                        : latest,
+                    null
+                  )
+                : null;
 
-                        <li className={styles.listItem}>
-                          <Link to="#" className={styles.listText}>
-                            Last Run
-                          </Link>{" "}
-                        </li>
-                      </ul>
+              return (
+                <Link
+                  to={`/connections/connectionList`}
+                  className={styles.cardWrap}
+                  key={index}
+                >
+                  <div className={`card ${styles.connectionCard}`}>
+                    <div className="card-body">
+                      <h3 className={styles.cardTitle}>
+                        {connection.shopifyDetails?.shopifyTitle}
+                      </h3>
+                      <h4 className="fs-5 m-0 mb-2">
+                        {connection.connectionName}
+                      </h4>
+                      <div className="category">
+                        <ul className={styles.list}>
+                          <li className={styles.listItem}>
+                            <span className={styles.listText}>
+                              Version:{" "}
+                              {latestVersion
+                                ? latestVersion.versionNumber
+                                : "Null"}
+                            </span>
+                          </li>
+                          <li className={styles.listItem}>
+                            <Link to="#" className={styles.listText}>
+                              Last Run
+                            </Link>
+                          </li>
+                        </ul>
+                      </div>
+                      <div className={styles.popup}>Test Connection</div>
                     </div>
-                    <div className={styles.popup}>Test Connection</div>
                   </div>
-                </div>
-              </Link>
-            ))
+                </Link>
+              );
+            })
           )}
         </div>
       </div>

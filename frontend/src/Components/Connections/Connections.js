@@ -17,8 +17,6 @@ import { WarningPopup } from "./Popups/WarningPopup/WarningPopup";
 import axios from "axios";
 import { url } from "../../api";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-import { loggingService } from "../../Sources/loggingService";
 
 export const Connections = () => {
   const { dashboardWidth } = useAppContext();
@@ -31,34 +29,7 @@ export const Connections = () => {
   );
   const token = useSelector((state) => state.eshipper.token);
   console.log("toekn", token);
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(
-        "https://uu2.eshipper.com/api/v2/ship/8000000010963",
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`, // Replace with your actual token
-          },
-        }
-      );
-
-      console.log("Fetched data:", response.data);
-      // Use the data as needed
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const navigate = useNavigate();
-
-  const handleEditConnection = (id) => {
-    navigate(`/connections/${id}`);
-  };
+  console.log("connecitnos", connections);
 
   useEffect(() => {
     dispatch(fetchConnections());
@@ -96,7 +67,7 @@ export const Connections = () => {
         <WarningPopup
           show={showWarningModal}
           onClose={() => setShowWarningModal(false)}
-          onConfirm={confirmDeleteConnection} // Confirm delete on this action
+          onConfirm={confirmDeleteConnection}
         />{" "}
         <div className={styles.connectionsRight}>
           <div className="form-group me-4">
@@ -130,61 +101,81 @@ export const Connections = () => {
       </div>
       <div className={styles.cardSection}>
         {connections &&
-          connections.map((connection, index) => (
-            <Link to="#" className={styles.cardWrap} key={index}>
-              <div className={`card ${styles.connectionCard}`}>
-                <div className="card-body">
-                  <div className={styles.cardTop}>
-                    <h3 className={styles.cardTitle}>
-                      {connection?.shopifyDetails?.shopifyTitle}
-                    </h3>
-                    <div className={styles.EditDeleteShow}>
-                      <FontAwesomeIcon
-                        icon={faEllipsisV}
-                        className={styles.dots}
-                      />
-                      <div className={styles.editDelteIconsWrap}>
-                        <Link to={`/connections/${connection._id}`}>
-                          <FontAwesomeIcon
-                            icon={faPencil}
-                            className={styles.editIcon}
-                          />
-                        </Link>
+          connections.map((connection, index) => {
+            // Find the latest version
+            const latestVersion = connection.versions?.reduce(
+              (latest, version) =>
+                latest === null ||
+                new Date(version.createdAt) > new Date(latest.createdAt)
+                  ? version
+                  : latest,
+              null
+            );
+
+            return (
+              <Link to="#" className={styles.cardWrap} key={index}>
+                <div className={`card ${styles.connectionCard}`}>
+                  <div className="card-body">
+                    <div className={styles.cardTop}>
+                      <h3 className={styles.cardTitle}>
+                        {connection?.shopifyDetails?.shopifyTitle}
+                      </h3>
+                      <div className={styles.EditDeleteShow}>
                         <FontAwesomeIcon
-                          icon={faTrash}
-                          className={styles.deleteIcon}
-                          onClick={() => handleDeleteConnection(connection._id)} // Pass connection._id here
+                          icon={faEllipsisV}
+                          className={styles.dots}
                         />
+                        <div className={styles.editDelteIconsWrap}>
+                          <Link to={`/connections/${connection._id}`}>
+                            <FontAwesomeIcon
+                              icon={faPencil}
+                              className={styles.editIcon}
+                            />
+                          </Link>
+                          <FontAwesomeIcon
+                            icon={faTrash}
+                            className={styles.deleteIcon}
+                            onClick={() =>
+                              handleDeleteConnection(connection._id)
+                            } // Pass connection._id here
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <h4 className="fs-5 m-0 mb-2">
-                    {connection.client.clientName}
-                  </h4>
-                  <h4 className="fs-5 m-0 mb-2">{connection.connectionName}</h4>
-                  <div className="category">
-                    <ul className={styles.list}>
-                      <li className={styles.listItem}>
-                        <Link to="#" className={styles.listText}>
-                          Version
-                        </Link>{" "}
-                      </li>
+                    <h4 className="fs-5 m-0 mb-2">
+                      {connection.client.clientName}
+                    </h4>
+                    <h4 className="fs-5 m-0 mb-2">
+                      {connection.connectionName}
+                    </h4>
+                    <div className="category">
+                      <ul className={styles.list}>
+                        <li className={styles.listItem}>
+                          <span className={styles.listText}>
+                            Version:{" "}
+                            {latestVersion
+                              ? latestVersion.versionNumber
+                              : "Null"}
+                          </span>
+                        </li>
 
-                      <li className={styles.listItem}>
-                        <Link to="#" className={styles.listText}>
-                          Last Run
-                        </Link>{" "}
-                      </li>
-                      <li className={styles.listItem}>
-                        <span>Has not run</span>{" "}
-                      </li>
-                    </ul>
+                        <li className={styles.listItem}>
+                          <Link to="#" className={styles.listText}>
+                            Last Run
+                          </Link>{" "}
+                        </li>
+                        <li className={styles.listItem}>
+                          <span>Has not run</span>{" "}
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
       </div>
+
       {isModalOpen && <AddConnections closeModal={closeModal} />}
     </div>
   );

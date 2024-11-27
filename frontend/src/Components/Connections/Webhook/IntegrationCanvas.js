@@ -45,6 +45,7 @@ import { XmlPopup } from "../Popups/XmlPopup/XmlPopup";
 import { WebhookTriggerPopup } from "../Popups/WebhookTriggerPopup/WebhookTriggerPopup";
 import { fetchConnections } from "../../../Redux/Actions/ConnectionsActions";
 import { useSelector, useDispatch } from "react-redux";
+import toast from "react-hot-toast";
 
 export const IntegrationCanvas = () => {
   const [steps, setSteps] = useState([{ id: 1, title: "Step 1 of Rule 1" }]);
@@ -96,6 +97,7 @@ export const IntegrationCanvas = () => {
   const [selectedStepId, setSelectedStepId] = useState(null);
   const [newRules, setNewRules] = useState(false);
   const [scheduleIds, setScheduleIds] = useState([]);
+  const [connectionsPublish, setConnectionsPublish] = useState([]);
 
   const dispatch = useDispatch();
   const { connections, error } = useSelector((state) => state.connections);
@@ -569,6 +571,28 @@ export const IntegrationCanvas = () => {
 
   console.log("selectedRULE", selectedStep);
 
+  const handlePublish = async () => {
+    try {
+      const connectionId = id; // Ensure this value is valid
+      // if (!connectionId) {
+      //   console.error("Connection ID is undefined!");
+      //   return;
+      // }
+
+      const response = await axios.patch(
+        `http://localhost:5000/connections/${id}/publish`
+      );
+      console.log("publish response", response);
+
+      if (response.status === 200) {
+        toast.success(`New version published successfully!`);
+      }
+    } catch (error) {
+      console.error("Error publishing version:", error);
+      toast.error("Failed to publish version. Please try again.");
+    }
+  };
+
   return (
     <div>
       <div className={styles.topBar}>
@@ -585,9 +609,14 @@ export const IntegrationCanvas = () => {
           </h3>
         </div>
         <div className={styles.topBarControls}>
-          <button className={styles.publishButton}>Publish</button>
+          <button className={styles.publishButton} onClick={handlePublish}>
+            Publish
+          </button>
           <button className={styles.cancelButton}>Cancel</button>
-          <button className={styles.saveButton} onClick={addShopifyOrders}>
+          <button
+            className={styles.saveButton}
+            //  onClick={addShopifyOrders}
+          >
             Save
           </button>
         </div>

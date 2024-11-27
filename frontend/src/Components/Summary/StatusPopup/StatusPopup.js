@@ -95,18 +95,19 @@ export const StatusPopup = ({
       {isPopupVisible && (
         <div className={styles.statusPopup}>
           <div className={styles.popupContent}>
-            {statuses.map((status) => (
-              <div key={status}>
-                <input
-                  type="checkbox"
-                  id={`status-${status}`}
-                  value={status}
-                  onChange={() => handleStatusChange(status)}
-                  checked={tempSelectedStatuses.includes(status)}
-                />
-                <label htmlFor={`status-${status}`}>{status}</label>
-              </div>
-            ))}
+            {statuses &&
+              statuses.map((status) => (
+                <div key={status}>
+                  <input
+                    type="checkbox"
+                    id={`status-${status}`}
+                    value={status}
+                    onChange={() => handleStatusChange(status)}
+                    checked={tempSelectedStatuses.includes(status)}
+                  />
+                  <label htmlFor={`status-${status}`}>{status}</label>
+                </div>
+              ))}
             <div className={styles.popupButtons}>
               <button
                 onClick={() => setIsPopupVisible(false)}

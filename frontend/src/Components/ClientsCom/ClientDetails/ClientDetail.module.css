@@ -25,7 +25,7 @@
   }
   
   .tabContent {
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     padding: 20px;
     border-radius: 0 0 5px 5px;
   }
@@ -35,4 +35,17 @@
     margin-bottom: 20px;
     min-height: 67px;
   }
-  
+
+ 
+  .dashboardLog{
+    height: unset;
+    z-index: 999;
+  }
+  .clientDetailsName{
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+  }
+
+.clientDetailsName:hover{
+    text-decoration: underline !important;
+}
