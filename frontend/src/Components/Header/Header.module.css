@@ -1,8 +1,14 @@
+.header{
+    height: 63px;
+    padding-top: 10px;
+    position: relative;
+}
+
 .navlink{
     background-color: #5b71d6 !important;
     color: #fff !important;
     border-radius: 3px;
-    
+    min-width: 44px;
     padding: 5px 9px !important;
 }
 .list{
@@ -11,4 +17,11 @@
 }
 .item{
     width: 52px;
+}
+.profileImage00{
+    width: 35px;
+}
+.userProfile{
+    padding: 0px;
+    border: 0px solid #5b71d6;
 }

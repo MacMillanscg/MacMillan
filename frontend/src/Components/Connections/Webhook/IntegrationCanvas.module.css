@@ -1,0 +1,347 @@
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 10px;
+  height: 70px;
+}
+
+.exitButton {
+  background-color:#fff !important;
+  color: #000 !important;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.connectionTitle {
+  margin: 0;
+}
+
+.topBarControls button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.mainContainer {
+  display: flex;
+  background-color: rgb(208, 217, 223);
+  min-height: 100vh;
+}
+
+.leftSidePanel {
+  width: 20%;
+  background-color: #f9f9f9;
+  padding: 10px;
+}
+
+.canvas {
+  width: 100%;
+  background-color: #f0f0f0;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.stepContainer {
+  display: flex;
+  flex-direction: column;
+  width: 79%;
+  margin: 0 auto;
+  max-width: 250px;
+  position: relative;
+}
+
+.leftIcon{
+  width: 10%;
+}
+.iconsWrap{
+  background: #fff;
+  width: 46px;
+  position: relative;
+}
+.icons{
+  display: block;
+  color: #bdb5b5;
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  padding: 12px;
+}
+
+.step {
+  background-color: #fff;
+  padding: 10px;
+  margin: 10px;
+  width: 75px;
+  height: 75px;
+  text-align: center;
+  position: relative;
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+}
+
+.stepControls {
+  display: none;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+/* .step:hover .stepControls {
+  display: block;
+} */
+
+.editButton,
+.deleteButton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px;
+  margin: 2px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.addStepButton {
+  background: #fff ! IMPORTANT;
+  color: black !important;
+  font-size: 25px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: dashed;
+  border: 1px solid lightgray;
+  border: dashed lightgray;
+  margin-left: 14px;
+  margin-top: 4px;
+}
+
+.bottomBar {
+  display: flex;
+  justify-content: space-between;
+  background: rgb(255, 255, 255);
+  border-bottom: 1px solid rgb(208, 217, 223);
+  box-sizing: border-box;
+  height: 60px;
+  padding: 12px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  transform: translateY(0%);
+  z-index: 999;
+}
+
+.bottomBar button {
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-right: 5px;
+  border-radius: 3px;
+}
+
+.toggleButton {
+  /* position: absolute;
+  top: 50%; */
+  right: 10px;
+  background-color:transparent !important;
+  color: #808080 !important;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  /* transform: translateY(-50%); */
+}
+.publishButton , .cancelButton {
+  background: rgb(227, 232, 236) !important;
+  color: #1c1a1a !important;
+  border-radius: 3px;
+}
+.saveButton , .runButton{
+  background: rgb(46, 206, 149) !important;
+  border-radius: 3px;
+  padding: 8px 15px;
+}
+.testRunsButton, .testConfigButton {
+  color: rgba(25, 24, 24, 0.7) !important;
+  background-color: #fff !important;
+}
+.testRunsButton:hover , .testConfigButton:hover{
+  background-color: lightgray !important;
+}
+.bottomBar{
+  transition: transform 0.5s ease-in-out;
+}
+
+.testResultsContainer {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  border-top: 1px solid #ccc;
+  background-color: #f9f9f9;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: translateY(100%);
+  transition: transform 0.5s ease-in-out;
+  padding-bottom: 0;
+}
+
+.testResultsContainer.show {
+  transform: translateY(-3%);
+  height: 303px;
+  overflow-y: scroll;
+  transition: transform 0.5s ease-in-out;
+}
+
+.testResultsSection {
+  /* flex: 1; */
+  margin: 0 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+}
+
+.showBtns{
+  transform: translateY(-517%);
+  /* height: 303px; */
+  /* overflow-y: scroll; */
+}
+
+ .imgWrapper{
+  max-width: 61px;
+  background-color: white;
+  padding: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+ }
+
+.iconBorder{
+  width: 3px;
+  height: 58px;
+  background: #ccc;
+}
+
+.imageContainer img{
+  width: 100%;
+  border-radius: 50%;
+}
+.imgIcon{
+    color: #ccc;
+    font-size: 22px;
+    margin-top: -3px;
+}
+.iconHoverWrap{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 5px;
+  margin: 0 auto 10px;
+}
+.addOnHover {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  background: #fff !important;
+  color: #ccc !important;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  font-size: 20px;
+  transition: opacity 0.3s ease-in, visibility 0.3s ease-in;
+  padding: 0 10px;
+}
+
+.iconHoverWrap:hover .addOnHover {
+  opacity: 1;
+  visibility: visible;
+}
+.editDeleteWrap{
+  position: relative;
+}
+.iconsWrapper{
+  display: none;
+  position:absolute;
+  top: -2px;
+  left: -96px;
+  padding: 20px;
+}
+
+.editDeleteIcon {
+  background: none;
+  color: #808080;
+  padding: 0 8px;
+  border-radius: 10px;
+  font-size: 14px;
+  /* height: 34px; */
+  margin-left: 5px; /* Space between icons */
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+}
+
+.editDeleteWrap:hover .iconsWrapper, .iconsWrapper:hover{
+  display: block;
+}
+.webhook{
+  cursor: pointer;
+}
+.webhook, .xmlimg, .shopify{
+  display: flex;
+}
+.imageContent{
+  cursor: pointer;
+}
+.imageContent h3{
+  font-size: 18px;
+  font-weight: 600;
+}
+.imageContent p{
+  margin: 0 !important;
+}
+.bottomBarWrap{
+  position: relative;
+}
+.testHistorySection{
+  /* max-width: 300px; */
+  width: 23%;
+}
+.testSteps{
+  /* max-width: 500px; */
+  width: 43%;
+
+}
+.testOutLogs{
+  /* max-width: 400px; */
+  width: 45%;
+}
+.hoverStep{
+  visibility: hidden;
+  width: 120px;
+  background-color: gray;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+.hoverStep:hover .hoverStep {
+  visibility: visible;
+}

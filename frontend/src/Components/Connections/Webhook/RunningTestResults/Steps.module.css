@@ -1,0 +1,84 @@
+.items {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  .webImg{
+    width: 30px;
+    margin-right: 5px;
+  }
+
+  .toggleContainer {
+    display: inline-block;
+    cursor: pointer;
+    display: flex;
+  }
+  
+  .toggleButton {
+    width: 50px;
+    height: 24px;
+    background-color: #e0e0e0;
+    border-radius: 12px;
+    position: relative;
+    transition: background-color 0.3s;
+  }
+  
+  .toggled {
+    background-color: #007bff;
+  }
+  
+  .toggleCircle {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: left 0.3s;
+  }
+  
+  .toggled .toggleCircle {
+    left: 28px;
+  }
+  .logsSpan{
+    font-size: 19px;
+    margin-right: 7px;
+  }
+  .shopifyWrapper{
+    height: 222px;
+    overflow-y: scroll;
+    padding: 0 10px;
+    border-top: 1px solid #ccc;
+  }
+
+  .shopifyWrapper::-webkit-scrollbar { 
+    width: 8px; 
+  } 
+  
+  .shopifyWrapper::-webkit-scrollbar-track { 
+    background: #f1f1f1; 
+  } 
+  
+  .shopifyWrapper::-webkit-scrollbar-thumb { 
+    background: #d3d3d3; 
+    transition: all ease-in .3s;
+  } 
+  
+  .shopifyWrapper::-webkit-scrollbar-thumb:hover { 
+    background: #808080; 
+  } 
+  
+  .shopifyWrapper::-webkit-scrollbar-button { 
+    display: none; 
+  }
+
+  .loaderContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+    width: 100%;
+  }

@@ -1,0 +1,177 @@
+.timeRangeFilter {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .timeRangeButton {
+    background-color: #fff !important;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    cursor: pointer;
+    color: black !important;
+    height: 42px;
+  }
+  
+  .timeOptions {
+    /* display: none; */
+    position: absolute;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 10px;
+    z-index: 1;
+    list-style: none;
+  }
+  
+  .timeOptions li {
+    padding: 8px;
+    cursor: pointer;
+  }
+  
+  .timeOptions li:hover {
+    background-color: #f1f1f1;
+  }
+  
+ .calender{
+    color: gray;
+ }
+
+ /* TimeRangeFilter.module.css */
+
+.timeRangeFilter {
+  position: relative;
+  display: inline-block;
+}
+
+.timeRangeButton {
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+
+.timeRangeButton:hover {
+  background-color: #e6e6e6;
+}
+
+.calender {
+  margin-right: 8px;
+}
+
+.timeOptions {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 200px;
+  z-index: 100;
+}
+
+.timeOptions li {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+}
+
+.timeOptions li:hover {
+  background-color: #f0f0f0;
+}
+
+.customPeriod {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 16px;
+  margin-top: 10px;
+  width: 530px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  z-index: 100;
+  top: 33px;
+  left: -65px;
+}
+
+.datePickerContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.datePicker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45%;
+}
+
+.datePicker label {
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.react-datepicker__input-container input {
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.actions button {
+  background-color: #fff !important;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.actions button:hover {
+  background-color: #f5f5f5;
+}
+
+.actions button[disabled] {
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  cursor: not-allowed;
+}
+
+.actions button:nth-child(2) {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+.actions button:nth-child(2):hover {
+  background-color: #0056b3;
+}
+.fullCalendarContainer{
+  display: flex;
+}
+.cancelButton, .searchButton{
+  background-color: #f5f3f3 !important;
+  color: black !important;
+}

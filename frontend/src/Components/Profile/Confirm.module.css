@@ -1,0 +1,75 @@
+
+  
+  .dialog {
+    width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: absolute;
+    top: 10px;
+    right: 50%;
+    transform: translateX(66%);
+    z-index: 999;
+  }
+  
+  .dialog-header {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .dialog-header h3 {
+    margin: 0;
+    font-size: 18px;
+  }
+  
+  .dialog-body {
+    padding: 20px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .dialogFooter {
+    display: flex;
+    justify-content: end;
+    padding: 0 10px 10px 0;
+  }
+  
+  .btn {
+    padding: 5px 10px;
+    margin-left: 5px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .btnOk {
+    background-color: #ff6c00 !important;
+    color: white;
+  }
+  
+  .btnCancel {
+    background: transparent !important;
+    border: 1px solid lightgray;
+    color: #000 !important;
+  }
+
+  .warning{
+    background: #6e6565;
+    text-align: center;
+    padding: 9px 0;
+    color: #fff;
+  }
+  
+  .continue{
+    text-align: center;
+    font-size: 17px !important;
+    color: #514444;
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 10px;
+    padding-bottom: 38px;
+    margin: 0 3px 15px;
+  }

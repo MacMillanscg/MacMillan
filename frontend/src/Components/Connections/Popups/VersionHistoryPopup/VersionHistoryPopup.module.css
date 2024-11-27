@@ -1,0 +1,151 @@
+/* Overlay */
+.popupOverlay {
+    position: absolute;
+    top: -5px;
+    left: 65px;
+    width: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  /* Popup content */
+  .popupContent {
+    background: #fff;
+    padding: 20px;
+    border-radius: 4px;
+    width: 400px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Popup header */
+  .popupHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .popupHeader h2 {
+    margin: 0;
+  }
+  
+  .closeButton {
+    background: none !important;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #ccc !important;
+  }
+  
+  
+  /* Popup actions */
+  .popupActions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+  }
+  
+  .saveButton {
+    background-color:rgb(227, 232, 236) !important ;
+    color: #000 !important;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .saveButton:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Popup body */
+  .popupBody {
+    padding: 10px 0;
+  }
+  
+  /* Toggle switch */
+  .toggleSwitch {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .toggleSwitch label {
+    display: flex;
+    align-items: center;
+  }
+  
+  .toggleSwitch input {
+    margin-left: 10px;
+  }
+  
+  .slider {
+    width: 38px;
+    height: 19px;
+    position: relative;
+    display: inline-block;
+    background: #ccc;
+    border-radius: 14px;
+    margin-left: 8px;
+  }
+  
+  .slider:before {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: white;
+    top: 1px;
+    left: -2px;
+    transition: 0.2s;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(20px);
+  }
+  
+  /* Version table */
+  .versionTable {
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+  }
+  
+  .tableHeader {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background: #f9f9f9;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .tableBody {
+    padding: 10px;
+  }
+  
+  /* .tableRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  } */
+  
+  .currentBadge {
+    background: #d3d3d3;
+    color: #333;
+    font-size: 14px;
+    width: 70px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .tableCell {
+    /* flex: 1; */
+    margin-left: 10px;
+    font-size: 14px;
+    color: #666;
+  }
+  

@@ -1,0 +1,43 @@
+.logicOption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 16px;
+    padding: 10px;
+    cursor: pointer;
+  }
+  .logicOption:hover{
+    background-color: #f8f9fa;
+  }
+  .popupContent .logicOption:nth-child(2){
+    background:#f8f9fa;
+  }
+  .faIcon{
+    margin-right: 10px;
+    background: #dee2e6;
+    padding: 10px;
+  }
+  .actions{
+    color: #808080;
+    display: flex;
+    align-items: center;
+  }
+  .rightIcon{
+    margin-left: 10px;
+    font-size: 12px;
+  }
+  .optionIcon{
+    display: flex;
+    align-items: center;
+  }
+  .showIcon{
+    display: none;
+  }
+  .logicOption:hover .showIcon{
+    display: block;
+  }
+  .searchInput{
+    background: #f8f9fa;
+    height: 48px;
+}

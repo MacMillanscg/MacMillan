@@ -1,0 +1,135 @@
+/* Styles for DotsModal */
+
+  .modal {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    width: 180px;
+    position: absolute;
+    top: 35px;
+    right: 0;
+    z-index: 10;
+  }
+  
+  .modalHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .icons {
+    cursor: pointer;
+    color: #5f6368;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  ul li {
+    margin-bottom: 10px;
+  }
+  
+  ul li button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #202124;
+  }
+  
+  .icon {
+    margin-right: 8px;
+  }
+  
+  /* Styles for ExportModal */
+  .exportModalOverlay {
+    position: absolute;
+    top: 193px;
+    left: -192px;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 11;
+  }
+  
+  .exportModal {
+    background-color: #fff;
+    padding: 20px;
+    width: 350px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  .exportOptions {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  
+  .exportOption  img {
+    width: 55px;
+    /* height: 40px; */
+    margin-bottom: 5px;
+  }
+  
+  .exportOption button p {
+    font-size: 14px;
+    color: #5f6368;
+  }
+  
+  .exportButtons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  
+  
+  .exportOption.selected {
+    background: #f2f2f2;
+  }
+  
+  .exportButtons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .exportButton {
+    background-color: #97dae0 !important;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    width: 95px;
+  }
+  
+  .exportButton.activeButton {
+    background-color:#2fb5c0 !important;
+    cursor: pointer;
+    opacity: 1;
+  }
+  
+  .exportButton:disabled {
+    background-color: #97dae0;
+    cursor: not-allowed;
+  }
+  .cancel{
+    color: #2fb5c0 !important;
+    border: none !important;
+    background: none !important;
+    font-weight: 600;
+  }
+  
+  

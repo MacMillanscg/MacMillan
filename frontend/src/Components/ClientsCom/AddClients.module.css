@@ -1,0 +1,121 @@
+/* AddClients.module.css */
+.modalBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  backdrop-filter: blur(4px); /* Apply blur effect to the background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; /* Ensure modal is on top of everything */
+}
+
+.modalContainer {
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+  z-index: 1000; /* Ensure modal is on top of the background */
+  width: 450px;
+  min-height: 418px;
+  max-height: 100%;
+  overflow-y:scroll ;
+}
+.modalContainer::-webkit-scrollbar { 
+  width: 8px; 
+} 
+
+.modalContainer::-webkit-scrollbar-track { 
+  background: #f1f1f1; 
+} 
+
+.modalContainer::-webkit-scrollbar-thumb { 
+  background: #d3d3d3; 
+  transition: all ease-in .3s;
+} 
+
+.modalContainer::-webkit-scrollbar-thumb:hover { 
+  background: #808080; 
+} 
+
+.modalContainer::-webkit-scrollbar-button { 
+  display: none; 
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modalHeader h2 {
+  margin: 0;
+}
+
+.tabContainer {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #d3d3d3;
+}
+
+.tabButton {
+  background-color: transparent !important;
+  cursor: pointer;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  color: #000 !important;
+}
+
+.tabButton:hover {
+  background-color: #f0f0f0;
+}
+
+.activeTab {
+  background-color: transparent !important;
+  font-weight: bold;
+  color: #000 !important;
+  border-radius: 3px;
+  border: 1px solid lightgray;
+  border-bottom: none;
+}
+
+.tabContent {
+  padding: 20px;
+  border-radius: 0 8px 8px 8px;
+  border: 1px solid #ccc;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.cancelButton {
+  background-color: #ccc;
+  color: #333;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.addButton {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100px;
+}
+
+.cancelButton:hover,
+.addButton:hover {
+  opacity: 0.8;
+}

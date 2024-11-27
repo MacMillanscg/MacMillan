@@ -1,0 +1,226 @@
+  {loading ? (
+          <div className={styles.loading}></div>
+        ) : (
+          <table className={`${styles.table} mt-4`}>
+            <thead>
+              <tr>
+                <th>
+                  <input
+                    type="checkbox"
+                    checked={selectedRows.length === filteredDatas.length}
+                    onChange={handleSelectAll}
+                  />
+                </th>
+                {columns.map(
+                  (column) =>
+                    column.visible && <th key={column.key}>{column.name}</th>
+                )}
+              </tr>
+            </thead>
+            <tbody>
+              {orders &&
+                orders.map((row, index) => {
+                  const additional =
+                    shipmentDataList &&
+                    shipmentDataList.find(
+                      (shipment) =>
+                        shipment && shipment.reference.name === String(row.id)
+                    );
+
+                  // console.log("additional", additional);
+
+                  const label =
+                    additional && additional.labelData.label[0].data;
+
+                  return (
+                    <tr key={index}>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={selectedRows.includes(index)}
+                          onChange={(e) => handleRowSelect(e, index)}
+                        />
+                      </td>
+                      {/* Dynamically render the cells based on column keys */}
+
+                      {columns.map(
+                        (column) =>
+                          column.visible && (
+                            <td key={column.key}>
+                              {column.key === "orderNumber" && row.id}
+                              {column.key === "platform" && "Shopify"}
+                              {column.key === "client" &&
+                                clients[0]?.clientName}
+                              {column.key === "customer" && (
+                                <>
+                                  {`${row.customer.first_name} ${row.customer.last_name}`}
+                                </>
+                              )}
+                              {column.key === "address" && (
+                                <>
+                                  {`${row.customer.default_address.address1} ${row.customer.default_address.city}`}
+                                </>
+                              )}
+                              {column.key === "createdDate" &&
+                                new Date(row.created_at)
+                                  .toISOString()
+                                  .split("T")[0]}
+                              {/* {column.key === "download" && button} */}
+                              {column.key === "downloaded" && (
+                                // <td>
+                                <button
+                                  onClick={() =>
+                                    handleDownloadClick(index, label)
+                                  }
+                                >
+                                  Download
+                                </button>
+                                // </td>
+                              )}
+                              {column.key === "reference" &&
+                                additional &&
+                                additional.reference?.name}
+                              {column.key === "reference2" &&
+                                additional &&
+                                additional.reference2?.name}
+                              {column.key === "reference3" &&
+                                additional &&
+                                additional.reference3?.name}
+
+                              {column.key === "weight" &&
+                                row.id === 6296516985137 &&
+                                "5.000 lb"}
+                              {column.key === "dimentions" &&
+                                row.id === 6296516985137 &&
+                                `8 x 8 x 8 in`}
+                              {/* new */}
+
+                              {column.key === "weight" &&
+                                row.id === 6296729157937 &&
+                                "5.000 lb"}
+                              {column.key === "dimentions" &&
+                                row.id === 6296729157937 &&
+                                `12 x 12 x 12 in`}
+                              {/* new */}
+
+                              {column.key === "weight" &&
+                                row.id === 6299445166385 &&
+                                "5.000 lb"}
+                              {column.key === "dimentions" &&
+                                row.id === 6299445166385 &&
+                                `10 x 10 x 10 in`}
+                              {/* new */}
+
+                              {column.key === "weight" &&
+                                row.id === 6299447034161 &&
+                                "5.000 lb"}
+                              {column.key === "dimentions" &&
+                                row.id === 6299447034161 &&
+                                `12 x 12 x 12 in`}
+                              {/* new */}
+
+                              {column.key === "weight" &&
+                                row.id === 6299446542641 &&
+                                "5.000 lb"}
+                              {column.key === "dimentions" &&
+                                row.id === 6299446542641 &&
+                                `8 x 8 x 8 in`}
+
+                              {column.key === "shippedDate" &&
+                                idsToShowData.includes(row.id) &&
+                                "10/11/2024"}
+                              {column.key === "carrier" &&
+                                additional &&
+                                additional.carrier?.carrierName}
+                              {column.key === "shipmentStatus" &&
+                                idsToShowData.includes(row.id) &&
+                                "Ready for shipping"}
+                              {column.key === "trackingNumber" &&
+                                additional &&
+                                additional.trackingNumber}
+                              {column.key === "labels" &&
+                                idsToShowData.includes(row.id) &&
+                                "Label"}
+                              {column.key === "trackingUrl" &&
+                                additional &&
+                                additional.trackingUrl && (
+                                  <a
+                                    href={trackingUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    URL
+                                  </a>
+                                )}
+
+                              {/* new */}
+                            </td>
+                          )
+                      )}
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </table>
+        )}
+
+
+        const orders = [
+            {id:6310217679153, address: 'abc akf' , created At:'2024/10/23' },
+            {id:6310203883825, address: 'abc akasdf' , created At:'2024/10/23' },
+            {id:6310201131313, address: 'abc aksf' , created At:'2024/10/23' },
+            {id:6299447525681, address: 'abc akasdf' , created At:'2024/10/23' },
+            {id:6299447034161, address: 'abc akfwer' , created At:'2024/10/23' },
+            {id:6299446542641, address: 'abc akasdf' , created At:'2024/10/23' },
+            {id:6299445821745, address: 'abc ak3f' , created At:'2024/10/23' },
+            {id:6299445166385, address: 'abc akasdff' , created At:'2024/10/23' },
+            {id:6296729157937, address: 'abc akasdff' , created At:'2024/10/23' },
+            {id:6296516985137, address: 'abc ak33rf' , created At:'2024/10/23' },
+            {id:6296496144689, address: 'abc aksadff' , created At:'2024/10/23' },
+        ]
+
+        const shipmentData = [
+            {
+                Order number: 6310217679153,
+                carrier: "Canada Post",
+                serviceName: "Expedited",
+                shipmentId: "8000000011375",
+                trackingNumber: "123456789012",
+                trackingUrl: "https://www.canadapost.ca/trackweb/...",
+                reference: "6310217679153",
+                reference2: "1002",
+                reference3: "24653",
+                labelId: "8000000011375",
+                shopifyOrderId: "6310217679153",
+                label: "label"
+            },
+            {
+                 Order number:  "6310201131313",
+                carrier: "Canada Post",
+                serviceName: "Expedited",
+                shipmentId: "8000000011375",
+                trackingNumber: "123456789012",
+                trackingUrl: "https://www.canadapost.ca/trackweb/...",
+                reference: "6310201131313",
+                reference2: "1002",
+                reference3: "24653",
+                labelId: "8000000011375",
+                shopifyOrderId: "6310201131313",
+                label: "label"
+            },
+            { 
+                Order number:  "6299446542641",
+                carrier: "Canada Post",
+                serviceName: "Expedited",
+                shipmentId: "8000000011375",
+                trackingNumber: "123456789012",
+                trackingUrl: "https://www.canadapost.ca/trackweb/...",
+                reference: "6299446542641",
+                reference2: "1002",
+                reference3: "24653",
+                labelId: "8000000011375",
+                shopifyOrderId: "6299446542641",
+                label: "label"
+            },
+            
+            ]

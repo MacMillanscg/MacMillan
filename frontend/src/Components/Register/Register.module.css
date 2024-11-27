@@ -1,0 +1,131 @@
+.signUp{
+    width: 400px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 4px;
+    padding: 28px 33px;
+    min-height: 500px;
+    padding-bottom: 10px;
+}
+
+.formControl{
+    margin-bottom: 12px;
+    height: 43px;
+}
+input::placeholder{
+    color: #bdb1b1 !important;
+    font-size: 14px !important;
+}
+.form-control:focus{
+    box-shadow: none !important;
+    
+}
+
+.submit{
+    height: 47px;
+    border: none;
+    width: 100%;
+    color: white;
+    border-radius: 3px;
+    font-size: 15px !important;
+}
+.heading3{
+    font-weight: 400;
+    margin: 20px 0 30px 0 !important;
+}
+h4{
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    margin: 20px 0 30px 0 !important;
+}
+.logo{
+    max-width: 149px;
+    margin: 0 auto;
+}
+.already{
+    text-align:end;
+    margin: 10px 0;
+}
+
+.already span{
+    font-size: 16px;
+}
+p{
+    font-size: 15px;
+    font-weight: 300;
+    margin-top: 6px;
+}
+p img{
+    width: 64px;
+    margin-left: 3px;
+}
+.term{
+    display: flex;
+    align-items: center;
+}
+.labelTerm{
+    font-size: 15px;
+    margin-left: 8px;
+}
+.powerBy{
+    font-size: 15px !important;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.progressBar{
+    height: 8px;
+    position: absolute;
+    z-index: 9999;
+    width: 100%;
+    bottom: -18px;
+}
+.mediumStrength {
+    color: rgb(237, 237, 7);
+  }
+  .passwordValidation {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+  
+  .passwordValidation p {
+    margin: 5px 0;
+  }
+  .terms{
+    margin-bottom: 6px;
+  }
+  
+  .valid {
+    color: green;
+  }
+  
+  .invalid {
+    color: red;
+  }
+  .labelTerm{
+    display: inline;
+  }
+  .termsHover{
+    color: #153359;
+    text-decoration: underline;
+    cursor: pointer;
+}
+/* .termsHover:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  } */
+  
+  /* .termsText {
+    display: none;
+  }
+  
+  .termsHover:hover + .termsText {
+    display: block;
+  } */
+.eyeIcon{
+    margin-right: 16px;
+    color: gray;
+    font-size: 12px;
+    top: 22px !important;
+}
+

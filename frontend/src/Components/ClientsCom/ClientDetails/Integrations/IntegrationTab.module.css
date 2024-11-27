@@ -1,0 +1,119 @@
+.cardTop{
+    display: flex;
+    justify-content: space-between;
+}
+.cardSection{
+  position: relative;
+  /* width: 33%; */
+  margin-bottom: 10px;
+}
+
+.popup {
+    position: absolute;
+    background-color: lightgray;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 1000;
+  }
+  
+  .popup button {
+    display: block;
+    width: 100%;
+    padding: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    background-color: #ccc;
+  }
+  
+  .popup button:hover {
+    background-color: #f0f0f0;
+  }
+  .dotsIcon{
+    height: 21px;
+    padding: 4px;
+  }
+
+  .testConnection{
+    width: 100%;
+    background: lightgray;
+    padding: 5px;
+    text-align: center;
+    cursor: pointer;
+    position: absolute;
+    bottom: 11px;
+    left: 0;
+    max-width: 264px;
+    margin: 0 auto;
+    right: 0;
+  }
+
+  .popupTest {
+    position: absolute;
+    left: 0;
+    top: 11px;
+    width: 90%;
+    margin: 0 auto;
+    right: 0;
+  }
+
+  .popupContent {
+    background-color: white;
+    padding: 12px;
+    border-radius: 5px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+    border: 15px solid #ccc;
+    position: relative;
+  }
+  
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .para{
+    margin-bottom: 15px;
+  }
+  .addCustom{
+    margin-bottom: 30px !important;
+  }
+
+  .cardDetails {
+    position: relative;
+  }
+  
+  .popup {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: -5px;
+    right: 5px;
+    z-index: 10;
+    background: white;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow:none;
+    transition: opacity 0.2s ease;
+    padding-right: 24px;
+    display: flex;
+  }
+  
+  .cardDetails:hover .popup,
+  .popup:hover {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .editIcon, .deleteIcon{
+    background-color: unset !important;
+    color: gray !important;
+  }
+  .popup button{
+    background: #fff !important;
+    color: gray !important;
+  }

@@ -1,0 +1,16 @@
+.testList{
+    background: #f8f9fa;
+    margin-bottom: 3px;
+    padding: 5px;
+    color: #808080;
+}
+.icon{
+    color: #ccc;
+    margin-right: 4px;
+}
+.records{
+    color: #808080;
+}
+.testHistoryTitle{
+    border-bottom: 1px solid #ccc;
+}

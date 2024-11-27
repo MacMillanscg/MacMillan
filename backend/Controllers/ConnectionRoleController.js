@@ -1,0 +1,214 @@
+const Connection = require("../Schema/Connection");
+
+// Create a new connection
+exports.addConnectionStep = async (req, res) => {
+  const {
+    connectionId,
+    connectionName,
+    webhookTrigger,
+    managementTrigger,
+    scheduleDetails,
+    shopifyDetails,
+    option,
+  } = req.body;
+  console.log("reqbodydaf", req.body);
+
+  try {
+    const connection = await Connection.findById(connectionId);
+
+    if (!connection) {
+      return res.status(404).json({ error: "Connection not found" });
+    }
+
+    const newConnectionStep = {
+      connectionId,
+      connectionName,
+      webhookTrigger: webhookTrigger ? webhookTrigger : null,
+      managementTrigger: managementTrigger ? managementTrigger : null,
+      scheduleDetails: scheduleDetails ? scheduleDetails : null,
+      shopifyDetails,
+      option,
+    };
+
+    connection.connectionRule.push(newConnectionStep);
+
+    const updatedConnection = await connection.save();
+    res.status(201).json(updatedConnection);
+  } catch (error) {
+    console.error("Error creating connection:", error);
+    res.status(500).json({ error: "Server error while creating connection" });
+  }
+};
+
+exports.getAllConnectionsStep = async (req, res) => {
+  const { id } = req.params;
+  console.log("getAllconecton", id);
+
+  try {
+    // Find the main connection by ID, but only select the connectionId and the sub-schema (ConnectionRule)
+    // const connection = await Connection.findById(id);
+    const connection = await Connection.findOne(
+      { _id: id },
+      { connectionRule: 1 }
+    );
+    console.log("signleConnnecitn", connection);
+    if (!connection) {
+      return res.status(404).json({ error: "Connection not found" });
+    }
+
+    res.status(200).json({
+      connectionRule: connection.connectionRule,
+    });
+  } catch (error) {
+    console.error("Error fetching connection steps:", error);
+    res
+      .status(500)
+      .json({ error: "Server error while fetching connection steps" });
+  }
+};
+
+exports.deleteConnectionStep = async (req, res) => {
+  const { id, stepId } = req.params;
+  console.log("connectionId in delete", id);
+  console.log("step id in delete", stepId);
+
+  try {
+    // Find the connection by ID
+    const connection = await Connection.findById(id);
+
+    if (!connection) {
+      return res.status(404).json({ error: "Connection not found" });
+    }
+
+    // Find the index of the step to delete
+    const stepIndex = connection.connectionRule.findIndex(
+      (step) => step._id.toString() === stepId
+    );
+
+    if (stepIndex === -1) {
+      return res.status(404).json({ error: "Step not found" });
+    }
+
+    // Remove the step from the array
+    connection.connectionRule.splice(stepIndex, 1);
+
+    // Save the updated connection
+    await connection.save();
+
+    res.status(200).json({ message: "Step deleted successfully", connection });
+  } catch (error) {
+    console.error("Error deleting connection step:", error);
+    res
+      .status(500)
+      .json({ error: "Server error while deleting connection step" });
+  }
+};
+
+exports.updateConnectionStep = async (req, res) => {
+  const {
+    connectionId,
+    connectionName,
+    webhookTrigger,
+    managementTrigger,
+    scheduleDetails,
+    shopifyDetails,
+    option,
+  } = req.body;
+
+  const { stepId } = req.params; // Get the stepId from the route params
+
+  try {
+    // Find the connection by connectionId
+    const connection = await Connection.findById(connectionId);
+
+    if (!connection) {
+      return res.status(404).json({ error: "Connection not found" });
+    }
+
+    // Find the index of the step by stepId
+    const stepIndex = connection.connectionRule.findIndex(
+      (step) => step._id.toString() === stepId
+    );
+    console.log("Stepindex", stepIndex);
+
+    if (stepIndex === -1) {
+      return res.status(404).json({ error: "Step not found" });
+    }
+
+    // Update the step's fields
+    connection.connectionRule[stepIndex] = {
+      ...connection.connectionRule[stepIndex].toObject(), // Keep old fields
+      connectionName: connectionName
+        ? connectionName
+        : connection.connectionRule[stepIndex].connectionName,
+      webhookTrigger: webhookTrigger
+        ? webhookTrigger
+        : connection.connectionRule[stepIndex].webhookTrigger,
+      managementTrigger: managementTrigger
+        ? managementTrigger
+        : connection.connectionRule[stepIndex].managementTrigger,
+      scheduleDetails: scheduleDetails
+        ? scheduleDetails
+        : connection.connectionRule[stepIndex].scheduleDetails,
+      shopifyDetails: shopifyDetails
+        ? shopifyDetails
+        : connection.connectionRule[stepIndex].shopifyDetails,
+      option: option ? option : connection.connectionRule[stepIndex].option,
+    };
+
+    // Save the updated connection
+    const updatedConnection = await connection.save();
+
+    res.status(200).json({
+      message: "Step updated successfully",
+      updatedStep: connection.connectionRule[stepIndex], // Send the updated step in the response
+    });
+  } catch (error) {
+    console.error("Error updating step:", error);
+    res.status(500).json({ error: "Server error while updating step" });
+  }
+};
+
+exports.cloneConnectionStep = async (req, res) => {
+  const { id, stepId } = req.params;
+
+  try {
+    // Find the connection by ID
+    const connection = await Connection.findById(id);
+
+    if (!connection) {
+      return res.status(404).json({ error: "Connection not found" });
+    }
+
+    // Find the step to be cloned
+    const stepToClone = connection.connectionRule.find(
+      (step) => step._id.toString() === stepId
+    );
+
+    if (!stepToClone) {
+      return res.status(404).json({ error: "Step not found" });
+    }
+
+    // Create a new cloned step with a new unique ID
+    const clonedStep = {
+      ...stepToClone._doc, // Copy all fields from the original step
+      _id: new mongoose.Types.ObjectId(), // Generate a new unique ID for the cloned step
+      connectionName: `${stepToClone.connectionName} (Copy)`, // Optional: add "Copy" to the name
+    };
+
+    // Add the cloned step to the connectionRule array
+    connection.connectionRule.push(clonedStep);
+
+    // Save the updated connection
+    const updatedConnection = await connection.save();
+
+    res.status(201).json({
+      message: "Step cloned successfully",
+      clonedStep,
+      updatedConnection,
+    });
+  } catch (error) {
+    console.error("Error cloning connection step:", error);
+    res.status(500).json({ error: "Server error while cloning step" });
+  }
+};

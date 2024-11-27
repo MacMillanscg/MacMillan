@@ -1,0 +1,14 @@
+.logicDescription{
+    margin: 0;
+}
+.actionDescription{
+    border: 1px solid lightgray;
+    padding: 15px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.searchInput{
+    height: 56px;
+}

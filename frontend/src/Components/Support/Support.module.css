@@ -6,6 +6,7 @@
     padding: 18px 33px;
     height: 555px;
     padding-top: 54px;
+    position: relative;
 }
 .textareaField{
     height: 100px;
@@ -18,10 +19,26 @@
     margin:10px 0px !important
 }
 .btn{
-    max-width: 127px !important;
-    margin: 0 auto !important;
+    min-width: 127px !important;
+    margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.notification{
+    position: absolute;
+    width: 91%;
+    left: 0;
+    right: 0;
+    top: -21px;
+    margin: 0 auto;
+}
+.cross{
+    background: #d1e7dd;
+    color: #0f5132;
+}
+
+.closeBtn{
+    border: #d1e7dd;
 }
 
