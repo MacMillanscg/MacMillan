@@ -2,9 +2,9 @@ import React from "react";
 import styles from "./WarningPopup.module.css"; // Create and import a CSS file for styling the modal
 
 export const WarningPopup = ({ show, onClose, onConfirm }) => {
-  if (!show) {
-    return null;
-  }
+  // if (!show) {
+  //   return null;
+  // }
 
   return (
     <div className={styles.modal}>

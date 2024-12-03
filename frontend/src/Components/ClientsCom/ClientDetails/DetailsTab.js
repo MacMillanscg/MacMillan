@@ -166,7 +166,7 @@ export const DetailsTab = ({ clientId }) => {
             bodyText="Are you sure you want to delete this record?"
             onOk={handleDelete}
             onCancel={cancelDeletModal}
-            okButtonText="Ok"
+            okButtonText="Yes"
             cancelButtonText="No"
           />
         )}

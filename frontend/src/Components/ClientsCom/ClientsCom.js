@@ -1,7 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./ClientsCom.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPlus,
+  faPencil,
+  faTrash,
+  faEllipsisV,
+} from "@fortawesome/free-solid-svg-icons";
 import { useAppContext } from "../Context/AppContext";
 import { Link } from "react-router-dom";
 import { AddClients } from "./AddClients";
@@ -12,6 +17,7 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FilterPopup } from "./ClientDetails/FilterPopup/FilterPopup";
 import { useDispatch } from "react-redux";
 import { fetchClients } from "../../Redux/Actions/ClientsActions";
+import { ConfirmCancelPopUp } from "../Common/ConfirmCancelPopUp/ConfirmCancelPopUp";
 
 export const ClientsCom = () => {
   const { dashboardWidth } = useAppContext();
@@ -21,6 +27,8 @@ export const ClientsCom = () => {
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const [filteredClients, setFilteredClients] = useState(clients);
   const [searchTerm, setSearchTerm] = useState(""); // State for search term
+  const [showdeleteModal, setShowDeleteModal] = useState(false);
+  const [clientToDelete, setClientToDelete] = useState(null);
   const dispatch = useDispatch();
 
   const applyFilters = ({ clientName, email }) => {
@@ -89,11 +97,47 @@ export const ClientsCom = () => {
     );
     setFilteredClients(filteredData);
   };
+  const handleDeletModal = (clientId) => {
+    setShowDeleteModal(true);
+    setClientToDelete(clientId);
+  };
+  console.log("clientTODelete", clientToDelete);
+
+  // Handler for deleting the client
+  const handleDelete = async () => {
+    // if (!clientToDelete) return;
+
+    try {
+      // Perform the delete API request
+      await axios.delete(`${url}/clients/${clientToDelete}`);
+      // After successful deletion, remove the client from the state
+      setClients((prevClients) =>
+        prevClients.filter((client) => client._id !== clientToDelete)
+      );
+      setFilteredClients((prevClients) =>
+        prevClients.filter((client) => client._id !== clientToDelete)
+      );
+      setShowDeleteModal(false); // Close the delete modal
+      setClientToDelete(null); // Reset the client ID to delete
+    } catch (error) {
+      console.log("Error deleting client:", error);
+    }
+  };
 
   console.log("all clients", filteredClients);
 
   return (
     <div className="dashboard" style={{ width: dashboardWidth }}>
+      {showdeleteModal && (
+        <ConfirmCancelPopUp
+          headerText="Warning"
+          bodyText="Are you sure you want to delete this record?"
+          onOk={handleDelete}
+          onCancel={() => setShowDeleteModal(false)}
+          okButtonText="Yes"
+          cancelButtonText="No"
+        />
+      )}
       <div className={styles.clientHeader}>
         <h2 className={styles.heading2}>Clients</h2>
         <div className={styles.clientsRight}>
@@ -141,12 +185,34 @@ export const ClientsCom = () => {
             >
               <div className="card me-1 mb-2">
                 <div className="card-body">
-                  <h3 className={styles.clientName}>{client.clientName}</h3>
+                  <div className={styles.cardTop}>
+                    <h3 className={styles.clientName}>{client.clientName}</h3>
+                    <div className={styles.EditDeleteShow}>
+                      <FontAwesomeIcon
+                        icon={faEllipsisV}
+                        className={styles.dots}
+                      />
+                      <div className={styles.editDelteIconsWrap}>
+                        <Link to={`/addclients/${client._id}`}>
+                          <FontAwesomeIcon
+                            icon={faPencil}
+                            className={styles.editIcon}
+                          />
+                        </Link>
+                        <FontAwesomeIcon
+                          icon={faTrash}
+                          className={styles.deleteIcon}
+                          onClick={(e) => {
+                            e.preventDefault(); // Prevent navigation
+                            handleDeletModal(client._id); // Show the delete modal
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </div>
                   <h4 className={styles.heading4}>{client.email}</h4>
                   <h4 className={styles.heading4}>{client.phone}</h4>
-                  <p className={styles.text}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elitsdf.
-                  </p>
+
                   <div>
                     <span
                       className={

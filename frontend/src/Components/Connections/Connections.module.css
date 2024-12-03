@@ -47,10 +47,12 @@
     position: relative;
 }
 .filterIcon{
-    position: absolute;
-    right: 27px;
-    top:13px;
+   margin-left: 10px;
     font-size: 13px;
+}
+.filterBtn{
+    background: transparent !important; 
+    color: black !important;
 }
 .connectionCard{
     /* width: 32%; */

@@ -401,3 +401,22 @@ exports.getAllLogs = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch logs" });
   }
 };
+
+exports.deleteSingleClient = async (req, res) => {
+  const { clientId } = req.params;
+
+  try {
+    // Find the client by ID and delete it
+    const client = await Client.findByIdAndDelete(clientId);
+
+    if (!client) {
+      return res.status(404).json({ message: "Client not found" });
+    }
+
+    // Send success response
+    return res.status(200).json({ message: "Client deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Server error" });
+  }
+};

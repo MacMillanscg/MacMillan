@@ -98,6 +98,8 @@ export const IntegrationCanvas = () => {
   const [newRules, setNewRules] = useState(false);
   const [scheduleIds, setScheduleIds] = useState([]);
   const [connectionsPublish, setConnectionsPublish] = useState([]);
+  const [showXmlWarning, setShowXmlWarning] = useState(false);
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
 
   const dispatch = useDispatch();
   const { connections, error } = useSelector((state) => state.connections);
@@ -272,6 +274,7 @@ export const IntegrationCanvas = () => {
           `${url}/connections/${id}/shopifyDetails`
         );
         setShopifyDetails(response.data);
+        setHasUnsavedChanges(true);
       } catch (error) {
         console.error("Error fetching Shopify details:", error);
       } finally {
@@ -320,6 +323,7 @@ export const IntegrationCanvas = () => {
         );
         // console.log("xmlreso", response);
         setXmlConversion(response.data.conversionsXML);
+        setHasUnsavedChanges(true);
       } catch (error) {
         console.error("Error fetching Shopify details:", error);
       } finally {
@@ -357,12 +361,28 @@ export const IntegrationCanvas = () => {
     }
   };
 
+  const handleDeleteXmlConversion = async () => {
+    try {
+      const response = await axios.delete(
+        `${url}/connections/${id}/xmlConversion`
+      );
+      if (response.status === 200) {
+        setXmlConversion(null);
+        setShowXmlWarning(false);
+        toast.success("XML Conversion deleted successfully!");
+      }
+    } catch (error) {
+      console.error("Error deleting XML Conversion:", error);
+      toast.error("Failed to delete XML Conversion. Please try again.");
+    }
+  };
+
   useEffect(() => {
     const fetchConnection = async () => {
       try {
         const response = await axios.get(`${url}/connections/${id}`);
         setConnection(response.data);
-        // console.log("response", response.data);
+        console.log("response", response.data);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching connection:", error);
@@ -372,20 +392,6 @@ export const IntegrationCanvas = () => {
 
     fetchConnection();
   }, [id]);
-  // useEffect(() => {
-  //   const fetchShopifyOrderIds = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         "http://localhost:5000/connections/orders/shopifyIds"
-  //       );
-  //       setShopifyOrderIds(response.data);
-  //     } catch (error) {
-  //       console.error("Error fetching Shopify order IDs:", error);
-  //     }
-  //   };
-
-  //   fetchShopifyOrderIds();
-  // }, []);
 
   const openTriggerPopup = () => {
     setIsWebhookTriggerPopup(true);
@@ -573,12 +579,6 @@ export const IntegrationCanvas = () => {
 
   const handlePublish = async () => {
     try {
-      const connectionId = id; // Ensure this value is valid
-      // if (!connectionId) {
-      //   console.error("Connection ID is undefined!");
-      //   return;
-      // }
-
       const response = await axios.patch(
         `http://localhost:5000/connections/${id}/publish`
       );
@@ -590,6 +590,13 @@ export const IntegrationCanvas = () => {
     } catch (error) {
       console.error("Error publishing version:", error);
       toast.error("Failed to publish version. Please try again.");
+    }
+  };
+
+  const handleSaveData = () => {
+    if (hasUnsavedChanges) {
+      setHasUnsavedChanges(false); // Mark the data as saved
+      toast.success("The data saved successfully");
     }
   };
 
@@ -613,21 +620,27 @@ export const IntegrationCanvas = () => {
             Publish
           </button>
           <button className={styles.cancelButton}>Cancel</button>
-          <button
-            className={styles.saveButton}
-            //  onClick={addShopifyOrders}
-          >
+          <button className={styles.saveButton} onClick={handleSaveData}>
             Save
           </button>
         </div>
       </div>
 
       <div className={styles.mainContainer}>
-        <WarningPopup
-          show={showWarningModal}
-          onClose={() => setShowWarningModal(false)}
-          onConfirm={handleDeleteShopifyDetails}
-        />
+        {showWarningModal && (
+          <WarningPopup
+            show={showWarningModal}
+            onClose={() => setShowWarningModal(false)}
+            onConfirm={handleDeleteShopifyDetails}
+          />
+        )}
+        {showXmlWarning && (
+          <WarningPopup
+            onClose={() => setShowXmlWarning(false)}
+            onConfirm={handleDeleteXmlConversion}
+          />
+        )}
+
         <div className={styles.canvas}>
           <div className={styles.leftIcon}>
             <div className={styles.iconsWrap}>
@@ -651,7 +664,10 @@ export const IntegrationCanvas = () => {
               )}
               {clientPopup && <ClientPopup onClose={handleClosePopup} />}
               {versionPopup && (
-                <VersionHistoryPopup onClose={handleClosePopup} />
+                <VersionHistoryPopup
+                  onClose={handleClosePopup}
+                  filteredConnection={filteredConnection}
+                />
               )}
             </div>
           </div>
@@ -745,7 +761,7 @@ export const IntegrationCanvas = () => {
                       <FontAwesomeIcon
                         icon={faTrash}
                         className={styles.editDeleteIcon}
-                        onClick={() => setShowWarningModal(true)}
+                        onClick={() => setShowXmlWarning(true)}
                       />
                       <FontAwesomeIcon
                         icon={faEdit}

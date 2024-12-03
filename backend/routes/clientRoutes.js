@@ -23,6 +23,7 @@ router.post(
   clientController.updateClientIntegration
 );
 router.delete("/addclients/:id", clientController.deleteClient);
+router.delete("/:clientId", clientController.deleteSingleClient);
 router.delete(
   "/addclients/:clientId/integrations/:integrationId",
   clientController.deleteIntegration
