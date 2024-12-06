@@ -81,7 +81,9 @@ export const VersionHistoryPopup = ({
             <div className={styles.tableBody}>
               <div className={styles.tableRow}>
                 <div className={styles.currentBadge}>Current</div>{" "}
-                <span>{latest ? latest.versionNumber : ""}</span>
+                <span className="ms-4">
+                  {latest ? latest.versionNumber : ""}
+                </span>
                 {/* If no versions exist, show the unpublished draft message */}
                 {!data || data.length === 0 ? (
                   <div className={styles.noVersionsMessage}>
@@ -93,11 +95,10 @@ export const VersionHistoryPopup = ({
                     {/* If versions exist, display latest and second latest */}
 
                     <div>
-                      <h4>Second Latest Version:</h4>
-                      <p>
-                        {secondLatest
-                          ? secondLatest.versionNumber
-                          : "No details available"}
+                      <p className="mb-3">
+                        {" "}
+                        <span className="me-3">Previous Version:</span>
+                        {secondLatest ? secondLatest.versionNumber : ""}
                       </p>
                     </div>
                   </div>

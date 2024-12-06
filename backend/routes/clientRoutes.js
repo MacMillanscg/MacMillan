@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const axios = require("axios");
 
 const clientController = require("../Controllers/clientController");
 const eShipperController = require("../Controllers/eShipperController");

@@ -141,7 +141,7 @@ export const OutputLogs = ({ selectedIntegration, orders, shopifyDetails }) => {
         // Set a timer to download new orders after 10 seconds
         downloadTimerRef.current = setTimeout(() => {
           handleExport(newOrders);
-        }, 100000); // 10000 milliseconds = 10 seconds
+        }, 500000); // 10000 milliseconds = 10 seconds
       }
     }
 

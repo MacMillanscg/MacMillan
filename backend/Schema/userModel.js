@@ -21,14 +21,20 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
+    enum: ["admin", "member", "guest"],
+    default: "member",
   },
   phone: {
     type: Number,
   },
   profileImage: {
-    type: String, // Assuming you will store the file path of the uploaded image
+    type: String,
+  },
+  createdBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
   },
 });
 
-const userModel = mongoose.model("users", userSchema);
+const userModel = mongoose.model("User", userSchema);
 module.exports = userModel;
