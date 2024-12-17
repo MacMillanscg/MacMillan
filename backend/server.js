@@ -44,12 +44,14 @@ const support = require("./routes/supportRoute");
 const clientRoute = require("./routes/clientRoutes");
 const connectionRoute = require("./routes/connectionRoutes");
 const summaryRoute = require("./routes/summaryRoute");
+const exploreRoute = require("./routes/exploreRoute");
 // app.use("/users", userRouter);
 app.use("/auth", userAuth);
 app.use("/supports", support);
 app.use("/clients", clientRoute);
 app.use("/connections", connectionRoute);
 app.use("/summary", summaryRoute);
+app.use("/explore", exploreRoute);
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");

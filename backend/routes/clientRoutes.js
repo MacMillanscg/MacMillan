@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const axios = require("axios");
 
 const clientController = require("../Controllers/clientController");
 const eShipperController = require("../Controllers/eShipperController");
@@ -23,6 +22,7 @@ router.post(
   clientController.updateClientIntegration
 );
 router.delete("/addclients/:id", clientController.deleteClient);
+router.delete("/:clientId", clientController.deleteSingleClient);
 router.delete(
   "/addclients/:clientId/integrations/:integrationId",
   clientController.deleteIntegration

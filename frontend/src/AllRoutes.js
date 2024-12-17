@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { NotFound } from "./Components/NotFound";
 import { Register } from "./Components/Register/Register";
 import { Login } from "./Components/Login/Login";
@@ -16,8 +16,6 @@ import { Connectors } from "./Components/Connectors/Connectors";
 import { ClientsCom } from "./Components/ClientsCom/ClientsCom";
 import { AlertMonitors } from "./Components/AlertMonitors/AlertMonitors";
 import { DeployedInstances } from "./Components/DeployedInstances/DeployedInstances";
-import { AddConnections } from "./Components/Connections/AddConnections";
-import { ConnectionList } from "./Components/Connections/ConnectionList";
 import { ConnectorList } from "./Components/Connectors/ConnectorList";
 import { VerifyEmail } from "./Components/Register/VerifyEmail";
 import { ClientDetailsTabs } from "./Components/ClientsCom/ClientDetails/ClientDetailsTabs";
@@ -28,8 +26,31 @@ import { Logss } from "./Components/Explore/Logss/Logss";
 import { Users } from "./Components/Explore/Users/Users";
 import { IntegrationCanvas } from "./Components/Connections/Webhook/IntegrationCanvas";
 import { Summary } from "./Components/Summary/Summary";
+import { UserDetails } from "./Components/Explore/Users/UserDetails/UserDetails";
+import { useCustomFetch } from "./customsHooks/useCustomFetch";
+import { getUser } from "./storageUtils/storageUtils";
+import { url } from "./api";
 
 export const AllRoutes = () => {
+  const [role, setRole] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Retrieve the role from localStorage or sessionStorage (after login)
+    const userRole =
+      JSON.parse(localStorage.getItem("rememberMe")) ||
+      JSON.parse(sessionStorage.getItem("userRecord"));
+    console.log("userRole", userRole);
+    if (userRole) {
+      setRole(userRole.role);
+    } else {
+      // Redirect to login if no role is found
+      navigate("/login");
+    }
+  }, [navigate]);
+
+  console.log("role", typeof role);
+
   return (
     <div>
       <Routes>
@@ -40,38 +61,45 @@ export const AllRoutes = () => {
             </ProtectedRoutes>
           }
         >
-          <Route path="/" element={<Dashboard />} />
           <Route path="/summary" element={<Summary />} />
-          <Route path="/profiledetails" element={<ProfileDetails />} />
-          <Route path="/profileResetPass" element={<ProfileResetPass />} />
-          <Route path="/connectors" element={<Connectors />} />
-          <Route path="/connections" element={<Connections />} />
-          <Route path="/addclients" element={<ClientsCom />} />
-          <Route path="/alertmonitors" element={<AlertMonitors />} />
-          <Route path="/deployedinstances" element={<DeployedInstances />} />
-          {/* <Route path="/connections/:id" element={<ConnectionList />} /> */}
-          {/* <Route
-            path="/connections/addConnections"
-            element={<AddConnections />}
-          /> */}
-          <Route path="/connectors/connectorList" element={<ConnectorList />} />
-          <Route path="/addclients/:id" element={<ClientDetailsTabs />} />
-          <Route path="/explore" element={<Explore />} />
-          <Route
-            path="/explore/exploreconnections"
-            element={<ExploreConnections />}
-          />
-          <Route path="/explore/executions" element={<Executions />} />
-          <Route path="/explore/Logs" element={<Logss />} />
-          <Route path="/explore/users" element={<Users />} />
+          {role === "admin" && (
+            <>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/profiledetails" element={<ProfileDetails />} />
+              <Route path="/profileResetPass" element={<ProfileResetPass />} />
+              <Route path="/connectors" element={<Connectors />} />
+              <Route path="/connections" element={<Connections />} />
+              <Route path="/addclients" element={<ClientsCom />} />
+              <Route path="/alertmonitors" element={<AlertMonitors />} />
+              <Route
+                path="/deployedinstances"
+                element={<DeployedInstances />}
+              />
+
+              <Route
+                path="/connectors/connectorList"
+                element={<ConnectorList />}
+              />
+              <Route path="/addclients/:id" element={<ClientDetailsTabs />} />
+              <Route path="/explore" element={<Explore />} />
+              <Route
+                path="/explore/exploreconnections"
+                element={<ExploreConnections />}
+              />
+              <Route path="/explore/executions" element={<Executions />} />
+              <Route path="/explore/Logs" element={<Logss />} />
+              <Route path="/explore/users" element={<Users />} />
+              <Route path="/explore/users/:id" element={<UserDetails />} />
+            </>
+          )}
         </Route>
         {/* <Route path="/connections/:id" element={<IntegrationCanvas />} /> */}
         <Route
           path="/connections/:id"
           element={
-            // <ProtectedRoutes>
-            <IntegrationCanvas />
-            // </ProtectedRoutes>
+            <ProtectedRoutes>
+              <IntegrationCanvas />
+            </ProtectedRoutes>
           }
         />
 
@@ -101,9 +129,9 @@ export const AllRoutes = () => {
         {/* <Route
           path="*"
           element={
-            <ProtectedRoutes>
-              <NotFound />
-            </ProtectedRoutes>
+            // <ProtectedRoutes>
+            // <NotFound />
+            // </ProtectedRoutes>
           }
         /> */}
       </Routes>
@@ -114,6 +142,7 @@ export const AllRoutes = () => {
 export function ProtectedRoutes({ children }) {
   const user = sessionStorage.getItem("user");
   const remember = localStorage.getItem("rememberMe");
+
   if (remember || user) {
     return children;
   } else {

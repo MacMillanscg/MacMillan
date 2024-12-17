@@ -140,6 +140,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    display: inline-block;
+    padding: 4px 9px;
   }
   
   .tableCell {

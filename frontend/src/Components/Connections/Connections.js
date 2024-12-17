@@ -17,23 +17,68 @@ import { WarningPopup } from "./Popups/WarningPopup/WarningPopup";
 import axios from "axios";
 import { url } from "../../api";
 import toast from "react-hot-toast";
+import { FilterPopup } from "./Popups/FilterPopup/FilterPopup";
 
 export const Connections = () => {
   const { dashboardWidth } = useAppContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showWarningModal, setShowWarningModal] = useState(false);
   const [connectionId, setConnectionId] = useState(null);
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState(""); // State for the search input
+  const [filteredConnections, setFilteredConnections] = useState([]); // Filtered connections state
+
   const dispatch = useDispatch();
   const { connections, loading, error } = useSelector(
     (state) => state.connections
   );
   const token = useSelector((state) => state.eshipper.token);
-  console.log("toekn", token);
-  console.log("connecitnos", connections);
 
   useEffect(() => {
     dispatch(fetchConnections());
   }, [dispatch]);
+
+  useEffect(() => {
+    setFilteredConnections(connections); // Set initial filtered connections to all connections
+  }, [connections]);
+
+  // Apply Search Filter (based only on search query)
+  const applySearchFilter = () => {
+    const filteredData = connections.filter((connection) => {
+      return connection.connectionName
+        ? connection.connectionName
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase())
+        : true;
+    });
+    setFilteredConnections(filteredData); // Update filtered connections
+  };
+
+  // Apply Filter and Search Logic (for FilterPopup)
+  const applyFiltersAndSearch = ({ connectionName, clientName }) => {
+    const filteredData = connections.filter((connection) => {
+      const nameMatch = connection.connectionName
+        ? connection.connectionName
+            .toLowerCase()
+            .includes(connectionName.toLowerCase())
+        : true;
+
+      const clientMatch = connection.client?.clientName
+        ? connection.client.clientName
+            .toLowerCase()
+            .includes(clientName.toLowerCase())
+        : true;
+
+      const searchMatch = connection.connectionName
+        ? connection.connectionName
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase())
+        : true;
+
+      return nameMatch && clientMatch && searchMatch;
+    });
+    setFilteredConnections(filteredData); // Update filtered connections
+  };
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -41,13 +86,13 @@ export const Connections = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    setIsFilterModalOpen(false);
   };
 
   const handleDeleteConnection = (id) => {
     setConnectionId(id);
     setShowWarningModal(true);
   };
-  console.log("delete id", connectionId);
 
   const confirmDeleteConnection = async () => {
     try {
@@ -56,39 +101,61 @@ export const Connections = () => {
       setShowWarningModal(false);
       toast.success("The connection deleted successfully.");
     } catch (error) {
-      console.error("Error deleting Shopify details:", error);
+      console.error("Error deleting connection:", error);
     }
   };
+
+  const openFilterModal = () => {
+    setIsFilterModalOpen(!isFilterModalOpen);
+  };
+
+  // Handle Search Input Change
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value); // Update search query state
+  };
+
+  // Trigger the search filter when user changes the search query
+  useEffect(() => {
+    applySearchFilter();
+  }, [searchQuery]);
 
   return (
     <div className="dashboard" style={{ width: dashboardWidth }}>
       <div className={styles.connectionHeader}>
         <h2 className={styles.heading2}>Connections</h2>
-        <WarningPopup
-          show={showWarningModal}
-          onClose={() => setShowWarningModal(false)}
-          onConfirm={confirmDeleteConnection}
-        />{" "}
+        {showWarningModal && (
+          <WarningPopup
+            show={showWarningModal}
+            onClose={() => setShowWarningModal(false)}
+            onConfirm={confirmDeleteConnection}
+          />
+        )}
+
         <div className={styles.connectionsRight}>
           <div className="form-group me-4">
             <input
               type="text"
               className={`form-control ${styles.formControl}`}
-              id="exampleInputEmail"
+              id="search"
               placeholder="Search Connections"
+              value={searchQuery} // Bind search query to input field
+              onChange={handleSearchChange} // Handle search input change
             />
           </div>
           <div className={styles.selectFilterOption}>
-            <select name="" id="" className={styles.selectFilter}>
-              <option value="">Filter</option>
-              <option value="">Connection2</option>
-              <option value="">Connection3</option>
-              <option value="">Connection4</option>
-            </select>
-            <FontAwesomeIcon
-              icon={faChevronDown}
-              className={styles.filterIcon}
-            />
+            <button className={styles.filterBtn} onClick={openFilterModal}>
+              Filter
+              <FontAwesomeIcon
+                icon={faChevronDown}
+                className={styles.filterIcon}
+              />
+            </button>
+            {isFilterModalOpen && (
+              <FilterPopup
+                closeModal={closeModal}
+                applyFilters={applyFiltersAndSearch} // Apply additional filters (including search)
+              />
+            )}
           </div>
           <button
             className={`btn btn-success ${styles.addBtn} ms-4`}
@@ -100,8 +167,8 @@ export const Connections = () => {
         </div>
       </div>
       <div className={styles.cardSection}>
-        {connections &&
-          connections.map((connection, index) => {
+        {filteredConnections &&
+          filteredConnections.map((connection, index) => {
             // Find the latest version
             const latestVersion = connection.versions?.reduce(
               (latest, version) =>
@@ -113,7 +180,11 @@ export const Connections = () => {
             );
 
             return (
-              <Link to="#" className={styles.cardWrap} key={index}>
+              <Link
+                to={`/connections/${connection._id}`}
+                className={styles.cardWrap}
+                key={index}
+              >
                 <div className={`card ${styles.connectionCard}`}>
                   <div className="card-body">
                     <div className={styles.cardTop}>
@@ -135,9 +206,10 @@ export const Connections = () => {
                           <FontAwesomeIcon
                             icon={faTrash}
                             className={styles.deleteIcon}
-                            onClick={() =>
-                              handleDeleteConnection(connection._id)
-                            } // Pass connection._id here
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleDeleteConnection(connection._id);
+                            }}
                           />
                         </div>
                       </div>
@@ -162,10 +234,10 @@ export const Connections = () => {
                         <li className={styles.listItem}>
                           <Link to="#" className={styles.listText}>
                             Last Run
-                          </Link>{" "}
+                          </Link>
                         </li>
                         <li className={styles.listItem}>
-                          <span>Has not run</span>{" "}
+                          <span>Has not run</span>
                         </li>
                       </ul>
                     </div>

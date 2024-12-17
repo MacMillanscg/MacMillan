@@ -64,11 +64,13 @@ exports.login = async (req, res) => {
         req.body.password,
         user.password
       );
+      console.log("users", user);
       if (passwordsMatched) {
         const dataToBeSentToFrontend = {
           _id: user.id,
           email: user.email,
           name: user.name,
+          role: user.role,
         };
         const token = jwt.sign(dataToBeSentToFrontend, "SHEY", {
           expiresIn: 60 * 60,

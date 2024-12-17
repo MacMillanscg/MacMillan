@@ -1,10 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./VersionHistoryPopup.module.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { url } from "../../../../api";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchConnections } from "../../../../Redux/Actions/ConnectionsActions";
 
-export const VersionHistoryPopup = ({ onClose, onSave }) => {
+export const VersionHistoryPopup = ({
+  onClose,
+  onSave,
+  filteredConnection,
+}) => {
+  console.log("filterconnect", filteredConnection?.versions);
+  const data = filteredConnection?.versions.sort(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  );
+  console.log("data", data);
+
+  const latest = data[0];
+  const secondLatest = data[1];
+
+  console.log("Latest:", latest);
+  console.log("Second Latest:", secondLatest);
+
   const [hideUnavailable, setHideUnavailable] = useState(false);
   const { id } = useParams();
 
@@ -62,11 +80,29 @@ export const VersionHistoryPopup = ({ onClose, onSave }) => {
             </div>
             <div className={styles.tableBody}>
               <div className={styles.tableRow}>
-                <div className={styles.currentBadge}>Current</div>
-                <div>Unpublished draft</div>
-                <div className={styles.tableCell}>
-                  You have unpublished changes.
-                </div>
+                <div className={styles.currentBadge}>Current</div>{" "}
+                <span className="ms-4">
+                  {latest ? latest.versionNumber : ""}
+                </span>
+                {/* If no versions exist, show the unpublished draft message */}
+                {!data || data.length === 0 ? (
+                  <div className={styles.noVersionsMessage}>
+                    <p>Unpublished draft</p>
+                    <p>You have unpublished changes.</p>
+                  </div>
+                ) : (
+                  <div className={styles.versionDetails}>
+                    {/* If versions exist, display latest and second latest */}
+
+                    <div>
+                      <p className="mb-3">
+                        {" "}
+                        <span className="me-3">Previous Version:</span>
+                        {secondLatest ? secondLatest.versionNumber : ""}
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>

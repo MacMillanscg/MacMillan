@@ -390,7 +390,7 @@ export const AddConnections = ({ closeModal }) => {
                   <small className={styles.cronHelp}>
                     A cron expression for this config variable. You can use `* *
                     * * *` for every minute, `0 0 * * *` for every day, and `0 *
-                    * * WED` for every Wednesday. e.g. `*/20 * * * *`
+                    * * WED` for every Wednesday. e.g. `*/20 * * *`
                   </small>
                 </div>
               </div>

@@ -377,3 +377,32 @@ exports.createFulfillment = async (req, res) => {
     res.status(500).json({ error: "Failed to create fulfillment" });
   }
 };
+
+// Controller for deleting xmlConversion
+exports.deleteXmlConversion = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Attempt to find and update the connection by unsetting conversionsXML field
+    const updatedConnection = await Connection.findByIdAndUpdate(
+      id,
+      { $unset: { conversionsXML: "" } }, // Unset the conversionsXML field
+      { new: true, runValidators: true }
+    );
+
+    // If no connection is found, return a 404 error
+    if (!updatedConnection) {
+      return res.status(404).json({ error: "Connection not found" });
+    }
+
+    // Return the updated connection and success message
+    res.status(200).json({
+      message: "XML Conversion deleted successfully",
+      updatedConnectionXmlConversion: updatedConnection,
+    });
+  } catch (error) {
+    // Handle any errors
+    console.error("Error deleting XML Conversion:", error);
+    res.status(500).json({ error: error.message });
+  }
+};

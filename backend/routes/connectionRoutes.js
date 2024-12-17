@@ -13,6 +13,7 @@ router.get("/:id/api/orders", connectionController.shofipyOrders);
 router.patch("/:id/addshopify", shopifyControllers.createShopifyConnection);
 router.get("/:id/shopifyDetails", shopifyControllers.getShopifyDetails);
 router.delete("/:id/shopifyDetails", shopifyControllers.deleteShopifyDetails);
+router.delete("/:id/xmlConversion", shopifyControllers.deleteXmlConversion);
 router.get("/", connectionController.getAllConnections);
 router.post("/:id", connectionController.createWebhook);
 router.patch("/:id/xmlconversion", shopifyControllers.addXmlConvertion);
