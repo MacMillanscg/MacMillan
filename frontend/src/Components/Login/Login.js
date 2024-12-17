@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -7,13 +7,26 @@ import styles from "./Login.module.css";
 import { url } from "../../api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { useCustomFetch } from "../../customsHooks/useCustomFetch";
+import { getUser } from "../../storageUtils/storageUtils";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [role, setRole] = useState("");
   // const url = process.env.REACT_APP_API_URL;
+  let userId = getUser();
+  userId = userId?._id;
+  const { data, loading, error } = useCustomFetch(url, userId);
+
+  useEffect(() => {
+    if (data) {
+      setRole(data.role);
+    }
+  }, [data]);
+  console.log("ROle", role);
 
   const navigate = useNavigate();
 
@@ -47,6 +60,7 @@ export const Login = () => {
     try {
       // toast.loading("Loading");
       const response = await axios.post(`${url}/auth/login`, userObj);
+      console.log("response", response);
 
       // toast.dismiss();
       const { success, data, user, message } = response.data;
@@ -62,7 +76,11 @@ export const Login = () => {
         }
         sessionStorage.setItem("user", response.data.data);
         sessionStorage.setItem("userRecord", JSON.stringify(user));
-        navigate("/");
+        if (user.role === "admin") {
+          navigate("/"); // Redirect admin to the dashboard or home
+        } else if (user.role === "guest" || user.role === "member") {
+          navigate("/summary"); // Redirect guest/member to the summary page
+        }
       } else {
         toast.error(response.data.message, { autoClose: 50000 });
       }

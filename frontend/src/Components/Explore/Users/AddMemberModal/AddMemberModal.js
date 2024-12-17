@@ -3,8 +3,9 @@ import styles from "./AddMemberModal.module.css";
 import axios from "axios";
 import { url } from "../../../../api";
 import { getUser } from "../../../../storageUtils/storageUtils";
+import toast from "react-hot-toast";
 
-export const AddMemberModal = ({ showModal, handleClose }) => {
+export const AddMemberModal = ({ showModal, handleClose, setFetchTrigger }) => {
   const [memberData, setMemberData] = useState({
     name: "",
     email: "",
@@ -25,6 +26,7 @@ export const AddMemberModal = ({ showModal, handleClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const data = { ...memberData, createdBy };
 
     try {
@@ -32,15 +34,30 @@ export const AddMemberModal = ({ showModal, handleClose }) => {
       const response = await axios.post(`${url}/explore/add-member`, data);
 
       if (response.data.success) {
-        alert("Member added successfully!");
-        setMemberData({ name: "", email: "", role: "member" });
-        handleClose(); // Close the modal on success
+        toast.success(response.data.message);
+        setMemberData({ name: "", email: "", role: "member" }); // Reset the form fields
+        setFetchTrigger((prev) => !prev); // Trigger re-fetch of members
+        handleClose(); // Close the modal
       } else {
-        alert("Error: " + response.data.message);
+        toast.error("Error: " + response.data.message);
       }
     } catch (error) {
       console.error("Error adding member:", error);
-      alert("Error adding member");
+
+      if (error.response && error.response.data) {
+        const errorMessage = error.response.data.message;
+
+        if (
+          errorMessage ===
+          "Cannot create a new member with the super admin's name and email."
+        ) {
+          toast.error(errorMessage);
+        } else {
+          toast.error(errorMessage);
+        }
+      } else {
+        toast.error("An unexpected error occurred.");
+      }
     }
   };
 
