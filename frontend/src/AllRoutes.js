@@ -27,9 +27,6 @@ import { Users } from "./Components/Explore/Users/Users";
 import { IntegrationCanvas } from "./Components/Connections/Webhook/IntegrationCanvas";
 import { Summary } from "./Components/Summary/Summary";
 import { UserDetails } from "./Components/Explore/Users/UserDetails/UserDetails";
-import { useCustomFetch } from "./customsHooks/useCustomFetch";
-import { getUser } from "./storageUtils/storageUtils";
-import { url } from "./api";
 
 export const AllRoutes = () => {
   const [role, setRole] = useState(null);
@@ -49,7 +46,7 @@ export const AllRoutes = () => {
     }
   }, [navigate]);
 
-  console.log("role", typeof role);
+  console.log("role", role);
 
   return (
     <div>

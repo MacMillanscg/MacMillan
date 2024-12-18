@@ -84,13 +84,14 @@ exports.getAllMembers = async (req, res) => {
   const { createdBy } = req.params;
 
   try {
-    const newMembers = await NewMember.find({ createdBy });
+    // const newMembers = await NewMember.find({ createdBy });
+    const newMembers = await NewMember.find();
 
     if (newMembers.length === 0) {
       return res.status(200).json({
         success: true,
         message: "No new members found.",
-        newMembers: [], // Return an empty array
+        // newMembers: [], // Return an empty array
       });
     }
     res.status(200).json({
