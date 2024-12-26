@@ -1,5 +1,5 @@
 import axios from "axios";
-import { url } from "./restApis";
+import { url } from "../../api";
 
 export const FETCH_CLIENTS_REQUEST = "FETCH_CLIENTS_REQUEST";
 export const FETCH_CLIENTS_SUCCESS = "FETCH_CLIENTS_SUCCESS";

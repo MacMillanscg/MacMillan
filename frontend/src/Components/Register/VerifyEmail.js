@@ -11,9 +11,7 @@ export const VerifyEmail = () => {
   useEffect(() => {
     const verifyToken = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:5000/auth/verify/${token}`
-        );
+        const response = await axios.get(`${url}/auth/verify/${token}`);
         if (response.data.success) {
           setVerificationStatus("success");
           toast.success(response.data.message);

@@ -66,7 +66,7 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
         principal: username,
         credential: password,
       });
-      console.log(response);
+      console.log("eshipper reponse", response);
       if (response.data.token) {
         toast.success("Credentials verified successfully!");
       }
@@ -98,6 +98,7 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
         `${url}/clients/addclients/${clientId}/addEShipper`,
         eShipper
       );
+      setFetchTrigger((prev) => !prev);
       toast.success("New integration created successfully!");
 
       closeModal();

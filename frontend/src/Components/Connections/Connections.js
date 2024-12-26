@@ -18,6 +18,7 @@ import axios from "axios";
 import { url } from "../../api";
 import toast from "react-hot-toast";
 import { FilterPopup } from "./Popups/FilterPopup/FilterPopup";
+import { Spinner } from "../Spinner/Spinner";
 
 export const Connections = () => {
   const { dashboardWidth } = useAppContext();
@@ -167,6 +168,7 @@ export const Connections = () => {
         </div>
       </div>
       <div className={styles.cardSection}>
+        <Spinner isLoading={loading} message="Loading data, please wait..." />
         {filteredConnections &&
           filteredConnections.map((connection, index) => {
             // Find the latest version

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { url } from "./restApis";
+import { url } from "../../api";
 
 export const VERIFY_ESHIPPER_CREDENTIALS = "VERIFY_ESHIPPER_CREDENTIALS";
 export const VERIFY_ESHIPPER_CREDENTIALS_SUCCESS =

@@ -37,12 +37,20 @@ export const AllRoutes = () => {
     const userRole =
       JSON.parse(localStorage.getItem("rememberMe")) ||
       JSON.parse(sessionStorage.getItem("userRecord"));
+
     console.log("userRole", userRole);
+
     if (userRole) {
       setRole(userRole.role);
     } else {
-      // Redirect to login if no role is found
-      navigate("/login");
+      // Allow access to public routes (e.g., /register, /login)
+      const publicPaths = ["/register", "/login", "/forgot-password"];
+      const currentPath = window.location.pathname;
+
+      if (!publicPaths.includes(currentPath)) {
+        console.log("Redirecting to login page");
+        navigate("/login");
+      }
     }
   }, [navigate]);
 

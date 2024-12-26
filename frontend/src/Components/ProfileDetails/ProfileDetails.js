@@ -47,7 +47,7 @@ export const ProfileDetails = () => {
     fetchSingleProfile();
   }, []);
 
-  const userImageUrl = `http://localhost:5000/${userProfile?.profileImage}`;
+  const userImageUrl = `${url}/${userProfile?.profileImage}`;
 
   const handleFileChange = (e) => {
     setSelectedFile(e.target.files[0]);

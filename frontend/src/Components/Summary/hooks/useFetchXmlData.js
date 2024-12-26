@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { url } from "../../../api";
 
 export const useFetchXmlData = () => {
   const [xmlData, setXmlData] = useState([]);
@@ -11,9 +12,7 @@ export const useFetchXmlData = () => {
   useEffect(() => {
     const fetchShipments = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:5000/summary/getShipmentsId"
-        );
+        const response = await axios.get(`${url}/summary/getShipmentsId`);
         console.log("response", response);
         setShipmentsId(response.data.shipmentsId); // Save the shipment data to state
         setLoading(false);
@@ -30,9 +29,7 @@ export const useFetchXmlData = () => {
   useEffect(() => {
     const fetchXmlData = async () => {
       try {
-        const response = await axios(
-          "http://localhost:5000/summary/convert-xml"
-        );
+        const response = await axios(`${url}/summary/convert-xml`);
         const files = response.data.files; // assuming `files` is an array
 
         console.log("Converted XML to JSON:", files);

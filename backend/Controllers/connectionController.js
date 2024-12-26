@@ -6,10 +6,6 @@ const logger = require("../logger");
 exports.getAllConnections = async (req, res) => {
   try {
     const connections = await Connection.find();
-
-    // logger.info("Fetched all connections successfully", {
-    //   count: connections.length,
-    // });
     res.status(200).json(connections);
   } catch (error) {
     // logger.error("Error fetching connections", { error: error.message });

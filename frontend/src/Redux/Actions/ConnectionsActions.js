@@ -1,6 +1,6 @@
 import axios from "axios";
-import { url } from "./restApis";
 import { getUser } from "../../storageUtils/storageUtils";
+import { url } from "../../api";
 
 export const FETCH_CONNECTIONS_REQUEST = "FETCH_CONNECTIONS_REQUEST";
 export const FETCH_CONNECTIONS_SUCCESS = "FETCH_CONNECTIONS_SUCCESS";

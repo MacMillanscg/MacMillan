@@ -87,7 +87,7 @@ export const AddnewSteps = ({
       // Send dataToStore to the server
       if (seletedEditStepId) {
         await axios.put(
-          `http://localhost:5000/connections/${id}/${selectedStepId}`,
+          `${url}/connections/${id}/${selectedStepId}`,
           dataToStore
         );
         const updatedStep = connectionsSteps.find((step) => {

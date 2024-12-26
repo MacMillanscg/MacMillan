@@ -24,6 +24,8 @@ import { PDFDocument, rgb } from "pdf-lib";
 import { ExportModal } from "./ExportModal/ExportModal";
 import { ConfirmCancelPopUp } from "../Common/ConfirmCancelPopUp/ConfirmCancelPopUp";
 import { useFetchXmlData } from "./hooks/useFetchXmlData";
+import { Spinner } from "../Spinner/Spinner";
+import { fetchConnections } from "../../Redux/Actions/ConnectionsActions";
 
 export const Summary = () => {
   const { dashboardWidth } = useAppContext();
@@ -50,6 +52,7 @@ export const Summary = () => {
   const [itemsPerPage, setItemsPerPage] = useState(20);
   const [loading, setLoading] = useState(true);
   const [allShipmentData, setAllShipmentData] = useState([]);
+  const [connectionId, setConnectionId] = useState(null);
   const initialColumns = [
     { name: "", key: "select", visible: true },
     { name: "Order Number", key: "orderNumber", visible: true },
@@ -72,13 +75,33 @@ export const Summary = () => {
     { name: "Downloaded", key: "downloaded", visible: true },
   ];
   const [columns, setColumns] = useState(initialColumns);
+  const { connections, error } = useSelector((state) => state.connections);
   const dispatch = useDispatch();
+  console.log("connectinos", connections);
+
+  const eShipperUsername = process.env.REACT_APP_ESHIPPER_USERNAME;
+  const eShipperPassword = process.env.REACT_APP_ESHIPPER_PASSWORD;
 
   const { xmlData, formattedData, shipmentsId, setShipmentsId } =
     useFetchXmlData();
 
   let userId = getUser();
   userId = userId?._id;
+
+  useEffect(() => {
+    const fetchAllConncections = async () => {
+      try {
+        const response = await axios.get(`${url}/summary`);
+        if (response.data) {
+          setConnectionId(response?.data[0]._id);
+          console.log("response", response?.data[0]._id);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchAllConncections();
+  }, [connectionId]);
 
   useEffect(() => {
     const fetchAllClients = async () => {
@@ -95,6 +118,7 @@ export const Summary = () => {
       }
     };
     fetchAllClients();
+    fetchConnections();
   }, [userId]);
   // console.log("clients", clients);
 
@@ -238,12 +262,15 @@ export const Summary = () => {
     }
     setSelectedRows(updatedSelection);
   };
+  console.log("connecitonid", connectionId);
 
   const fetchShopifyOrders = async () => {
+    if (!connectionId) return;
     try {
       const response = await axios.get(
-        `http://localhost:5000/connections/67053d4b8a2309ab8db347d7/api/orders`
+        `${url}/connections/${connectionId}/api/orders`
       );
+      console.log("testing");
       const orders = response.data.orders;
 
       const ordersWithPhone = orders.map((order) => {
@@ -265,7 +292,7 @@ export const Summary = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       fetchShopifyOrders();
-    }, 3000);
+    }, 4000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -294,10 +321,7 @@ export const Summary = () => {
       };
 
       // Send request to backend
-      const response = await axios.put(
-        "http://localhost:5000/summary/create-shipment",
-        data
-      );
+      const response = await axios.put(`${url}/summary/create-shipment`, data);
 
       // Handle success and failed responses from backend
       console.log("eShipper Response:", response.data?.successResponses[0]);
@@ -319,9 +343,7 @@ export const Summary = () => {
 
   const fetchShipmentDetails = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:5000/summary/getShipments"
-      );
+      const response = await axios.get(`${url}/summary/getShipments`);
 
       console.log("Shipment Details:", response.data.shipments);
       setShipmentData(response.data.shipments);
@@ -374,7 +396,7 @@ export const Summary = () => {
   // console.log("filterclients", filteredClients);
 
   const handleEShipperClick = () => {
-    dispatch(verifyEShipperCredentials("Macmillan_sandbox", "Macmillan@123"));
+    dispatch(verifyEShipperCredentials(eShipperUsername, eShipperPassword));
   };
 
   useEffect(() => {
@@ -597,12 +619,7 @@ export const Summary = () => {
       </div>
 
       <div className={styles.tableContainer}>
-        {loading && (
-          <div className={styles.overlay}>
-            <div className={styles.spinner}></div>
-            <p className={styles.loadingText}>Loading data, please wait...</p>
-          </div>
-        )}
+        <Spinner isLoading={loading} message="Loading data, please wait..." />
         <table className={`${styles.table} mt-4`}>
           <thead>
             <tr>
