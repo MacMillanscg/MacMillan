@@ -191,7 +191,7 @@ export const Connections = () => {
                   <div className="card-body">
                     <div className={styles.cardTop}>
                       <h3 className={styles.cardTitle}>
-                        {connection?.shopifyDetails?.shopifyTitle}
+                      {connection.connectionName}
                       </h3>
                       <div className={styles.EditDeleteShow}>
                         <FontAwesomeIcon
@@ -220,7 +220,7 @@ export const Connections = () => {
                       {connection.client.clientName}
                     </h4>
                     <h4 className="fs-5 m-0 mb-2">
-                      {connection.connectionName}
+                    {connection?.shopifyDetails?.shopifyTitle}
                     </h4>
                     <div className="category">
                       <ul className={styles.list}>
