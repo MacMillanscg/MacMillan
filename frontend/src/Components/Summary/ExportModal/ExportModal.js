@@ -1,26 +1,24 @@
 import React, { useState } from "react";
 import styles from "./ExportModal.module.css";
 import csvImage from "../../../assets/images/csvImage.png";
-import xlsImage from "../../../assets/images/xlsImage.png";
-import * as XLSX from "xlsx";
+import xmlImage from "../../../assets/images/xmlimg.PNG";
 
-export const ExportModal = ({ onClose, selectedRows, filteredClients }) => {
+export const ExportModal = ({ onClose, result }) => {
   const [selectedFormat, setSelectedFormat] = useState(null); // Track selected format
-
-  const filteredData = filteredClients
-    .filter((client, index) => selectedRows.includes(index))
-    .map(({ label, ...rest }) => ({
-      ...rest,
-    }));
 
   // Function to convert data to CSV format and trigger download
   const handleCSVExport = () => {
+    if (!result || !Array.isArray(result) || result.length === 0) {
+      console.error("Invalid or empty result data for CSV export.");
+      return;
+    }
+
     const csvRows = [];
-    const headers = Object.keys(filteredData[0]); // Get headers
+    const headers = Object.keys(result[0]); // Get headers from the first object
     csvRows.push(headers.join(",")); // Add headers row
 
-    filteredData.forEach((row) => {
-      const values = headers.map((header) => row[header]);
+    result.forEach((row) => {
+      const values = headers.map((header) => row[header] !== undefined ? row[header].toString() : ""); // Handle undefined values
       csvRows.push(values.join(","));
     });
 
@@ -34,20 +32,73 @@ export const ExportModal = ({ onClose, selectedRows, filteredClients }) => {
     window.URL.revokeObjectURL(url);
   };
 
-  // Function to export data as XLS using the xlsx package
-  const handleXLSExport = () => {
-    const worksheet = XLSX.utils.json_to_sheet(filteredData);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Data");
-    XLSX.writeFile(workbook, "data.xlsx");
+  // Function to export data as XML
+  const handleXMLExport = async () => {
+    if (!result || !Array.isArray(result) || result.length === 0) {
+      console.error("Invalid or empty result data for XML export.");
+      return;
+    }
+  
+    const escapeXML = (str) => {
+      if (typeof str !== "string") return str;
+      return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&apos;");
+    };
+  
+    result.forEach(async (item) => {
+      let xmlContent = '<?xml version="1.0" encoding="UTF-8"?>\n<Shipments>\n';
+      xmlContent += `  <Shipment>\n`;
+  
+      for (const key in item) {
+        const value = escapeXML(item[key]?.toString() || "");
+        xmlContent += `    <${key}>${value}</${key}>\n`;
+      }
+  
+      xmlContent += `  </Shipment>\n`;
+      xmlContent += `</Shipments>`;
+  
+      const fileName = ` Shipemet_${item.shipmentId || "shipment"}.xml`;
+  
+      try {
+        // Request a file handle
+        const handle = await window.showSaveFilePicker({
+          suggestedName: fileName,
+          types: [
+            {
+              description: "XML Files",
+              accept: { "application/xml": [".xml"] },
+            },
+          ],
+        });
+  
+        // Create a writable stream
+        const writable = await handle.createWritable();
+  
+        // Write the content to the file
+        await writable.write(xmlContent);
+  
+        // Close the stream
+        await writable.close();
+  
+        console.log(`File ${fileName} saved successfully.`);
+      } catch (error) {
+        console.error(`File save for ${fileName} canceled or failed.`, error);
+      }
+    });
   };
+  
+  
 
   // Handle export button click
   const handleExportClick = () => {
     if (selectedFormat === "CSV") {
       handleCSVExport();
-    } else if (selectedFormat === "XLS") {
-      handleXLSExport();
+    } else if (selectedFormat === "XML") {
+      handleXMLExport();
     }
   };
 
@@ -66,11 +117,11 @@ export const ExportModal = ({ onClose, selectedRows, filteredClients }) => {
           </div>
           <div
             className={`${styles.exportOption} ${
-              selectedFormat === "XLS" ? styles.selected : ""
+              selectedFormat === "XML" ? styles.selected : ""
             }`}
-            onClick={() => setSelectedFormat("XLS")}
+            onClick={() => setSelectedFormat("XML")}
           >
-            <img src={xlsImage} alt="XLS" />
+            <img src={xmlImage} alt="XML" />
           </div>
         </div>
         <div className={styles.exportButtons}>

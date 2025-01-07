@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { PDFDocument, rgb } from "pdf-lib"; // Import pdf-lib for PDF modification
 import styles from "./PrintModal.module.css";
 
-export const PrintModal = ({ onclose, selectedRows, filteredClients }) => {
+export const PrintModal = ({ onclose, selectedRows, filteredClients , result }) => {
   const [isShippingLabelChecked, setIsShippingLabelChecked] = useState(false);
 
   const popupRef = useRef(null);

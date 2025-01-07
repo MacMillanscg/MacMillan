@@ -4,6 +4,7 @@ const fs = require("fs").promises; // Use the promise-based version of fs
 const path = require("path");
 const xml2js = require("xml2js");
 const Shipment = require("../Schema/ShipmentSchema");
+const os = require("os");
 
 exports.verifyEShipperCredential = async (req, res) => {
   const { url, principal, credential } = req.body;
@@ -53,12 +54,16 @@ exports.shofipyOrders = async (req, res) => {
   }
 };
 
-const DOWNLOAD_FOLDER = "C:\\Users\\Laptop Valley\\Downloads";
+// const DOWNLOAD_FOLDER = "C:\\Users\\Laptop Valley\\Downloads";
 
 exports.convertXmlFilesToJson = async (req, res) => {
   try {
     // Read all files in the Downloads folder
+    const homeDir = os.homedir();
+    const DOWNLOAD_FOLDER = path.join(homeDir, "Downloads");
+    
     const files = await fs.readdir(DOWNLOAD_FOLDER);
+    console.log("files" , files)
 
     // Filter only XML files
     const xmlFiles = files.filter((file) => file.endsWith(".xml"));
@@ -117,7 +122,7 @@ exports.sendDataToEShipper = async (req, res) => {
     );
 
     // console.log("token", token);
-    const eshipperApiUrl = "https://uu2.eshipper.com/api/v2/ship";
+    const eshipperApiUrl = "https://ww2.eshipper.com/api/v2/ship";
 
     // Make the PUT request to the eShipper API
     const response = await axios.put(eshipperApiUrl, firstIndexData, {
@@ -172,8 +177,8 @@ exports.getShipmentDetails = async (req, res) => {
       (shipment) => shipment.shopifyOrderId
     ); // Fetch shopifyOrderId
 
-    const eshipperUsername = "Macmillan_sandbox";
-    const eshipperPassword = "Macmillan@123";
+    const eshipperUsername = "macmillan";
+    const eshipperPassword = "Apple@2024";
 
     // Create the basic auth header
     const authHeader =
@@ -184,7 +189,7 @@ exports.getShipmentDetails = async (req, res) => {
     const shipmentDetails = await Promise.all(
       shipmentIds.map(async (shipmentId, index) => {
         // Fetch shipment details
-        const shipmentApiUrl = `https://uu2.eshipper.com/api/v2/ship/${shipmentId}`;
+        const shipmentApiUrl = `https://ww2.eshipper.com/api/v2/ship/${shipmentId}`;
         const shipmentResponse = await axios.get(shipmentApiUrl, {
           headers: {
             Authorization: authHeader,
@@ -193,7 +198,7 @@ exports.getShipmentDetails = async (req, res) => {
         });
 
         // Fetch tracking details
-        const trackingApiUrl = `https://uu2.eshipper.com/api/v2/track/${shipmentId}`;
+        const trackingApiUrl = `https://ww2.eshipper.com/api/v2/track/${shipmentId}`;
         const trackingResponse = await axios.get(trackingApiUrl, {
           headers: {
             Authorization: authHeader,

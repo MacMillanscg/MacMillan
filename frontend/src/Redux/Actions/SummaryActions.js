@@ -26,7 +26,7 @@ export const verifyEShipperCredentials = (principal, credential) => {
     dispatch(fetchEshipperRequest());
     try {
       const response = await axios.post(`${url}/summary/verify-eshipper`, {
-        url: "https://uu2.eshipper.com/api/v2/authenticate",
+        url: "https://ww2.eshipper.com/api/v2/authenticate",
         principal,
         credential,
       });

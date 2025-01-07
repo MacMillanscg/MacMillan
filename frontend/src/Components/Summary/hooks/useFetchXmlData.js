@@ -103,8 +103,8 @@ export const useFetchXmlData = () => {
             pickup: {
               contactName: data?.Header[0]?.contactName[0],
               phoneNumber: data?.Header[0]?.phoneNumber[0],
-              // pickupDate: data?.Header[0]?.pickupDate[0],
-              pickupDate: "2024-10-31",
+              pickupDate: data?.Header[0]?.pickupDate[0],
+              // pickupDate: "2024-10-31",
               pickupTime: data?.Header[0]?.pickupTime[0] || "",
               closingTime: data?.Header[0]?.closingTime[0] || "",
               location: data?.Header[0]?.location[0] || "",
