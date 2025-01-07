@@ -18,6 +18,7 @@ import { FilterPopup } from "./ClientDetails/FilterPopup/FilterPopup";
 import { useDispatch } from "react-redux";
 import { fetchClients } from "../../Redux/Actions/ClientsActions";
 import { ConfirmCancelPopUp } from "../Common/ConfirmCancelPopUp/ConfirmCancelPopUp";
+import { Spinner } from "../Spinner/Spinner";
 
 export const ClientsCom = () => {
   const { dashboardWidth } = useAppContext();
@@ -29,6 +30,8 @@ export const ClientsCom = () => {
   const [searchTerm, setSearchTerm] = useState(""); // State for search term
   const [showdeleteModal, setShowDeleteModal] = useState(false);
   const [clientToDelete, setClientToDelete] = useState(null);
+  const [loading, setLoading] = useState(false);
+
   const dispatch = useDispatch();
 
   const applyFilters = ({ clientName, email }) => {
@@ -64,14 +67,17 @@ export const ClientsCom = () => {
   useEffect(() => {
     const fetchAllClients = async () => {
       try {
+        setLoading(true); // Start loading
         const response = await axios.get(`${url}/clients`);
         const updatedData = response.data;
         const userClients = updatedData.filter(
           (user) => user.userId === userId
         );
         setClients(userClients);
+        setLoading(false); // End loading
       } catch (error) {
         console.log(error);
+        setLoading(false); // End loading even on error
       }
     };
     fetchAllClients();
@@ -176,7 +182,13 @@ export const ClientsCom = () => {
         </div>
       </div>
       <div className={styles.cardSection}>
-        {filteredClients &&
+        {loading ? (
+          <Spinner
+            isLoading={loading}
+            message="Loading clients, please wait..."
+          />
+        ) : (
+          filteredClients &&
           filteredClients.map((client) => (
             <Link
               to={`/addclients/${client._id}`}
@@ -203,8 +215,8 @@ export const ClientsCom = () => {
                           icon={faTrash}
                           className={styles.deleteIcon}
                           onClick={(e) => {
-                            e.preventDefault(); // Prevent navigation
-                            handleDeletModal(client._id); // Show the delete modal
+                            e.preventDefault();
+                            handleDeletModal(client._id);
                           }}
                         />
                       </div>
@@ -212,21 +224,20 @@ export const ClientsCom = () => {
                   </div>
                   <h4 className={styles.heading4}>{client.email}</h4>
                   <h4 className={styles.heading4}>{client.phone}</h4>
-
                   <div>
                     <span
                       className={
-                        client.isActive
-                          ? styles.activeDot // Green dot
-                          : styles.inactiveDot // Red dot
+                        client.isActive ? styles.activeDot : styles.inactiveDot
                       }
                     ></span>
                   </div>
                 </div>
               </div>
             </Link>
-          ))}
+          ))
+        )}
       </div>
+
       {isModalOpen && (
         <AddClients closeModal={closeModal} setFetchTrigger={setFetchTrigger} />
       )}

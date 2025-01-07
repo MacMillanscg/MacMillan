@@ -3,6 +3,7 @@ import logo from "../../assets/images/logo.jpg";
 import styles from "./Support.module.css";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { url } from "../../api";
 
 export const Support = () => {
   const [name, setName] = useState("");
@@ -39,14 +40,11 @@ export const Support = () => {
     }
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/supports/support",
-        {
-          name,
-          email,
-          message,
-        }
-      );
+      const response = await axios.post(`${url}/supports/support`, {
+        name,
+        email,
+        message,
+      });
       console.log("res", response);
       if (response.status === 200) {
         toast.success(

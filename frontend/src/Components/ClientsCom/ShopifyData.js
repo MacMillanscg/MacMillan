@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { url } from "../../api";
 
 export const ShopifyData = () => {
   const [shopData, setShopData] = useState(null);
@@ -9,7 +10,7 @@ export const ShopifyData = () => {
   useEffect(() => {
     const fetchShopData = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/shopify");
+        const response = await axios.get(`${url}/shopify`);
         setShopData(response.data);
         setLoading(false);
       } catch (error) {

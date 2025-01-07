@@ -18,6 +18,7 @@ import axios from "axios";
 import { url } from "../../api";
 import toast from "react-hot-toast";
 import { FilterPopup } from "./Popups/FilterPopup/FilterPopup";
+import { Spinner } from "../Spinner/Spinner";
 
 export const Connections = () => {
   const { dashboardWidth } = useAppContext();
@@ -167,6 +168,7 @@ export const Connections = () => {
         </div>
       </div>
       <div className={styles.cardSection}>
+        <Spinner isLoading={loading} message="Loading data, please wait..." />
         {filteredConnections &&
           filteredConnections.map((connection, index) => {
             // Find the latest version
@@ -189,7 +191,7 @@ export const Connections = () => {
                   <div className="card-body">
                     <div className={styles.cardTop}>
                       <h3 className={styles.cardTitle}>
-                        {connection?.shopifyDetails?.shopifyTitle}
+                      {connection.connectionName}
                       </h3>
                       <div className={styles.EditDeleteShow}>
                         <FontAwesomeIcon
@@ -218,7 +220,7 @@ export const Connections = () => {
                       {connection.client.clientName}
                     </h4>
                     <h4 className="fs-5 m-0 mb-2">
-                      {connection.connectionName}
+                    {connection?.shopifyDetails?.shopifyTitle}
                     </h4>
                     <div className="category">
                       <ul className={styles.list}>

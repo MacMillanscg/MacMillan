@@ -119,3 +119,10 @@
 .addButton:hover {
   opacity: 0.8;
 }
+.eyeIcon{
+  margin-right: 16px;
+  color: gray;
+  font-size: 12px;
+  top: 35px !important;
+  right: 0;
+}

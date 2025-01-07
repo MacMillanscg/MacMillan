@@ -24,6 +24,10 @@ import { PDFDocument, rgb } from "pdf-lib";
 import { ExportModal } from "./ExportModal/ExportModal";
 import { ConfirmCancelPopUp } from "../Common/ConfirmCancelPopUp/ConfirmCancelPopUp";
 import { useFetchXmlData } from "./hooks/useFetchXmlData";
+import { Spinner } from "../Spinner/Spinner";
+import { fetchConnections } from "../../Redux/Actions/ConnectionsActions";
+// import { eShipperUsername } from "../../api";
+// import { eShipperPassword } from "../../api";
 
 export const Summary = () => {
   const { dashboardWidth } = useAppContext();
@@ -50,6 +54,7 @@ export const Summary = () => {
   const [itemsPerPage, setItemsPerPage] = useState(20);
   const [loading, setLoading] = useState(true);
   const [allShipmentData, setAllShipmentData] = useState([]);
+  const [connectionId, setConnectionId] = useState("23523452523452");
   const initialColumns = [
     { name: "", key: "select", visible: true },
     { name: "Order Number", key: "orderNumber", visible: true },
@@ -72,13 +77,37 @@ export const Summary = () => {
     { name: "Downloaded", key: "downloaded", visible: true },
   ];
   const [columns, setColumns] = useState(initialColumns);
+  const { connections, error } = useSelector((state) => state.connections);
   const dispatch = useDispatch();
+  console.log("connectinos", connections);
+  const abc = "asdfkjasdkj";
+
+  const eShipperUsername = process.env.REACT_APP_ESHIPPER_USERNAME;
+  const eShipperPassword = process.env.REACT_APP_ESHIPPER_PASSWORD;
+  console.log("eShipperUsername" , eShipperUsername)
+  console.log("eShipperPassword" , eShipperPassword)
 
   const { xmlData, formattedData, shipmentsId, setShipmentsId } =
     useFetchXmlData();
 
   let userId = getUser();
   userId = userId?._id;
+
+  useEffect(() => {
+    const fetchAllConncections = async () => {
+      try {
+        const response = await axios.get(`${url}/summary`);
+        if (response.data) {
+          // setConnectionId(response?.data[0]?._id);
+          // console.log("response", response?.data[0]?._id);
+          console.log("testing")
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchAllConncections();
+  }, [connectionId]);
 
   useEffect(() => {
     const fetchAllClients = async () => {
@@ -95,6 +124,7 @@ export const Summary = () => {
       }
     };
     fetchAllClients();
+    fetchConnections();
   }, [userId]);
   // console.log("clients", clients);
 
@@ -225,25 +255,16 @@ export const Summary = () => {
     }
   };
 
-  const handleRowSelect = (e, rowIndex) => {
-    // console.log("reowindex", rowIndex);
-    const updatedSelection = [...selectedRows];
-    if (e.target.checked) {
-      updatedSelection.push(rowIndex);
-    } else {
-      const index = updatedSelection.indexOf(rowIndex);
-      if (index > -1) {
-        updatedSelection.splice(index, 1);
-      }
-    }
-    setSelectedRows(updatedSelection);
-  };
+
+  console.log("connecitonid", connectionId);
 
   const fetchShopifyOrders = async () => {
+    if (!connectionId) return;
     try {
       const response = await axios.get(
-        `http://localhost:5000/connections/67053d4b8a2309ab8db347d7/api/orders`
+        `${url}/connections/${connectionId}/api/orders`
       );
+      console.log("testing");
       const orders = response.data.orders;
 
       const ordersWithPhone = orders.map((order) => {
@@ -265,7 +286,7 @@ export const Summary = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       fetchShopifyOrders();
-    }, 3000);
+    }, 4000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -294,10 +315,7 @@ export const Summary = () => {
       };
 
       // Send request to backend
-      const response = await axios.put(
-        "http://localhost:5000/summary/create-shipment",
-        data
-      );
+      const response = await axios.put(`${url}/summary/create-shipment`, data);
 
       // Handle success and failed responses from backend
       console.log("eShipper Response:", response.data?.successResponses[0]);
@@ -319,9 +337,7 @@ export const Summary = () => {
 
   const fetchShipmentDetails = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:5000/summary/getShipments"
-      );
+      const response = await axios.get(`${url}/summary/getShipments`);
 
       console.log("Shipment Details:", response.data.shipments);
       setShipmentData(response.data.shipments);
@@ -374,79 +390,164 @@ export const Summary = () => {
   // console.log("filterclients", filteredClients);
 
   const handleEShipperClick = () => {
-    dispatch(verifyEShipperCredentials("Macmillan_sandbox", "Macmillan@123"));
+    dispatch(verifyEShipperCredentials(eShipperUsername, eShipperPassword));
   };
 
   useEffect(() => {
     handleEShipperClick();
   }, []);
 
-  const decodeBase64 = (base64String) => {
+  const decodeBase64 = (base64String, fileType = "application/octet-stream") => {
     try {
-      const binaryString = atob(base64String);
+      const binaryString = atob(base64String.replace(/\s/g, ""));
       const binaryLen = binaryString.length;
       const bytes = new Uint8Array(binaryLen);
       for (let i = 0; i < binaryLen; i++) {
         bytes[i] = binaryString.charCodeAt(i);
       }
-      return new Blob([bytes], { type: "application/pdf" });
+      return new Blob([bytes], { type: fileType });
     } catch (error) {
       console.error("Failed to decode Base64 string:", error);
       return null;
     }
   };
-
-  const handleDownloadClick = async (rowIndex, base64Data) => {
-    const trackingNumber = 123456789012;
-    if (base64Data) {
-      const blob = decodeBase64(base64Data);
-
-      const arrayBuffer = await blob.arrayBuffer();
-
-      const pdfDoc = await PDFDocument.load(arrayBuffer);
-
-      const pages = pdfDoc.getPages();
-      const firstPage = pages[0];
-      const { width, height } = firstPage.getSize();
-      const x = width / 3 - 90;
-      const y = height / 3.3;
-      const textWidth = 180;
-      const textHeight = 16;
-
-      firstPage.drawRectangle({
-        x: x - 2,
-        y: y - 2,
-        width: textWidth,
-        height: textHeight,
-        color: rgb(1, 1, 1),
-        // borderColor: rgb(0, 0, 0),
-      });
-
-      firstPage.drawText(`Tracking Number: ${trackingNumber}`, {
-        x,
-        y,
-        size: 10,
-        color: rgb(0, 0, 0),
-      });
-      const pdfBytes = await pdfDoc.save();
+  
+  const handleDownloadClick = async (rowIndex, base64Data, trackingNumber) => {
+    try {
+      // Validate base64 data
+      if (!base64Data || typeof base64Data !== "string") {
+        throw new Error("Invalid base64 data");
+      }
+  
+      let pdfBytes;
+    // Use trackingNumber or a fallback name
+  
+      if (base64Data.startsWith("JVBERi0")) {
+        // Handle PDF data
+        const blob = decodeBase64(base64Data, "application/pdf");
+  
+        if (!blob) {
+          throw new Error("Failed to decode Base64 string");
+        }
+  
+        const arrayBuffer = await blob.arrayBuffer();
+        const pdfDoc = await PDFDocument.load(arrayBuffer);
+  
+        // Save the unmodified PDF
+        pdfBytes = await pdfDoc.save();
+      } else if (base64Data.startsWith("iVBORw0KGgoAAAANSU")) {
+        // Handle PNG image data and embed it in a PDF
+        const blob = decodeBase64(base64Data, "image/png");
+  
+        if (!blob) {
+          throw new Error("Failed to decode Base64 string");
+        }
+  
+        const arrayBuffer = await blob.arrayBuffer();
+        const pdfDoc = await PDFDocument.create();
+        const pngImage = await pdfDoc.embedPng(new Uint8Array(arrayBuffer));
+  
+        const page = pdfDoc.addPage([pngImage.width, pngImage.height]);
+        page.drawImage(pngImage, {
+          x: 0,
+          y: 0,
+          width: pngImage.width,
+          height: pngImage.height,
+        });
+  
+        pdfBytes = await pdfDoc.save();
+      } else {
+        throw new Error("Unsupported file type or invalid base64 data");
+      }
+  
+      // Create a Blob and trigger download
       const modifiedBlob = new Blob([pdfBytes], { type: "application/pdf" });
       const url = URL.createObjectURL(modifiedBlob);
       const link = document.createElement("a");
       link.href = url;
-      link.download = `label_${trackingNumber}.pdf`;
+      link.download = `Label_${trackingNumber}.pdf`; // Use trackingNumber as filename
       link.click();
       URL.revokeObjectURL(url);
-      const updatedData = [...data];
-      updatedData[rowIndex].downloaded = true;
-      setData(updatedData);
+  
+      // Safely update the data array
+      if (Array.isArray(data) && data[rowIndex]) {
+        const updatedData = [...data];
+        updatedData[rowIndex] = {
+          ...updatedData[rowIndex],
+          downloaded: true,
+        };
+        setData(updatedData);
+      } else {
+        console.warn(`Row at index ${rowIndex} does not exist in the data array.`);
+      }
+    } catch (error) {
+      console.error("Error processing file:", error);
+      alert("Failed to process the file. Please try again.");
     }
   };
-
+  
   const handleSelectAll = (e) => {
     const checked = e.target.checked;
-    const updatedSelection = checked ? orders.map((_, index) => index) : [];
+  
+    if (checked) {
+      const allRows = [
+        ...(currentOrders || []),
+        ...allShipmentData.filter(
+          (shipment) =>
+            !currentOrders?.some((order) => order.id.toString() === shipment.shopifyOrderId)
+        ),
+      ];
+      setSelectedRows(allRows); // Store all rows when "select all" is checked
+    } else {
+      setSelectedRows([]); // Clear selection when "select all" is unchecked
+    }
+  };
+  
+  const handleRowSelect = (e, rowIndex, rowData, scheduledDate) => {
+    const checked = e.target.checked;
+    const updatedSelection = [...selectedRows];
+  
+    if (checked) {
+      // Add the row data and scheduledDate to the selected rows
+      updatedSelection.push({
+        rowData,
+        scheduledDate,
+      });
+    } else {
+      // Remove the row data from the selected rows
+      const indexToRemove = updatedSelection.findIndex(
+        (selected) => selected.rowData === rowData
+      );
+      if (indexToRemove > -1) {
+        updatedSelection.splice(indexToRemove, 1);
+      }
+    }
     setSelectedRows(updatedSelection);
   };
+  
+
+  console.log("slectedRow" , selectedRows)
+
+  const extractFields = (data) => {
+    return data.map(item => ({
+        carrier: item.rowData.carrier,
+        shipmentId: item.rowData.shipmentId,
+        trackingNumber: item.rowData.trackingNumber,
+        trackingUrl: item.rowData.trackingUrl,
+        reference: item.rowData.reference,
+        reference2: item.rowData.reference2,
+        reference3: item.rowData.reference3,
+        shopifyOrderId: item.rowData.shopifyOrderId,
+        dimensions: item.rowData.dimentions, // Correct spelling as "dimensions"
+        weight: item.rowData.weight,
+        attention: item.scheduledDate.from.attention,
+        address1: item.scheduledDate.from.address1,
+    }));
+};
+
+const result = extractFields(selectedRows);
+console.log("resutl" ,result);
+  
 
   const handleReset = () => {
     setShowDialog(true);
@@ -589,6 +690,7 @@ export const Summary = () => {
                   onClose={handleCloseExportModal}
                   selectedRows={selectedRows}
                   filteredClients={filteredClients}
+                  result={result}
                 />
               )}
             </div>
@@ -597,152 +699,154 @@ export const Summary = () => {
       </div>
 
       <div className={styles.tableContainer}>
-        {loading && (
-          <div className={styles.overlay}>
-            <div className={styles.spinner}></div>
-            <p className={styles.loadingText}>Loading data, please wait...</p>
-          </div>
-        )}
+        <Spinner isLoading={loading} message="Loading data, please wait..." />
         <table className={`${styles.table} mt-4`}>
-          <thead>
-            <tr>
-              <th>
-                <input
-                  type="checkbox"
-                  checked={selectedRows.length === orders.length}
-                  onChange={(e) => handleSelectAll(e)}
-                />
-              </th>
-              {columns.map((col) =>
-                col.visible ? <th key={col.name}>{col.name}</th> : null
-              )}
-            </tr>
-          </thead>
-          <tbody>
-            {currentOrders &&
-              currentOrders.map((order, index) => {
-                const shipment =
-                  allShipmentData &&
-                  allShipmentData.find(
-                    (shipment) =>
-                      shipment.shopifyOrderId === order.id.toString()
-                  );
-                const scheduledShipDated =
-                  formattedData &&
-                  formattedData.find(
-                    (data) => data.reference1 === order.id.toString()
-                  );
-                console.log("formattedData", formattedData);
+  <thead>
+    <tr>
+      <th>
+        <input
+          type="checkbox"
+          checked={selectedRows.length === currentOrders.length + allShipmentData.length}
+          onChange={(e) => handleSelectAll(e)}
+        />
+      </th>
+      {columns.map((col) =>
+        col.visible ? <th key={col.name}>{col.name}</th> : null
+      )}
+    </tr>
+  </thead>
+  <tbody>
+    {[
+      ...(currentOrders || []),
+      ...allShipmentData.filter(
+        (shipment) =>
+          !currentOrders?.some((order) => order.id.toString() === shipment.shopifyOrderId)
+      ),
+    ].map((item, index) => {
+      const isOrder = currentOrders?.some((order) => order.id === item.id);
+      const order = isOrder ? item : null;
 
-                return (
-                  <tr key={index}>
-                    {columns.map((col, colIndex) => {
-                      if (!col.visible) return null; // Skip invisible columns
+      const shipment = allShipmentData?.find(
+        (shipment) =>
+          shipment.shopifyOrderId === (order ? order.id.toString() : item.shopifyOrderId)
+      );
+      console.log("shipent" , shipment)
 
-                      let value = "";
-                      switch (col.key) {
-                        case "select":
-                          value = (
-                            <input
-                              type="checkbox"
-                              checked={selectedRows.includes(index)}
-                              onChange={(e) => handleRowSelect(e, index)}
-                            />
-                          );
-                          break;
-                        case "orderNumber":
-                          value = order.id;
-                          break;
-                        case "platform":
-                          value = "Shopify";
-                          break;
-                        case "shipmentStatus":
-                          value = shipment ? "Ready for shipping" : "";
-                          break;
-                        case "carrier":
-                          value = shipment ? shipment.carrier : "";
-                          break;
-                        case "client":
-                          value = clients[0]?.clientName;
-                          break;
-                        case "customer":
-                          value = `${order.customer.first_name} ${order.customer.last_name}`;
-                          break;
-                        case "address":
-                          value = `${order.customer.default_address.address1} ${order.customer.default_address.city}`;
-                          break;
-                        case "trackingNumber":
-                          value = shipment ? shipment.trackingNumber : "";
-                          break;
-                        case "trackingUrl":
-                          value =
-                            shipment && shipment.trackingUrl ? (
-                              <a
-                                href={shipment.trackingUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                Url
-                              </a>
-                            ) : (
-                              ""
-                            );
-                          break;
-                        case "createdDate":
-                          value = new Date(order.created_at)
-                            .toISOString()
-                            .split("T")[0];
-                          break;
-                        case "shippedDate":
-                          value =
-                            scheduledShipDated?.scheduledShipDate.split(
-                              " "
-                            )[0] || "";
-                          break;
-                        case "reference":
-                          value = shipment ? shipment.reference : "";
-                          break;
-                        case "reference2":
-                          value = shipment ? shipment.reference2 : "";
-                          break;
-                        case "reference3":
-                          value = shipment ? shipment.reference3 : "";
-                          break;
-                        case "dimentions":
-                          value = shipment ? shipment.dimentions : "";
-                          break;
-                        case "weight":
-                          value = shipment ? shipment.weight : "";
-                          break;
-                        case "labels":
-                          value = shipment ? "Label" : ""; // Placeholder
-                          break;
-                        case "downloaded":
-                          value =
-                            shipment && shipment.labels ? (
-                              <button
-                                onClick={() =>
-                                  handleDownloadClick(index, shipment.labels)
-                                }
-                              >
-                                Download
-                              </button>
-                            ) : (
-                              ""
-                            );
-                          break;
-                        default:
-                          value = "-";
-                          break;
-                      }
+      const scheduledShipDated = formattedData?.find(
+        (data) =>
+          data.reference1 === (order ? order.id.toString() : shipment?.shopifyOrderId)
+      );
+      console.log("scheduledShipment" , scheduledShipDated)
 
-                      return <td key={colIndex}>{value}</td>;
-                    })}
-                  </tr>
+      return (
+        <tr key={index}>
+          {columns.map((col, colIndex) => {
+            if (!col.visible) return null;
+
+            let value = "";
+            switch (col.key) {
+              case "select":
+                value = (
+                  <input
+                    type="checkbox"
+                    checked={selectedRows.some((selected) => selected.rowData === item)}
+                    onChange={(e) =>
+                      handleRowSelect(e, index, item, scheduledShipDated)
+                    }
+                  />
                 );
-              })}
-          </tbody>
-        </table>
+                break;
+              case "orderNumber":
+                value = order ? order.id : shipment?.shopifyOrderId;
+                break;
+              case "platform":
+                value = order ? "Shopify" : "Shipment";
+                break;
+              case "shipmentStatus":
+                value = shipment ? "Ready for shipping" : "";
+                break;
+              case "carrier":
+                value = shipment?.carrier || "";
+                break;
+              case "client":
+                value = clients[0]?.clientName;
+                break;
+              case "customer":
+                value = scheduledShipDated?.from?.attention || "-";
+                break;
+              case "address":
+                value = scheduledShipDated?.from?.address1 || "-";
+                break;
+              case "trackingNumber":
+                value = shipment?.trackingNumber || "";
+                break;
+              case "trackingUrl":
+                value = shipment?.trackingUrl ? (
+                  <a
+                    href={shipment.trackingUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Url
+                  </a>
+                ) : (
+                  ""
+                );
+                break;
+              case "createdDate":
+                value = order
+                  ? new Date(order.created_at).toISOString().split("T")[0]
+                  : "-";
+                break;
+              case "shippedDate":
+                value =
+                  scheduledShipDated?.scheduledShipDate?.split(" ")[0] || "-";
+                break;
+              case "reference":
+                value = shipment?.reference || "-";
+                break;
+              case "reference2":
+                value = shipment?.reference2 || "-";
+                break;
+              case "reference3":
+                value = shipment?.reference3 || "-";
+                break;
+              case "dimentions":
+                value = shipment?.dimentions || "-";
+                break;
+              case "weight":
+                value = shipment?.weight || "-";
+                break;
+              case "labels":
+                value = shipment ? "Label" : ""; // Placeholder
+                break;
+              case "downloaded":
+                value = shipment?.labels ? (
+                  <button
+                    onClick={() =>
+                      handleDownloadClick(index, shipment.labels, shipment.trackingNumber)
+                    }
+                  >
+                    Download
+                  </button>
+                ) : (
+                  ""
+                );
+                break;
+              default:
+                value = "-";
+                break;
+            }
+
+            return <td key={colIndex}>{value}</td>;
+          })}
+        </tr>
+      );
+    })}
+  </tbody>
+</table>
+
+
       </div>
       {!loading && (
         <CustomPagination

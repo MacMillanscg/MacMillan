@@ -15,6 +15,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { AddnewSteps } from "./AddnewSteps/AddnewSteps";
 import { ConfirmCancelPopUp } from "../../../Common/ConfirmCancelPopUp/ConfirmCancelPopUp";
+import { url } from "../../../../api";
 
 export const CanvasFlow = ({
   selectedStep,
@@ -39,7 +40,7 @@ export const CanvasFlow = ({
   const fetchConnections = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/connections/${id}/connectionSteps`
+        `${url}/connections/${id}/connectionSteps`
       );
       console.log("connection Rules", response.data.connectionRule);
       if (response.data) {
@@ -137,7 +138,7 @@ export const CanvasFlow = ({
 
     try {
       await axios.delete(
-        `http://localhost:5000/connections/${id}/connectionSteps/${stepIdToDelete}`
+        `${url}/connections/${id}/connectionSteps/${stepIdToDelete}`
       );
       setConnectionsSteps(
         connectionsSteps.filter((step) => step._id !== stepIdToDelete)

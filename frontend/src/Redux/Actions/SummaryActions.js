@@ -1,5 +1,5 @@
 import axios from "axios";
-import { url } from "./restApis";
+import { url } from "../../api";
 
 export const VERIFY_ESHIPPER_CREDENTIALS = "VERIFY_ESHIPPER_CREDENTIALS";
 export const VERIFY_ESHIPPER_CREDENTIALS_SUCCESS =
@@ -26,7 +26,7 @@ export const verifyEShipperCredentials = (principal, credential) => {
     dispatch(fetchEshipperRequest());
     try {
       const response = await axios.post(`${url}/summary/verify-eshipper`, {
-        url: "https://uu2.eshipper.com/api/v2/authenticate",
+        url: "https://ww2.eshipper.com/api/v2/authenticate",
         principal,
         credential,
       });

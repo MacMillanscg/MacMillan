@@ -20,7 +20,7 @@ import { ClientPopup } from "../Popups/ClientPopup/ClientPopup";
 import { VersionHistoryPopup } from "../Popups/VersionHistoryPopup/VersionHistoryPopup";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
-import { url } from "../../../api";
+import { url as apiURL } from "../../../api";
 import { RunHistory } from "./RunningTestResults/RunHistory";
 import { Steps } from "./RunningTestResults/Steps";
 import { OutputLogs } from "./RunningTestResults/OutputLogs";
@@ -129,7 +129,7 @@ export const IntegrationCanvas = () => {
   const fetchShopifyOrders = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/connections/${id}/api/orders`
+        `${apiURL}/connections/${id}/api/orders`
       );
       const orders = response.data.orders;
 
@@ -161,10 +161,9 @@ export const IntegrationCanvas = () => {
       console.log("orderIDs:", orderIds);
 
       if (orderIds.length > 0) {
-        await axios.post(
-          `http://localhost:5000/connections/${id}/api/saveOrderIds`,
-          { orderIds }
-        );
+        await axios.post(`${apiURL}/connections/${id}/api/saveOrderIds`, {
+          orderIds,
+        });
       }
     } catch (error) {
       console.error("Error while saving order IDs:", error);
@@ -189,7 +188,7 @@ export const IntegrationCanvas = () => {
   const getUnFulfillmentOrders = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/connections/${id}/get-fulfillment`
+        `${apiURL}/connections/${id}/get-fulfillment`
       );
       if (response) {
         // setFullfillmentId(response.data.fulfillmentOrderIds);
@@ -216,7 +215,7 @@ export const IntegrationCanvas = () => {
 
       try {
         const response = await axios.post(
-          `http://localhost:5000/connections/${id}/create-fulfillment`,
+          `${apiURL}/connections/${id}/create-fulfillment`,
           {
             fulfillment_order_id: fulfillment_order_id, // Send the fulfillment order ID
             message: "The package was shipped this morning.",
@@ -271,7 +270,7 @@ export const IntegrationCanvas = () => {
     const fetchShopifyDetails = async () => {
       try {
         const response = await axios.get(
-          `${url}/connections/${id}/shopifyDetails`
+          `${apiURL}/connections/${id}/shopifyDetails`
         );
         setShopifyDetails(response.data);
         setHasUnsavedChanges(true);
@@ -301,7 +300,7 @@ export const IntegrationCanvas = () => {
   const addShopifyOrders = async () => {
     try {
       const transactionResponse = await axios.post(
-        `${url}/connections/${id}/saveTransaction`,
+        `${apiURL}/connections/${id}/saveTransaction`,
         {
           clientId,
           integrationId,
@@ -319,7 +318,7 @@ export const IntegrationCanvas = () => {
     const fetchConversionDetails = async () => {
       try {
         const response = await axios.get(
-          `${url}/connections/${id}/xmlconversions`
+          `${apiURL}/connections/${id}/xmlconversions`
         );
         // console.log("xmlreso", response);
         setXmlConversion(response.data.conversionsXML);
@@ -337,7 +336,7 @@ export const IntegrationCanvas = () => {
   useEffect(() => {
     const fetchShopifyDetails = async () => {
       try {
-        const response = await axios.get(`${url}/connections/${id}`);
+        const response = await axios.get(`${apiURL}/connections/${id}`);
         setSelectedIntegration(response.data);
       } catch (error) {
         console.error("Error fetching Shopify details:", error);
@@ -351,7 +350,7 @@ export const IntegrationCanvas = () => {
 
   const handleDeleteShopifyDetails = async () => {
     try {
-      await axios.delete(`${url}/connections/${id}/shopifyDetails`);
+      await axios.delete(`${apiURL}/connections/${id}/shopifyDetails`);
       setFetchTrigger(!fetchTrigger); // Re-fetch the details to reflect the deletion
       setShowWarningModal(false);
       localStorage.removeItem("shopifyInitialized");
@@ -364,7 +363,7 @@ export const IntegrationCanvas = () => {
   const handleDeleteXmlConversion = async () => {
     try {
       const response = await axios.delete(
-        `${url}/connections/${id}/xmlConversion`
+        `${apiURL}/connections/${id}/xmlConversion`
       );
       if (response.status === 200) {
         setXmlConversion(null);
@@ -380,7 +379,7 @@ export const IntegrationCanvas = () => {
   useEffect(() => {
     const fetchConnection = async () => {
       try {
-        const response = await axios.get(`${url}/connections/${id}`);
+        const response = await axios.get(`${apiURL}/connections/${id}`);
         setConnection(response.data);
         console.log("response", response.data);
         setLoading(false);
@@ -579,9 +578,7 @@ export const IntegrationCanvas = () => {
 
   const handlePublish = async () => {
     try {
-      const response = await axios.patch(
-        `http://localhost:5000/connections/${id}/publish`
-      );
+      const response = await axios.patch(`${apiURL}/connections/${id}/publish`);
       console.log("publish response", response);
 
       if (response.status === 200) {

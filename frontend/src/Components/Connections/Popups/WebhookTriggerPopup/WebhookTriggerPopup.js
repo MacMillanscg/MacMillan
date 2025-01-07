@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./WebhookTriggerPopup.module.css";
 import webhook from "../../../../assets/images/webhook.png";
 import { useParams } from "react-router-dom";
-// import { url } from "../../../../api";
+import { url as urlAPI } from "../../../../api";
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -27,14 +27,11 @@ export const WebhookTriggerPopup = ({ show, onClose }) => {
       return;
     }
     try {
-      const response = await axios.post(
-        `http://localhost:5000/connections/${id}`,
-        {
-          name,
-          url,
-          apiKey,
-        }
-      );
+      const response = await axios.post(`${urlAPI}/connections/${id}`, {
+        name,
+        url,
+        apiKey,
+      });
       const { success, message } = response.data;
       if (success) {
         toast.success(message);

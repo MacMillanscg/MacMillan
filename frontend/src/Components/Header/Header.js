@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import styles from "./Header.module.css";
 import { Profile } from "../Profile/Profile";
 import { getUser } from "../../storageUtils/storageUtils";
+import { url } from "../../api";
 
 export const Header = () => {
   const [isProfileVisible, setIsProfileVisible] = useState(false);
@@ -48,10 +49,7 @@ export const Header = () => {
               {user.profileImage ? (
                 <img
                   className={styles.profileImage00}
-                  src={`http://localhost:5000/${user.profileImage.replace(
-                    /\\/g,
-                    "/"
-                  )}`}
+                  src={`${url}/${user.profileImage.replace(/\\/g, "/")}`}
                   alt=""
                 />
               ) : (

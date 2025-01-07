@@ -69,9 +69,7 @@ export const LogsTab = () => {
     const fetchLogs = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(
-          "http://localhost:5000/clients/addclients/logss"
-        );
+        const response = await axios.get(`${url}/clients/addclients/logss`);
         setLogss(response.data);
         setLoading(false);
       } catch (error) {

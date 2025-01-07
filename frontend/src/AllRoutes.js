@@ -27,9 +27,6 @@ import { Users } from "./Components/Explore/Users/Users";
 import { IntegrationCanvas } from "./Components/Connections/Webhook/IntegrationCanvas";
 import { Summary } from "./Components/Summary/Summary";
 import { UserDetails } from "./Components/Explore/Users/UserDetails/UserDetails";
-import { useCustomFetch } from "./customsHooks/useCustomFetch";
-import { getUser } from "./storageUtils/storageUtils";
-import { url } from "./api";
 
 export const AllRoutes = () => {
   const [role, setRole] = useState(null);
@@ -40,16 +37,24 @@ export const AllRoutes = () => {
     const userRole =
       JSON.parse(localStorage.getItem("rememberMe")) ||
       JSON.parse(sessionStorage.getItem("userRecord"));
+
     console.log("userRole", userRole);
+
     if (userRole) {
       setRole(userRole.role);
     } else {
-      // Redirect to login if no role is found
-      navigate("/login");
+      // Allow access to public routes (e.g., /register, /login)
+      const publicPaths = ["/register", "/login", "/forgot-password"];
+      const currentPath = window.location.pathname;
+
+      if (!publicPaths.includes(currentPath)) {
+        console.log("Redirecting to login page");
+        navigate("/login");
+      }
     }
   }, [navigate]);
 
-  console.log("role", typeof role);
+  console.log("role", role);
 
   return (
     <div>

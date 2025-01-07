@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Sidebar.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -29,14 +29,24 @@ export const Sidebar = () => {
   userId = userId?._id;
   const { data, loading, error } = useCustomFetch(url, userId);
 
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (data) {
-      setRole(data.role); // Assuming role is part of the response (e.g., "admin", "member", "guest")
+    // Retrieve the role from localStorage or sessionStorage (after login)
+    const userRole =
+      JSON.parse(localStorage.getItem("rememberMe")) ||
+      JSON.parse(sessionStorage.getItem("userRecord"));
+    console.log("userRole", userRole);
+    if (userRole) {
+      setRole(userRole.role);
+    } else {
+      // Redirect to login if no role is found
+      navigate("/login");
     }
-  }, [data]);
-  console.log("ROle", role);
+  }, [navigate]);
+
+  console.log("role", role);
 
   const handleItemClick = (link) => {
     setActiveLink(link);

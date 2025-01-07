@@ -5,6 +5,8 @@ import axios from "axios";
 import { url } from "../../../../api";
 import { getUser } from "../../../../storageUtils/storageUtils";
 import { ConfirmCancelPopUp } from "../../../Common/ConfirmCancelPopUp/ConfirmCancelPopUp";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
   const [activeTab, setActiveTab] = useState("info");
@@ -24,6 +26,7 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
   const [error, setError] = useState("");
   const [showWarningPopup, setShowWarningPopup] = useState(false);
   const [isDirty, setIsDirty] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   let userId = getUser();
   userId = userId?._id;
@@ -63,7 +66,7 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
         principal: username,
         credential: password,
       });
-      console.log(response);
+      console.log("eshipper reponse", response);
       if (response.data.token) {
         toast.success("Credentials verified successfully!");
       }
@@ -95,6 +98,7 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
         `${url}/clients/addclients/${clientId}/addEShipper`,
         eShipper
       );
+      setFetchTrigger((prev) => !prev);
       toast.success("New integration created successfully!");
 
       closeModal();
@@ -292,7 +296,7 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
                       id="name"
                       value={integrationName}
                       onChange={handleIntegrationNameChange}
-                      onKeyPress={handleNameKeyPress}
+                      // onKeyPress={handleNameKeyPress}
                     />
                   </div>
                 </div>
@@ -360,15 +364,28 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
                       value={formData.username}
                       onChange={handleChange}
                     />
-                    <label htmlFor="shopifyApiKey">Password:</label>
-                    <input
-                      className="form-control"
-                      type="password"
-                      id="password"
-                      name="password"
-                      value={formData.password}
-                      onChange={handleChange}
-                    />
+                    <div className="position-relative">
+                      <label htmlFor="shopifyApiKey">Password:</label>
+                      <input
+                        className="form-control"
+                        type={passwordVisible ? "text" : "password"}
+                        id="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                      />
+                      <span
+                        className={`position-absolute ${styles.eyeIcon}`}
+                        onClick={() => setPasswordVisible(!passwordVisible)}
+                      >
+                        {passwordVisible ? (
+                          <FontAwesomeIcon icon={faEye} />
+                        ) : (
+                          <FontAwesomeIcon icon={faEyeSlash} />
+                        )}{" "}
+                      </span>
+                    </div>
+
                     <button
                       className="btn btn-primary mt-2"
                       onClick={verifyEShipperCredentials}

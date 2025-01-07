@@ -159,8 +159,8 @@ export const AddConnections = ({ closeModal }) => {
         userId: userId,
         connectionName,
         client: {
-          clientId: selectedClient._id,
-          clientName: selectedClient.clientName,
+          clientId: selectedClient?._id,
+          clientName: selectedClient?.clientName,
         },
         // Send the client ID
         integrations: formattedIntegrations,

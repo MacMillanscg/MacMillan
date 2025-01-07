@@ -54,8 +54,8 @@ export const IntegrationPopup = ({
     dispatch(
       verifyEShipperCredentials(
         id,
-        "Macmillan_sandbox",
-        "Macmillan@123",
+        "macmillan",
+        "Apple@2024",
         openEShipperPopup
       )
     );

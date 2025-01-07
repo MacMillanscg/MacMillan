@@ -3,6 +3,7 @@ import styles from "./ForgotPass.module.css";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { url } from "../../api";
 
 export const ForgotPass = () => {
   const [email, setEmail] = useState("");
@@ -20,7 +21,7 @@ export const ForgotPass = () => {
     }
 
     axios
-      .post("http://localhost:5000/auth/forgot-password", { email })
+      .post(`${url}/auth/forgot-password`, { email })
       .then((res) => {
         if (res.data.success) {
           toast.success(res.data.message);

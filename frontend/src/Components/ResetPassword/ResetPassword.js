@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import logo from "../../assets/images/logo.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { url } from "../../api";
 
 export const ResetPassword = () => {
   const [password, setPassword] = useState("");
@@ -39,7 +40,7 @@ export const ResetPassword = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:5000/auth/reset-password/${id}/${token}`,
+        `${url}/auth/reset-password/${id}/${token}`,
         {
           password,
         }

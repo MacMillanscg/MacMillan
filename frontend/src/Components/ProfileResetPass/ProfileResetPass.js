@@ -40,7 +40,7 @@ export const ProfileResetPass = () => {
     fetchSingleProfile();
   }, []);
 
-  const userImageUrl = `http://localhost:5000/${userProfile?.profileImage}`;
+  const userImageUrl = `${url}/${userProfile?.profileImage}`;
 
   const handlePasswordChange = async () => {
     let errorOccurred = false;
@@ -82,14 +82,11 @@ export const ProfileResetPass = () => {
     }
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/auth/profileResetPass",
-        {
-          userId: user._id,
-          currentPassword,
-          newPassword,
-        }
-      );
+      const response = await axios.post(`${url}/auth/profileResetPass`, {
+        userId: user._id,
+        currentPassword,
+        newPassword,
+      });
       if (response.data.success) {
         toast.success("Password updated successfully");
         setCurrentPassword("");

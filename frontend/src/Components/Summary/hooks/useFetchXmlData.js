@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { url } from "../../../api";
 
 export const useFetchXmlData = () => {
   const [xmlData, setXmlData] = useState([]);
@@ -11,9 +12,7 @@ export const useFetchXmlData = () => {
   useEffect(() => {
     const fetchShipments = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:5000/summary/getShipmentsId"
-        );
+        const response = await axios.get(`${url}/summary/getShipmentsId`);
         console.log("response", response);
         setShipmentsId(response.data.shipmentsId); // Save the shipment data to state
         setLoading(false);
@@ -30,9 +29,7 @@ export const useFetchXmlData = () => {
   useEffect(() => {
     const fetchXmlData = async () => {
       try {
-        const response = await axios(
-          "http://localhost:5000/summary/convert-xml"
-        );
+        const response = await axios(`${url}/summary/convert-xml`);
         const files = response.data.files; // assuming `files` is an array
 
         console.log("Converted XML to JSON:", files);
@@ -106,8 +103,8 @@ export const useFetchXmlData = () => {
             pickup: {
               contactName: data?.Header[0]?.contactName[0],
               phoneNumber: data?.Header[0]?.phoneNumber[0],
-              // pickupDate: data?.Header[0]?.pickupDate[0],
-              pickupDate: "2024-10-31",
+              pickupDate: data?.Header[0]?.pickupDate[0],
+              // pickupDate: "2024-10-31",
               pickupTime: data?.Header[0]?.pickupTime[0] || "",
               closingTime: data?.Header[0]?.closingTime[0] || "",
               location: data?.Header[0]?.location[0] || "",
