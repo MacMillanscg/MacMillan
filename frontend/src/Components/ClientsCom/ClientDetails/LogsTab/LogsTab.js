@@ -56,7 +56,7 @@ export const LogsTab = () => {
   const [error, setError] = useState(null);
   const { id } = useParams();
   const [currentPage, setCurrentPage] = useState(1);
-  const [logsPerPage, setLogsPerPage] = useState(10); // Updated to be stateful
+  const [logsPerPage, setLogsPerPage] = useState(10);
   const [logss, setLogss] = useState([]);
   const [loading, setLoading] = useState(true);
 

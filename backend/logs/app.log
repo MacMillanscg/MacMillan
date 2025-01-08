@@ -1,264 +1,60 @@
-
-{"id":"670539d78a2309ab8db34764","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-29 23:46:06"}
-{"id":"670539d78a2309ab8db34764","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-29 23:46:06"}
-{"id":"670539d78a2309ab8db34764","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-29 23:46:10"}
-{"id":"670539d78a2309ab8db34764","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-29 23:49:17"}
-{"id":"670539d78a2309ab8db34764","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-29 23:49:17"}
-{"id":"670539d78a2309ab8db34764","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-29 23:49:20"}
-{"id":"670539d78a2309ab8db34764","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-29 23:52:47"}
-{"id":"670539d78a2309ab8db34764","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-29 23:52:47"}
-{"id":"670539d78a2309ab8db34764","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-29 23:52:52"}
-{"count":15,"level":"info","message":"Fetched all clients successfully","timestamp":"2024-10-29 23:56:25"}
-{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-29 23:56:27"}
-{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-29 23:56:27"}
-{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-29 23:56:29"}
-{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-30 00:00:01"}
-{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-30 00:00:01"}
-{"count":15,"level":"info","message":"Fetched all clients successfully","timestamp":"2024-10-30 00:00:01"}
-{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-30 00:00:03"}
-{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-30 00:00:03"}
-{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-30 00:00:05"}
-{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-30 00:02:50"}
-{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-30 00:02:50"}
-{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-30 00:02:56"}
-{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-30 00:05:48"}
-{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-30 00:05:48"}
-{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-30 00:05:53"}
-{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-30 00:06:53"}
-{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-30 00:06:53"}
-{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-30 00:06:57"}
-{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-30 00:10:32"}
-{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-30 00:10:32"}
-{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-30 00:10:35"}
-{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-30 00:11:20"}
-{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-30 00:11:21"}
-{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-30 00:11:44"}
-{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-30 00:11:44"}
-{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-30 00:14:46"}
-{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-30 00:20:39"}
-{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-30 00:20:39"}
-{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-30 00:28:37"}
-{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-30 00:28:37"}
-{"id":"670539f78a2309ab8db34773","level":"info","message":"Fetched user by ID successfully","timestamp":"2024-10-30 00:28:41"}
-{"count":15,"level":"info","message":"Fetched all clients successfully","timestamp":"2024-10-30 09:23:49"}
-
-{"email":"sagrika@macmillanscg.com","level":"info","message":"User logged in successfully","timestamp":"2024-11-26 13:14:22"}
-{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 13:14:33"}
-{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-26 13:14:33"}
-{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-26 13:14:34"}
-{"id":"66d9db04d8219515043555b1","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:14:54"}
-{"id":"66d9db04d8219515043555b1","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:14:54"}
-{"id":"66d9db04d8219515043555b1","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:14:56"}
-{"id":"66b620ac8d60dfedd03d7950","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:17:27"}
-{"id":"66b620ac8d60dfedd03d7950","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:17:27"}
-{"id":"66b620ac8d60dfedd03d7950","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:17:34"}
-{"id":"66b620ac8d60dfedd03d7950","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:17:34"}
-{"id":"66b620ac8d60dfedd03d7950","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:17:35"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:17:56"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:17:57"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:25:40"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:25:40"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:25:44"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:25:44"}
-{"connectionId":"66b62d758d60dfedd03d7af8","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 13:26:03"}
-{"integration":{"_id":"66b62d758d60dfedd03d7af9","apiKey":"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","integrationId":"66b620e38d60dfedd03d7958","integrationName":"New Shopify Trail","platform":"shopify","storeUrl":"0dd210-ae.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"0dd210-ae.myshopify.com","timestamp":"2024-11-26 13:26:03"}
-{"error":"Request failed with status code 404","level":"error","message":"Error fetching Shopify orders","timestamp":"2024-11-26 13:26:03"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:26:33"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:26:33"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:26:51"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:26:52"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:26:53"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:27:18"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:27:18"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:27:19"}
-{"id":"66d9db04d8219515043555b1","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:36:03"}
-{"id":"66d9db04d8219515043555b1","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:36:03"}
-{"id":"66d9db04d8219515043555b1","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:36:04"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:42:45"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:42:45"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:42:50"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:43:13"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:43:15"}
-{"clientId":"66be107c42f27df3c3cb2d85","level":"info","message":"Client updated successfully","timestamp":"2024-11-26 13:43:25"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:43:25"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:43:28"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:43:28"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:43:30"}
-{"clientId":"66be107c42f27df3c3cb2d85","level":"info","message":"Client updated successfully","timestamp":"2024-11-26 13:43:40"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:43:40"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:43:42"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:43:42"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:43:43"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:46:26"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 13:46:27"}
-{"connectionId":"66b62d758d60dfedd03d7af8","level":"info","message":"Attempting to delete connection","timestamp":"2024-11-26 13:46:46"}
-{"connectionId":"66b62d758d60dfedd03d7af8","level":"info","message":"Connection deleted successfully","timestamp":"2024-11-26 13:46:46"}
-{"connectionId":"66b62e3a81074a7403c0fb2e","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 13:46:50"}
-{"integration":{"_id":"66b62e3a81074a7403c0fb2f","apiKey":"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","integrationId":"66b620e38d60dfedd03d7958","integrationName":"New Shopify Trail","platform":"shopify","storeUrl":"0dd210-ae.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"0dd210-ae.myshopify.com","timestamp":"2024-11-26 13:46:50"}
-{"error":"Request failed with status code 404","level":"error","message":"Error fetching Shopify orders","timestamp":"2024-11-26 13:46:51"}
-{"connectionId":"66b62e3a81074a7403c0fb2e","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 13:47:05"}
-{"integration":{"_id":"66b62e3a81074a7403c0fb2f","apiKey":"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","integrationId":"66b620e38d60dfedd03d7958","integrationName":"New Shopify Trail","platform":"shopify","storeUrl":"0dd210-ae.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"0dd210-ae.myshopify.com","timestamp":"2024-11-26 13:47:05"}
-{"error":"Request failed with status code 404","level":"error","message":"Error fetching Shopify orders","timestamp":"2024-11-26 13:47:05"}
-{"connectionId":"66fede4af56eaa6810eabddd","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 13:53:10"}
-{"integration":{"_id":"66fede4af56eaa6810eabdde"},"level":"info","message":"Fetching Shopify orders","timestamp":"2024-11-26 13:53:10"}
-{"error":"getaddrinfo ENOTFOUND undefined","level":"error","message":"Error fetching Shopify orders","timestamp":"2024-11-26 13:53:15"}
-{"connectionId":"66fede4af56eaa6810eabddd","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 13:53:20"}
-{"integration":{"_id":"66fede4af56eaa6810eabdde"},"level":"info","message":"Fetching Shopify orders","timestamp":"2024-11-26 13:53:20"}
-{"error":"getaddrinfo ENOTFOUND undefined","level":"error","message":"Error fetching Shopify orders","timestamp":"2024-11-26 13:53:23"}
-{"connectionId":"66fede4af56eaa6810eabddd","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 13:53:23"}
-{"integration":{"_id":"66fede4af56eaa6810eabdde"},"level":"info","message":"Fetching Shopify orders","timestamp":"2024-11-26 13:53:23"}
-{"error":"getaddrinfo ENOTFOUND undefined","level":"error","message":"Error fetching Shopify orders","timestamp":"2024-11-26 13:53:25"}
-{"connectionId":"66fede4af56eaa6810eabddd","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 13:53:25"}
-{"integration":{"_id":"66fede4af56eaa6810eabdde"},"level":"info","message":"Fetching Shopify orders","timestamp":"2024-11-26 13:53:26"}
-{"error":"getaddrinfo ENOTFOUND undefined","level":"error","message":"Error fetching Shopify orders","timestamp":"2024-11-26 13:53:28"}
-{"connectionId":"66fede4af56eaa6810eabddd","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 13:53:29"}
-{"integration":{"_id":"66fede4af56eaa6810eabdde"},"level":"info","message":"Fetching Shopify orders","timestamp":"2024-11-26 13:53:29"}
-{"error":"getaddrinfo ENOTFOUND undefined","level":"error","message":"Error fetching Shopify orders","timestamp":"2024-11-26 13:53:32"}
-{"connectionId":"66fede4af56eaa6810eabddd","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 13:53:32"}
-{"integration":{"_id":"66fede4af56eaa6810eabdde"},"level":"info","message":"Fetching Shopify orders","timestamp":"2024-11-26 13:53:32"}
-{"error":"getaddrinfo ENOTFOUND undefined","level":"error","message":"Error fetching Shopify orders","timestamp":"2024-11-26 13:53:34"}
-{"connectionId":"66fede4af56eaa6810eabddd","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 13:53:34"}
-{"integration":{"_id":"66fede4af56eaa6810eabdde"},"level":"info","message":"Fetching Shopify orders","timestamp":"2024-11-26 13:53:35"}
-{"error":"getaddrinfo ENOTFOUND undefined","level":"error","message":"Error fetching Shopify orders","timestamp":"2024-11-26 13:53:37"}
-{"connectionId":"66fede4af56eaa6810eabddd","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 13:53:37"}
-{"integration":{"_id":"66fede4af56eaa6810eabdde"},"level":"info","message":"Fetching Shopify orders","timestamp":"2024-11-26 13:53:37"}
-{"error":"getaddrinfo ENOTFOUND undefined","level":"error","message":"Error fetching Shopify orders","timestamp":"2024-11-26 13:53:39"}
-{"connectionId":"66fede4af56eaa6810eabddd","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 13:53:39"}
-{"integration":{"_id":"66fede4af56eaa6810eabdde"},"level":"info","message":"Fetching Shopify orders","timestamp":"2024-11-26 13:53:40"}
-{"error":"getaddrinfo ENOTFOUND undefined","level":"error","message":"Error fetching Shopify orders","timestamp":"2024-11-26 13:53:42"}
-{"connectionId":"66fede4af56eaa6810eabddd","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 13:53:42"}
-{"integration":{"_id":"66fede4af56eaa6810eabdde"},"level":"info","message":"Fetching Shopify orders","timestamp":"2024-11-26 13:53:42"}
-{"error":"getaddrinfo ENOTFOUND undefined","level":"error","message":"Error fetching Shopify orders","timestamp":"2024-11-26 13:53:44"}
-{"connectionId":"66fede4af56eaa6810eabddd","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 13:53:44"}
-{"integration":{"_id":"66fede4af56eaa6810eabdde"},"level":"info","message":"Fetching Shopify orders","timestamp":"2024-11-26 13:53:45"}
-{"error":"getaddrinfo ENOTFOUND undefined","level":"error","message":"Error fetching Shopify orders","timestamp":"2024-11-26 13:53:47"}
-{"connectionId":"66b62e3a81074a7403c0fb2e","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 13:54:04"}
-{"integration":{"_id":"66b62e3a81074a7403c0fb2f","apiKey":"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","integrationId":"66b620e38d60dfedd03d7958","integrationName":"New Shopify Trail","platform":"shopify","storeUrl":"0dd210-ae.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"0dd210-ae.myshopify.com","timestamp":"2024-11-26 13:54:05"}
-{"error":"Request failed with status code 404","level":"error","message":"Error fetching Shopify orders","timestamp":"2024-11-26 13:54:05"}
-{"connectionId":"66b62e3a81074a7403c0fb2e","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 13:55:38"}
-{"integration":{"_id":"66b62e3a81074a7403c0fb2f","apiKey":"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","integrationId":"66b620e38d60dfedd03d7958","integrationName":"New Shopify Trail","platform":"shopify","storeUrl":"0dd210-ae.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"0dd210-ae.myshopify.com","timestamp":"2024-11-26 13:55:38"}
-{"error":"Request failed with status code 404","level":"error","message":"Error fetching Shopify orders","timestamp":"2024-11-26 13:55:39"}
-{"connectionId":"671290ecfb04088731a7e925","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 13:56:22"}
-{"integration":{"_id":"671290ecfb04088731a7e926","apiKey":"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","integrationId":"670536e1f56eaa6810eac2dd","integrationName":"Sneha Desai","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-26 13:56:22"}
-{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-26 13:56:22"}
-{"level":"info","message":"Creating new connection","requestData":{"client":{"clientId":"67461751ec0dd9f3f02ad1c5","clientName":"Sagrika"},"connectionName":"testing","integrations":{},"managementTrigger":null,"userId":"66854fc64c8434607799ccef","webhookTrigger":null},"timestamp":"2024-11-26 13:56:39"}
-{"connectionId":"674619e7ec0dd9f3f02ad500","level":"info","message":"Connection created successfully","timestamp":"2024-11-26 13:56:39"}
-{"connectionId":"674619e7ec0dd9f3f02ad500","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 13:56:39"}
-{"integration":{"_id":"674619e7ec0dd9f3f02ad501"},"level":"info","message":"Fetching Shopify orders","timestamp":"2024-11-26 13:56:40"}
-{"error":"getaddrinfo ENOTFOUND undefined","level":"error","message":"Error fetching Shopify orders","timestamp":"2024-11-26 13:56:44"}
-{"connectionId":"674619e7ec0dd9f3f02ad500","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 13:57:11"}
-{"integration":{"_id":"674619e7ec0dd9f3f02ad501"},"level":"info","message":"Fetching Shopify orders","timestamp":"2024-11-26 13:57:11"}
-{"error":"getaddrinfo ENOTFOUND undefined","level":"error","message":"Error fetching Shopify orders","timestamp":"2024-11-26 13:57:15"}
-{"connectionId":"674619e7ec0dd9f3f02ad500","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 13:57:18"}
-{"integration":{"_id":"674619e7ec0dd9f3f02ad501"},"level":"info","message":"Fetching Shopify orders","timestamp":"2024-11-26 13:57:19"}
-{"error":"getaddrinfo ENOTFOUND undefined","level":"error","message":"Error fetching Shopify orders","timestamp":"2024-11-26 13:57:21"}
-{"connectionId":"674619e7ec0dd9f3f02ad500","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 13:57:21"}
-{"integration":{"_id":"674619e7ec0dd9f3f02ad501"},"level":"info","message":"Fetching Shopify orders","timestamp":"2024-11-26 13:57:21"}
-{"error":"getaddrinfo ENOTFOUND undefined","level":"error","message":"Error fetching Shopify orders","timestamp":"2024-11-26 13:57:23"}
-{"connectionId":"674619e7ec0dd9f3f02ad500","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 13:57:23"}
-{"integration":{"_id":"674619e7ec0dd9f3f02ad501"},"level":"info","message":"Fetching Shopify orders","timestamp":"2024-11-26 13:57:24"}
-{"error":"getaddrinfo ENOTFOUND undefined","level":"error","message":"Error fetching Shopify orders","timestamp":"2024-11-26 13:57:26"}
-{"connectionId":"674619e7ec0dd9f3f02ad500","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 13:57:26"}
-{"integration":{"_id":"674619e7ec0dd9f3f02ad501"},"level":"info","message":"Fetching Shopify orders","timestamp":"2024-11-26 13:57:26"}
-{"error":"getaddrinfo ENOTFOUND undefined","level":"error","message":"Error fetching Shopify orders","timestamp":"2024-11-26 13:57:28"}
-{"connectionId":"674619e7ec0dd9f3f02ad500","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 13:57:28"}
-{"integration":{"_id":"674619e7ec0dd9f3f02ad501"},"level":"info","message":"Fetching Shopify orders","timestamp":"2024-11-26 13:57:29"}
-{"error":"getaddrinfo ENOTFOUND undefined","level":"error","message":"Error fetching Shopify orders","timestamp":"2024-11-26 13:57:31"}
-{"connectionId":"674619e7ec0dd9f3f02ad500","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 13:58:35"}
-{"integration":{"_id":"674619e7ec0dd9f3f02ad501"},"level":"info","message":"Fetching Shopify orders","timestamp":"2024-11-26 13:58:35"}
-{"error":"getaddrinfo ENOTFOUND undefined","level":"error","message":"Error fetching Shopify orders","timestamp":"2024-11-26 13:58:37"}
-{"id":"66d9db04d8219515043555b1","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:02:05"}
-{"id":"66d9db04d8219515043555b1","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:02:06"}
-{"id":"66d9db04d8219515043555b1","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:02:08"}
-{"id":"66d9db04d8219515043555b1","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:02:12"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:03:29"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:03:29"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:03:30"}
-{"connectionId":"66b62e3a81074a7403c0fb2e","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 14:04:02"}
-{"integration":{"_id":"66b62e3a81074a7403c0fb2f","apiKey":"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","integrationId":"66b620e38d60dfedd03d7958","integrationName":"New Shopify Trail","platform":"shopify","storeUrl":"0dd210-ae.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"0dd210-ae.myshopify.com","timestamp":"2024-11-26 14:04:03"}
-{"error":"Request failed with status code 404","level":"error","message":"Error fetching Shopify orders","timestamp":"2024-11-26 14:04:03"}
-{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 14:09:07"}
-{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-26 14:09:07"}
-{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-26 14:09:08"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:12:51"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:12:51"}
-{"connectionId":"66b62e3a81074a7403c0fb2e","level":"info","message":"Attempting to delete connection","timestamp":"2024-11-26 14:12:58"}
-{"connectionId":"66b62e3a81074a7403c0fb2e","level":"info","message":"Connection deleted successfully","timestamp":"2024-11-26 14:12:58"}
-{"connectionId":"66b6425281074a7403c0fb8f","level":"info","message":"Attempting to delete connection","timestamp":"2024-11-26 14:13:01"}
-{"connectionId":"66b6425281074a7403c0fb8f","level":"info","message":"Connection deleted successfully","timestamp":"2024-11-26 14:13:02"}
-{"connectionId":"66d87cfed82195150435545d","level":"info","message":"Attempting to delete connection","timestamp":"2024-11-26 14:13:05"}
-{"connectionId":"66d87cfed82195150435545d","level":"info","message":"Connection deleted successfully","timestamp":"2024-11-26 14:13:05"}
-{"connectionId":"66fede4af56eaa6810eabddd","level":"info","message":"Attempting to delete connection","timestamp":"2024-11-26 14:13:08"}
-{"connectionId":"66fede4af56eaa6810eabddd","level":"info","message":"Connection deleted successfully","timestamp":"2024-11-26 14:13:08"}
-{"connectionId":"66fee35bf56eaa6810eabe07","level":"info","message":"Attempting to delete connection","timestamp":"2024-11-26 14:13:11"}
-{"connectionId":"66fee35bf56eaa6810eabe07","level":"info","message":"Connection deleted successfully","timestamp":"2024-11-26 14:13:11"}
-{"connectionId":"66fefb3cf56eaa6810eabf1f","level":"info","message":"Attempting to delete connection","timestamp":"2024-11-26 14:13:14"}
-{"connectionId":"66fefb3cf56eaa6810eabf1f","level":"info","message":"Connection deleted successfully","timestamp":"2024-11-26 14:13:14"}
-{"connectionId":"67128daffb04088731a7e7ec","level":"info","message":"Attempting to delete connection","timestamp":"2024-11-26 14:13:17"}
-{"connectionId":"67128daffb04088731a7e7ec","level":"info","message":"Connection deleted successfully","timestamp":"2024-11-26 14:13:17"}
-{"connectionId":"671290ecfb04088731a7e925","level":"info","message":"Attempting to delete connection","timestamp":"2024-11-26 14:13:21"}
-{"connectionId":"671290ecfb04088731a7e925","level":"info","message":"Connection deleted successfully","timestamp":"2024-11-26 14:13:21"}
-{"connectionId":"674619e7ec0dd9f3f02ad500","level":"info","message":"Attempting to delete connection","timestamp":"2024-11-26 14:13:24"}
-{"connectionId":"674619e7ec0dd9f3f02ad500","level":"info","message":"Connection deleted successfully","timestamp":"2024-11-26 14:13:24"}
-{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 14:13:34"}
-{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-26 14:13:35"}
-{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-26 14:13:35"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:13:50"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:13:50"}
-{"id":"66be107c42f27df3c3cb2d85","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:13:51"}
-{"id":"67053473f56eaa6810eac27d","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:13:58"}
-{"id":"67053473f56eaa6810eac27d","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:13:58"}
-{"id":"67053473f56eaa6810eac27d","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:13:59"}
-{"id":"670534b2f56eaa6810eac289","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:14:03"}
-{"id":"670534b2f56eaa6810eac289","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:14:04"}
-{"id":"670534b2f56eaa6810eac289","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:14:05"}
-{"id":"670534b6f56eaa6810eac295","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:15:25"}
-{"id":"670534b6f56eaa6810eac295","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:15:25"}
-{"id":"670534b6f56eaa6810eac295","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:15:26"}
-{"id":"670534b8f56eaa6810eac2a1","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:15:40"}
-{"id":"670534b8f56eaa6810eac2a1","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:15:41"}
-{"id":"670534b8f56eaa6810eac2a1","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:15:43"}
-{"id":"67053e54ac11586c7bd7d9e1","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:15:48"}
-{"id":"67053e54ac11586c7bd7d9e1","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:15:48"}
-{"id":"67053e54ac11586c7bd7d9e1","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:15:49"}
-{"id":"67053e54ac11586c7bd7d9e1","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:15:51"}
-{"id":"67053e54ac11586c7bd7d9e1","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:15:54"}
-{"id":"67053e54ac11586c7bd7d9e1","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:15:56"}
-{"id":"67053a0df56eaa6810eac36e","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:16:01"}
-{"id":"67053a0df56eaa6810eac36e","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:16:01"}
-{"id":"67053a0df56eaa6810eac36e","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:16:02"}
-{"id":"67461751ec0dd9f3f02ad1c5","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:16:07"}
-{"id":"67461751ec0dd9f3f02ad1c5","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:16:07"}
-{"id":"67461751ec0dd9f3f02ad1c5","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:16:08"}
-{"id":"66d9db04d8219515043555b1","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:16:21"}
-{"id":"66d9db04d8219515043555b1","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:16:21"}
-{"id":"66d9db04d8219515043555b1","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:16:29"}
-{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 14:39:16"}
-{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-26 14:39:16"}
-{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-26 14:39:17"}
-{"email":"sagrika@macmillanscg.com","level":"info","message":"User logged in successfully","timestamp":"2024-11-26 14:39:57"}
-{"id":"67462443ec0dd9f3f02adc27","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:40:54"}
-{"id":"67462443ec0dd9f3f02adc27","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:40:54"}
-{"id":"67462443ec0dd9f3f02adc27","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:40:55"}
-{"apiKey":"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","clientId":"67462443ec0dd9f3f02adc27","integrationName":"My Store Shopify","level":"info","message":"Client integration created successfully","platform":"Shopify","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-26 14:42:27","userId":"66854fc64c8434607799ccef"}
-{"id":"67462443ec0dd9f3f02adc27","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:42:27"}
-{"id":"67462443ec0dd9f3f02adc27","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:42:35"}
-{"id":"67462443ec0dd9f3f02adc27","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:43:26"}
-{"clientId":"67462443ec0dd9f3f02adc27","level":"info","message":"Client updated successfully","timestamp":"2024-11-26 14:43:30"}
-{"id":"67462443ec0dd9f3f02adc27","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:43:30"}
-{"id":"67462443ec0dd9f3f02adc27","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:44:43"}
-{"id":"67462443ec0dd9f3f02adc27","level":"info","message":"Fetched client with connection successfully","timestamp":"2024-11-26 14:44:43"}
-{"level":"info","message":"Creating new connection","requestData":{"client":{"clientId":"67462443ec0dd9f3f02adc27","clientName":"Sagrika Jibran Testing"},"connectionName":"Sagrika Jibran Testing","integrations":{"apiKey":"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","integrationId":"674624a3ec0dd9f3f02adc3d","integrationName":"My Store Shopify","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"managementTrigger":null,"userId":"66854fc64c8434607799ccef","webhookTrigger":null},"timestamp":"2024-11-26 14:46:50"}
-{"connectionId":"674625aaec0dd9f3f02adcc9","level":"info","message":"Connection created successfully","timestamp":"2024-11-26 14:46:50"}
-{"connectionId":"674625aaec0dd9f3f02adcc9","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 14:46:50"}
-{"integration":{"_id":"674625aaec0dd9f3f02adcca","apiKey":"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","integrationId":"674624a3ec0dd9f3f02adc3d","integrationName":"My Store Shopify","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-26 14:46:50"}
-{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-26 14:46:51"}
-{"connectionId":"674625aaec0dd9f3f02adcc9","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 14:46:57"}
-{"integration":{"_id":"674625aaec0dd9f3f02adcca","apiKey":"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","integrationId":"674624a3ec0dd9f3f02adc3d","integrationName":"My Store Shopify","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-26 14:46:58"}
-{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-26 14:46:58"}
-{"connectionId":"67053d4b8a2309ab8db347d7","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 14:47:17"}
-{"integration":{"_id":"67053d4b8a2309ab8db347d8","apiKey":"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","integrationId":"67053a3f8a2309ab8db34786","integrationName":"Jibran","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-26 14:47:18"}
-{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-26 14:47:18"}
-{"connectionId":"674625aaec0dd9f3f02adcc9","level":"info","message":"Fetching connection by ID","timestamp":"2024-11-26 14:49:05"}
-{"integration":{"_id":"674625aaec0dd9f3f02adcca","apiKey":"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","integrationId":"674624a3ec0dd9f3f02adc3d","integrationName":"My Store Shopify","platform":"Shopify","storeUrl":"86222d-42.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-26 14:49:06"}
-{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"86222d-42.myshopify.com","timestamp":"2024-11-26 14:49:06"}
+{"email":"sagrika@macmillanscg.com","level":"info","message":"User logged in successfully","timestamp":"2025-01-07 16:02:08"}
+{"connectionId":"677d8faf42b68bffca045fde","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-07 16:02:19"}
+{"integration":{"_id":"677d8faf42b68bffca045fdf","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-07 16:02:19"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-07 16:02:20"}
+{"connectionId":"23523452523452","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-08 15:13:47"}
+{"error":"Cast to ObjectId failed for value \"23523452523452\" (type string) at path \"_id\" for model \"Connection\"","level":"error","message":"Error fetching Shopify orders","timestamp":"2025-01-08 15:13:47"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 15:14:41"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 15:14:41"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 15:14:43"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 15:14:49"}
+{"connectionId":"677e94bc7238482885104041","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-08 15:20:15"}
+{"integration":{"_id":"677e94bc7238482885104042","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-08 15:20:16"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-08 15:20:17"}
+{"connectionId":"677ed4c9639cb959edbf0d90","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-08 15:20:19"}
+{"integration":{"_id":"677ed4c9639cb959edbf0d91","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-08 15:20:20"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-08 15:20:20"}
+{"connectionId":"677d8faf42b68bffca045fde","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-08 15:20:25"}
+{"integration":{"_id":"677d8faf42b68bffca045fdf","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-08 15:20:25"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-08 15:20:25"}
+{"connectionId":"23523452523452","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-08 15:20:33"}
+{"error":"Cast to ObjectId failed for value \"23523452523452\" (type string) at path \"_id\" for model \"Connection\"","level":"error","message":"Error fetching Shopify orders","timestamp":"2025-01-08 15:20:33"}
+{"connectionId":"677e94bc7238482885104041","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-08 15:20:40"}
+{"integration":{"_id":"677e94bc7238482885104042","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-08 15:20:40"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-08 15:20:40"}
+{"connectionId":"677e94bc7238482885104041","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-08 15:20:43"}
+{"integration":{"_id":"677e94bc7238482885104042","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-08 15:20:44"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-08 15:20:44"}
+{"connectionId":"677e94bc7238482885104041","level":"info","message":"Attempting to delete connection","timestamp":"2025-01-08 15:20:48"}
+{"connectionId":"677e94bc7238482885104041","level":"info","message":"Connection deleted successfully","timestamp":"2025-01-08 15:20:48"}
+{"connectionId":"677ed4c9639cb959edbf0d90","level":"info","message":"Attempting to delete connection","timestamp":"2025-01-08 15:20:51"}
+{"connectionId":"677ed4c9639cb959edbf0d90","level":"info","message":"Connection deleted successfully","timestamp":"2025-01-08 15:20:51"}
+{"connectionId":"23523452523452","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-08 15:20:57"}
+{"error":"Cast to ObjectId failed for value \"23523452523452\" (type string) at path \"_id\" for model \"Connection\"","level":"error","message":"Error fetching Shopify orders","timestamp":"2025-01-08 15:20:57"}
+{"email":"raajmohan@macmillanscg.com","level":"warn","message":"Incorrect password attempt","timestamp":"2025-01-08 15:24:03"}
+{"email":"raajmohan@macmillanscg.com","level":"info","message":"User logged in successfully","timestamp":"2025-01-08 15:24:11"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 15:25:40"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 15:25:40"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 15:25:42"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 15:26:46"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 15:26:46"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 15:26:47"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 15:26:49"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 15:26:52"}
+{"clientId":"677edcae5b1dfad335ab2ca7","level":"info","message":"Client updated successfully","timestamp":"2025-01-08 15:26:55"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 15:26:55"}
+{"level":"info","message":"Creating new connection","requestData":{"client":{"clientId":"677edcae5b1dfad335ab2ca7","clientName":"BKN Sandbox B to C"},"connectionName":"Beekeepers B to C Sandbox","integrations":{"apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"managementTrigger":null,"userId":"66854fc64c8434607799ccef","webhookTrigger":null},"timestamp":"2025-01-08 15:28:11"}
+{"connectionId":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection created successfully","timestamp":"2025-01-08 15:28:11"}
+{"connectionId":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-08 15:28:11"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-08 15:28:12"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-08 15:28:13"}
+{"connectionId":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-08 15:28:19"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-08 15:28:19"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-08 15:28:20"}
+{"connectionId":"23523452523452","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-08 16:13:28"}
+{"error":"Cast to ObjectId failed for value \"23523452523452\" (type string) at path \"_id\" for model \"Connection\"","level":"error","message":"Error fetching Shopify orders","timestamp":"2025-01-08 16:13:28"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 16:15:22"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 16:15:22"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 16:15:23"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 16:15:44"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 16:15:44"}
