@@ -1,18 +1,21 @@
 const Connection = require("../Schema/Connection");
-const axios = require("axios");
 const Webhook = require("../Schema/Webhook");
+const axios = require("axios");
 const logger = require("../logger");
 
+// Get all connections
 exports.getAllConnections = async (req, res) => {
   try {
     const connections = await Connection.find();
+    logger.info("Fetched all connections successfully");
     res.status(200).json(connections);
   } catch (error) {
-    // logger.error("Error fetching connections", { error: error.message });
+    logger.error("Error fetching connections", { error: error.message });
     res.status(500).json({ error: "Error fetching connections" });
   }
 };
 
+// Create a new webhook
 exports.createWebhook = async (req, res) => {
   const { name, url, apiKey } = req.body;
 
@@ -26,24 +29,24 @@ exports.createWebhook = async (req, res) => {
   }
 
   try {
-    // Save the webhook document to the database
     const newWebhook = new Webhook(req.body);
     const webhookData = await newWebhook.save();
 
-    logger.info("Webhook created successfully", { webhookId: webhookData._id });
+    logger.info("Webhook created successfully", { id: webhookData._id });
     res.status(200).json({
       success: true,
       message: "Webhook added successfully",
       data: webhookData,
     });
   } catch (error) {
-    logger.error("Error saving webhook", { error: error.message });
+    logger.error("Error saving webhook", {id:webhookData.Id, error: error.message });
     res
       .status(500)
       .json({ error: "Error saving webhook", details: error.message });
   }
 };
 
+// Create a new connection
 exports.createConnection = async (req, res) => {
   try {
     logger.info("Creating new connection", { requestData: req.body });
@@ -52,7 +55,7 @@ exports.createConnection = async (req, res) => {
     const connection = await newConnection.save();
 
     logger.info("Connection created successfully", {
-      connectionId: connection._id,
+      id: connection._id,
     });
     res.status(201).json({ id: connection._id });
   } catch (error) {
@@ -61,16 +64,16 @@ exports.createConnection = async (req, res) => {
   }
 };
 
-// Route to fetch orders from Shopify
+// Fetch orders from Shopify
 exports.shofipyOrders = async (req, res) => {
   const { id } = req.params;
 
   try {
-    logger.info("Fetching connection by ID", { connectionId: id });
+    logger.info("Fetching connection by ID", { id });
     const connection = await Connection.findById(id);
 
     if (!connection) {
-      logger.warn("Connection not found", { connectionId: id });
+      logger.warn("Connection not found", {  id });
       return res.status(404).json({ message: "Connection not found" });
     }
 
@@ -91,30 +94,29 @@ exports.shofipyOrders = async (req, res) => {
     logger.info("Shopify orders fetched successfully", { storeUrl });
     res.json(response.data);
   } catch (error) {
-    logger.error("Error fetching Shopify orders", { error: error.message });
+    logger.error("Error fetching Shopify orders", {id, error: error.message });
     res.status(500).send("Server Error");
   }
 };
 
+// Get connection by ID
 exports.getConnectionById = async (req, res) => {
   try {
     const { id } = req.params;
-    // logger.info("Fetching connection by ID", { connectionId: id });
 
     const connection = await Connection.findById(id);
-    // .populate("client")
-    // .populate("integrations");
+    console.log("connections" , connection)
 
     if (!connection) {
-      // logger.warn("Connection not found", { connectionId: id });
+      logger.warn("Connection not found", {  id });
       return res.status(404).json({ message: "Connection not found" });
     }
 
-    // logger.info("Connection fetched successfully", { connectionId: id });
+    logger.info("Connection fetched successfully", {id, connectionName:connection.connectionName });
     res.status(200).json(connection);
   } catch (error) {
     logger.error("Error fetching connection", {
-      connectionId: id,
+       id,
       error: error.message,
     });
     res
@@ -123,12 +125,12 @@ exports.getConnectionById = async (req, res) => {
   }
 };
 
-// Function to update connection by ID
+// Update a connection by ID
 exports.updateConnection = async (req, res) => {
   try {
     const { id } = req.params;
     const { description } = req.body;
-    logger.info("Updating connection", { connectionId: id, description });
+    logger.info("Updating connection", { id, description });
 
     const updatedConnection = await Connection.findByIdAndUpdate(
       id,
@@ -137,15 +139,15 @@ exports.updateConnection = async (req, res) => {
     );
 
     if (!updatedConnection) {
-      logger.warn("Connection not found for update", { connectionId: id });
+      logger.warn("Connection not found for update", { id });
       return res.status(404).json({ message: "Connection not found" });
     }
 
-    logger.info("Connection updated successfully", { connectionId: id });
+    logger.info("Connection updated successfully", { id });
     res.status(200).json(updatedConnection);
   } catch (error) {
     logger.error("Error updating connection", {
-      connectionId: id,
+     id,
       error: error.message,
     });
     res
@@ -154,12 +156,13 @@ exports.updateConnection = async (req, res) => {
   }
 };
 
+// Update connection version
 exports.updateConnectionVersion = async (req, res) => {
   try {
     const { id } = req.params;
     const { hideUnavailable } = req.body;
     logger.info("Updating connection version", {
-      connectionId: id,
+     id,
       hideUnavailable,
     });
 
@@ -171,18 +174,18 @@ exports.updateConnectionVersion = async (req, res) => {
 
     if (!updatedConnection) {
       logger.warn("Connection not found for version update", {
-        connectionId: id,
+         id,
       });
       return res.status(404).json({ message: "Connection not found" });
     }
 
     logger.info("Connection version updated successfully", {
-      connectionId: id,
+     id,
     });
     res.status(200).json(updatedConnection);
   } catch (error) {
     logger.error("Error updating connection version", {
-      connectionId: id,
+       id,
       error: error.message,
     });
     res
@@ -191,12 +194,12 @@ exports.updateConnectionVersion = async (req, res) => {
   }
 };
 
-// Controller to delete a connection by ID
+// Delete a connection by ID
 exports.deleteConnectionById = async (req, res) => {
   const { id } = req.params;
 
   try {
-    logger.info("Attempting to delete connection", { connectionId: id });
+    logger.info("Attempting to delete connection", { id });
     const deletedConnection = await Connection.findByIdAndDelete(id);
 
     if (!deletedConnection) {
@@ -204,20 +207,21 @@ exports.deleteConnectionById = async (req, res) => {
       return res.status(404).json({ message: "Connection not found" });
     }
 
-    logger.info("Connection deleted successfully", { connectionId: id });
+    logger.info("Connection deleted successfully", { id });
     res.status(200).json({ message: "Connection deleted successfully" });
   } catch (error) {
     logger.error("Error deleting connection", {
-      connectionId: id,
+       id,
       error: error.message,
     });
     res.status(500).json({ message: "Server error" });
   }
 };
 
+// Verify eShipper credentials
 exports.verifyEShipperCredentials = async (req, res) => {
   const { url, principal, credential } = req.body;
-  logger.info("Verifying eShipper credentials", { url, principal }); // Log the credentials being verified
+  logger.info("Verifying eShipper credentials", { url, principal });
 
   try {
     const response = await axios.post(url, {
@@ -225,50 +229,49 @@ exports.verifyEShipperCredentials = async (req, res) => {
       credential,
     });
 
-    logger.info("eShipper authentication successful", { token: response.data }); // Log successful authentication
+    logger.info("eShipper authentication successful", { token: response.data });
     res.json({ token: response.data });
   } catch (error) {
     logger.error("Authentication failed for eShipper", {
       error: error.message,
-    }); // Log the error
+    });
     res.status(500).json({ error: "Authentication failed" });
   }
 };
 
-// Controller to publish a new version
+// Publish a new version for a connection
 exports.publishVersion = async (req, res) => {
   try {
-    const { id } = req.params; // Connection ID
-    console.log("verions id", id);
+    const { id } = req.params;
 
-    // Fetch the connection
     const connection = await Connection.findById(id);
-    console.log("connecitons", connection);
     if (!connection) {
       return res.status(404).json({ error: "Connection not found" });
     }
 
-    // // Determine the new version number
     const latestVersionNumber =
       connection.versions.length > 0
         ? connection.versions[connection.versions.length - 1].versionNumber
         : 0;
     const newVersionNumber = latestVersionNumber + 1;
 
-    // // Add the new version to the `versions` array
     connection.versions.push({
       versionNumber: newVersionNumber,
     });
 
-    // // Save the updated connection
     await connection.save();
+
+    logger.info("New version published successfully", {
+       id,
+      version: newVersionNumber,
+    });
 
     res.status(200).json({
       message: "New version published successfully!",
       version: newVersionNumber,
     });
   } catch (error) {
-    console.error("Error publishing version:", error);
+    logger.error("Error publishing version", { id ,error: error.message });
     res.status(500).json({ error: "Failed to publish the version" });
   }
 };

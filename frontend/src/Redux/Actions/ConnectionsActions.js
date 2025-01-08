@@ -27,10 +27,10 @@ export const fetchConnections = () => {
     userId = userId._id;
     try {
       const response = await axios.get(`${url}/connections`);
-      const filteredConnections = response.data.filter(
-        (connection) => connection.userId === userId
-      );
-      dispatch(fetchConnectionsSuccess(filteredConnections));
+      // const filteredConnections = response.data.filter(
+      //   (connection) => connection.userId === userId
+      // );
+      dispatch(fetchConnectionsSuccess(response.data));
     } catch (error) {
       dispatch(fetchConnectionsFailure("Error fetching connections"));
     }

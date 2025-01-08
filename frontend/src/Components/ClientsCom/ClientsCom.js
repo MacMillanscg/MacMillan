@@ -70,10 +70,11 @@ export const ClientsCom = () => {
         setLoading(true); // Start loading
         const response = await axios.get(`${url}/clients`);
         const updatedData = response.data;
-        const userClients = updatedData.filter(
-          (user) => user.userId === userId
-        );
-        setClients(userClients);
+        // const userClients = updatedData.filter(
+        //   (user) => user.userId === userId
+        // );
+        // setClients(userClients);
+        setClients(updatedData)
         setLoading(false); // End loading
       } catch (error) {
         console.log(error);

@@ -1,25 +1,25 @@
 const Connection = require("../Schema/Connection");
 const Transaction = require("../Schema/Transaction");
 const Order = require("../Schema/ShopifyOrderSchema");
+const User = require("../Schema/userModel");
+const NewMember = require("../Schema/newMemberSchema");
+const Webhook = require("../Schema/Webhook");
+const Client = require("../Schema/Client");
 const axios = require("axios");
-const { shofipyOrders } = require("./connectionController");
+const mongoose = require("mongoose");
+const logger = require("../logger");
 
-// create shopify connection
+// Shopify and XML Conversion Related Controllers
 
+// Create Shopify Connection
 exports.createShopifyConnection = async (req, res) => {
   try {
     const { id } = req.params;
     const { shopifyTitle, shopifyDetails, newRules, selectedStepId } = req.body;
 
-    console.log("newRules", newRules);
-    console.log("selectedStepId", selectedStepId);
-
-    // First, update the shopifyDetails at the connection level
     const updatedConnection = await Connection.findByIdAndUpdate(
       id,
-      {
-        shopifyDetails: { shopifyTitle, shopifyDetails }, // Update the main shopifyDetails field
-      },
+      { shopifyDetails: { shopifyTitle, shopifyDetails } },
       { new: true, runValidators: true }
     );
 
@@ -27,12 +27,9 @@ exports.createShopifyConnection = async (req, res) => {
       return res.status(404).json({ error: "Connection not found" });
     }
 
-    // Next, update the newRulesId array to include the selectedStepId
     const updatedNewRulesIdConnection = await Connection.findByIdAndUpdate(
       id,
-      {
-        $addToSet: { newRulesId: selectedStepId }, // Add selectedStepId to newRulesId array, ensuring no duplicates
-      },
+      { $addToSet: { newRulesId: selectedStepId } },
       { new: true, runValidators: true }
     );
 
@@ -51,10 +48,12 @@ exports.createShopifyConnection = async (req, res) => {
   }
 };
 
+// Add XML Conversion
 exports.addXmlConvertion = async (req, res) => {
   try {
     const { id } = req.params;
     const { name, description, action } = req.body;
+
     const updatedXMlconversion = await Connection.findByIdAndUpdate(
       id,
       { conversionsXML: { name, description, action } },
@@ -69,19 +68,18 @@ exports.addXmlConvertion = async (req, res) => {
       message: "XMLConvertion created successfully",
       xmlConvertion: updatedXMlconversion,
     });
-    // console.log("req,bldy", req.body);
   } catch (error) {
-    console.error("Error in conversion of xml file");
+    console.error("Error in conversion of XML file:", error);
     res.status(500).json({ error: error.message });
   }
 };
-// get shopify connection
+
+// Get Shopify Details
 exports.getShopifyDetails = async (req, res) => {
   try {
     const { id } = req.params;
 
     const connection = await Connection.findById(id).select("shopifyDetails");
-    // console.log("connection shopify", connection);
 
     if (!connection) {
       return res.status(404).json({ error: "Connection not found" });
@@ -94,31 +92,33 @@ exports.getShopifyDetails = async (req, res) => {
   }
 };
 
+// Get XML Conversion Details
 exports.getXMLConversion = async (req, res) => {
   try {
     const { id } = req.params;
+
     const connection = await Connection.findById(id).select("conversionsXML");
-    // console.log("Conversion Data:", connection);
+
     if (!connection) {
       return res.status(404).json({ error: "Connection not found" });
     }
+
     res.status(200).json(connection);
   } catch (error) {
-    console.error("Error in fetching details:", error);
+    console.error("Error fetching details:", error);
     res.status(500).json({ error: error.message });
   }
 };
 
+// Add All Orders
 exports.addAllOrders = async (req, res) => {
-  const { clientId, integrationId, type, shopifyId } = req.body;
-  // console.log("ordersss", req.body);
+  const { clientId, integrationId, type } = req.body;
 
   try {
     const transaction = new Transaction({
       clientId,
       integrationId,
       type,
-      // shopifyId,
     });
 
     const transactionData = await transaction.save();
@@ -126,20 +126,20 @@ exports.addAllOrders = async (req, res) => {
       message: "Transaction saved successfully",
       transaction: transactionData,
     });
-    // console.log("trans", transactionData);
   } catch (error) {
     console.error("Error saving transaction:", error);
     res.status(500).json({ error: "Failed to save transaction" });
   }
 };
-// 5426
+
+// Delete Shopify Details
 exports.deleteShopifyDetails = async (req, res) => {
   try {
     const { id } = req.params;
 
     const updatedConnection = await Connection.findByIdAndUpdate(
       id,
-      { $unset: { shopifyDetails: "" } }, // Unset the shopifyDetails field
+      { $unset: { shopifyDetails: "" } },
       { new: true, runValidators: true }
     );
 
@@ -148,7 +148,7 @@ exports.deleteShopifyDetails = async (req, res) => {
     }
 
     res.status(200).json({
-      message: "shopify deleted successfully",
+      message: "Shopify details deleted successfully",
       updatedConnectionShopify: updatedConnection,
     });
   } catch (error) {
@@ -157,21 +157,16 @@ exports.deleteShopifyDetails = async (req, res) => {
   }
 };
 
+// Update Shopify Fulfillment
 exports.updateShopifyFullfillment = async (req, res) => {
-  const {
-    id,
-    fulfillmentId,
-    trackingNumber,
-    trackingCompany,
-    postFullfillments,
-  } = req.body;
-  // console.log("body", req.body);
+  const { id, fulfillmentId, trackingNumber, trackingCompany, postFullfillments } = req.body;
 
   try {
     const connection = await Connection.findById(id);
     if (!connection) {
       return res.status(404).json({ error: "Connection not found" });
     }
+
     const newFulfillment = {
       fulfillmentId,
       trackingNumber,
@@ -182,56 +177,27 @@ exports.updateShopifyFullfillment = async (req, res) => {
     connection.postFulfillments.push(newFulfillment);
     const data = await connection.save();
 
-    const fulfillmentUpdateData = {
-      fulfillment: {
-        tracking_info: {
-          company: trackingCompany,
-          number: trackingNumber,
-        },
-      },
-    };
-
-    const response = await axios.post(
-      `https://d7bc5d-1a.myshopify.com/admin/api/2024-04/fulfillments/4927362138326/update_tracking.json`,
-      fulfillmentUpdateData,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          "X-Shopify-Access-Token": "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",
-        },
-      }
-    );
-
-    res
-      .status(200)
-      .json({ shopifyResponse: response.data, connection: connection });
+    res.status(200).json({ connection: data });
   } catch (error) {
     console.error("Error updating fulfillment data:", error);
     res.status(500).json({ error: "Failed to update fulfillment data" });
   }
 };
 
-// get shopify fullfillment
-
+// Get Unfulfilled Orders
 exports.getUnFullFillment = async (req, res) => {
-  const { id } = req.params; // Get the connection ID from the request params
-  console.log("Received connection ID:", id);
+  const { id } = req.params;
 
   try {
-    // Find the connection from your MongoDB database
     const connection = await Connection.findById(id);
-    // console.log("Connection details:", connection);
 
     if (!connection) {
       return res.status(404).json({ message: "Connection not found" });
     }
 
-    // Extract the API key and store URL from the integration data
     const integration = connection.integrations[0];
-    console.log("Integration details:", integration);
     const { apiKey, storeUrl } = integration;
 
-    // First API call to get the list of orders
     const responseId = await axios.get(
       `https://${storeUrl}/admin/api/2024-04/orders.json`,
       {
@@ -242,20 +208,16 @@ exports.getUnFullFillment = async (req, res) => {
       }
     );
 
-    // Extract the order IDs from the response
     const orders = responseId.data.orders;
+
     if (!orders || orders.length === 0) {
       return res.status(404).json({ message: "No orders found" });
     }
 
-    // Get all order IDs
     const orderIds = orders.map((order) => order.id);
-    // console.log("Order IDs:", orderIds);
 
-    // ArrulfillmentResultsay to store the results of all fulfillment orders
     const fulfillmentOrderIds = [];
 
-    // Loop through each order ID and get the fulfillment orders
     for (const orderId of orderIds) {
       try {
         const response = await axios.get(
@@ -271,18 +233,12 @@ exports.getUnFullFillment = async (req, res) => {
         const fulfillmentOrders = response.data.fulfillment_orders;
         const ids = fulfillmentOrders.map((order) => order.id);
 
-        // Store only the ids in the result array
         fulfillmentOrderIds.push(...ids);
-        // console.log(`Fulfillment order IDs for order ${orderId}:`, ids);
       } catch (error) {
-        console.error(
-          `Error fetching fulfillment for order ${orderId}:`,
-          error
-        );
+        console.error(`Error fetching fulfillment for order ${orderId}:`, error);
       }
     }
 
-    // Respond with all the collected fulfillment data
     res.status(200).json({ fulfillmentOrderIds });
   } catch (error) {
     console.error("Error fetching fulfillment details:", error);
@@ -290,16 +246,16 @@ exports.getUnFullFillment = async (req, res) => {
   }
 };
 
+// Create Shopify Order IDs
 exports.createShopifyOrdersId = async (req, res) => {
   try {
     const { orderIds } = req.body;
-    // console.log(req.body);
 
     const bulkOperations = orderIds.map((id) => ({
       updateOne: {
         filter: { shopifyId: id },
         update: { shopifyId: id },
-        upsert: true, // Insert if not exists, otherwise update
+        upsert: true,
       },
     }));
 
@@ -312,13 +268,11 @@ exports.createShopifyOrdersId = async (req, res) => {
   }
 };
 
+// Get All Shopify Order IDs
 exports.getAllShopifyOrdersIds = async (req, res) => {
   try {
-    // Retrieve all the documents and select only the 'shopifyId' field
     const shopifyOrderIds = await Order.find({}, { shopifyId: 1, _id: 0 });
-    // console.log(shopifyOrderIds);
 
-    // Return the shopifyOrderIds
     res.status(200).json(shopifyOrderIds);
   } catch (error) {
     console.error("Error retrieving order IDs:", error);
@@ -326,12 +280,10 @@ exports.getAllShopifyOrdersIds = async (req, res) => {
   }
 };
 
-// To make the unfilfullment orders to filfullment orders
+// Create Fulfillment
 exports.createFulfillment = async (req, res) => {
   const { id } = req.params;
-  console.log("abccc", id);
   const { fulfillment_order_id, message, tracking_info } = req.body;
-  console.log("req obdy=", req.body);
 
   try {
     const connection = await Connection.findById(id);
@@ -358,7 +310,6 @@ exports.createFulfillment = async (req, res) => {
       },
     };
 
-    // Make a POST request to the Shopify fulfillment API
     const response = await axios.post(
       `https://${storeUrl}/admin/api/2024-04/fulfillments.json`,
       requestBody,
@@ -370,7 +321,6 @@ exports.createFulfillment = async (req, res) => {
       }
     );
 
-    // Respond with the data from Shopify's API
     res.status(200).json(response.data);
   } catch (error) {
     console.error("Error creating fulfillment:", error);
@@ -378,30 +328,26 @@ exports.createFulfillment = async (req, res) => {
   }
 };
 
-// Controller for deleting xmlConversion
+// Delete XML Conversion
 exports.deleteXmlConversion = async (req, res) => {
   try {
     const { id } = req.params;
 
-    // Attempt to find and update the connection by unsetting conversionsXML field
     const updatedConnection = await Connection.findByIdAndUpdate(
       id,
-      { $unset: { conversionsXML: "" } }, // Unset the conversionsXML field
+      { $unset: { conversionsXML: "" } },
       { new: true, runValidators: true }
     );
 
-    // If no connection is found, return a 404 error
     if (!updatedConnection) {
       return res.status(404).json({ error: "Connection not found" });
     }
 
-    // Return the updated connection and success message
     res.status(200).json({
       message: "XML Conversion deleted successfully",
       updatedConnectionXmlConversion: updatedConnection,
     });
   } catch (error) {
-    // Handle any errors
     console.error("Error deleting XML Conversion:", error);
     res.status(500).json({ error: error.message });
   }

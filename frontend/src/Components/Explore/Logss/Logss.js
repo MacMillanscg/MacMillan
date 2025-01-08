@@ -89,35 +89,35 @@ export const Logss = () => {
     }
   }, [clients, userId, logs]);
 
-  useEffect(() => {
-    const clientIds = filteredClients.map((client) => client._id);
+  // useEffect(() => {
+  //   const clientIds = filteredClients.map((client) => client._id);
 
-    const matchedClientsLogs = logs
-      .filter((log) => clientIds.includes(log.id))
-      .map((log) => {
-        const matchingConnections = connections
-          .filter((conn) => conn.client.clientId === log.id)
-          .map((conn) => conn.connectionName);
+    // const matchedClientsLogs = logs
+    //   .filter((log) => clientIds.includes(log.id))
+    //   .map((log) => {
+    //     const matchingConnections = connections
+    //       .filter((conn) => conn.client.clientId === log.id)
+    //       .map((conn) => conn.connectionName);
 
-        const client = clients.find((client) => client._id === log.id);
-        const clientName = client ? client.clientName : "";
-        return {
-          ...log,
-          connectionNames:
-            matchingConnections.length > 0 ? matchingConnections : [],
-          clientName,
-        };
-      });
-    setFilteredLogClients(matchedClientsLogs);
-  }, [logs, filteredClients, connections]);
+    //     const client = clients.find((client) => client._id === log.id);
+    //     const clientName = client ? client.clientName : "";
+    //     return {
+    //       ...log,
+    //       connectionNames:
+    //         matchingConnections.length > 0 ? matchingConnections : [],
+    //       clientName,
+    //     };
+    //   });
+  //   setFilteredLogClients(matchedClientsLogs);
+  // }, [logs, filteredClients, connections]);
 
   const indexOfLastLog = currentPage * logsPerPage;
   const indexOfFirstLog = indexOfLastLog - logsPerPage;
-  const currentLogs = filteredLogClients.slice(indexOfFirstLog, indexOfLastLog);
+  const currentLogs = logs.slice(indexOfFirstLog, indexOfLastLog);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const totalPages = Math.ceil(filteredLogClients.length / logsPerPage);
+  const totalPages = Math.ceil(logs.length / logsPerPage);
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
@@ -168,9 +168,7 @@ export const Logss = () => {
                 <td>{log.message}</td>
                 <td>{log.timestamp}</td>
                 <td>
-                  {log?.connectionNames.map((connection, index) => (
-                    <div key={index}>{connection}</div>
-                  ))}
+                  {log?.connectionName}
                 </td>
                 <td>{log.clientName}</td>
               </tr>
