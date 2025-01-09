@@ -26,7 +26,7 @@ router.patch(
 );
 router.get("/:id/get-fulfillment", shopifyControllers.getUnFullFillment);
 router.post("/:id/api/saveOrderIds", shopifyControllers.createShopifyOrdersId);
-router.post("/:id/create-fulfillment", shopifyControllers.createFulfillment);
+// router.post("/:id/create-fulfillment", shopifyControllers.createFulfillment);
 
 router.post(
   "/:id/verify-eshipper",

@@ -41,6 +41,7 @@ export const OutputLogs = ({ selectedIntegration, orders, shopifyDetails }) => {
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
+  console.log("orders inoutlogs" , orders)
 
   const flattenObject = (obj, prefix = "") => {
     return Object.keys(obj).reduce((acc, key) => {
@@ -136,6 +137,7 @@ export const OutputLogs = ({ selectedIntegration, orders, shopifyDetails }) => {
       const newOrders = orders.filter(
         (order) => !storedOrderIds.includes(order.id)
       );
+      console.log("new orders" , newOrders)
 
       if (newOrders.length > 0) {
         // Set a timer to download new orders after 10 seconds

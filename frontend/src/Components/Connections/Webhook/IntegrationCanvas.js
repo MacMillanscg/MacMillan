@@ -92,7 +92,7 @@ export const IntegrationCanvas = () => {
   const [clientId, setClientId] = useState(null);
   const [integrationId, setIntegrationId] = useState(null);
   const [shopifyOrderIds, setShopifyOrderIds] = useState([]);
-  const [fullfillmentId, setFullfillmentId] = useState(["223417687559"]);
+  const [fullfillmentId, setFullfillmentId] = useState([]);
   const [selectedStep, setSelectedStep] = useState("Rule 1");
   const [selectedStepId, setSelectedStepId] = useState(null);
   const [newRules, setNewRules] = useState(false);
@@ -132,25 +132,34 @@ export const IntegrationCanvas = () => {
         `${apiURL}/connections/${id}/api/orders`
       );
       const orders = response.data.orders;
-
-      const ordersWithPhone = orders.map((order) => {
+  
+      // Filter orders where fulfillment_status is not "fulfilled"
+      const unfulfilledOrders = orders.filter((order) => order.fulfillment_status !== "fulfilled");
+  
+      // Map through the unfulfilled orders to add customer phone number
+      const ordersWithPhone = unfulfilledOrders.map((order) => {
         const phoneNumber = order.customer?.phone || "No phone provided";
-        console.log("phonenumber", phoneNumber);
+        console.log("Phone number", phoneNumber);
         return { ...order, customerPhone: phoneNumber };
       });
-
+  
+      console.log("Orders with phone number:", ordersWithPhone);
+  
+      // Set the filtered orders in state
       setOrders(ordersWithPhone);
-
       localStorage.setItem("shopifyInitialized", JSON.stringify(true));
       localStorage.setItem("shopify", JSON.stringify(true));
+  
       closeShopifyPopup();
-
-      // setInitialized(true);
+  
+      // Trigger fetch update if needed
       setFetchTrigger(!fetchTrigger);
+  
     } catch (error) {
       console.error("Error fetching orders:", error);
     }
   };
+  
 
   const fetchShopifyIds = async () => {
     try {
@@ -191,7 +200,7 @@ export const IntegrationCanvas = () => {
         `${apiURL}/connections/${id}/get-fulfillment`
       );
       if (response) {
-        // setFullfillmentId(response.data.fulfillmentOrderIds);
+        setFullfillmentId(response.data.fulfillmentOrderIds);
         console.log("fulfillmentOrderIds", response.data.fulfillmentOrderIds);
       }
     } catch (error) {
@@ -208,51 +217,51 @@ export const IntegrationCanvas = () => {
   const sigleFilfullId = fullfillmentId[0];
   console.log("sdfasdfs", sigleFilfullId);
 
-  const sendFulfillmentsWithDelay = async (fulfillmentIds, delay = 2000) => {
-    for (let i = 0; i < fulfillmentIds.length; i++) {
-      const fulfillment_order_id = fulfillmentIds[i];
-      console.log(`Sending fulfillment for ID: ${fulfillment_order_id}`);
+  // const sendFulfillmentsWithDelay = async (fulfillmentIds, delay = 2000) => {
+  //   for (let i = 0; i < fulfillmentIds.length; i++) {
+  //     const fulfillment_order_id = fulfillmentIds[i];
+  //     console.log(`Sending fulfillment for ID: ${fulfillment_order_id}`);
 
-      try {
-        const response = await axios.post(
-          `${apiURL}/connections/${id}/create-fulfillment`,
-          {
-            fulfillment_order_id: fulfillment_order_id, // Send the fulfillment order ID
-            message: "The package was shipped this morning.",
-            tracking_info: {
-              number: "1Z001985YW997441234111",
-              url: "https://www.ups.com/WebTracking?loc=en_US&requester=ST&trackNums=1Z001985YW997441234111",
-            },
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
+  //     try {
+  //       const response = await axios.post(
+  //         `${apiURL}/connections/${id}/create-fulfillment`,
+  //         {
+  //           fulfillment_order_id: fulfillment_order_id, // Send the fulfillment order ID
+  //           message: "The package was shipped this morning.",
+  //           tracking_info: {
+  //             number: "1Z001985YW997441234111",
+  //             url: "https://www.ups.com/WebTracking?loc=en_US&requester=ST&trackNums=1Z001985YW997441234111",
+  //           },
+  //         },
+  //         {
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //           },
+  //         }
+  //       );
 
-        console.log(
-          "Fulfillment created for ID:",
-          fulfillment_order_id,
-          response.data
-        );
-      } catch (error) {
-        console.error(
-          `Error creating fulfillment for ID ${fulfillment_order_id}:`,
-          error.response ? error.response.data : error.message
-        );
-      }
+  //       console.log(
+  //         "Fulfillment created for ID:",
+  //         fulfillment_order_id,
+  //         response.data
+  //       );
+  //     } catch (error) {
+  //       console.error(
+  //         `Error creating fulfillment for ID ${fulfillment_order_id}:`,
+  //         error.response ? error.response.data : error.message
+  //       );
+  //     }
 
-      // Wait for the specified delay before sending the next request
-      await new Promise((resolve) => setTimeout(resolve, delay));
-    }
-  };
+  //     // Wait for the specified delay before sending the next request
+  //     await new Promise((resolve) => setTimeout(resolve, delay));
+  //   }
+  // };
 
-  useEffect(() => {
-    if (fullfillmentId.length > 0) {
-      sendFulfillmentsWithDelay(fullfillmentId, 2000); // Delay of 2000ms (2 seconds) between requests
-    }
-  }, [fullfillmentId]); // Runs when fullfillmentId array is updated
+  // useEffect(() => {
+  //   if (fullfillmentId.length > 0) {
+  //     sendFulfillmentsWithDelay(fullfillmentId, 2000); // Delay of 2000ms (2 seconds) between requests
+  //   }
+  // }, [fullfillmentId]); // Runs when fullfillmentId array is updated
 
   useEffect(() => {
     // if (initialized) {

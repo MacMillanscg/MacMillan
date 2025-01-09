@@ -229,9 +229,12 @@ exports.getUnFullFillment = async (req, res) => {
             },
           }
         );
+        // console.log("orders response " , response.data)
 
         const fulfillmentOrders = response.data.fulfillment_orders;
+        console.log("FullfillmentOrders" , fulfillmentOrders)
         const ids = fulfillmentOrders.map((order) => order.id);
+        console.log("ids" , ids)
 
         fulfillmentOrderIds.push(...ids);
       } catch (error) {
@@ -281,52 +284,52 @@ exports.getAllShopifyOrdersIds = async (req, res) => {
 };
 
 // Create Fulfillment
-exports.createFulfillment = async (req, res) => {
-  const { id } = req.params;
-  const { fulfillment_order_id, message, tracking_info } = req.body;
+// exports.createFulfillment = async (req, res) => {
+//   const { id } = req.params;
+//   const { fulfillment_order_id, message, tracking_info } = req.body;
 
-  try {
-    const connection = await Connection.findById(id);
-    if (!connection) {
-      return res.status(404).json({ message: "Connection not found" });
-    }
+//   try {
+//     const connection = await Connection.findById(id);
+//     if (!connection) {
+//       return res.status(404).json({ message: "Connection not found" });
+//     }
 
-    const integration = connection.integrations[0];
-    const { apiKey, storeUrl } = integration;
+//     const integration = connection.integrations[0];
+//     const { apiKey, storeUrl } = integration;
 
-    const requestBody = {
-      fulfillment: {
-        message: message || "The package was shipped this morning.",
-        notify_customer: false,
-        tracking_info: tracking_info || {
-          number: "1Z001985YW99744123411341",
-          url: "https://www.ups.com/WebTracking?loc=en_US&requester=ST&trackNums=1Z001985YW99744123411341",
-        },
-        line_items_by_fulfillment_order: [
-          {
-            fulfillment_order_id: fulfillment_order_id,
-          },
-        ],
-      },
-    };
+//     const requestBody = {
+//       fulfillment: {
+//         message: message || "The package was shipped this morning.",
+//         notify_customer: false,
+//         tracking_info: tracking_info || {
+//           number: "1Z001985YW99744123411341",
+//           url: "https://www.ups.com/WebTracking?loc=en_US&requester=ST&trackNums=1Z001985YW99744123411341",
+//         },
+//         line_items_by_fulfillment_order: [
+//           {
+//             fulfillment_order_id: fulfillment_order_id,
+//           },
+//         ],
+//       },
+//     };
 
-    const response = await axios.post(
-      `https://${storeUrl}/admin/api/2024-04/fulfillments.json`,
-      requestBody,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          "X-Shopify-Access-Token": apiKey,
-        },
-      }
-    );
+//     const response = await axios.post(
+//       `https://${storeUrl}/admin/api/2024-04/fulfillments.json`,
+//       requestBody,
+//       {
+//         headers: {
+//           "Content-Type": "application/json",
+//           "X-Shopify-Access-Token": apiKey,
+//         },
+//       }
+//     );
 
-    res.status(200).json(response.data);
-  } catch (error) {
-    console.error("Error creating fulfillment:", error);
-    res.status(500).json({ error: "Failed to create fulfillment" });
-  }
-};
+//     res.status(200).json(response.data);
+//   } catch (error) {
+//     console.error("Error creating fulfillment:", error);
+//     res.status(500).json({ error: "Failed to create fulfillment" });
+//   }
+// };
 
 // Delete XML Conversion
 exports.deleteXmlConversion = async (req, res) => {
