@@ -232,9 +232,9 @@ exports.getUnFullFillment = async (req, res) => {
         // console.log("orders response " , response.data)
 
         const fulfillmentOrders = response.data.fulfillment_orders;
-        console.log("FullfillmentOrders" , fulfillmentOrders)
+        // console.log("FullfillmentOrders" , fulfillmentOrders)
         const ids = fulfillmentOrders.map((order) => order.id);
-        console.log("ids" , ids)
+        // console.log("ids" , ids)
 
         fulfillmentOrderIds.push(...ids);
       } catch (error) {

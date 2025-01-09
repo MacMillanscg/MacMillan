@@ -9,6 +9,7 @@ router.get("/convert-xml", summaryController.convertXmlFilesToJson);
 router.put("/create-shipment", summaryController.sendDataToEShipper);
 router.get("/getShipments", summaryController.getShipmentDetails);
 router.get("/getShipmentsId", summaryController.getAllShipmentIds);
+router.get("/:id/api/orders", connectionController.shofipyOrders);
 router.get("/", connectionController.getAllConnections);
 
 module.exports = router;

@@ -55,6 +55,7 @@ export const Summary = () => {
   const [loading, setLoading] = useState(true);
   const [allShipmentData, setAllShipmentData] = useState([]);
   const [connectionId, setConnectionId] = useState("23523452523452");
+  const [connectionsData , setConnectionsData ] = useState([])
   const initialColumns = [
     { name: "", key: "select", visible: true },
     { name: "Order Number", key: "orderNumber", visible: true },
@@ -76,11 +77,10 @@ export const Summary = () => {
     { name: "Labels", key: "labels", visible: true },
     { name: "Downloaded", key: "downloaded", visible: true },
   ];
+  const [error, setError] = useState(null)
   const [columns, setColumns] = useState(initialColumns);
-  const { connections, error } = useSelector((state) => state.connections);
   const dispatch = useDispatch();
-  console.log("connectinos", connections);
-  const abc = "asdfkjasdkj";
+
 
   const eShipperUsername = process.env.REACT_APP_ESHIPPER_USERNAME;
   const eShipperPassword = process.env.REACT_APP_ESHIPPER_PASSWORD;
@@ -93,40 +93,6 @@ export const Summary = () => {
   let userId = getUser();
   userId = userId?._id;
 
-  useEffect(() => {
-    const fetchAllConncections = async () => {
-      try {
-        const response = await axios.get(`${url}/summary`);
-        if (response.data) {
-          // setConnectionId(response?.data[0]?._id);
-          // console.log("response", response?.data[0]?._id);
-          console.log("testing")
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchAllConncections();
-  }, [connectionId]);
-
-  useEffect(() => {
-    const fetchAllClients = async () => {
-      try {
-        const response = await axios.get(`${url}/clients`);
-        const updatedData = response.data;
-        const userClients = updatedData.filter(
-          (user) => user.userId === userId
-        );
-
-        setClients(userClients);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchAllClients();
-    fetchConnections();
-  }, [userId]);
-  // console.log("clients", clients);
 
   const filterDataByTimeRange = (data) => {
     const today = new Date();
@@ -255,19 +221,39 @@ export const Summary = () => {
     }
   };
 
+  useEffect(() => {
+    const fetchConnections = async () => {
+      try {
+        const response = await axios.get(`${url}/summary`); // Update the URL if necessary
+        setConnectionsData(response.data); // Set the response data to state
+        setClients(response.data)
+      } catch (err) {
+        setError("Failed to fetch connections"); // Handle error
+      } finally {
+        setLoading(false); // Stop loading when the request is complete
+      }
+    };
+
+    fetchConnections();
+  }, []);
+  console.log("connecitonData" , connectionsData[0])
+
 
   console.log("connecitonid", connectionId);
 
   const fetchShopifyOrders = async () => {
-    if (!connectionId) return;
+    // if (!connectionId) return;
+    const id = connectionsData[0]?._id;
     try {
       const response = await axios.get(
-        `${url}/connections/${connectionId}/api/orders`
+        `${url}/summary/${id}/api/orders`
       );
       console.log("testing");
       const orders = response.data.orders;
+      const unfulfilledOrders = orders.filter((order) => order.fulfillment_status !== "fulfilled");
 
-      const ordersWithPhone = orders.map((order) => {
+
+      const ordersWithPhone = unfulfilledOrders.map((order) => {
         const phoneNumber = order.customer?.phone || "No phone provided";
         // console.log("phonenumber", phoneNumber);
         return { ...order, customerPhone: phoneNumber };
@@ -282,14 +268,15 @@ export const Summary = () => {
       setLoading(false); // Set loading to false after fetching data
     }
   };
+  console.log("sOrderssssssssssssssssj" , orders)
 
   useEffect(() => {
     const timer = setTimeout(() => {
       fetchShopifyOrders();
-    }, 4000);
+    }, 2000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [connectionsData]);
 
   const sendToEShipper = async () => {
     if (formattedData.length === 0) return;
@@ -530,18 +517,18 @@ export const Summary = () => {
 
   const extractFields = (data) => {
     return data.map(item => ({
-        carrier: item.rowData.carrier,
-        shipmentId: item.rowData.shipmentId,
-        trackingNumber: item.rowData.trackingNumber,
-        trackingUrl: item.rowData.trackingUrl,
-        reference: item.rowData.reference,
-        reference2: item.rowData.reference2,
-        reference3: item.rowData.reference3,
-        shopifyOrderId: item.rowData.shopifyOrderId,
-        dimensions: item.rowData.dimentions, // Correct spelling as "dimensions"
-        weight: item.rowData.weight,
-        attention: item.scheduledDate.from.attention,
-        address1: item.scheduledDate.from.address1,
+        carrier: item?.rowData?.carrier,
+        shipmentId: item?.rowData?.shipmentId,
+        trackingNumber: item?.rowData?.trackingNumber,
+        trackingUrl: item?.rowData?.trackingUrl,
+        reference: item?.rowData?.reference,
+        reference2: item?.rowData?.reference2,
+        reference3: item?.rowData?.reference3,
+        shopifyOrderId: item?.rowData?.shopifyOrderId,
+        dimensions: item?.rowData?.dimentions, // Correct spelling as "dimensions"
+        weight: item?.rowData?.weight,
+        attention: item?.scheduledDate?.from?.attention,
+        address1: item?.scheduledDate?.from?.address1,
     }));
 };
 
@@ -588,6 +575,8 @@ console.log("resutl" ,result);
     setItemsPerPage(Number(e.target.value));
     setCurrentPage(1); // Reset to first page when items per page is changed
   };
+
+  console.log("clietns" , clients)
 
   return (
     <div
@@ -769,13 +758,15 @@ console.log("resutl" ,result);
                 value = shipment?.carrier || "";
                 break;
               case "client":
-                value = clients[0]?.clientName;
+                value = clients[0]?.client?.clientName;
                 break;
-              case "customer":
-                value = scheduledShipDated?.from?.attention || "-";
+              case "customer": value = order 
+                    ? `${order.customer?.first_name ?? ' '} ${order.customer?.last_name ?? ''}`.trim() 
+                    : scheduledShipDated?.from?.attention ?? '';
+
                 break;
               case "address":
-                value = scheduledShipDated?.from?.address1 || "-";
+                value = order ? order?.customer?.default_address?.address1 : scheduledShipDated?.from?.address1;
                 break;
               case "trackingNumber":
                 value = shipment?.trackingNumber || "";
