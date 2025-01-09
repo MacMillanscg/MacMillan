@@ -1,0 +1,60 @@
+{"email":"sagrika@macmillanscg.com","level":"info","message":"User logged in successfully","timestamp":"2025-01-07 16:02:08"}
+{"connectionId":"677d8faf42b68bffca045fde","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-07 16:02:19"}
+{"integration":{"_id":"677d8faf42b68bffca045fdf","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-07 16:02:19"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-07 16:02:20"}
+{"connectionId":"23523452523452","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-08 15:13:47"}
+{"error":"Cast to ObjectId failed for value \"23523452523452\" (type string) at path \"_id\" for model \"Connection\"","level":"error","message":"Error fetching Shopify orders","timestamp":"2025-01-08 15:13:47"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 15:14:41"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 15:14:41"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 15:14:43"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 15:14:49"}
+{"connectionId":"677e94bc7238482885104041","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-08 15:20:15"}
+{"integration":{"_id":"677e94bc7238482885104042","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-08 15:20:16"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-08 15:20:17"}
+{"connectionId":"677ed4c9639cb959edbf0d90","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-08 15:20:19"}
+{"integration":{"_id":"677ed4c9639cb959edbf0d91","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-08 15:20:20"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-08 15:20:20"}
+{"connectionId":"677d8faf42b68bffca045fde","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-08 15:20:25"}
+{"integration":{"_id":"677d8faf42b68bffca045fdf","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-08 15:20:25"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-08 15:20:25"}
+{"connectionId":"23523452523452","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-08 15:20:33"}
+{"error":"Cast to ObjectId failed for value \"23523452523452\" (type string) at path \"_id\" for model \"Connection\"","level":"error","message":"Error fetching Shopify orders","timestamp":"2025-01-08 15:20:33"}
+{"connectionId":"677e94bc7238482885104041","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-08 15:20:40"}
+{"integration":{"_id":"677e94bc7238482885104042","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-08 15:20:40"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-08 15:20:40"}
+{"connectionId":"677e94bc7238482885104041","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-08 15:20:43"}
+{"integration":{"_id":"677e94bc7238482885104042","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-08 15:20:44"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-08 15:20:44"}
+{"connectionId":"677e94bc7238482885104041","level":"info","message":"Attempting to delete connection","timestamp":"2025-01-08 15:20:48"}
+{"connectionId":"677e94bc7238482885104041","level":"info","message":"Connection deleted successfully","timestamp":"2025-01-08 15:20:48"}
+{"connectionId":"677ed4c9639cb959edbf0d90","level":"info","message":"Attempting to delete connection","timestamp":"2025-01-08 15:20:51"}
+{"connectionId":"677ed4c9639cb959edbf0d90","level":"info","message":"Connection deleted successfully","timestamp":"2025-01-08 15:20:51"}
+{"connectionId":"23523452523452","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-08 15:20:57"}
+{"error":"Cast to ObjectId failed for value \"23523452523452\" (type string) at path \"_id\" for model \"Connection\"","level":"error","message":"Error fetching Shopify orders","timestamp":"2025-01-08 15:20:57"}
+{"email":"raajmohan@macmillanscg.com","level":"warn","message":"Incorrect password attempt","timestamp":"2025-01-08 15:24:03"}
+{"email":"raajmohan@macmillanscg.com","level":"info","message":"User logged in successfully","timestamp":"2025-01-08 15:24:11"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 15:25:40"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 15:25:40"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 15:25:42"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 15:26:46"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 15:26:46"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 15:26:47"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 15:26:49"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 15:26:52"}
+{"clientId":"677edcae5b1dfad335ab2ca7","level":"info","message":"Client updated successfully","timestamp":"2025-01-08 15:26:55"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 15:26:55"}
+{"level":"info","message":"Creating new connection","requestData":{"client":{"clientId":"677edcae5b1dfad335ab2ca7","clientName":"BKN Sandbox B to C"},"connectionName":"Beekeepers B to C Sandbox","integrations":{"apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"managementTrigger":null,"userId":"66854fc64c8434607799ccef","webhookTrigger":null},"timestamp":"2025-01-08 15:28:11"}
+{"connectionId":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection created successfully","timestamp":"2025-01-08 15:28:11"}
+{"connectionId":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-08 15:28:11"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-08 15:28:12"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-08 15:28:13"}
+{"connectionId":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-08 15:28:19"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-08 15:28:19"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-08 15:28:20"}
+{"connectionId":"23523452523452","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-08 16:13:28"}
+{"error":"Cast to ObjectId failed for value \"23523452523452\" (type string) at path \"_id\" for model \"Connection\"","level":"error","message":"Error fetching Shopify orders","timestamp":"2025-01-08 16:13:28"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 16:15:22"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 16:15:22"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 16:15:23"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 16:15:44"}
+{"id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with connection successfully","timestamp":"2025-01-08 16:15:44"}
