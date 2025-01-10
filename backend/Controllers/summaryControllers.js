@@ -54,8 +54,10 @@ exports.convertXmlFilesToJson = async (req, res) => {
     const homeDir = os.homedir();
     const DOWNLOAD_FOLDER = path.join(homeDir, "Downloads");
     const files = await fs.readdir(DOWNLOAD_FOLDER);
+    console.log("fiels" , files)
 
     const xmlFiles = files.filter((file) => file.endsWith(".xml"));
+    console.log("XMLFILES", xmlFiles)
 
     if (xmlFiles.length === 0) {
       return res.status(404).json({ message: "No XML files found" });
@@ -111,12 +113,14 @@ exports.sendDataToEShipper = async (req, res) => {
       shipmentId: shipmentResponseData.order.id,
       shopifyOrderId: shipmentResponseData.reference.name,
     });
+    console.log("newShiplent" , newShipment)
 
     await newShipment.save();
 
     res.status(200).json({
       message: "Data successfully sent to eShipper!",
       eshipperResponse: response.data,
+      successResponses: newShipment
     });
   } catch (error) {
     console.error("Error sending data to eShipper:", error.response?.data || error);
@@ -132,6 +136,7 @@ exports.getShipmentDetails = async (req, res) => {
   try {
     const shipments = await Shipment.find({}, "shipmentId shopifyOrderId");
     const shipmentIds = shipments.map((shipment) => shipment.shipmentId);
+    console.log("SHIpmendtIDs" , shipmentIds)
     const shopifyOrderIds = shipments.map((shipment) => shipment.shopifyOrderId);
 
     const eshipperUsername = "macmillan";

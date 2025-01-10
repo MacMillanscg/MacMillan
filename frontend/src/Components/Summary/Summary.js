@@ -268,7 +268,6 @@ export const Summary = () => {
       setLoading(false); // Set loading to false after fetching data
     }
   };
-  console.log("sOrderssssssssssssssssj" , orders)
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -303,16 +302,28 @@ export const Summary = () => {
 
       // Send request to backend
       const response = await axios.put(`${url}/summary/create-shipment`, data);
+      console.log("response shipment........" , response.data)
+      const successResponse = response.data?.successResponses;
+
+      setShipmentsId((prev) => [
+        ...prev,
+        {
+          shipmentId: successResponse.shipmentId,
+          shopifyOrderId: successResponse.shopifyOrderId,
+        },
+      ]);
+      
 
       // Handle success and failed responses from backend
-      console.log("eShipper Response:", response.data?.successResponses[0]);
-      const newShipmentIds = response.data.successResponses.map((res) => res);
-      console.log("newshipmentIds", newShipmentIds);
-      setShipmentsId((prev) => [...prev, ...newShipmentIds]);
+      // console.log("eShipper Response:", response.data?.successResponses[0]);
+      // const newShipmentIds = response?.data.successResponses.map((res) => res);
+      // console.log("newshipmentIds", newShipmentIds);
+      // setShipmentsId((prev) => [...prev, ...newShipmentIds]);
     } catch (error) {
       console.error("Error sending data to eShipper:", error);
     }
   };
+  console.log("shipmentsId" , shipmentsId)
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -373,7 +384,7 @@ export const Summary = () => {
   // Example usage with shipmentData
   console.log("allShipmentData", allShipmentData);
 
-  console.log("ordrs", orders);
+
   // console.log("filterclients", filteredClients);
 
   const handleEShipperClick = () => {
@@ -758,7 +769,7 @@ console.log("resutl" ,result);
                 value = shipment?.carrier || "";
                 break;
               case "client":
-                value = clients[0]?.client?.clientName;
+                value = order ? clients[0]?.client?.clientName : '-';
                 break;
               case "customer": value = order 
                     ? `${order.customer?.first_name ?? ' '} ${order.customer?.last_name ?? ''}`.trim() 
