@@ -113,7 +113,7 @@ exports.sendDataToEShipper = async (req, res) => {
       shipmentId: shipmentResponseData.order.id,
       shopifyOrderId: shipmentResponseData.reference.name,
     });
-    console.log("newShiplent" , newShipment)
+    // console.log("newShiplent" , newShipment)
 
     await newShipment.save();
 
