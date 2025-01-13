@@ -54,7 +54,6 @@ export const Summary = () => {
   const [itemsPerPage, setItemsPerPage] = useState(20);
   const [loading, setLoading] = useState(true);
   const [allShipmentData, setAllShipmentData] = useState([]);
-  const [connectionId, setConnectionId] = useState("23523452523452");
   const [connectionsData , setConnectionsData ] = useState([])
   const initialColumns = [
     { name: "", key: "select", visible: true },
@@ -166,7 +165,7 @@ export const Summary = () => {
       });
     }
 
-    console.log("No filtering applied, returning all data:", data);
+
     return data;
   };
 
@@ -236,10 +235,6 @@ export const Summary = () => {
 
     fetchConnections();
   }, []);
-  console.log("connecitonData" , connectionsData[0])
-
-
-  console.log("connecitonid", connectionId);
 
   const fetchShopifyOrders = async () => {
     // if (!connectionId) return;
@@ -248,7 +243,7 @@ export const Summary = () => {
       const response = await axios.get(
         `${url}/summary/${id}/api/orders`
       );
-      console.log("testing");
+      // console.log("testing");
       const orders = response.data.orders;
       const unfulfilledOrders = orders.filter((order) => order.fulfillment_status !== "fulfilled");
 
@@ -268,7 +263,6 @@ export const Summary = () => {
       setLoading(false); // Set loading to false after fetching data
     }
   };
-  console.log("sOrderssssssssssssssssj" , orders)
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -303,16 +297,23 @@ export const Summary = () => {
 
       // Send request to backend
       const response = await axios.put(`${url}/summary/create-shipment`, data);
+      console.log("response shipment........" , response.data)
+      const successResponse = response.data?.successResponses;
 
+      setShipmentsId((prev) => [
+        ...prev,
+        {
+          shipmentId: successResponse.shipmentId,
+          shopifyOrderId: successResponse.shopifyOrderId,
+        },
+      ]);
+      
       // Handle success and failed responses from backend
-      console.log("eShipper Response:", response.data?.successResponses[0]);
-      const newShipmentIds = response.data.successResponses.map((res) => res);
-      console.log("newshipmentIds", newShipmentIds);
-      setShipmentsId((prev) => [...prev, ...newShipmentIds]);
     } catch (error) {
       console.error("Error sending data to eShipper:", error);
     }
   };
+  console.log("shipmentsId" , shipmentsId)
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -373,7 +374,7 @@ export const Summary = () => {
   // Example usage with shipmentData
   console.log("allShipmentData", allShipmentData);
 
-  console.log("ordrs", orders);
+
   // console.log("filterclients", filteredClients);
 
   const handleEShipperClick = () => {
@@ -758,7 +759,7 @@ console.log("resutl" ,result);
                 value = shipment?.carrier || "";
                 break;
               case "client":
-                value = clients[0]?.client?.clientName;
+                value = order ? clients[0]?.client?.clientName : '';
                 break;
               case "customer": value = order 
                     ? `${order.customer?.first_name ?? ' '} ${order.customer?.last_name ?? ''}`.trim() 
@@ -791,22 +792,22 @@ console.log("resutl" ,result);
                 break;
               case "shippedDate":
                 value =
-                  scheduledShipDated?.scheduledShipDate?.split(" ")[0] || "-";
+                  scheduledShipDated?.scheduledShipDate?.split(" ")[0] || "";
                 break;
               case "reference":
-                value = shipment?.reference || "-";
+                value = shipment?.reference || "";
                 break;
               case "reference2":
-                value = shipment?.reference2 || "-";
+                value = shipment?.reference2 || "";
                 break;
               case "reference3":
-                value = shipment?.reference3 || "-";
+                value = shipment?.reference3 || "";
                 break;
               case "dimentions":
-                value = shipment?.dimentions || "-";
+                value = shipment?.dimentions || "";
                 break;
               case "weight":
-                value = shipment?.weight || "-";
+                value = shipment?.weight || "";
                 break;
               case "labels":
                 value = shipment ? "Label" : ""; // Placeholder
@@ -825,7 +826,7 @@ console.log("resutl" ,result);
                 );
                 break;
               default:
-                value = "-";
+                value = "";
                 break;
             }
 
