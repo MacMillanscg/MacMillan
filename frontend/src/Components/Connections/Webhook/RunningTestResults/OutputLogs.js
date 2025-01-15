@@ -4,6 +4,7 @@ import styles from "./OutputLogs.module.css";
 import toast from "react-hot-toast";
 import { js2xml } from "xml-js";
 
+// Define the theme for JSONTree
 const theme = {
   base00: "#ffffff",
   base01: "#f5f5f5",
@@ -36,12 +37,11 @@ export const OutputLogs = ({ selectedIntegration, orders, shopifyDetails }) => {
   const [showExportOptions, setShowExportOptions] = useState(false);
   const [selectedFormat, setSelectedFormat] = useState("xml");
   const previousOrdersRef = useRef([]);
-  const downloadTimerRef = useRef(null); // Timer reference
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
-  console.log("orders inoutlogs" , orders)
+  console.log("orders in OutputLogs", orders);
 
   const flattenObject = (obj, prefix = "") => {
     return Object.keys(obj).reduce((acc, key) => {
@@ -62,26 +62,31 @@ export const OutputLogs = ({ selectedIntegration, orders, shopifyDetails }) => {
     }, {});
   };
 
-  const handleExport = (newOrders) => {
-    if (!newOrders || newOrders.length === 0) {
-      toast.error("No new orders available for export.");
+  const handleExport = (ordersToExport) => {
+    // if (!ordersToExport || ordersToExport.length === 0) {
+    //   toast.error("No new orders available for export.");
+    //   return;
+    // }
+  
+    // Get today's date
+    const today = new Date().toISOString().split("T")[0]; // Get the date in YYYY-MM-DD format
+  
+    // Filter orders created today
+    const todaysOrders = ordersToExport.filter((order) => {
+      const orderDate = new Date(order.created_at).toISOString().split("T")[0];
+      return orderDate === today;
+    });
+  
+    if (todaysOrders.length === 0) {
+      toast.error("No orders for today to export."); // Show toast when no today's orders
       return;
     }
-
-    // Get stored order IDs from localStorage
-    const storedOrderIds =
-      JSON.parse(localStorage.getItem("storedOrderIds")) || [];
-
-    const sortedOrders = [...newOrders].sort((a, b) => {
-      return String(a.id).localeCompare(String(b.id), undefined, {
-        numeric: true,
-      });
-    });
-
-    sortedOrders.forEach((order) => {
-      let content;
+  
+    let content;
+  
+    todaysOrders.forEach((order) => {
       const flattenedOrder = flattenObject(order);
-
+  
       if (selectedFormat === "csv") {
         const headers = Object.keys(flattenedOrder);
         const rows = headers
@@ -93,13 +98,13 @@ export const OutputLogs = ({ selectedIntegration, orders, shopifyDetails }) => {
             return value;
           })
           .join(",");
-
+  
         content = [headers.join(","), rows].join("\n");
       } else if (selectedFormat === "xml") {
         const wrappedOrder = { order };
         content = js2xml(wrappedOrder, { compact: true, spaces: 4 });
       }
-
+  
       if (content) {
         const blob = new Blob([content], {
           type: selectedFormat === "csv" ? "text/csv" : "application/xml",
@@ -114,41 +119,27 @@ export const OutputLogs = ({ selectedIntegration, orders, shopifyDetails }) => {
         URL.revokeObjectURL(url);
       }
     });
-
-    // Update stored order IDs
-    const updatedStoredOrderIds = [
-      ...new Set([...storedOrderIds, ...sortedOrders.map((order) => order.id)]),
-    ];
-    localStorage.setItem(
-      "storedOrderIds",
-      JSON.stringify(updatedStoredOrderIds)
-    );
-
+  
     toast.success(
       `New files downloaded successfully as ${selectedFormat.toUpperCase()}!`
     );
   };
+  
 
   useEffect(() => {
-    // Check if orders have changed and set timer to download new orders
+    // Fetch orders if new orders are available
     if (previousOrdersRef.current !== orders && orders.length > 0) {
-      const storedOrderIds =
-        JSON.parse(localStorage.getItem("storedOrderIds")) || [];
       const newOrders = orders.filter(
-        (order) => !storedOrderIds.includes(order.id)
+        (order) => !previousOrdersRef.current.includes(order.id)
       );
-      console.log("new orders" , newOrders)
+      console.log("new orders", newOrders);
 
       if (newOrders.length > 0) {
-        // Set a timer to download new orders after 10 seconds
-        downloadTimerRef.current = setTimeout(() => {
-          handleExport(newOrders);
-        }, 500000); // 10000 milliseconds = 10 seconds
+        handleExport(newOrders);
       }
     }
 
-    // Cleanup function to clear the timer if component unmounts
-    return () => clearTimeout(downloadTimerRef.current);
+    previousOrdersRef.current = orders; // Update previous orders
   }, [orders]);
 
   return (

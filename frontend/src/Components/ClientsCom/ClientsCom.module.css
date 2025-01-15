@@ -150,8 +150,7 @@
     margin-bottom: 16px;
 }
 .cardLink{
-    max-width: 295px;
-    width: 100%;
+    width: 33%;
 }
 .cardLink:hover{
     text-decoration: none !important;

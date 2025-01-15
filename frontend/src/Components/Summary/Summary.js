@@ -26,6 +26,7 @@ import { ConfirmCancelPopUp } from "../Common/ConfirmCancelPopUp/ConfirmCancelPo
 import { useFetchXmlData } from "./hooks/useFetchXmlData";
 import { Spinner } from "../Spinner/Spinner";
 import { fetchConnections } from "../../Redux/Actions/ConnectionsActions";
+import toast from "react-hot-toast";
 // import { eShipperUsername } from "../../api";
 // import { eShipperPassword } from "../../api";
 
@@ -78,8 +79,12 @@ export const Summary = () => {
   ];
   const [error, setError] = useState(null)
   const [columns, setColumns] = useState(initialColumns);
-  const dispatch = useDispatch();
+  const [loadingOrders, setLoadingOrders] = useState(true);
+  const [loadingShipments, setLoadingShipments] = useState(true);
+  const [loadingConnections, setLoadingConnections] = useState(true);
+  const [isDownloading, setIsDownloading] = useState(false);
 
+  const dispatch = useDispatch();
 
   const eShipperUsername = process.env.REACT_APP_ESHIPPER_USERNAME;
   const eShipperPassword = process.env.REACT_APP_ESHIPPER_PASSWORD;
@@ -203,7 +208,7 @@ export const Summary = () => {
   };
 
   const handleCloseExportModal = () => {
-    setShowExportModal(false); // Close the export modal
+    setShowExportModal(false); 
   };
 
   const handleSearchChange = (e) => {
@@ -222,52 +227,51 @@ export const Summary = () => {
 
   useEffect(() => {
     const fetchConnections = async () => {
+      setLoadingConnections(true); // Start loading
       try {
-        const response = await axios.get(`${url}/summary`); // Update the URL if necessary
-        setConnectionsData(response.data); // Set the response data to state
-        setClients(response.data)
+        const response = await axios.get(`${url}/summary`);
+        setConnectionsData(response.data);
+        setClients(response.data);
       } catch (err) {
-        setError("Failed to fetch connections"); // Handle error
+        setError("Failed to fetch connections");
       } finally {
-        setLoading(false); // Stop loading when the request is complete
+        setLoadingConnections(false); // Stop loading
       }
     };
-
+    
     fetchConnections();
   }, []);
+  console.log("connectionsData" ,connectionsData)
 
   const fetchShopifyOrders = async () => {
-    // if (!connectionId) return;
-    const id = connectionsData[0]?._id;
+    setLoadingOrders(true); // Start loading
     try {
-      const response = await axios.get(
-        `${url}/summary/${id}/api/orders`
-      );
-      // console.log("testing");
+      const id = connectionsData[0]?._id;
+      const response = await axios.get(`${url}/summary/${id}/api/orders`);
       const orders = response.data.orders;
-      const unfulfilledOrders = orders.filter((order) => order.fulfillment_status !== "fulfilled");
-
-
+  
+      const unfulfilledOrders = orders.filter(
+        (order) => order.fulfillment_status !== "fulfilled"
+      );
+  
       const ordersWithPhone = unfulfilledOrders.map((order) => {
         const phoneNumber = order.customer?.phone || "No phone provided";
-        // console.log("phonenumber", phoneNumber);
         return { ...order, customerPhone: phoneNumber };
       });
-
-      // console.log("orderwith", ordersWithPhone);
+  
       setOrders(ordersWithPhone);
       setFilteredClients(ordersWithPhone);
     } catch (error) {
       console.error("Error fetching orders:", error);
     } finally {
-      setLoading(false); // Set loading to false after fetching data
+      setLoadingOrders(false); // Stop loading
     }
   };
 
   useEffect(() => {
     const timer = setTimeout(() => {
       fetchShopifyOrders();
-    }, 2000);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, [connectionsData]);
@@ -299,6 +303,9 @@ export const Summary = () => {
       const response = await axios.put(`${url}/summary/create-shipment`, data);
       console.log("response shipment........" , response.data)
       const successResponse = response.data?.successResponses;
+      // if(response){
+      //   toast.success(response.data.message)
+      // }
 
       setShipmentsId((prev) => [
         ...prev,
@@ -324,20 +331,20 @@ export const Summary = () => {
   }, [formattedData, token, shipmentsId]);
 
   const fetchShipmentDetails = async () => {
+    setLoadingShipments(true); // Start loading
     try {
       const response = await axios.get(`${url}/summary/getShipments`);
-
-      console.log("Shipment Details:", response.data.shipments);
       setShipmentData(response.data.shipments);
     } catch (error) {
       console.error("Error fetching shipment details:", error);
+    } finally {
+      setLoadingShipments(false); // Stop loading
     }
   };
-  console.log("shipmentData", shipmentData);
 
   useEffect(() => {
     fetchShipmentDetails();
-  }, []);
+  }, []); 
 
   const cleanShipmentData = (data) => {
     return data.map((item) => {
@@ -382,8 +389,13 @@ export const Summary = () => {
   };
 
   useEffect(() => {
-    handleEShipperClick();
-  }, []);
+    // Check if there is connection data available
+    if (connectionsData && connectionsData.length > 0) {
+      handleEShipperClick(); // Only proceed if there is connection data
+    } else {
+      console.log("No connection data available, skipping eShipper verification.");
+    }
+  }, [connectionsData]); // Run whenever the connection data changes
 
   const decodeBase64 = (base64String, fileType = "application/octet-stream") => {
     try {
@@ -401,6 +413,7 @@ export const Summary = () => {
   };
   
   const handleDownloadClick = async (rowIndex, base64Data, trackingNumber) => {
+    setIsDownloading(true); // Start loading
     try {
       // Validate base64 data
       if (!base64Data || typeof base64Data !== "string") {
@@ -408,8 +421,7 @@ export const Summary = () => {
       }
   
       let pdfBytes;
-    // Use trackingNumber or a fallback name
-  
+      // Use trackingNumber or a fallback name
       if (base64Data.startsWith("JVBERi0")) {
         // Handle PDF data
         const blob = decodeBase64(base64Data, "application/pdf");
@@ -471,6 +483,8 @@ export const Summary = () => {
     } catch (error) {
       console.error("Error processing file:", error);
       alert("Failed to process the file. Please try again.");
+    } finally {
+      setIsDownloading(false); // Stop loading after the operation completes
     }
   };
   
@@ -485,9 +499,9 @@ export const Summary = () => {
             !currentOrders?.some((order) => order.id.toString() === shipment.shopifyOrderId)
         ),
       ];
-      setSelectedRows(allRows); // Store all rows when "select all" is checked
+      setSelectedRows(allRows); 
     } else {
-      setSelectedRows([]); // Clear selection when "select all" is unchecked
+      setSelectedRows([]); 
     }
   };
   
@@ -496,7 +510,6 @@ export const Summary = () => {
     const updatedSelection = [...selectedRows];
   
     if (checked) {
-      // Add the row data and scheduledDate to the selected rows
       updatedSelection.push({
         rowData,
         scheduledDate,
@@ -689,7 +702,10 @@ console.log("resutl" ,result);
       </div>
 
       <div className={styles.tableContainer}>
-        <Spinner isLoading={loading} message="Loading data, please wait..." />
+            {(loadingOrders || loadingShipments || loadingConnections) && (
+        <Spinner isLoading={true} message="Loading data, please wait..." />
+      )}
+
         <table className={`${styles.table} mt-4`}>
   <thead>
     <tr>
@@ -818,8 +834,9 @@ console.log("resutl" ,result);
                     onClick={() =>
                       handleDownloadClick(index, shipment.labels, shipment.trackingNumber)
                     }
+                    disabled={isDownloading}
                   >
-                    Download
+                     {isDownloading ? 'Downloading...' : 'Download'}
                   </button>
                 ) : (
                   ""

@@ -22,7 +22,6 @@ import { url } from "../../api";
 export const Sidebar = () => {
   const [activeLink, setActiveLink] = useState("home");
   const [showText, setShowText] = useState(true);
-  // const [sidebarMinimized, setSidebarMinimized] = useState(false);
   const { sidebarMinimized, setSidebarMinimized } = useAppContext();
   const [isExploreExpanded, setIsExploreExpanded] = useState(false);
   let userId = getUser();
@@ -31,6 +30,13 @@ export const Sidebar = () => {
 
   const [role, setRole] = useState(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedActiveLink = localStorage.getItem("activeLink");
+    if (storedActiveLink) {
+      setActiveLink(storedActiveLink);
+    }
+  }, []);
 
   useEffect(() => {
     // Retrieve the role from localStorage or sessionStorage (after login)
@@ -50,6 +56,8 @@ export const Sidebar = () => {
 
   const handleItemClick = (link) => {
     setActiveLink(link);
+    // Store the active link in localStorage
+    localStorage.setItem("activeLink", link);
   };
 
   const toggleSidebarWidth = () => {

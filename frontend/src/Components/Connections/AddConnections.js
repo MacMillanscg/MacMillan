@@ -66,11 +66,12 @@ export const AddConnections = ({ closeModal }) => {
       try {
         const response = await axios.get(`${url}/clients`);
         const updatedData = response.data;
-        const userClients = updatedData.filter(
-          (user) => user.userId === userId
-        );
+        // console.log("all clients" , updatedData)
+        // const userClients = updatedData.filter(
+        //   (user) => user.userId === userId
+        // );
         // console.log("updated clients", userClients);
-        setClients(userClients);
+        setClients(updatedData);
       } catch (error) {
         console.log(error);
       }
@@ -132,13 +133,14 @@ export const AddConnections = ({ closeModal }) => {
   console.log("select client", selectedClient?.clientName);
 
   const handleIntegrationClick = (integration) => {
-    if (selectedIntegration === integration) {
+    // If the clicked integration is already selected, deselect it
+    if (selectedIntegration && selectedIntegration._id === integration._id) {
       setSelectedIntegration(null);
     } else {
+      // Otherwise, set the clicked integration as selected
       setSelectedIntegration(integration);
     }
   };
-
   // console.log("client1", client);
   const handleCreate = async () => {
     try {
@@ -406,16 +408,14 @@ export const AddConnections = ({ closeModal }) => {
                 {selectedClientIntegrations &&
                   selectedClientIntegrations.map((integration, index) => (
                     <div
-                      key={index}
-                      className={`${styles.integrationItem} ${
-                        selectedIntegration &&
-                        selectedIntegration.integrationId ===
-                          integration.integrationId
-                          ? styles.selected
-                          : ""
-                      }`}
-                      onClick={() => handleIntegrationClick(integration)} // Handle click event
-                    >
+                    key={integration._id}
+                    className={`${styles.integrationItem} ${
+                      selectedIntegration && selectedIntegration._id === integration._id
+                        ? styles.selected
+                        : ""
+                    }`}
+                    onClick={() => handleIntegrationClick(integration)} // Handle click event
+                  >
                       <div className={styles.integrationHeader}>
                         <FontAwesomeIcon
                           icon={faLink}
