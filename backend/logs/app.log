@@ -1367,3 +1367,98 @@
 {"clientName":"Beekeepers","id":"677d83d842b68bffca045ebb","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-15 10:10:38"}
 {"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:10:40"}
 {"error":"Cast to ObjectId failed for value \"logss\" (type string) at path \"_id\" for model \"Client\"","id":"logss","level":"error","message":"Error fetching client integrations","timestamp":"2025-01-15 10:10:41"}
+{"clientName":"Beekeepers","id":"677d83d842b68bffca045ebb","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-15 10:10:41"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:10:41"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:10:50"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-15 10:11:09"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-15 10:11:09"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-15 10:11:09"}
+{"connectionName":"Beekeepers B to C Sandbox","id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:11:09"}
+{"connectionName":"Beekeepers B to C Sandbox","id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:11:09"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-15 10:11:11"}
+{"connectionName":"Beekeepers B to C Sandbox","id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:11:12"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:11:28"}
+{"id":"67855cb10ec505572bce7bbf","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-15 10:11:30"}
+{"id":"67855cb10ec505572bce7bbf","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-15 10:11:30"}
+{"integration":{"_id":"67855cb10ec505572bce7bc0","apiKey":"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","integrationId":"6785563174fcbcd499adec69","integrationName":"FirstIntegration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-15 10:11:30"}
+{"connectionName":"firstConnection","id":"67855cb10ec505572bce7bbf","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:11:30"}
+{"connectionName":"firstConnection","id":"67855cb10ec505572bce7bbf","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:11:30"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-15 10:11:31"}
+{"connectionName":"firstConnection","id":"67855cb10ec505572bce7bbf","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:11:32"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:11:42"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-15 10:11:44"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-15 10:11:45"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:12:09"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:12:37"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:12:49"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:12:54"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:13:35"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-15 10:13:38"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-15 10:13:38"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-15 10:13:41"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:14:14"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:14:26"}
+{"id":"67855cb10ec505572bce7bbf","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-15 10:15:16"}
+{"id":"67855cb10ec505572bce7bbf","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-15 10:15:16"}
+{"integration":{"_id":"67855cb10ec505572bce7bc0","apiKey":"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","integrationId":"6785563174fcbcd499adec69","integrationName":"FirstIntegration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-15 10:15:17"}
+{"connectionName":"firstConnection","id":"67855cb10ec505572bce7bbf","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:15:17"}
+{"connectionName":"firstConnection","id":"67855cb10ec505572bce7bbf","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:15:18"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-15 10:15:18"}
+{"connectionName":"firstConnection","id":"67855cb10ec505572bce7bbf","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:15:19"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:15:20"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:15:55"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-15 10:18:15"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-15 10:18:15"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-15 10:18:15"}
+{"connectionName":"Beekeepers B to C Sandbox","id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:18:16"}
+{"connectionName":"Beekeepers B to C Sandbox","id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:18:17"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-15 10:18:17"}
+{"connectionName":"Beekeepers B to C Sandbox","id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:18:17"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:21:20"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:21:22"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-15 10:21:24"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-15 10:21:24"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-15 10:21:25"}
+{"connectionName":"Beekeepers B to C Sandbox","id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:21:26"}
+{"connectionName":"Beekeepers B to C Sandbox","id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:21:26"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-15 10:21:27"}
+{"connectionName":"Beekeepers B to C Sandbox","id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:21:28"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-15 10:28:29"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:28:29"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-15 10:28:29"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-15 10:28:30"}
+{"connectionName":"Beekeepers B to C Sandbox","id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:28:30"}
+{"connectionName":"Beekeepers B to C Sandbox","id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:28:31"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-15 10:28:33"}
+{"connectionName":"Beekeepers B to C Sandbox","id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:28:33"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-15 10:30:01"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-15 10:30:01"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:30:01"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-15 10:30:01"}
+{"connectionName":"Beekeepers B to C Sandbox","id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:30:02"}
+{"connectionName":"Beekeepers B to C Sandbox","id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:30:02"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-15 10:30:03"}
+{"connectionName":"Beekeepers B to C Sandbox","id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:30:04"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:31:48"}
+{"id":"67855cb10ec505572bce7bbf","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-15 10:31:50"}
+{"id":"67855cb10ec505572bce7bbf","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-15 10:31:50"}
+{"integration":{"_id":"67855cb10ec505572bce7bc0","apiKey":"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","integrationId":"6785563174fcbcd499adec69","integrationName":"FirstIntegration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-15 10:31:50"}
+{"connectionName":"firstConnection","id":"67855cb10ec505572bce7bbf","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:31:51"}
+{"connectionName":"firstConnection","id":"67855cb10ec505572bce7bbf","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:31:52"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-15 10:31:53"}
+{"connectionName":"firstConnection","id":"67855cb10ec505572bce7bbf","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:31:53"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:32:01"}
+{"id":"67855cb10ec505572bce7bbf","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-15 10:32:02"}
+{"id":"67855cb10ec505572bce7bbf","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-15 10:32:02"}
+{"connectionName":"firstConnection","id":"67855cb10ec505572bce7bbf","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:32:02"}
+{"integration":{"_id":"67855cb10ec505572bce7bc0","apiKey":"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","integrationId":"6785563174fcbcd499adec69","integrationName":"FirstIntegration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-15 10:32:02"}
+{"connectionName":"firstConnection","id":"67855cb10ec505572bce7bbf","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:32:02"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-15 10:32:04"}
+{"connectionName":"firstConnection","id":"67855cb10ec505572bce7bbf","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:32:04"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:36:05"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:36:07"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-15 10:36:10"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-15 10:36:11"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-15 10:36:15"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:37:28"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:41:22"}
