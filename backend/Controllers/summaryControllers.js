@@ -109,18 +109,31 @@ exports.sendDataToEShipper = async (req, res) => {
     });
 
     const shipmentResponseData = response.data;
+
     const newShipment = new Shipment({
       shipmentId: shipmentResponseData.order.id,
       shopifyOrderId: shipmentResponseData.reference.name,
+      scheduledShipDate: firstIndexData.scheduledShipDate,
+      from: firstIndexData.from,
+      to: firstIndexData.to,
+      packagingUnit: firstIndexData.packagingUnit,
+      packages: firstIndexData.packages,
+      reference1: firstIndexData.reference1,
+      reference2: firstIndexData.reference2,
+      reference3: firstIndexData.reference3,
+      signatureRequired: firstIndexData.signatureRequired,
+      insuranceType: firstIndexData.insuranceType,
+      pickup: firstIndexData.pickup,
     });
-    // console.log("newShiplent" , newShipment)
+
+    console.log("New Shipment:", newShipment);
 
     await newShipment.save();
 
     res.status(200).json({
       message: "Data successfully sent to eShipper!",
       eshipperResponse: response.data,
-      successResponses: newShipment
+      successResponses: newShipment,
     });
   } catch (error) {
     console.error("Error sending data to eShipper:", error.response?.data || error);
@@ -130,6 +143,7 @@ exports.sendDataToEShipper = async (req, res) => {
     });
   }
 };
+
 
 // Get Shipment Details
 exports.getShipmentDetails = async (req, res) => {

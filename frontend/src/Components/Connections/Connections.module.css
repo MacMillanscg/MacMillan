@@ -55,9 +55,7 @@
     color: black !important;
 }
 .connectionCard{
-    /* width: 32%; */
-    /* background: rgb(247, 248, 249); */
-    min-height: 224px;
+    min-height: 259px;
 }
 .list{
     padding: 0 15px 0 0;

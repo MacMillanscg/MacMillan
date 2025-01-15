@@ -36,9 +36,23 @@ export const useFetchXmlData = () => {
 
         // Process and format data for each file dynamically
         const formattedFiles = files.map((file) => {
-          const data = file.data.ORDER; // Assuming ORDER is the relevant data in each file
+          const data = file?.data?.ORDER;
+          if (!data) {
+            console.warn("Missing ORDER data in file:", file);
+            return {}; // Return an empty object or handle the case when ORDER is missing
+          }
+    
+          // Ensure Header exists and has data
+          const header = data?.Header?.[0]; // safely access Header[0]
+          if (!header) {
+            console.warn("Missing or empty Header data in ORDER:", data);
+            return {}; // Return an empty object or handle the case when Header is missing
+          }
+    
           console.log("inside", data);
-          console.log("inside file", file.data.ORDER.Header[0]);
+          console.log("inside file", header);
+          console.log("inside", data);
+          console.log("inside file", file?.data?.ORDER?.Header[0]);
 
           // Format the data as required
           return {
