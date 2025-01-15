@@ -622,3 +622,188 @@
 {"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-10 14:44:36"}
 {"count":3,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-13 14:21:28"}
 {"count":3,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-13 14:22:25"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-13 14:39:09"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-13 14:39:09"}
+{"clientName":"Beekeepers Live B to C","id":"678568338078e8edd3198e52","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 14:39:15"}
+{"clientName":"Beekeepers Live B to C","id":"678568338078e8edd3198e52","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 14:39:15"}
+{"clientName":"Beekeepers Live B to C","id":"678568338078e8edd3198e52","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 14:39:18"}
+{"level":"warn","message":"Client not found for update","timestamp":"2025-01-13 14:39:24"}
+{"level":"warn","message":"Client not found for update","timestamp":"2025-01-13 14:39:28"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-13 14:39:31"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-13 14:39:31"}
+{"clientName":"Beekeepers Live B to C","id":"678568338078e8edd3198e52","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 14:39:34"}
+{"clientName":"Beekeepers Live B to C","id":"678568338078e8edd3198e52","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 14:39:34"}
+{"clientName":"Beekeepers Live B to C","id":"678568338078e8edd3198e52","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 14:39:37"}
+{"clientName":"Beekeepers Live B to C","id":"678568338078e8edd3198e52","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 14:39:40"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-13 14:39:48"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-13 14:39:48"}
+{"clientName":"Beekeepers Live B to C","id":"678568338078e8edd3198e52","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 14:39:53"}
+{"clientName":"Beekeepers Live B to C","id":"678568338078e8edd3198e52","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 14:39:54"}
+{"clientName":"Beekeepers Live B to C","id":"678568338078e8edd3198e52","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 14:39:55"}
+{"clientName":"Beekeepers Live B to C","id":"678568338078e8edd3198e52","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 15:23:58"}
+{"level":"info","message":"Shopify credentials verified successfully","storeUrl":"bkn-canada.myshopify.com","timestamp":"2025-01-13 15:25:17"}
+{"id":"678568338078e8edd3198e52","integrationName":"Beekeepers B to C Live","level":"info","message":"Client integration created successfully","platform":"Shopify","storeUrl":"bkn-canada.myshopify.com","timestamp":"2025-01-13 15:25:19","userId":"66854fc64c8434607799ccef"}
+{"clientName":"Beekeepers Live B to C","id":"678568338078e8edd3198e52","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 15:25:19"}
+{"clientName":"Beekeepers Live B to C","id":"678568338078e8edd3198e52","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 15:25:23"}
+{"level":"warn","message":"Client not found for update","timestamp":"2025-01-13 15:25:26"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-13 15:25:29"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-13 15:25:29"}
+{"clientName":"Beekeepers Live B to C","id":"678568338078e8edd3198e52","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 15:25:31"}
+{"clientName":"Beekeepers Live B to C","id":"678568338078e8edd3198e52","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 15:25:32"}
+{"clientName":"Beekeepers Live B to C","id":"678568338078e8edd3198e52","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 15:25:33"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-13 15:25:35"}
+{"error":"Cast to ObjectId failed for value \"logss\" (type string) at path \"_id\" for model \"Client\"","id":"logss","level":"error","message":"Error fetching client integrations","timestamp":"2025-01-13 15:25:36"}
+{"clientName":"Beekeepers Live B to C","id":"678568338078e8edd3198e52","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 15:25:36"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-13 15:25:36"}
+{"clientName":"Beekeepers Live B to C","id":"678568338078e8edd3198e52","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 15:25:40"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-13 15:25:42"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-13 15:25:42"}
+{"clientName":"BKN Sandbox B to C","id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 15:25:44"}
+{"clientName":"BKN Sandbox B to C","id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 15:25:45"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-13 15:25:46"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-13 15:25:50"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-13 15:25:50"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-13 15:25:51"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-13 15:25:56"}
+{"level":"info","message":"Creating new connection","requestData":{"client":{"clientId":"678568338078e8edd3198e52","clientName":"Beekeepers Live B to C"},"connectionName":"Beekeepers B to C Live","integrations":{"apiKey":"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","integrationId":"678576af48da1a19823861c5","integrationName":"Beekeepers B to C Live","platform":"Shopify","storeUrl":"bkn-canada.myshopify.com"},"managementTrigger":null,"userId":"66854fc64c8434607799ccef","webhookTrigger":null},"timestamp":"2025-01-13 15:27:17"}
+{"id":"6785772548da1a1982386229","level":"info","message":"Connection created successfully","timestamp":"2025-01-13 15:27:18"}
+{"id":"6785772548da1a1982386229","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-13 15:27:18"}
+{"id":"6785772548da1a1982386229","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-13 15:27:18"}
+{"integration":{"_id":"6785772548da1a198238622a","apiKey":"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","integrationId":"678576af48da1a19823861c5","integrationName":"Beekeepers B to C Live","platform":"Shopify","storeUrl":"bkn-canada.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-canada.myshopify.com","timestamp":"2025-01-13 15:27:18"}
+{"connectionName":"Beekeepers B to C Live","id":"6785772548da1a1982386229","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-13 15:27:19"}
+{"connectionName":"Beekeepers B to C Live","id":"6785772548da1a1982386229","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-13 15:27:19"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-canada.myshopify.com","timestamp":"2025-01-13 15:27:20"}
+{"connectionName":"Beekeepers B to C Live","id":"6785772548da1a1982386229","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-13 15:27:21"}
+{"id":"6785772548da1a1982386229","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-13 15:27:25"}
+{"integration":{"_id":"6785772548da1a198238622a","apiKey":"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","integrationId":"678576af48da1a19823861c5","integrationName":"Beekeepers B to C Live","platform":"Shopify","storeUrl":"bkn-canada.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-canada.myshopify.com","timestamp":"2025-01-13 15:27:25"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-canada.myshopify.com","timestamp":"2025-01-13 15:27:25"}
+{"connectionName":"Beekeepers B to C Live","id":"6785772548da1a1982386229","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-13 15:27:26"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-13 16:15:54"}
+{"id":"67855cb10ec505572bce7bbf","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-13 16:15:56"}
+{"id":"67855cb10ec505572bce7bbf","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-13 16:15:56"}
+{"integration":{"_id":"67855cb10ec505572bce7bc0","apiKey":"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","integrationId":"6785563174fcbcd499adec69","integrationName":"FirstIntegration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-13 16:15:56"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-13 16:15:57"}
+{"connectionName":"firstConnection","id":"67855cb10ec505572bce7bbf","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-13 16:15:57"}
+{"connectionName":"firstConnection","id":"67855cb10ec505572bce7bbf","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-13 16:15:58"}
+{"connectionName":"firstConnection","id":"67855cb10ec505572bce7bbf","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-13 16:15:58"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-13 16:15:58"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-13 16:16:00"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-13 16:16:00"}
+{"clientName":"Beekeepers","id":"677d83d842b68bffca045ebb","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 16:16:02"}
+{"clientName":"Beekeepers","id":"677d83d842b68bffca045ebb","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 16:16:02"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-13 16:16:04"}
+{"clientName":"Beekeepers","id":"677d83d842b68bffca045ebb","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 16:16:06"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-13 16:16:14"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-13 16:16:16"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-13 16:16:16"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-13 16:16:16"}
+{"connectionName":"Beekeepers B to C Sandbox","id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-13 16:16:16"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-13 16:16:17"}
+{"connectionName":"Beekeepers B to C Sandbox","id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-13 16:16:17"}
+{"connectionName":"Beekeepers B to C Sandbox","id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-13 16:16:17"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-13 16:16:20"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-13 16:18:13"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-13 16:18:13"}
+{"clientName":"Beekeepers","id":"677d83d842b68bffca045ebb","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 16:18:15"}
+{"clientName":"Beekeepers","id":"677d83d842b68bffca045ebb","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 16:18:15"}
+{"clientName":"Beekeepers","id":"677d83d842b68bffca045ebb","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 16:18:16"}
+{"clientName":"Beekeepers","id":"677d83d842b68bffca045ebb","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 16:18:40"}
+{"clientName":"Beekeepers","id":"677d83d842b68bffca045ebb","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 16:18:41"}
+{"clientName":"Beekeepers","id":"677d83d842b68bffca045ebb","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 16:18:45"}
+{"clientName":"Beekeepers","id":"677d83d842b68bffca045ebb","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 16:23:54"}
+{"level":"warn","message":"Client not found for update","timestamp":"2025-01-13 16:23:57"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-13 16:44:23"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-13 16:44:23"}
+{"clientName":"Beekeepers","id":"677d83d842b68bffca045ebb","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 16:44:39"}
+{"clientName":"Beekeepers","id":"677d83d842b68bffca045ebb","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 16:44:39"}
+{"clientName":"Beekeepers","id":"677d83d842b68bffca045ebb","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 16:44:40"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-13 16:51:43"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-13 16:51:43"}
+{"clientName":"BKN Sandbox B to C","id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 16:51:45"}
+{"clientName":"BKN Sandbox B to C","id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 16:51:45"}
+{"clientName":"BKN Sandbox B to C","id":"677edcae5b1dfad335ab2ca7","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-13 16:51:47"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-14 08:33:51"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-14 08:33:51"}
+{"clientName":"Beekeepers","id":"677d83d842b68bffca045ebb","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-14 08:33:55"}
+{"clientName":"Beekeepers","id":"677d83d842b68bffca045ebb","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-14 08:33:55"}
+{"clientName":"Beekeepers","id":"677d83d842b68bffca045ebb","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-14 08:33:57"}
+{"level":"warn","message":"Client not found for update","timestamp":"2025-01-14 08:34:00"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-14 08:34:03"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-14 08:34:09"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-14 08:34:09"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-14 08:34:09"}
+{"connectionName":"Beekeepers B to C Sandbox","id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-14 08:34:09"}
+{"connectionName":"Beekeepers B to C Sandbox","id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-14 08:34:10"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-14 08:34:10"}
+{"connectionName":"Beekeepers B to C Sandbox","id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-14 08:34:10"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-14 08:37:49"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-14 08:37:56"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-14 08:37:56"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-14 08:37:58"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-14 09:52:23"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-14 09:52:25"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-14 09:52:26"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-14 09:52:26"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-14 11:43:11"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-14 11:43:14"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-14 11:44:07"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-14 11:44:07"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-14 11:46:17"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-14 11:46:19"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-14 11:46:48"}
+{"id":"6785772548da1a1982386229","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-14 11:47:54"}
+{"id":"6785772548da1a1982386229","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-14 11:47:54"}
+{"integration":{"_id":"6785772548da1a198238622a","apiKey":"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","integrationId":"678576af48da1a19823861c5","integrationName":"Beekeepers B to C Live","platform":"Shopify","storeUrl":"bkn-canada.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-canada.myshopify.com","timestamp":"2025-01-14 11:47:54"}
+{"connectionName":"Beekeepers B to C Live","id":"6785772548da1a1982386229","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-14 11:47:54"}
+{"connectionName":"Beekeepers B to C Live","id":"6785772548da1a1982386229","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-14 11:47:54"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-canada.myshopify.com","timestamp":"2025-01-14 11:47:55"}
+{"connectionName":"Beekeepers B to C Live","id":"6785772548da1a1982386229","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-14 11:47:55"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:30:39"}
+{"id":"6785772548da1a1982386229","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-15 10:30:43"}
+{"id":"6785772548da1a1982386229","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-15 10:30:43"}
+{"connectionName":"Beekeepers B to C Live","id":"6785772548da1a1982386229","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:30:44"}
+{"connectionName":"Beekeepers B to C Live","id":"6785772548da1a1982386229","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:30:45"}
+{"integration":{"_id":"6785772548da1a198238622a","apiKey":"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","integrationId":"678576af48da1a19823861c5","integrationName":"Beekeepers B to C Live","platform":"Shopify","storeUrl":"bkn-canada.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-canada.myshopify.com","timestamp":"2025-01-15 10:30:45"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-canada.myshopify.com","timestamp":"2025-01-15 10:30:45"}
+{"connectionName":"Beekeepers B to C Live","id":"6785772548da1a1982386229","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:30:46"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:33:04"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:33:09"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-15 10:33:11"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-15 10:33:11"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-15 10:33:11"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-15 10:34:57"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-15 10:34:57"}
+{"clientName":"Beekeepers","id":"677d83d842b68bffca045ebb","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-15 10:35:09"}
+{"clientName":"Beekeepers","id":"677d83d842b68bffca045ebb","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-15 10:35:09"}
+{"clientName":"Beekeepers","id":"677d83d842b68bffca045ebb","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-15 10:35:11"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-15 10:35:15"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-15 10:35:15"}
+{"clientName":"Beekeepers","id":"677d83d842b68bffca045ebb","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-15 10:35:35"}
+{"clientName":"Beekeepers","id":"677d83d842b68bffca045ebb","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-15 10:35:35"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-15 10:35:38"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-15 10:35:38"}
+{"clientName":"Beekeepers","id":"677d83d842b68bffca045ebb","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-15 10:35:39"}
+{"clientName":"Beekeepers","id":"677d83d842b68bffca045ebb","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-15 10:35:40"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:35:41"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-15 10:35:44"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-15 10:35:44"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:35:45"}
+{"count":4,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-15 10:37:46"}
+{"level":"info","message":"Creating new connection","requestData":{"client":{"clientId":"677d83d842b68bffca045ebb","clientName":"Beekeepers"},"connectionName":"Beekeepers Live B to B","integrations":{"apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"managementTrigger":null,"userId":"66854fc64c8434607799ccef","webhookTrigger":null},"timestamp":"2025-01-15 10:38:06"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection created successfully","timestamp":"2025-01-15 10:38:07"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-15 10:38:07"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-15 10:38:07"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-15 10:38:07"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:38:08"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:38:09"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-15 10:38:10"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:38:10"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-15 10:38:14"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-15 10:38:14"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-15 10:38:14"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-15 10:38:14"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:40:28"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:40:30"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-15 10:40:32"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-15 10:40:32"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-15 10:40:33"}
