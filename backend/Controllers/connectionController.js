@@ -2,6 +2,9 @@ const Connection = require("../Schema/Connection");
 const Webhook = require("../Schema/Webhook");
 const axios = require("axios");
 const logger = require("../logger");
+const fs = require("fs");
+const path = require("path");
+
 
 // Get all connections
 exports.getAllConnections = async (req, res) => {
@@ -275,3 +278,52 @@ exports.publishVersion = async (req, res) => {
     res.status(500).json({ error: "Failed to publish the version" });
   }
 };
+
+
+// Define the network base path
+const BASE_PATH = "\\\\vm-mac-fs01\\Shared\\Interface\\Shopify";
+// const BASE_PATH = "\\\\DESKTOP-22QU5F1\\ShopifyOrders";
+
+exports.exportOrders = (req, res) => {
+  const { folderName, xmlOrders, csvContent } = req.body; // Expect 'folderName' for subfolder creation
+
+  // Validate input
+  if (!folderName || (!xmlOrders && !csvContent)) {
+    return res.status(400).json({
+      message: "Invalid request. Ensure folderName and orders are provided.",
+    });
+  }
+
+  try {
+    // Construct the full folder path
+    const folderPath = path.join(BASE_PATH, folderName);
+
+    // Create the folder if it doesn't exist
+    if (!fs.existsSync(folderPath)) {
+      fs.mkdirSync(folderPath, { recursive: true });
+    }
+
+    // Save XML orders
+    if (xmlOrders && xmlOrders.length > 0) {
+      xmlOrders.forEach(({ fileName, content }) => {
+        const filePath = path.join(folderPath, fileName);
+        fs.writeFileSync(filePath, content, "utf8");
+      });
+    }
+
+    // Save CSV content
+    if (csvContent) {
+      const filePath = path.join(folderPath, `orders_${Date.now()}.csv`);
+      fs.writeFileSync(filePath, csvContent, "utf8");
+    }
+
+    res.status(200).json({
+      message: "Orders exported successfully to the network path.",
+    });
+  } catch (error) {
+    console.error("Error exporting orders:", error);
+    res.status(500).json({ message: "Failed to export orders.", error });
+  }
+};
+
+

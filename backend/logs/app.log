@@ -1462,3 +1462,888 @@
 {"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-15 10:36:15"}
 {"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:37:28"}
 {"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-15 10:41:22"}
+{"count":5,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-16 08:03:03"}
+{"count":5,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-16 08:03:03"}
+{"clientName":"Beekeepers Live B to C","id":"678568338078e8edd3198e52","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-16 08:03:24"}
+{"clientName":"Beekeepers Live B to C","id":"678568338078e8edd3198e52","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-16 08:03:25"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 08:03:29"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 08:03:32"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 08:03:32"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 08:03:33"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 08:03:47"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 08:03:51"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 08:03:51"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 08:03:52"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 08:04:17"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 08:04:20"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 08:04:20"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 08:04:21"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 08:04:46"}
+{"count":5,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-16 08:04:50"}
+{"count":5,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-16 08:04:50"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 08:04:52"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 08:04:54"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 08:04:57"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 08:04:57"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 08:04:59"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 08:06:28"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 08:06:32"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 08:06:32"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 08:06:33"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 08:09:48"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 08:09:52"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 08:09:52"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 08:09:53"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 08:19:43"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 08:19:47"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 08:19:47"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 08:19:48"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 08:33:42"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 08:33:46"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 08:33:46"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 08:33:47"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 08:38:52"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 08:38:56"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 08:38:56"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 08:38:57"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 08:39:43"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 08:39:47"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 08:39:47"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 08:39:48"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 08:40:48"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 08:40:51"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 08:40:52"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 08:40:52"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 08:41:16"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 08:41:20"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 08:41:20"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 08:41:21"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 08:48:25"}
+{"id":"678836a67b1b0be177812269","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 08:48:39"}
+{"id":"678836a67b1b0be177812269","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 08:48:39"}
+{"integration":{"_id":"678836a67b1b0be17781226a"},"level":"info","message":"Fetching Shopify orders","timestamp":"2025-01-16 08:48:39"}
+{"connectionName":"testing flow aaaa","id":"678836a67b1b0be177812269","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 08:48:39"}
+{"connectionName":"testing flow aaaa","id":"678836a67b1b0be177812269","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 08:48:39"}
+{"error":"getaddrinfo ENOTFOUND undefined","id":"678836a67b1b0be177812269","level":"error","message":"Error fetching Shopify orders","timestamp":"2025-01-16 08:48:41"}
+{"id":"678836a67b1b0be177812269","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 08:48:41"}
+{"integration":{"_id":"678836a67b1b0be17781226a"},"level":"info","message":"Fetching Shopify orders","timestamp":"2025-01-16 08:48:41"}
+{"error":"getaddrinfo ENOTFOUND undefined","id":"678836a67b1b0be177812269","level":"error","message":"Error fetching Shopify orders","timestamp":"2025-01-16 08:48:43"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 08:48:52"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 08:48:53"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 08:48:53"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 08:48:53"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 08:48:54"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 08:48:54"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 08:48:55"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 08:48:55"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 08:48:55"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 08:48:56"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 08:48:56"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 08:49:58"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 08:49:58"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 08:49:58"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 08:49:58"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 08:49:58"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 08:49:58"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 08:50:01"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 08:50:01"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 08:50:01"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 08:50:02"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 08:50:02"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 08:51:22"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 08:51:22"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 08:51:22"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 08:51:22"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 08:51:22"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 08:51:22"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 08:51:23"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 08:51:23"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 08:51:23"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 08:51:23"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 08:51:24"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 08:51:59"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 08:51:59"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 08:52:00"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 09:22:34"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 09:22:34"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 09:22:35"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 09:31:01"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 09:31:01"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 09:31:02"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 09:34:09"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 09:34:09"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 09:34:10"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 09:34:10"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 09:34:11"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 09:34:11"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 09:34:12"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 09:34:12"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 09:34:12"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 09:34:13"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 09:34:14"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 09:54:01"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 09:54:09"}
+{"id":"678836a67b1b0be177812269","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 09:54:12"}
+{"id":"678836a67b1b0be177812269","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 09:54:12"}
+{"integration":{"_id":"678836a67b1b0be17781226a"},"level":"info","message":"Fetching Shopify orders","timestamp":"2025-01-16 09:54:12"}
+{"connectionName":"testing flow aaaa","id":"678836a67b1b0be177812269","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 09:54:13"}
+{"connectionName":"testing flow aaaa","id":"678836a67b1b0be177812269","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 09:54:13"}
+{"error":"getaddrinfo ENOTFOUND undefined","id":"678836a67b1b0be177812269","level":"error","message":"Error fetching Shopify orders","timestamp":"2025-01-16 09:54:14"}
+{"id":"678836a67b1b0be177812269","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 09:54:14"}
+{"integration":{"_id":"678836a67b1b0be17781226a"},"level":"info","message":"Fetching Shopify orders","timestamp":"2025-01-16 09:54:15"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 09:54:15"}
+{"error":"getaddrinfo ENOTFOUND undefined","id":"678836a67b1b0be177812269","level":"error","message":"Error fetching Shopify orders","timestamp":"2025-01-16 09:54:17"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 09:54:18"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 09:54:18"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 09:54:18"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 09:54:19"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 09:54:19"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 09:54:20"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 09:54:20"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 09:54:20"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 09:54:21"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 09:54:21"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 09:56:47"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 09:56:47"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 09:56:48"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 09:57:07"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 09:57:07"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 09:57:07"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 09:57:07"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 09:57:07"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 09:57:07"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 09:57:08"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 09:57:08"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 09:57:09"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 09:57:10"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 09:57:10"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 09:59:12"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 09:59:12"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 09:59:13"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 09:59:18"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 09:59:19"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 09:59:19"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 09:59:19"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 09:59:19"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 09:59:19"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 09:59:20"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 09:59:20"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 09:59:20"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 09:59:21"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 09:59:22"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 10:06:51"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 10:06:51"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 10:06:55"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 10:07:24"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 10:07:24"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 10:07:24"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 10:07:24"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 10:07:24"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 10:07:24"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 10:07:24"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 10:07:24"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 10:07:25"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 10:07:25"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 10:07:27"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 10:09:05"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 10:09:05"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 10:09:05"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 10:09:05"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 10:09:05"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 10:09:06"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 10:09:06"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 10:09:06"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 10:09:07"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 10:09:08"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 10:09:08"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 10:11:17"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 10:11:17"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 10:11:17"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 10:11:17"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 10:11:17"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 10:11:17"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 10:11:18"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 10:11:18"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 10:11:18"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 10:11:19"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 10:11:20"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 11:47:18"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 11:47:19"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 11:47:21"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 11:47:21"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 11:47:21"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 11:47:22"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 11:47:23"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 11:47:23"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 11:47:23"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 11:47:24"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 11:47:24"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 11:47:24"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 11:47:25"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 11:47:25"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 11:47:32"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 11:47:32"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 11:47:32"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 11:47:33"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 11:47:33"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 11:47:33"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 11:47:34"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 11:47:34"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 11:47:35"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 11:47:36"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 11:47:37"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 12:17:24"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:17:24"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:17:26"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 12:17:29"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 12:17:29"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:17:29"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 12:17:29"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 12:17:29"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 12:17:29"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:17:30"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 12:17:31"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:17:31"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:17:32"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 12:17:34"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 12:18:13"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:18:13"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 12:18:13"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 12:18:13"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 12:18:13"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 12:18:13"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:18:14"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 12:18:14"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:18:14"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:18:15"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 12:18:16"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 12:21:54"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:21:54"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:21:55"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 12:22:11"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 12:22:11"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:22:11"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 12:22:11"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:22:11"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 12:22:11"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 12:22:12"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 12:22:12"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:22:12"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 12:22:14"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:22:14"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 12:23:37"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 12:23:37"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 12:23:37"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 12:23:38"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:23:38"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 12:23:39"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:23:39"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 12:23:39"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:23:40"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:23:41"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 12:23:41"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 12:24:01"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 12:24:01"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:24:01"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 12:24:01"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 12:24:02"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 12:24:02"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:24:02"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 12:24:02"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:24:02"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:24:03"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 12:24:04"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 12:24:23"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 12:24:23"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 12:24:23"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 12:24:23"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 12:24:23"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:24:24"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:24:25"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 12:24:25"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:24:25"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:24:26"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 12:24:26"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 12:27:12"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:27:12"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:27:14"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 12:27:16"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 12:27:16"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:27:16"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 12:27:16"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 12:27:16"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:27:16"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 12:27:17"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 12:27:17"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:27:17"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:27:18"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 12:27:19"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 12:29:34"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:29:34"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:29:37"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 12:29:53"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 12:29:53"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 12:29:53"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:29:53"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:29:53"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 12:29:53"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 12:29:53"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 12:29:54"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:29:55"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:29:56"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 12:29:57"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 12:31:34"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:31:34"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 12:31:36"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 12:32:03"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 15:01:20"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 15:01:27"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 15:01:27"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 15:01:27"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 15:01:27"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 15:01:28"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 15:01:28"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 15:01:28"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 15:01:28"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 15:01:29"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 15:01:29"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 15:03:12"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 15:03:12"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 15:03:12"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 15:03:12"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 15:03:12"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 15:03:12"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 15:03:13"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 15:03:13"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 15:03:13"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 15:03:13"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 15:03:15"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 15:05:47"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 15:05:47"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 15:05:48"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 15:05:50"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 15:05:50"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 15:05:50"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 15:05:50"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 15:05:50"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 15:05:50"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 15:05:50"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 15:05:50"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 15:05:51"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 15:05:51"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 15:05:53"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 15:06:20"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 15:06:20"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 15:06:20"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 15:06:45"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 15:06:45"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 15:06:46"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 15:07:06"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 15:07:42"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 15:07:42"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 15:07:42"}
+{"connectionName":"Beekeepers B to C Sandbox","id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 15:07:42"}
+{"connectionName":"Beekeepers B to C Sandbox","id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 15:07:42"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 15:07:44"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 15:07:44"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 15:07:44"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 15:07:44"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 15:07:45"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 15:07:52"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 15:07:52"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 15:07:52"}
+{"connectionName":"Beekeepers B to C Sandbox","id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 15:07:52"}
+{"connectionName":"Beekeepers B to C Sandbox","id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 15:07:52"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 15:07:53"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 15:07:53"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 15:07:53"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 15:07:54"}
+{"connectionName":"Beekeepers B to C Sandbox","id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 15:07:54"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 15:08:00"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 15:28:18"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 15:28:18"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 15:28:18"}
+{"connectionName":"Beekeepers B to C Sandbox","id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 15:28:18"}
+{"connectionName":"Beekeepers B to C Sandbox","id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 15:28:18"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 15:28:18"}
+{"id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 15:28:18"}
+{"integration":{"_id":"677edfdb5b1dfad335ab2e25","apiKey":"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","integrationId":"677ede77e27150a5aca58f0d","integrationName":"Testing new integration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 15:28:19"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 15:28:19"}
+{"connectionName":"Beekeepers B to C Sandbox","id":"677edfdb5b1dfad335ab2e24","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 15:28:19"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 15:28:56"}
+{"count":5,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-16 15:30:07"}
+{"count":5,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-16 15:30:07"}
+{"clientName":"Beekeepers","id":"677d83d842b68bffca045ebb","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-16 15:30:15"}
+{"clientName":"Beekeepers","id":"677d83d842b68bffca045ebb","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-16 15:30:15"}
+{"clientName":"Beekeepers","id":"677d83d842b68bffca045ebb","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-16 15:30:17"}
+{"count":5,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-16 15:30:24"}
+{"count":5,"level":"info","message":"Fetched all clients successfully","timestamp":"2025-01-16 15:30:24"}
+{"clientName":"Beekeepers","id":"677d83d842b68bffca045ebb","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-16 15:31:30"}
+{"clientName":"Beekeepers","id":"677d83d842b68bffca045ebb","level":"info","message":"Fetched client with ID successfully","timestamp":"2025-01-16 15:31:30"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 15:31:33"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 15:31:36"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 15:31:36"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 15:31:37"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 15:31:37"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 15:31:37"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 15:31:38"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 15:31:38"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 15:31:38"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 15:31:38"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 15:31:39"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 15:34:41"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 15:55:32"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 15:55:32"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 15:55:32"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 15:55:32"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 15:55:32"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 15:55:33"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 15:55:33"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 15:55:33"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 15:55:34"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 15:55:34"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 16:02:13"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 16:02:13"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:02:13"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 16:02:13"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 16:02:13"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 16:02:13"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:02:15"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 16:02:15"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:02:15"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:02:15"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 16:02:17"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 16:09:24"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:09:24"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 16:09:24"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 16:09:24"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:09:25"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 16:09:25"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 16:13:53"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 16:13:54"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 16:13:54"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 16:13:54"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:13:54"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:13:54"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 16:13:54"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 16:13:54"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:13:55"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:13:55"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 16:13:56"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 16:14:15"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 16:14:16"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:14:16"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 16:14:16"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 16:14:16"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 16:14:16"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:14:17"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 16:14:17"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:14:17"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:14:17"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 16:14:18"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 16:15:57"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 16:15:57"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:15:57"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 16:15:57"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 16:15:57"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 16:15:57"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:15:58"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 16:15:58"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:15:58"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:15:59"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 16:16:00"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 16:22:42"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 16:22:42"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 16:22:42"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:22:42"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 16:22:42"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 16:22:42"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:22:42"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 16:22:42"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:22:43"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:22:43"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 16:22:45"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 16:23:52"}
+{"id":"67855cb10ec505572bce7bbf","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 16:23:56"}
+{"id":"67855cb10ec505572bce7bbf","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 16:23:56"}
+{"integration":{"_id":"67855cb10ec505572bce7bc0","apiKey":"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","integrationId":"6785563174fcbcd499adec69","integrationName":"FirstIntegration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 16:23:56"}
+{"connectionName":"firstConnection","id":"67855cb10ec505572bce7bbf","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 16:23:56"}
+{"connectionName":"firstConnection","id":"67855cb10ec505572bce7bbf","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 16:23:57"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 16:23:57"}
+{"id":"67855cb10ec505572bce7bbf","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 16:23:57"}
+{"integration":{"_id":"67855cb10ec505572bce7bc0","apiKey":"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","integrationId":"6785563174fcbcd499adec69","integrationName":"FirstIntegration","platform":"Shopify","storeUrl":"bkn-sandbox.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 16:23:58"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"bkn-sandbox.myshopify.com","timestamp":"2025-01-16 16:23:58"}
+{"connectionName":"firstConnection","id":"67855cb10ec505572bce7bbf","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 16:23:58"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 16:24:56"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 16:38:24"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 16:38:30"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 16:38:30"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:38:30"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 16:38:30"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 16:38:30"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:38:31"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 16:38:31"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:38:31"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:38:32"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 16:38:32"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 16:41:09"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:41:09"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:41:10"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 16:41:13"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 16:41:13"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:41:13"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 16:41:13"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 16:41:13"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 16:41:13"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:41:13"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 16:41:14"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:41:14"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:41:14"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 16:41:16"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 16:42:08"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-16 16:42:08"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:42:08"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-16 16:42:08"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 16:42:08"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 16:42:08"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:42:09"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 16:42:09"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:42:09"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:42:10"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-16 16:42:12"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-16 16:43:28"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:43:28"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-16 16:43:29"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 08:01:15"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:01:29"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-17 08:01:29"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:01:29"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:01:30"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:01:30"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:01:31"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:01:31"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:01:31"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:01:32"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:01:32"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:04:23"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:04:23"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:04:25"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:04:27"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-17 08:04:28"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:04:28"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 08:04:28"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:04:29"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:04:29"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:04:30"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:04:30"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:04:30"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:04:31"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:04:32"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:05:26"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-17 08:05:26"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:05:26"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 08:05:26"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:05:27"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:05:27"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:05:27"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:05:27"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:05:28"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:05:28"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:05:29"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:07:13"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-17 08:07:13"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:07:14"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 08:07:14"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:07:14"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:07:14"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:07:15"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:07:15"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:07:15"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:07:16"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:07:17"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:07:45"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:07:45"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:07:46"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:07:47"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-17 08:07:48"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:07:48"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 08:07:48"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:07:48"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:07:48"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:07:49"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:07:49"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:07:49"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:07:50"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:07:51"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:14:51"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:14:51"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 08:14:51"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-17 08:14:51"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:14:52"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:14:52"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:14:53"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:14:53"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:14:53"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:14:54"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:14:55"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:15:29"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:15:29"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:15:31"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:16:15"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-17 08:16:15"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:16:15"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 08:16:15"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:16:16"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:16:17"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:16:17"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:16:17"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:16:18"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:16:23"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:16:24"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:16:35"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:16:35"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 08:16:35"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-17 08:16:35"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:16:36"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:16:36"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:16:36"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:16:36"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:16:37"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:16:37"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:16:39"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:18:24"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-17 08:18:24"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 08:18:24"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:18:24"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:18:25"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:18:26"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:18:26"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:18:26"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:18:26"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:18:27"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:18:28"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:24:01"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-17 08:24:01"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 08:24:01"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:24:01"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:24:01"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:24:01"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:24:01"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:24:01"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:24:02"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:24:02"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:24:05"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:25:25"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-17 08:25:25"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 08:25:25"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:25:25"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:25:25"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:25:26"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:25:26"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:25:26"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:25:26"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:25:27"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:25:28"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:30:44"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:30:44"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:30:44"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:30:44"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:30:45"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:30:46"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:30:55"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-17 08:30:55"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 08:30:55"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:30:55"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:30:55"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:30:55"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:30:56"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:30:56"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:30:56"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:30:57"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:30:58"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:31:05"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-17 08:31:05"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:31:05"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:31:05"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 08:31:05"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:31:05"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:31:05"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:31:06"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:31:06"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:31:06"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:31:07"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:37:44"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 08:37:44"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-17 08:37:44"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:37:44"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 08:37:44"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:37:44"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:37:45"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:37:45"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:37:45"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 08:37:45"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 08:37:46"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 10:09:30"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-17 10:09:30"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:09:30"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 10:09:30"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 10:09:30"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 10:09:30"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:09:32"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 10:09:32"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:09:32"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:09:32"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 10:09:34"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 10:17:31"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-17 10:17:31"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:17:32"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 10:17:33"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 10:17:33"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:17:33"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:17:34"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 10:17:34"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 10:17:34"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:17:35"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 10:17:35"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 10:18:00"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-17 10:18:00"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:18:00"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 10:18:01"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 10:18:01"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 10:18:01"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:18:02"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 10:18:02"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:18:02"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:18:02"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 10:18:03"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 10:21:10"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:21:10"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:21:11"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 10:21:13"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-17 10:21:13"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:21:13"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 10:21:13"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 10:21:13"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 10:21:13"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:21:14"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 10:21:14"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:21:14"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:21:15"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 10:21:16"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 10:23:49"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-17 10:23:49"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 10:23:49"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:23:49"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 10:23:49"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 10:23:49"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:23:50"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 10:23:50"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:23:51"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:23:51"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 10:23:52"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 10:24:37"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-17 10:24:37"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:24:37"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 10:24:37"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 10:24:37"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 10:24:37"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:24:38"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 10:24:38"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:24:38"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:24:39"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 10:24:40"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 10:26:24"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 10:26:28"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-17 10:26:29"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 10:26:29"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:26:29"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 10:26:31"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 10:26:31"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:26:31"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-17 10:26:31"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:26:31"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:26:32"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 10:26:32"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 10:26:32"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:26:32"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 10:26:33"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:26:33"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 10:26:34"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 10:29:24"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 10:57:57"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 10:58:00"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-17 10:58:00"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:58:00"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 10:58:00"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 10:58:00"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:58:02"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 10:58:02"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:58:02"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:58:04"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 10:58:04"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 10:59:54"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:59:54"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:59:56"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 10:59:57"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 10:59:57"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:59:58"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-17 10:59:58"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 10:59:58"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 10:59:58"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:59:59"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 10:59:59"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 10:59:59"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 11:00:00"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 11:00:01"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 11:03:06"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 11:04:42"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 11:04:42"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 11:04:42"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 11:04:42"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-17 11:04:43"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 11:04:43"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 11:04:43"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 11:04:43"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 11:04:44"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 11:04:44"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 11:50:37"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 12:01:29"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 12:01:31"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-17 12:01:31"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 12:01:31"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 12:01:33"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 12:01:34"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 12:01:35"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 12:01:35"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 12:01:35"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 12:01:35"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 12:01:36"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 12:04:59"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 12:05:17"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 12:05:26"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-17 12:05:26"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 12:05:27"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 12:05:28"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 12:05:28"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 12:05:28"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 12:05:28"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 12:05:28"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 12:05:29"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 12:05:30"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 12:07:42"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 12:07:42"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 12:07:44"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetched all connection steps successfully","timestamp":"2025-01-17 12:08:00"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 12:08:00"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 12:08:00"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 12:08:00"}
+{"level":"info","message":"Fetched all connections successfully","timestamp":"2025-01-17 12:08:00"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 12:08:00"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 12:08:00"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 12:08:01"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 12:08:02"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 12:08:02"}
+{"connectionName":"Beekeepers Live B to B","id":"6787d65efeb6d26afe5730dd","level":"info","message":"Connection fetched successfully","timestamp":"2025-01-17 12:08:03"}
+{"id":"6787d65efeb6d26afe5730dd","level":"info","message":"Fetching connection by ID","timestamp":"2025-01-17 12:19:47"}
+{"integration":{"_id":"6787d65efeb6d26afe5730de","apiKey":"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","integrationId":"677d841e42b68bffca045ecb","integrationName":"Beekeepers B to B","platform":"Shopify","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com"},"level":"info","message":"Fetching Shopify orders","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 12:19:47"}
+{"level":"info","message":"Shopify orders fetched successfully","storeUrl":"cdnwholesale-beekeepers-naturals.myshopify.com","timestamp":"2025-01-17 12:19:49"}

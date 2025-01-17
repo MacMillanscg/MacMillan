@@ -48,5 +48,6 @@ router.put("/:id/:stepId", connectionRoleController.updateConnectionStep);
 router.post("/:id/cloneSteps", connectionRoleController.cloneConnectionStep);
 
 router.patch("/:id/publish", connectionController.publishVersion);
+router.post("/api/export-orders", connectionController.exportOrders);
 
 module.exports = router;
