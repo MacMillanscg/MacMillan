@@ -873,7 +873,7 @@ export const IntegrationCanvas = () => {
                   setIsConverterPopup(true);
                 }}
               >
-                <XmlPopup orders={orders} />
+                <XmlPopup orders={orders} id ={id} onClose={closeXmlPopup}/>
               </StepPopup>
             )}
             {isIntegratioPopup && (
@@ -1024,6 +1024,7 @@ export const IntegrationCanvas = () => {
             selectedIntegration={selectedIntegration}
             orders={orders}
             shopifyDetails={shopifyDetails}
+            id ={id}
           />
         </div>
       </div>
