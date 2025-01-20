@@ -112,10 +112,10 @@ export const OutputLogs = ({ shopifyDetails, id }) => {
       return orderDate === today;
     });
 
-    if (todaysOrders.length === 0) {
-      toast.error("No orders for today to export.");
-      return;
-    }
+    // if (todaysOrders.length === 0) {
+    //   toast.error("No orders for today to export.");
+    //   return;
+    // }
 
     try {
       if (selectedFormat === "xml") {
