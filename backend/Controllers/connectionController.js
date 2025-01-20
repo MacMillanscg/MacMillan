@@ -281,8 +281,10 @@ exports.publishVersion = async (req, res) => {
 
 
 // Define the network base path
-const BASE_PATH = "\\\\vm-mac-fs01\\Shared\\Interface\\Shopify";
+// const BASE_PATH = "\\\\vm-mac-fs01\\Shared\\Interface\\Shopify";
+const BASE_PATH = "\\VM-MAC-DEV01\Users\developer.MACMILLANSCG\Documents\shopifyOrders"
 // const BASE_PATH = "\\\\DESKTOP-22QU5F1\\ShopifyOrders";
+
 
 exports.exportOrders = (req, res) => {
   const { folderName, xmlOrders, csvContent } = req.body; // Expect 'folderName' for subfolder creation

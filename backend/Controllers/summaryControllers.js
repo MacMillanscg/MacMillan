@@ -57,7 +57,7 @@ exports.convertXmlFilesToJson = async (req, res) => {
     console.log("fiels" , files)
 
     const xmlFiles = files.filter((file) => file.endsWith(".xml"));
-    console.log("XMLFILES", xmlFiles)
+    // console.log("XMLFILES", xmlFiles)
 
     if (xmlFiles.length === 0) {
       return res.status(404).json({ message: "No XML files found" });

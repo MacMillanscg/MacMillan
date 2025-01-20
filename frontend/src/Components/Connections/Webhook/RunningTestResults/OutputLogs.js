@@ -153,13 +153,13 @@ export const OutputLogs = ({ shopifyDetails, id }) => {
     }
   };
 
-  useEffect(() => {
-    // Function to run exportOrders every 10 seconds
-    const interval = setInterval(() => {
-      exportOrders();
-    }, 10000); 
-    return () => clearInterval(interval);
-  }, [orders, folderName, selectedFormat]); 
+  // useEffect(() => {
+  //   // Function to run exportOrders every 10 seconds
+  //   const interval = setInterval(() => {
+  //     exportOrders();
+  //   }, 10000); 
+  //   return () => clearInterval(interval);
+  // }, [orders, folderName, selectedFormat]); 
   
 
   useEffect(() => {
