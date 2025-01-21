@@ -905,7 +905,7 @@ console.log("resutl" ,result);
 
 
       </div>
-      {!loading && (
+  
         <CustomPagination
           currentPage={currentPage}
           itemsPerPage={itemsPerPage}
@@ -913,7 +913,7 @@ console.log("resutl" ,result);
           handleItemsPerPageChange={handleItemsPerPageChange}
           totalPages={totalPages}
         />
-      )}
+      
     </div>
   );
 };
