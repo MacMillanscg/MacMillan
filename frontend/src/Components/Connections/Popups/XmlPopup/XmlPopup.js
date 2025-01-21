@@ -41,17 +41,19 @@ export const XmlPopup = ({ orders, id ,onClose}) => {
       return;
     }
   
-    // Get today's date in YYYY-MM-DD format
-    const today = new Date().toISOString().split("T")[0];
+    // Get today's date and calculate the date 7 days ago
+    const today = new Date();
+    const lastWeekDate = new Date();
+    lastWeekDate.setDate(today.getDate() - 7);
   
-    // Filter orders created today
-    const todaysOrders = orders.filter((order) => {
-      const orderDate = new Date(order.created_at).toISOString().split("T")[0];
-      return orderDate === today;
+    // Filter orders created in the last week (including today)
+    const weeklyOrders = orders.filter((order) => {
+      const orderDate = new Date(order.created_at);
+      return orderDate >= lastWeekDate && orderDate <= today;
     });
   
-    if (todaysOrders.length === 0) {
-      toast.error("No orders for today to export.");
+    if (weeklyOrders.length === 0) {
+      toast.error("No orders for the last week to export.");
       return;
     }
   
@@ -81,7 +83,7 @@ export const XmlPopup = ({ orders, id ,onClose}) => {
       }
   
       // Save each order as a separate XML file
-      for (let order of todaysOrders) {
+      for (let order of weeklyOrders) {
         // Convert the order to XML
         const xmlContent = js2xml({ order }, { compact: true, spaces: 4 });
   
@@ -98,7 +100,7 @@ export const XmlPopup = ({ orders, id ,onClose}) => {
         await writable.close();
       }
   
-      toast.success("All today's files saved successfully!");
+      toast.success("All weekly files saved successfully!");
   
       // Close the popup after successful directory selection
       if (onClose) {
@@ -114,6 +116,7 @@ export const XmlPopup = ({ orders, id ,onClose}) => {
       }
     }
   };
+  
   
 
   return (

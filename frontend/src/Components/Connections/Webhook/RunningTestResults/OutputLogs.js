@@ -94,29 +94,16 @@ export const OutputLogs = ({ shopifyDetails, id }) => {
 
   // Export Orders
   const exportOrders = async () => {
-    // if (!orders || orders.length === 0) {
-    //   toast.error("No orders available to export.");
-    //   return;
-    // }
-    // const folderName = "Shopify_B2C_Live _Sandbox"
-
-    // if (!folderName) {
-    //   toast.error("Folder name is not set for this connection.");
-    //   return;
-    // }
-
-    // Filter today's orders
-    const today = new Date().toISOString().split("T")[0];
+    const today = new Date();
+    const lastWeekDate = new Date();
+    lastWeekDate.setDate(today.getDate() - 7);
+  
     const todaysOrders = orders.filter((order) => {
-      const orderDate = new Date(order.created_at).toISOString().split("T")[0];
-      return orderDate === today;
+      const orderDate = new Date(order.created_at);
+      return orderDate >= lastWeekDate && orderDate <= today;
     });
-
-    // if (todaysOrders.length === 0) {
-    //   toast.error("No orders for today to export.");
-    //   return;
-    // }
-
+    
+    console.log("todayss" , todaysOrders)
     try {
       if (selectedFormat === "xml") {
         const xmlOrders = todaysOrders.map((order) => {
@@ -126,12 +113,12 @@ export const OutputLogs = ({ shopifyDetails, id }) => {
             content: xmlContent,
           };
         });
-
+  
         const response = await axios.post(`${apiURL}/connections/api/export-orders`, {
           folderName,
           xmlOrders,
         });
-
+  
         toast.success(response.data.message || "Orders exported successfully to backend!");
       } else if (selectedFormat === "csv") {
         const csvContent =
@@ -139,27 +126,28 @@ export const OutputLogs = ({ shopifyDetails, id }) => {
           todaysOrders
             .map((order) => `${order.id},${order.created_at},${order.customerPhone}`)
             .join("\n");
-
+  
         const response = await axios.post(`${apiURL}/api/export-orders`, {
           folderName,
           csvContent,
         });
-
+  
         toast.success(response.data.message || "Orders exported successfully to backend!");
       }
     } catch (error) {
       console.error("Error exporting orders:", error);
-      toast.error("Failed to export orders to backend.");
+      // toast.error("Failed to export orders to backend.");
     }
   };
+  
 
-  // useEffect(() => {
-  //   // Function to run exportOrders every 10 seconds
-  //   const interval = setInterval(() => {
-  //     exportOrders();
-  //   }, 10000); 
-  //   return () => clearInterval(interval);
-  // }, [orders, folderName, selectedFormat]); 
+  useEffect(() => {
+    // Function to run exportOrders every 10 seconds
+    const interval = setInterval(() => {
+      exportOrders();
+    }, 10000); 
+    return () => clearInterval(interval);
+  }, [orders, folderName, selectedFormat]); 
   
 
   useEffect(() => {
