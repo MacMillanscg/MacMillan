@@ -212,7 +212,8 @@ exports.getClientIntegrations = async (req, res) => {
 exports.updateClient = async (req, res) => {
   try {
     const { clientName, phone, email, isActive } = req.body;
-    const {id} = req.param;
+    const {id} = req.params;
+    console.log("id in client" , id)
 
     const client = await Client.findById(id);
     if (!client) {

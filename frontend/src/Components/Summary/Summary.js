@@ -244,7 +244,6 @@ export const Summary = () => {
   console.log("connectionsData" , connectionsData)
   // const response = await axios.get(`${url}/summary/${id}/api/orders`);
 
-
   const fetchShopifyOrders = async () => {
     setLoadingOrders(true); // Start loading
     try {
@@ -257,33 +256,53 @@ export const Summary = () => {
       }
   
       const allOrders = [];
+      const today = new Date();
+      const fiveDaysAgo = new Date();
+      fiveDaysAgo.setDate(today.getDate() - 5);
+  
+      // Set to track unique order IDs
+      const orderIds = new Set();
   
       // Loop through each connection and fetch its orders
       for (const connection of connectionsData) {
         const id = connection._id;
         try {
-          // const response = await axios.get(`${url}/api/orders/all`);
+          // Fetch orders from the backend
           const response = await axios.get(`${url}/summary/api/orders`);
           const orders = response.data.orders;
   
-          const unfulfilledOrders = orders.filter(
+          // Filter orders created in the last five days
+          const recentOrders = orders.filter((order) => {
+            const orderDate = new Date(order.created_at);
+            return orderDate >= fiveDaysAgo && orderDate <= today;
+          });
+  
+          // Further filter unfulfilled orders
+          const unfulfilledOrders = recentOrders.filter(
             (order) => order.fulfillment_status !== "fulfilled"
           );
   
-          const ordersWithPhone = unfulfilledOrders.map((order) => {
+          // Map orders to include phone number and remove duplicates
+          const uniqueOrders = unfulfilledOrders.map((order) => {
             const phoneNumber = order.customer?.phone || "No phone provided";
             return { ...order, customerPhone: phoneNumber };
+          }).filter((order) => {
+            if (orderIds.has(order.id)) {
+              return false; // Skip duplicate orders
+            }
+            orderIds.add(order.id); // Add order ID to the set
+            return true;
           });
   
           // Add these orders to the overall list
-          allOrders.push(...ordersWithPhone);
+          allOrders.push(...uniqueOrders);
         } catch (error) {
           console.error(`Error fetching orders for connection ID ${id}:`, error);
           toast.error(`Error fetching orders for connection ID ${id}.`);
         }
       }
   
-      // Update state with all fetched orders
+      // Update state with all fetched unique orders
       setOrders(allOrders);
       setFilteredClients(allOrders);
       toast.success("Orders fetched successfully!");
@@ -294,6 +313,8 @@ export const Summary = () => {
       setLoadingOrders(false); // Stop loading
     }
   };
+  
+  
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -802,7 +823,7 @@ console.log("resutl" ,result);
                 value = shipment?.carrier || "";
                 break;
               case "client":
-                value = order ? clients[0]?.client?.clientName : '';
+                value = order ? clients[1]?.client?.clientName : '';
                 break;
               case "customer": value = order 
                     ? `${order.customer?.first_name ?? ' '} ${order.customer?.last_name ?? ''}`.trim() 
