@@ -241,28 +241,55 @@ export const Summary = () => {
     
     fetchConnections();
   }, []);
-  console.log("connectionsData" ,connectionsData)
+  console.log("connectionsData" , connectionsData)
+  // const response = await axios.get(`${url}/summary/${id}/api/orders`);
+
 
   const fetchShopifyOrders = async () => {
     setLoadingOrders(true); // Start loading
     try {
-      const id = connectionsData[0]?._id;
-      const response = await axios.get(`${url}/summary/${id}/api/orders`);
-      const orders = response.data.orders;
+      // Ensure connectionsData is available
+      if (!connectionsData || connectionsData.length === 0) {
+        console.error("No connections available.");
+        toast.error("No connections available.");
+        setLoadingOrders(false);
+        return;
+      }
   
-      const unfulfilledOrders = orders.filter(
-        (order) => order.fulfillment_status !== "fulfilled"
-      );
+      const allOrders = [];
   
-      const ordersWithPhone = unfulfilledOrders.map((order) => {
-        const phoneNumber = order.customer?.phone || "No phone provided";
-        return { ...order, customerPhone: phoneNumber };
-      });
+      // Loop through each connection and fetch its orders
+      for (const connection of connectionsData) {
+        const id = connection._id;
+        try {
+          // const response = await axios.get(`${url}/api/orders/all`);
+          const response = await axios.get(`${url}/summary/api/orders`);
+          const orders = response.data.orders;
   
-      setOrders(ordersWithPhone);
-      setFilteredClients(ordersWithPhone);
+          const unfulfilledOrders = orders.filter(
+            (order) => order.fulfillment_status !== "fulfilled"
+          );
+  
+          const ordersWithPhone = unfulfilledOrders.map((order) => {
+            const phoneNumber = order.customer?.phone || "No phone provided";
+            return { ...order, customerPhone: phoneNumber };
+          });
+  
+          // Add these orders to the overall list
+          allOrders.push(...ordersWithPhone);
+        } catch (error) {
+          console.error(`Error fetching orders for connection ID ${id}:`, error);
+          toast.error(`Error fetching orders for connection ID ${id}.`);
+        }
+      }
+  
+      // Update state with all fetched orders
+      setOrders(allOrders);
+      setFilteredClients(allOrders);
+      toast.success("Orders fetched successfully!");
     } catch (error) {
-      console.error("Error fetching orders:", error);
+      console.error("Error fetching all orders:", error);
+      toast.error("Failed to fetch orders.");
     } finally {
       setLoadingOrders(false); // Stop loading
     }

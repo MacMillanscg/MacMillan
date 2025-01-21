@@ -5,6 +5,8 @@ const path = require("path");
 const xml2js = require("xml2js");
 const Shipment = require("../Schema/ShipmentSchema");
 const os = require("os");
+const { shofipyOrders } = require("./connectionController");
+const { connection } = require("mongoose");
 
 // Verify eShipper Credentials
 exports.verifyEShipperCredential = async (req, res) => {
@@ -18,35 +20,54 @@ exports.verifyEShipperCredential = async (req, res) => {
   }
 };
 
+// shofipyOrders
 // Fetch orders from Shopify
+// Fetch orders from all Shopify stores
 exports.shofipyOrders = async (req, res) => {
-  const { id } = req.params;
   try {
-    const connection = await Connection.findById(id);
+    // Get all connections from the database
+    const connections = await Connection.find();
+    console.log("connecitons" , connections)
 
-    if (!connection) {
-      return res.status(404).json({ message: "Connection not found" });
+    if (!connections || connections.length === 0) {
+      return res.status(404).json({ message: "No connections found" });
     }
 
-    const integration = connection.integrations[0];
-    const { apiKey, storeUrl } = integration;
+    const allOrders = [];
 
-    const response = await axios.get(
-      `https://${storeUrl}/admin/api/2024-04/orders.json`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          "X-Shopify-Access-Token": apiKey,
-        },
+    // Loop through each connection
+    for (const connection of connections) {
+      for (const integration of connection.integrations) {
+        const { apiKey, storeUrl } = integration;
+
+        try {
+          // Fetch orders from the Shopify store
+          const response = await axios.get(
+            `https://${storeUrl}/admin/api/2024-04/orders.json`,
+            {
+              headers: {
+                "Content-Type": "application/json",
+                "X-Shopify-Access-Token": apiKey,
+              },
+            }
+          );
+
+          // Combine orders from this store with the total orders
+          allOrders.push(...response.data.orders);
+        } catch (error) {
+          console.error(`Error fetching orders from store: ${storeUrl}`, error.message);
+        }
       }
-    );
+    }
 
-    res.json(response.data);
+    // Return all collected orders
+    res.json({ orders: allOrders });
   } catch (error) {
-    console.error("Error fetching Shopify orders:", error);
+    console.error("Error fetching all Shopify orders:", error);
     res.status(500).send("Server Error");
   }
 };
+
 
 // Convert XML files to JSON
 exports.convertXmlFilesToJson = async (req, res) => {
