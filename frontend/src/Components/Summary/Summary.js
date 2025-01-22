@@ -84,6 +84,7 @@ export const Summary = () => {
   const [loadingConnections, setLoadingConnections] = useState(true);
   const [isDownloading, setIsDownloading] = useState(false);
   const [orderClientsId, setOrderClienetsId] = useState([])
+  const [shipmentsResponse,setShipmentsResponse] = useState([])
 
   const dispatch = useDispatch();
 
@@ -652,6 +653,21 @@ console.log("resutl" ,result);
   console.log("clietns" , clients)
   // console.log("orderClientsId" , orderClientsId)
 
+  const fetchShipmentsResponse = async () => {
+    try {
+      const response = await axios.get(`${url}/summary/getAllShipments`);
+      setShipmentsResponse(response.data);
+    } catch (error) {
+      console.error("Error fetching shipments:", error);
+      toast.error("Failed to fetch shipments");
+    }
+  };
+
+  useEffect(() => {
+    fetchShipmentsResponse();
+  }, []);
+  console.log("shipmentsResponse" , shipmentsResponse)
+
 
   return (
     <div
@@ -805,6 +821,12 @@ console.log("resutl" ,result);
       );
       console.log("scheduledShipment" , scheduledShipDated)
 
+      const newData = shipmentsResponse.find(
+        (data) => 
+      data.shopifyOrderId === (order ? order.id.toString() : shipment?.shopifyOrderId)
+      )
+      console.log("newDataksdfa" , newData)
+
       return (
         <tr key={index}>
           {columns.map((col, colIndex) => {
@@ -843,11 +865,11 @@ console.log("resutl" ,result);
                 
               case "customer": value = order 
                     ? `${order.customer?.first_name ?? ' '} ${order.customer?.last_name ?? ''}`.trim() 
-                    : scheduledShipDated?.from?.attention ?? '';
+                    : newData?.from?.attention ?? '';
 
                 break;
               case "address":
-                value = order ? order?.customer?.default_address?.address1 : scheduledShipDated?.from?.address1;
+                value = order ? order?.customer?.default_address?.address1 : newData?.from?.address1;
                 break;
               case "trackingNumber":
                 value = shipment?.trackingNumber || "";
@@ -872,7 +894,7 @@ console.log("resutl" ,result);
                 break;
               case "shippedDate":
                 value =
-                  scheduledShipDated?.scheduledShipDate?.split(" ")[0] || "";
+                newData?.scheduledShipDate?.split(" ")[0] || "";
                 break;
               case "reference":
                 value = shipment?.reference || "";

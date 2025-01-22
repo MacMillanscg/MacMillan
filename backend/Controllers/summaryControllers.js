@@ -164,14 +164,14 @@ exports.sendDataToEShipper = async (req, res) => {
       shopifyOrderId: shipmentResponseData.reference.name,
       scheduledShipDate: firstIndexData.scheduledShipDate,
       from: firstIndexData.from,
-      to: firstIndexData.to,
+      // to: firstIndexData.to,
       packagingUnit: firstIndexData.packagingUnit,
       packages: firstIndexData.packages,
       reference1: firstIndexData.reference1,
       reference2: firstIndexData.reference2,
       reference3: firstIndexData.reference3,
-      signatureRequired: firstIndexData.signatureRequired,
-      insuranceType: firstIndexData.insuranceType,
+      // signatureRequired: firstIndexData.signatureRequired,
+      // insuranceType: firstIndexData.insuranceType,
       pickup: firstIndexData.pickup,
     });
 
@@ -257,5 +257,17 @@ exports.getAllShipmentIds = async (req, res) => {
   } catch (error) {
     console.error("Error fetching all shipment details:", error);
     res.status(500).json({ error: "Failed to fetch shipment details" });
+  }
+};
+
+
+// Get all shipments
+exports.getAllShipments = async (req, res) => {
+  try {
+    const shipments = await Shipment.find();
+    res.status(200).json(shipments);
+  } catch (error) {
+    console.error("Error fetching shipments:", error.message);
+    res.status(500).json({ message: "Failed to fetch shipments", error: error.message });
   }
 };

@@ -11,5 +11,6 @@ router.get("/getShipments", summaryController.getShipmentDetails);
 router.get("/getShipmentsId", summaryController.getAllShipmentIds);
 router.get("/api/orders", summaryController.shofipyOrders);
 router.get("/", connectionController.getAllConnections);
+router.get("/getAllShipments", summaryController.getAllShipments); // Get all shipments
 
 module.exports = router;
