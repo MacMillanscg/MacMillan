@@ -79,6 +79,7 @@ exports.shofipyOrders = async (req, res) => {
       logger.warn("Connection not found", {  id });
       return res.status(404).json({ message: "Connection not found" });
     }
+    console.log("connections shopfiy" , connection)
 
     const integration = connection.integrations[0];
     const { apiKey, storeUrl } = integration;

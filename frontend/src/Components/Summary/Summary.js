@@ -271,8 +271,8 @@ export const Summary = () => {
           // Fetch orders from the backend
           const response = await axios.get(`${url}/summary/api/orders`);
           const orders = response.data.orders;
-          // console.log("all orders" , response.data)
-          setOrderClienetsId(response.data.orderSummary)
+          console.log("all orders", response.data);
+          setOrderClienetsId(response.data.orderSummary);
   
           // Filter orders created in the last five days
           const recentOrders = orders.filter((order) => {
@@ -280,22 +280,28 @@ export const Summary = () => {
             return orderDate >= fiveDaysAgo && orderDate <= today;
           });
   
-          // Further filter unfulfilled orders
+          // Separate unfulfilled and fulfilled orders
           const unfulfilledOrders = recentOrders.filter(
             (order) => order.fulfillment_status !== "fulfilled"
           );
   
+          const fulfilledOrders = recentOrders.filter(
+            (order) => order.fulfillment_status === "fulfilled"
+          );
+  
           // Map orders to include phone number and remove duplicates
-          const uniqueOrders = unfulfilledOrders.map((order) => {
-            const phoneNumber = order.customer?.phone || "No phone provided";
-            return { ...order, customerPhone: phoneNumber };
-          }).filter((order) => {
-            if (orderIds.has(order.id)) {
-              return false; // Skip duplicate orders
-            }
-            orderIds.add(order.id); // Add order ID to the set
-            return true;
-          });
+          const uniqueOrders = [...unfulfilledOrders, ...fulfilledOrders]
+            .map((order) => {
+              const phoneNumber = order.customer?.phone || "No phone provided";
+              return { ...order, customerPhone: phoneNumber };
+            })
+            .filter((order) => {
+              if (orderIds.has(order.id)) {
+                return false; // Skip duplicate orders
+              }
+              orderIds.add(order.id); // Add order ID to the set
+              return true;
+            });
   
           // Add these orders to the overall list
           allOrders.push(...uniqueOrders);
@@ -316,7 +322,7 @@ export const Summary = () => {
       setLoadingOrders(false); // Stop loading
     }
   };
-
+  
   // console.log("orderClientId" , orderClientsId)
   
   
@@ -644,6 +650,8 @@ console.log("resutl" ,result);
   };
 
   console.log("clietns" , clients)
+  // console.log("orderClientsId" , orderClientsId)
+
 
   return (
     <div

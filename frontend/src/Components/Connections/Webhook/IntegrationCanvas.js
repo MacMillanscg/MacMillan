@@ -132,6 +132,7 @@ export const IntegrationCanvas = () => {
         `${apiURL}/connections/${id}/api/orders`
       );
       const orders = response.data.orders;
+      console.log("all ordrsjsldfj" , orders)
   
       // Filter orders where fulfillment_status is not "fulfilled"
       const unfulfilledOrders = orders.filter((order) => order.fulfillment_status !== "fulfilled");
