@@ -83,6 +83,7 @@ export const Summary = () => {
   const [loadingShipments, setLoadingShipments] = useState(true);
   const [loadingConnections, setLoadingConnections] = useState(true);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [orderClientsId, setOrderClienetsId] = useState([])
 
   const dispatch = useDispatch();
 
@@ -270,6 +271,8 @@ export const Summary = () => {
           // Fetch orders from the backend
           const response = await axios.get(`${url}/summary/api/orders`);
           const orders = response.data.orders;
+          // console.log("all orders" , response.data)
+          setOrderClienetsId(response.data.orderSummary)
   
           // Filter orders created in the last five days
           const recentOrders = orders.filter((order) => {
@@ -305,7 +308,7 @@ export const Summary = () => {
       // Update state with all fetched unique orders
       setOrders(allOrders);
       setFilteredClients(allOrders);
-      toast.success("Orders fetched successfully!");
+      // toast.success("Orders fetched successfully!");
     } catch (error) {
       console.error("Error fetching all orders:", error);
       toast.error("Failed to fetch orders.");
@@ -313,6 +316,8 @@ export const Summary = () => {
       setLoadingOrders(false); // Stop loading
     }
   };
+
+  // console.log("orderClientId" , orderClientsId)
   
   
 
@@ -822,9 +827,12 @@ console.log("resutl" ,result);
               case "carrier":
                 value = shipment?.carrier || "";
                 break;
-              case "client":
-                value = order ? clients[1]?.client?.clientName : '';
-                break;
+                case "client":
+                  value = order 
+                    ? orderClientsId.find((client) => client.orderId === order.id)?.clientName || "Unknown Client"
+                    : "";
+                  break;
+                
               case "customer": value = order 
                     ? `${order.customer?.first_name ?? ' '} ${order.customer?.last_name ?? ''}`.trim() 
                     : scheduledShipDated?.from?.attention ?? '';

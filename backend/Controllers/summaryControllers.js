@@ -6,7 +6,6 @@ const xml2js = require("xml2js");
 const Shipment = require("../Schema/ShipmentSchema");
 const os = require("os");
 const { shofipyOrders } = require("./connectionController");
-const { connection } = require("mongoose");
 
 // Verify eShipper Credentials
 exports.verifyEShipperCredential = async (req, res) => {
@@ -20,23 +19,26 @@ exports.verifyEShipperCredential = async (req, res) => {
   }
 };
 
-// shofipyOrders
-// Fetch orders from Shopify
+
 // Fetch orders from all Shopify stores
 exports.shofipyOrders = async (req, res) => {
   try {
     // Get all connections from the database
     const connections = await Connection.find();
-    console.log("connecitons" , connections)
+    // console.log("connections", connections);
 
     if (!connections || connections.length === 0) {
       return res.status(404).json({ message: "No connections found" });
     }
 
-    const allOrders = [];
+    const allOrders = []; // To store all orders with client details
+    const orderSummary = []; // To store only orderId and clientId
 
     // Loop through each connection
     for (const connection of connections) {
+      const clientId = connection.client?.clientId || "Unknown Client ID";
+      const clientName = connection.client?.clientName || "Unknown Client";
+
       for (const integration of connection.integrations) {
         const { apiKey, storeUrl } = integration;
 
@@ -52,16 +54,39 @@ exports.shofipyOrders = async (req, res) => {
             }
           );
 
-          // Combine orders from this store with the total orders
-          allOrders.push(...response.data.orders);
+          // Process all orders
+          const enrichedOrders = response.data.orders.map((order) => {
+            // Add to order summary (only orderId and clientId)
+            orderSummary.push({
+              orderId: order.id,
+              clientId,
+              clientName
+            });
+
+            // Add to all orders with client details
+            return {
+              ...order, // Include full original order details
+              clientId,
+              clientName,
+            };
+          });
+
+          // Add enriched orders to the total orders list
+          allOrders.push(...enrichedOrders);
         } catch (error) {
-          console.error(`Error fetching orders from store: ${storeUrl}`, error.message);
+          console.error(
+            `Error fetching orders from store: ${storeUrl}`,
+            error.message
+          );
         }
       }
     }
 
-    // Return all collected orders
-    res.json({ orders: allOrders });
+    // Return all orders and the order summary
+    res.json({
+      orders: allOrders, // Full enriched orders
+      orderSummary, // Only orderId and clientId
+    });
   } catch (error) {
     console.error("Error fetching all Shopify orders:", error);
     res.status(500).send("Server Error");
@@ -69,16 +94,18 @@ exports.shofipyOrders = async (req, res) => {
 };
 
 
+
 // Convert XML files to JSON
 exports.convertXmlFilesToJson = async (req, res) => {
   try {
-    const homeDir = os.homedir();
-    const DOWNLOAD_FOLDER = path.join(homeDir, "Downloads");
-    const files = await fs.readdir(DOWNLOAD_FOLDER);
-    console.log("fiels" , files)
+    
+    // const NETWORK_PATH = "\\\\DESKTOP-22QU5F1\\ShopifyOrders\\ACK_folder";
+    const NETWORK_PATH = "\\\\vm-mac-fs01\\Shared\\Interface\\Shopify\\ACK_eShipper";
+    const files = await fs.readdir(NETWORK_PATH);
+    console.log("files", files);
 
     const xmlFiles = files.filter((file) => file.endsWith(".xml"));
-    // console.log("XMLFILES", xmlFiles)
+    console.log("XMLFILES", xmlFiles);
 
     if (xmlFiles.length === 0) {
       return res.status(404).json({ message: "No XML files found" });
@@ -88,7 +115,7 @@ exports.convertXmlFilesToJson = async (req, res) => {
 
     const jsonDataArray = await Promise.all(
       xmlFiles.map(async (file) => {
-        const filePath = path.join(DOWNLOAD_FOLDER, file);
+        const filePath = path.join(NETWORK_PATH, file);
         const xmlData = await fs.readFile(filePath, "utf-8");
         const jsonData = await parser.parseStringPromise(xmlData);
         return { fileName: file, data: jsonData };
@@ -107,6 +134,7 @@ exports.convertXmlFilesToJson = async (req, res) => {
     });
   }
 };
+
 
 // Send Data to eShipper
 exports.sendDataToEShipper = async (req, res) => {
