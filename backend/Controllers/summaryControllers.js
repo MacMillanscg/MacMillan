@@ -201,6 +201,7 @@ exports.getShipmentDetails = async (req, res) => {
     const shipments = await Shipment.find({}, "shipmentId shopifyOrderId");
     const shipmentIds = shipments.map((shipment) => shipment.shipmentId);
     const shopifyOrderIds = shipments.map((shipment) => shipment.shopifyOrderId);
+    console.log("shopifyOrderIds" , shopifyOrderIds)
 
     console.log("Shipment IDs:", shipmentIds);
 

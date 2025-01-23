@@ -396,6 +396,7 @@ export const Summary = () => {
     setLoadingShipments(true); // Start loading
     try {
       const response = await axios.get(`${url}/summary/getShipments`);
+      console.log("response data" , response.data)
       setShipmentData(response.data.shipments);
     } catch (error) {
       console.error("Error fetching shipment details:", error);
@@ -855,7 +856,7 @@ console.log("resutl" ,result);
               value = order ? "Shopify" : "Shopify";
               break;
             case "shipmentStatus":
-              value = shipment ? "" : "";
+              value = shipment ? "Ready for shipping" : "";
               break;
             case "carrier":
               value = shipment?.carrier || "";
@@ -863,7 +864,7 @@ console.log("resutl" ,result);
             case "client":
               value = order
                 ? orderClientsId.find((client) => client.orderId === order.id)?.clientName || "Unknown Client"
-                : "";
+                : filterData?.clientName;
               break;
 
             case "customer":
