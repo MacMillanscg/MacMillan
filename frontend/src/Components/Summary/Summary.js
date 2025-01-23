@@ -396,7 +396,7 @@ export const Summary = () => {
     setLoadingShipments(true); // Start loading
     try {
       const response = await axios.get(`${url}/summary/getShipments`);
-      console.log("response data" , response.data)
+      // console.log("response data" , response.data)
       setShipmentData(response.data.shipments);
     } catch (error) {
       console.error("Error fetching shipment details:", error);

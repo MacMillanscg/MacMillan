@@ -6,6 +6,7 @@ const xml2js = require("xml2js");
 const Shipment = require("../Schema/ShipmentSchema");
 const os = require("os");
 const { shofipyOrders } = require("./connectionController");
+require("dotenv").config();
 
 // Verify eShipper Credentials
 exports.verifyEShipperCredential = async (req, res) => {
@@ -205,8 +206,8 @@ exports.getShipmentDetails = async (req, res) => {
 
     console.log("Shipment IDs:", shipmentIds);
 
-    const eshipperUsername = "macmillan";
-    const eshipperPassword = "Apple@2024";
+    const eshipperUsername = process.env.ESHIPPER_USERNAME;
+    const eshipperPassword = process.env.ESHIPPER_PASSWORD;
 
     const authHeader =
       "Basic " +
