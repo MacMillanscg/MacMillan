@@ -195,12 +195,14 @@ exports.sendDataToEShipper = async (req, res) => {
 
 
 // Get Shipment Details
+
 exports.getShipmentDetails = async (req, res) => {
   try {
     const shipments = await Shipment.find({}, "shipmentId shopifyOrderId");
     const shipmentIds = shipments.map((shipment) => shipment.shipmentId);
-    console.log("SHIpmendtIDs" , shipmentIds)
     const shopifyOrderIds = shipments.map((shipment) => shipment.shopifyOrderId);
+
+    console.log("Shipment IDs:", shipmentIds);
 
     const eshipperUsername = "macmillan";
     const eshipperPassword = "Apple@2024";
@@ -211,43 +213,65 @@ exports.getShipmentDetails = async (req, res) => {
 
     const shipmentDetails = await Promise.all(
       shipmentIds.map(async (shipmentId, index) => {
-        const shipmentApiUrl = `https://ww2.eshipper.com/api/v2/ship/${shipmentId}`;
-        const shipmentResponse = await axios.get(shipmentApiUrl, {
-          headers: {
-            Authorization: authHeader,
-            "Content-Type": "application/json",
-          },
-        });
+        if (!shipmentId) {
+          console.warn(`Invalid shipmentId: ${shipmentId}`);
+          return null; // Skip invalid shipment IDs
+        }
 
-        const trackingApiUrl = `https://ww2.eshipper.com/api/v2/track/${shipmentId}`;
-        const trackingResponse = await axios.get(trackingApiUrl, {
-          headers: {
-            Authorization: authHeader,
-            "Content-Type": "application/json",
-          },
-        });
+        try {
+          const shipmentApiUrl = `https://ww2.eshipper.com/api/v2/ship/${shipmentId}`;
+          const trackingApiUrl = `https://ww2.eshipper.com/api/v2/track/${shipmentId}`;
 
-        return {
-          shipmentId,
-          shopifyOrderId: shopifyOrderIds[index],
-          shipmentData: shipmentResponse.data,
-          trackingData: trackingResponse.data,
-        };
+          console.log("Fetching shipment details from:", shipmentApiUrl);
+
+          const shipmentResponse = await axios.get(shipmentApiUrl, {
+            headers: {
+              Authorization: authHeader,
+              "Content-Type": "application/json",
+            },
+          });
+
+          console.log("Fetching tracking details from:", trackingApiUrl);
+
+          const trackingResponse = await axios.get(trackingApiUrl, {
+            headers: {
+              Authorization: authHeader,
+              "Content-Type": "application/json",
+            },
+          });
+
+          return {
+            shipmentId,
+            shopifyOrderId: shopifyOrderIds[index],
+            shipmentData: shipmentResponse.data,
+            trackingData: trackingResponse.data,
+          };
+        } catch (error) {
+          console.warn(
+            `Failed to fetch details for shipmentId ${shipmentId}:`,
+            error.response?.data || error.message
+          );
+          return null; // Skip this shipment if it fails
+        }
       })
     );
 
+    // Filter out any null entries caused by errors
+    const validShipments = shipmentDetails.filter((details) => details !== null);
+
     res.status(200).json({
       message: "Shipment and tracking details fetched successfully",
-      shipments: shipmentDetails,
+      shipments: validShipments,
     });
   } catch (error) {
-    console.error("Error fetching shipment and tracking details:", error);
+    console.error("Error fetching shipment and tracking details:", error.message);
     res.status(500).json({
       error: "Failed to fetch shipment and tracking details",
       details: error.message,
     });
   }
 };
+
 
 // Get All Shipment IDs
 exports.getAllShipmentIds = async (req, res) => {

@@ -50,6 +50,7 @@ export const Summary = () => {
   const [timeRange, setTimeRange] = useState("allTime");
   const [showDialog, setShowDialog] = useState(false);
   const [orders, setOrders] = useState([]);
+  const [allOrders,setAllOrders] = useState([])
   const [shipmentData, setShipmentData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1); // Track the current page
   const [itemsPerPage, setItemsPerPage] = useState(20);
@@ -272,6 +273,7 @@ export const Summary = () => {
           // Fetch orders from the backend
           const response = await axios.get(`${url}/summary/api/orders`);
           const orders = response.data.orders;
+          setAllOrders(orders)
           console.log("all orders", response.data);
           setOrderClienetsId(response.data.orderSummary);
   
@@ -650,7 +652,7 @@ console.log("resutl" ,result);
     setCurrentPage(1); // Reset to first page when items per page is changed
   };
 
-  console.log("clietns" , clients)
+  console.log("allOrders" , allOrders)
   // console.log("orderClientsId" , orderClientsId)
 
   const fetchShipmentsResponse = async () => {
@@ -799,146 +801,152 @@ console.log("resutl" ,result);
     </tr>
   </thead>
   <tbody>
-    {[
-      ...(currentOrders || []),
-      ...allShipmentData.filter(
-        (shipment) =>
-          !currentOrders?.some((order) => order.id.toString() === shipment.shopifyOrderId)
-      ),
-    ].map((item, index) => {
-      const isOrder = currentOrders?.some((order) => order.id === item.id);
-      const order = isOrder ? item : null;
+  {[
+    ...(orders || []),
+    ...allShipmentData.filter(
+      (shipment) =>
+        !orders?.some((order) => order.id.toString() === shipment.shopifyOrderId)
+    ),
+  ].map((item, index) => {
+    const isOrder = orders?.some((order) => order.id === item.id);
+    const order = isOrder ? item : null;
 
-      const shipment = allShipmentData?.find(
-        (shipment) =>
-          shipment.shopifyOrderId === (order ? order.id.toString() : item.shopifyOrderId)
-      );
-      console.log("shipent" , shipment)
+    const shipment = allShipmentData?.find(
+      (shipment) =>
+        shipment.shopifyOrderId === (order ? order.id.toString() : item.shopifyOrderId)
+    );
+    console.log("shipment" ,shipment)
 
-      const scheduledShipDated = formattedData?.find(
-        (data) =>
-          data.reference1 === (order ? order.id.toString() : shipment?.shopifyOrderId)
-      );
-      console.log("scheduledShipment" , scheduledShipDated)
+    const scheduledShipDated = formattedData?.find(
+      (data) =>
+        data.reference1 === (order ? order.id.toString() : shipment?.shopifyOrderId)
+    );
 
-      const newData = shipmentsResponse.find(
-        (data) => 
-      data.shopifyOrderId === (order ? order.id.toString() : shipment?.shopifyOrderId)
-      )
-      console.log("newDataksdfa" , newData)
+    const newData = shipmentsResponse.find(
+      (data) => data.shopifyOrderId === (order ? order.id.toString() : shipment?.shopifyOrderId)
+    );
+    console.log("NewData" , newData)
+    const filterData = allOrders.find((order) => order.id.toString() == shipment?.shopifyOrderId
+  )
+  console.log("filterData" , filterData)
 
-      return (
-        <tr key={index}>
-          {columns.map((col, colIndex) => {
-            if (!col.visible) return null;
+    return (
+      <tr key={index}>
+        {columns.map((col, colIndex) => {
+          if (!col.visible) return null;
 
-            let value = "";
-            switch (col.key) {
-              case "select":
-                value = (
-                  <input
-                    type="checkbox"
-                    checked={selectedRows.some((selected) => selected.rowData === item)}
-                    onChange={(e) =>
-                      handleRowSelect(e, index, item, scheduledShipDated)
-                    }
-                  />
-                );
-                break;
-              case "orderNumber":
-                value = order ? order.id : shipment?.shopifyOrderId;
-                break;
-              case "platform":
-                value = order ? "Shopify" : "Shipment";
-                break;
-              case "shipmentStatus":
-                value = shipment ? "Ready for shipping" : "";
-                break;
-              case "carrier":
-                value = shipment?.carrier || "";
-                break;
-                case "client":
-                  value = order 
-                    ? orderClientsId.find((client) => client.orderId === order.id)?.clientName || "Unknown Client"
-                    : "";
-                  break;
-                
-              case "customer": value = order 
-                    ? `${order.customer?.first_name ?? ' '} ${order.customer?.last_name ?? ''}`.trim() 
-                    : newData?.from?.attention ?? '';
+          let value = "";
+          switch (col.key) {
+            case "select":
+              value = (
+                <input
+                  type="checkbox"
+                  checked={selectedRows.some((selected) => selected.rowData === item)}
+                  onChange={(e) =>
+                    handleRowSelect(e, index, item, scheduledShipDated)
+                  }
+                />
+              );
+              break;
+            case "orderNumber":
+              value = order ? order.id : shipment?.shopifyOrderId;
+              break;
+            case "platform":
+              value = order ? "Shopify" : "Shopify";
+              break;
+            case "shipmentStatus":
+              value = shipment ? "" : "";
+              break;
+            case "carrier":
+              value = shipment?.carrier || "";
+              break;
+            case "client":
+              value = order
+                ? orderClientsId.find((client) => client.orderId === order.id)?.clientName || "Unknown Client"
+                : "";
+              break;
 
-                break;
+            case "customer":
+              value = order
+                ? `${order.customer?.first_name ?? ''} ${order.customer?.last_name ?? ''}`
+                : `${filterData?.customer?.first_name }  ${filterData?.customer?.last_name }` // Only show the order data in customer
+              break;
+
               case "address":
-                value = order ? order?.customer?.default_address?.address1 : newData?.from?.address1;
+                value = order?.customer?.default_address?.address1 
+                        || filterData?.customer?.default_address?.address1 
+                        || ""; // Leave it empty if no address exists
                 break;
-              case "trackingNumber":
-                value = shipment?.trackingNumber || "";
-                break;
-              case "trackingUrl":
-                value = shipment?.trackingUrl ? (
-                  <a
-                    href={shipment.trackingUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Url
-                  </a>
-                ) : (
-                  ""
-                );
-                break;
-              case "createdDate":
-                value = order
-                  ? new Date(order.created_at).toISOString().split("T")[0]
-                  : "-";
-                break;
-              case "shippedDate":
-                value =
-                newData?.scheduledShipDate?.split(" ")[0] || "";
-                break;
-              case "reference":
-                value = shipment?.reference || "";
-                break;
-              case "reference2":
-                value = shipment?.reference2 || "";
-                break;
-              case "reference3":
-                value = shipment?.reference3 || "";
-                break;
-              case "dimentions":
-                value = shipment?.dimentions || "";
-                break;
-              case "weight":
-                value = shipment?.weight || "";
-                break;
-              case "labels":
-                value = shipment ? "Label" : ""; // Placeholder
-                break;
-              case "downloaded":
-                value = shipment?.labels ? (
-                  <button
-                    onClick={() =>
-                      handleDownloadClick(index, shipment.labels, shipment.trackingNumber)
-                    }
-                    disabled={isDownloading}
-                  >
-                     {isDownloading ? 'Downloading...' : 'Download'}
-                  </button>
-                ) : (
-                  ""
-                );
-                break;
-              default:
-                value = "";
-                break;
-            }
 
-            return <td key={colIndex}>{value}</td>;
-          })}
-        </tr>
-      );
-    })}
-  </tbody>
+            case "trackingNumber":
+              value = shipment?.trackingNumber || "";
+              break;
+            case "trackingUrl":
+              value = shipment?.trackingUrl ? (
+                <a
+                  href={shipment.trackingUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Url
+                </a>
+              ) : (
+                ""
+              );
+              break;
+            case "createdDate":
+              value = order
+                ? new Date(order.created_at).toISOString().split("T")[0]
+                : "-";
+              break;
+            case "shippedDate":
+              value =
+                newData?.scheduledShipDate?.split(" ")[0] || "";
+              break;
+            case "reference":
+              value = shipment?.reference || "";
+              break;
+            case "reference2":
+              value = shipment?.reference2 || "";
+              break;
+            case "reference3":
+              value = shipment?.reference3 || "";
+              break;
+            case "dimentions":
+              value = shipment?.dimentions || "";
+              break;
+            case "weight":
+              value = shipment?.weight || "";
+              break;
+            case "labels":
+              value = shipment ? "Label" : ""; // Placeholder
+              break;
+            case "downloaded":
+              value = shipment?.labels ? (
+                <button
+                  onClick={() =>
+                    handleDownloadClick(index, shipment.labels, shipment.trackingNumber)
+                  }
+                  disabled={isDownloading}
+                >
+                   {isDownloading ? 'Downloading...' : 'Download'}
+                </button>
+              ) : (
+                ""
+              );
+              break;
+            default:
+              value = " ";
+              break;
+          }
+
+          return <td key={colIndex}>{value}</td>;
+        })}
+      </tr>
+    );
+  })}
+</tbody>
+
 </table>
 
 
