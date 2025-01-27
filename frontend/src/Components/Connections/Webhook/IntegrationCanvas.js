@@ -216,47 +216,47 @@ export const IntegrationCanvas = () => {
   }, [orders]);
 
   const sigleFilfullId = fullfillmentId[0];
-  console.log("sdfasdfs", sigleFilfullId);
+  console.log("sigleFilfullId", sigleFilfullId);
 
-  // const sendFulfillmentsWithDelay = async (fulfillmentIds, delay = 2000) => {
-  //   for (let i = 0; i < fulfillmentIds.length; i++) {
-  //     const fulfillment_order_id = fulfillmentIds[i];
-  //     console.log(`Sending fulfillment for ID: ${fulfillment_order_id}`);
+  const sendFulfillmentsWithDelay = async (fulfillmentIds, delay = 2000) => {
+    for (let i = 0; i < fulfillmentIds.length; i++) {
+      const fulfillment_order_id = fulfillmentIds[i];
+      console.log(`Sending fulfillment for ID: ${fulfillment_order_id}`);
 
-  //     try {
-  //       const response = await axios.post(
-  //         `${apiURL}/connections/${id}/create-fulfillment`,
-  //         {
-  //           fulfillment_order_id: fulfillment_order_id, // Send the fulfillment order ID
-  //           message: "The package was shipped this morning.",
-  //           tracking_info: {
-  //             number: "1Z001985YW997441234111",
-  //             url: "https://www.ups.com/WebTracking?loc=en_US&requester=ST&trackNums=1Z001985YW997441234111",
-  //           },
-  //         },
-  //         {
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //           },
-  //         }
-  //       );
+      try {
+        const response = await axios.post(
+          `${apiURL}/connections/${id}/create-fulfillment`,
+          {
+            fulfillment_order_id: fulfillment_order_id, // Send the fulfillment order ID
+            message: "The package was shipped this morning.",
+            tracking_info: {
+              number: "1Z001985YW997441234111",
+              url: "https://www.ups.com/WebTracking?loc=en_US&requester=ST&trackNums=1Z001985YW997441234111",
+            },
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
-  //       console.log(
-  //         "Fulfillment created for ID:",
-  //         fulfillment_order_id,
-  //         response.data
-  //       );
-  //     } catch (error) {
-  //       console.error(
-  //         `Error creating fulfillment for ID ${fulfillment_order_id}:`,
-  //         error.response ? error.response.data : error.message
-  //       );
-  //     }
+        console.log(
+          "Fulfillment created for ID:",
+          fulfillment_order_id,
+          response.data
+        );
+      } catch (error) {
+        console.error(
+          `Error creating fulfillment for ID ${fulfillment_order_id}:`,
+          error.response ? error.response.data : error.message
+        );
+      }
 
-  //     // Wait for the specified delay before sending the next request
-  //     await new Promise((resolve) => setTimeout(resolve, delay));
-  //   }
-  // };
+      // Wait for the specified delay before sending the next request
+      await new Promise((resolve) => setTimeout(resolve, delay));
+    }
+  };
 
   // useEffect(() => {
   //   if (fullfillmentId.length > 0) {

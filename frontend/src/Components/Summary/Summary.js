@@ -27,8 +27,6 @@ import { useFetchXmlData } from "./hooks/useFetchXmlData";
 import { Spinner } from "../Spinner/Spinner";
 import { fetchConnections } from "../../Redux/Actions/ConnectionsActions";
 import toast from "react-hot-toast";
-// import { eShipperUsername } from "../../api";
-// import { eShipperPassword } from "../../api";
 
 export const Summary = () => {
   const { dashboardWidth } = useAppContext();
@@ -86,13 +84,13 @@ export const Summary = () => {
   const [isDownloading, setIsDownloading] = useState(false);
   const [orderClientsId, setOrderClienetsId] = useState([])
   const [shipmentsResponse,setShipmentsResponse] = useState([])
-
+   const [fullfillmentId, setFullfillmentId] = useState([]);
+   const [fulfillmentOrders, setFulfillmentOrders] = useState([]);
+   const [matchedFulfillments, setMatchedFulfillments] = useState([]);
   const dispatch = useDispatch();
 
   const eShipperUsername = process.env.REACT_APP_ESHIPPER_USERNAME;
   const eShipperPassword = process.env.REACT_APP_ESHIPPER_PASSWORD;
-  console.log("eShipperUsername" , eShipperUsername)
-  console.log("eShipperPassword" , eShipperPassword)
 
   const { xmlData, formattedData, shipmentsId, setShipmentsId } =
     useFetchXmlData();
@@ -120,16 +118,7 @@ export const Summary = () => {
         const isToday =
           normalizeDate(createdDate).getTime() ===
           normalizeDate(today).getTime();
-        console.log(
-          "Today Filter - Created Date:",
-          createdDate,
-          "Normalized Created Date:",
-          normalizeDate(createdDate),
-          "Normalized Today:",
-          normalizeDate(today),
-          "Match:",
-          isToday
-        );
+   
         return isToday;
       });
     } else if (timeRange === "thisWeek") {
@@ -157,18 +146,7 @@ export const Summary = () => {
         const isInCustomRange =
           normalizeDate(createdDate) >= normalizeDate(customStartDate) &&
           normalizeDate(createdDate) <= normalizeDate(customEndDate);
-        console.log(
-          "Custom Range Filter - Created Date:",
-          createdDate,
-          "Normalized Created Date:",
-          normalizeDate(createdDate),
-          "Custom Start Date:",
-          normalizeDate(customStartDate),
-          "Custom End Date:",
-          normalizeDate(customEndDate),
-          "Match:",
-          isInCustomRange
-        );
+     
         return isInCustomRange;
       });
     }
@@ -250,6 +228,8 @@ export const Summary = () => {
   const fetchShopifyOrders = async () => {
     setLoadingOrders(true); // Start loading
     try {
+      const response = await axios.get(`${url}/summary/api/orders`);
+      const orders = response.data.orders;
       // Ensure connectionsData is available
       if (!connectionsData || connectionsData.length === 0) {
         console.error("No connections available.");
@@ -326,7 +306,7 @@ export const Summary = () => {
     }
   };
   
-  // console.log("orderClientId" , orderClientsId)
+  console.log("orders" , orders)
   
   
 
@@ -396,7 +376,7 @@ export const Summary = () => {
     setLoadingShipments(true); // Start loading
     try {
       const response = await axios.get(`${url}/summary/getShipments`);
-      // console.log("response data" , response.data)
+      console.log("response data" , response.data)
       setShipmentData(response.data.shipments);
     } catch (error) {
       console.error("Error fetching shipment details:", error);
@@ -441,11 +421,7 @@ export const Summary = () => {
     setAllShipmentData(cleanData);
   }, [shipmentData]);
 
-  // Example usage with shipmentData
   console.log("allShipmentData", allShipmentData);
-
-
-  // console.log("filterclients", filteredClients);
 
   const handleEShipperClick = () => {
     dispatch(verifyEShipperCredentials(eShipperUsername, eShipperPassword));
@@ -590,7 +566,7 @@ export const Summary = () => {
   };
   
 
-  console.log("slectedRow" , selectedRows)
+  // console.log("slectedRow" , selectedRows)
 
   const extractFields = (data) => {
     return data.map(item => ({
@@ -610,7 +586,7 @@ export const Summary = () => {
 };
 
 const result = extractFields(selectedRows);
-console.log("resutl" ,result);
+// console.log("resutl" ,result);
   
 
   const handleReset = () => {
@@ -654,7 +630,7 @@ console.log("resutl" ,result);
   };
 
   console.log("allOrders" , allOrders)
-  // console.log("orderClientsId" , orderClientsId)
+  console.log("orderClientsId" , orderClientsId)
 
   const fetchShipmentsResponse = async () => {
     try {
@@ -670,6 +646,105 @@ console.log("resutl" ,result);
     fetchShipmentsResponse();
   }, []);
   console.log("shipmentsResponse" , shipmentsResponse)
+
+
+// getting unfulfillment orders
+const getUnFulfillmentOrders = async () => {
+  try {
+    const response = await axios.get(`${url}/summary/get-fulfillment`);
+    if (response && response.data.fulfillmentOrders) {
+      setFulfillmentOrders(response.data.fulfillmentOrders);
+    }
+  } catch (error) {
+    setError("Failed to fetch fulfillment orders.");
+    console.log(
+      "Error fetching fulfillment orders:",
+      error.response ? error.response.data : error.message
+    );
+  } finally {
+    setLoading(false);
+  }
+};
+
+console.log("Fulfillment Orders:" , fulfillmentOrders)
+
+useEffect(() => {
+  getUnFulfillmentOrders();
+}, [orders]);
+
+  // Match Fulfillment Orders with Shipment Data
+  const matchFulfillmentWithShipments = () => {
+    const shipmentMap = new Map(
+      allShipmentData.map((shipment) => [shipment.shopifyOrderId, shipment])
+    );
+    console.log("shipmentMap" , shipmentMap)
+
+    const matched = fulfillmentOrders
+      .map((fulfillment) => {
+        const matchingShipment = shipmentMap.get(fulfillment.order_id.toString());
+        if (matchingShipment) {
+          return {
+            fulfillment_order_id: fulfillment.id,
+            tracking_info: {
+              number: matchingShipment.trackingNumber,
+              url: matchingShipment.trackingUrl,
+            },
+          };
+        }
+        return null;
+      })
+      .filter(Boolean); // Remove null values
+
+    setMatchedFulfillments(matched);
+    console.log("Matched Fulfillments:", matched);
+  };
+
+    // useEffect to match fulfillments and prepare data
+    useEffect(() => {
+      if (fulfillmentOrders.length > 0 && allShipmentData.length > 0) {
+        matchFulfillmentWithShipments();
+      }
+    }, [fulfillmentOrders, allShipmentData]);
+
+// create fulfillment /
+const sendFulfillmentsWithDelay = async (fulfillments, delay = 2000) => {
+  for (let i = 0; i < fulfillments.length; i++) {
+    const { fulfillment_order_id, tracking_info } = fulfillments[i];
+    console.log(`Sending fulfillment for ID: ${fulfillment_order_id}`);
+
+    try {
+      const response = await axios.post(
+        `${url}/summary/create-fulfillment`,
+        {
+          fulfillment_order_id,
+          message: "The package was shipped this morning.",
+          tracking_info,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Fulfillment created for ID:", fulfillment_order_id, response.data);
+    } catch (error) {
+      console.error(
+        `Error creating fulfillment for ID ${fulfillment_order_id}:`,
+        error.response ? error.response.data : error.message
+      );
+    }
+
+    // Wait for the specified delay before sending the next request
+    await new Promise((resolve) => setTimeout(resolve, delay));
+  }
+};
+
+ // useEffect to trigger sending fulfillments
+//  useEffect(() => {
+//   if (matchedFulfillments.length > 0) {
+//     sendFulfillmentsWithDelay(matchedFulfillments, 2000); // Delay of 2000ms
+//   }
+// }, [matchedFulfillments]);
 
 
   return (
@@ -809,6 +884,9 @@ console.log("resutl" ,result);
         !orders?.some((order) => order.id.toString() === shipment.shopifyOrderId)
     ),
   ].map((item, index) => {
+    console.log("orders inside map" , orders)
+    console.log("item inside map" , item)
+  
     const isOrder = orders?.some((order) => order.id === item.id);
     const order = isOrder ? item : null;
 
@@ -869,13 +947,14 @@ console.log("resutl" ,result);
 
             case "customer":
               value = order
-                ? `${order.customer?.first_name ?? ''} ${order.customer?.last_name ?? ''}`
-                : `${filterData?.customer?.first_name }  ${filterData?.customer?.last_name }` // Only show the order data in customer
+                ? `${order?.customer?.first_name || ''} ${order?.customer?.last_name || ''}`
+                : `${filterData?.customer?.first_name || " " }  ${filterData?.customer?.last_name || " " }` // Only show the order data in customer
               break;
 
               case "address":
                 value = order?.customer?.default_address?.address1 
                         || filterData?.customer?.default_address?.address1 
+                        || order?.shipping_address?.address1
                         || ""; // Leave it empty if no address exists
                 break;
 

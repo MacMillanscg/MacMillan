@@ -6,6 +6,7 @@ const xml2js = require("xml2js");
 const Shipment = require("../Schema/ShipmentSchema");
 const os = require("os");
 const { shofipyOrders } = require("./connectionController");
+const moment = require("moment"); 
 require("dotenv").config();
 
 // Verify eShipper Credentials
@@ -43,6 +44,8 @@ exports.shofipyOrders = async (req, res) => {
       for (const integration of connection.integrations) {
         const { apiKey, storeUrl } = integration;
 
+        // console.log("integrations" , integration)
+
         try {
           // Fetch orders from the Shopify store
           const response = await axios.get(
@@ -71,7 +74,7 @@ exports.shofipyOrders = async (req, res) => {
               clientName,
             };
           });
-
+// console.log("all orders" , allOrders)
           // Add enriched orders to the total orders list
           allOrders.push(...enrichedOrders);
         } catch (error) {
@@ -93,8 +96,6 @@ exports.shofipyOrders = async (req, res) => {
     res.status(500).send("Server Error");
   }
 };
-
-
 
 // Convert XML files to JSON
 exports.convertXmlFilesToJson = async (req, res) => {
@@ -295,5 +296,183 @@ exports.getAllShipments = async (req, res) => {
   } catch (error) {
     console.error("Error fetching shipments:", error.message);
     res.status(500).json({ message: "Failed to fetch shipments", error: error.message });
+  }
+};
+
+// Get Unfulfilled Orders (need this one )
+
+exports.getUnFullFillment = async (req, res) => {
+  try {
+    const connections = await Connection.find(); // Get all connections
+
+    if (!connections || connections.length === 0) {
+      return res.status(404).json({ message: "No connections found" });
+    }
+
+    let allFulfillmentOrders = []; // Array to store all fulfillment order objects
+
+    // Calculate the date for 6 days ago
+    const sixDaysAgo = moment().subtract(6, "days").toISOString();
+
+    // Iterate through each connection
+    for (const connection of connections) {
+      const integration = connection.integrations[0]; // Assuming each connection has 1 integration
+      const { apiKey, storeUrl } = integration;
+
+      try {
+        // Fetch orders created in the last 6 days from the Shopify API
+        const responseId = await axios.get(
+          `https://${storeUrl}/admin/api/2024-04/orders.json?created_at_min=${sixDaysAgo}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "X-Shopify-Access-Token": apiKey,
+            },
+          }
+        );
+
+        const orders = responseId.data.orders.filter(order => order.fulfillment_status == null || fulfillments.length === 0);
+        console.log("ordersss" , orders)
+    
+
+        if (!orders || orders.length === 0) {
+          console.log(`No recent orders found for connection with store URL: ${storeUrl}`);
+          continue; // Skip to the next connection if no recent orders found
+        }
+
+        const orderIds = orders.map((order) => order.id);
+
+        // Iterate through each order to fetch fulfillment orders
+        for (const orderId of orderIds) {
+          try {
+            const response = await axios.get(
+              `https://${storeUrl}/admin/api/2024-07/orders/${orderId}/fulfillment_orders.json`,
+              {
+                headers: {
+                  "Content-Type": "application/json",
+                  "X-Shopify-Access-Token": apiKey,
+                },
+              }
+            );
+
+            const fulfillmentOrders = response.data.fulfillment_orders;
+            console.log("ressponse datgaaaa" , response.data)
+
+            // Filter fulfillment orders created in the last 6 days
+            const recentFulfillmentOrders = fulfillmentOrders.filter((order) =>
+              moment(order.created_at).isAfter(sixDaysAgo)
+            );
+
+            // Add full fulfillment order objects to the final list
+            allFulfillmentOrders.push(...recentFulfillmentOrders);
+          } catch (error) {
+            console.error(`Error fetching fulfillment for order ${orderId} from ${storeUrl}:`, error);
+          }
+        }
+      } catch (error) {
+        console.error(`Error fetching orders from store ${storeUrl}:`, error);
+      }
+    }
+
+    // Return the collected fulfillment order objects
+    res.status(200).json({ fulfillmentOrders: allFulfillmentOrders });
+  } catch (error) {
+    console.error("Error fetching fulfillment details:", error);
+    res.status(500).json({ error: "Failed to fetch fulfillment details" });
+  }
+};
+
+
+// to create fulfillment form unfulfill
+// Create Fulfillment
+
+
+exports.createFulfillment = async (req, res) => {
+  const { fulfillment_order_id, message, tracking_info } = req.body;
+
+  // Validate the request body
+  if (!fulfillment_order_id) {
+    return res.status(400).json({ error: "Fulfillment order ID is required" });
+  }
+
+  try {
+    const connections = await Connection.find(); // Fetch all connections
+    if (!connections || connections.length === 0) {
+      console.log("No connections found");
+      return res.status(404).json({ message: "No connections found" });
+    }
+
+    let fulfillmentResponses = []; // To store responses for all connections
+
+    // Iterate through each connection to process the fulfillment
+    for (const connection of connections) {
+      const integration = connection.integrations[0]; // Assuming each connection has one integration
+      const { apiKey, storeUrl } = integration;
+
+      // Prepare the request body
+      const requestBody = {
+        fulfillment: {
+          message: message || "The package was shipped this morning.",
+          notify_customer: false,
+          tracking_info: tracking_info || {
+            number: tracking_info.trackingNumber,
+            url: tracking_info.trackingUrl,
+          },
+          line_items_by_fulfillment_order: [
+            {
+              fulfillment_order_id: fulfillment_order_id,
+            },
+          ],
+        },
+      };
+
+      try {
+        // Make the API request to Shopify
+        const response = await axios.post(
+          `https://${storeUrl}/admin/api/2024-04/fulfillments.json`,
+          requestBody,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "X-Shopify-Access-Token": apiKey, // Ensure the API key is included
+            },
+          }
+        );
+
+        // Push the successful response
+        fulfillmentResponses.push({
+          storeUrl,
+          status: "success",
+          fulfillmentResponse: response.data,
+        });
+
+        console.log(`Fulfillment created successfully for store: ${storeUrl}`);
+      } catch (error) {
+        console.error(`Error creating fulfillment for store ${storeUrl}:`, error);
+
+        // Push the error response
+        fulfillmentResponses.push({
+          storeUrl,
+          status: "error",
+          error: error.response ? error.response.data : error.message,
+        });
+      }
+    }
+
+    // Separate successful and failed responses for better clarity
+    const successResponses = fulfillmentResponses.filter((r) => r.status === "success");
+    const errorResponses = fulfillmentResponses.filter((r) => r.status === "error");
+
+    // Return the responses
+    res.status(200).json({
+      message: "Fulfillment process completed",
+      successCount: successResponses.length,
+      errorCount: errorResponses.length,
+      successResponses,
+      errorResponses,
+    });
+  } catch (error) {
+    console.error("Error creating fulfillment:", error);
+    res.status(500).json({ error: "Failed to create fulfillment" });
   }
 };
