@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a198f429.css",
+    "main.js": "/static/js/main.1b855f11.js",
+    "static/media/fontawesome-webfont.svg?v=4.7.0": "/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
+    "static/media/logo.jpg": "/static/media/logo.51231cc23dde328c1536.jpg",
+    "static/media/fontawesome-webfont.eot": "/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
+    "static/media/fontawesome-webfont.ttf?v=4.7.0": "/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
+    "static/media/fontawesome-webfont.woff?v=4.7.0": "/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
+    "static/media/fontawesome-webfont.woff2?v=4.7.0": "/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
+    "static/media/amazon.png": "/static/media/amazon.4e54c2113cf729f675ae.png",
+    "static/media/webhook.png": "/static/media/webhook.5aa8629f1e8e0f6e675e.png",
+    "static/media/Shopify.jpg": "/static/media/Shopify.111805272e1e038bcde6.jpg",
+    "static/media/csvImage.png": "/static/media/csvImage.930b2a41acade43671ad.png",
+    "static/media/xmlimg.PNG": "/static/media/xmlimg.9cfee7a5c65c646940d4.PNG",
+    "index.html": "/index.html",
+    "main.a198f429.css.map": "/static/css/main.a198f429.css.map",
+    "main.1b855f11.js.map": "/static/js/main.1b855f11.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a198f429.css",
+    "static/js/main.1b855f11.js"
+  ]
+}
