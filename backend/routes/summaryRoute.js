@@ -14,5 +14,6 @@ router.get("/", connectionController.getAllConnections);
 router.get("/getAllShipments", summaryController.getAllShipments); // Get all shipments
 router.get("/get-fulfillment", summaryController.getUnFullFillment);
 router.post("/create-fulfillment", summaryController.createFulfillment);
+router.post("/api/saveOrderIds", summaryController.createShopifyOrdersId);
 
 module.exports = router;

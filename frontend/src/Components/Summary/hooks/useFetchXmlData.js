@@ -149,3 +149,20 @@ export const useFetchXmlData = () => {
     setShipmentsId,
   };
 };
+
+
+// packagingUnit: data?.Header[0]?.static_packagingUnist?.[0] || "",
+// packages: {
+//   type: data?.Header[0]?.static_Type?.[0] || "",
+//   packages: (data?.Header || []).map((header) => ({
+//     height: header?.dimension_height?.[0] || "",
+//     length: header?.dimension_length?.[0] || "",
+//     width: header?.dimension_width?.[0] || "",
+//     dimensionUnit: header?.dimensionUnit?.[0] || "IN",
+//     weight: header?.dimension_weight?.[0] || "",
+//     weightUnit: header?.weightUnit?.[0] || "LB",
+//     insuranceAmount: header?.insuranceAmount?.[0] || 0,
+//     description: header?.description?.[0] || "No description provided",
+//   })),
+// },
+

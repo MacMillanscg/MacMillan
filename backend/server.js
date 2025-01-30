@@ -6,7 +6,6 @@ const express = require("express");
 
 const app = express();
 const axios = require("axios");
-
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -14,14 +13,16 @@ const PORT = process.env.PORT || 5000;
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const fs = require("fs");
+const helmet = require("helmet"); // For security headers
 
 // app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use("/public", express.static(path.join(__dirname, "public")));
 // app.use(express.static("public"));
 
-// const url = "mongodb://127.0.0.1:27017/mernapp";
-const url = process.env.MONGO_URI;
+// MongoDB Connection
+const url = process.env.MONGO_URI_PROD;
+// const url = process.env.NODE_ENV === "production" ? process.env.MONGO_URI_PROD : process.env.MONGO_URI_DEV
 
 mongoose
   .connect(url, {
@@ -29,23 +30,26 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log("mongodb connected successfully");
+    console.log("MongoDB connected successfully");
   })
-  .catch(() => {
-    console.log("errr in connection");
+  .catch((err) => {
+    console.error("Error in MongoDB connection:", err);
   });
 
-app.use(cors());
+// Middleware Setup
+app.use(cors()); // You can customize CORS if needed for production
+app.use(helmet()); // Use helmet to secure HTTP headers
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(cookieParser());
 
+// Routes
 const userAuth = require("./routes/auth");
 const support = require("./routes/supportRoute");
 const clientRoute = require("./routes/clientRoutes");
 const connectionRoute = require("./routes/connectionRoutes");
 const summaryRoute = require("./routes/summaryRoute");
 const exploreRoute = require("./routes/exploreRoute");
-// app.use("/users", userRouter);
+
 app.use("/auth", userAuth);
 app.use("/supports", support);
 app.use("/clients", clientRoute);
@@ -53,6 +57,7 @@ app.use("/connections", connectionRoute);
 app.use("/summary", summaryRoute);
 app.use("/explore", exploreRoute);
 
+// CORS headers (You can make this more restrictive in production)
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET, POST");
@@ -60,7 +65,17 @@ app.use((req, res, next) => {
   next();
 });
 
-// In your server.js or log controller
+// Serve static files from React build
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "client", "build")));
+
+  // Serve React app for all routes except for API routes
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
+
+// Log reading endpoint
 app.get("/", (req, res) => {
   const logFilePath = path.join(__dirname, "./logs/app.log");
 
@@ -87,7 +102,15 @@ app.get("/", (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log("server is running on port:" + PORT);
+// Centralized Error Handling
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something went wrong!');
 });
+
+// Start Server
+app.listen(PORT, () => {
+  console.log("Server is running on port: " + PORT);
+});
+
 module.exports = app;

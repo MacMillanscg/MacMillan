@@ -7,6 +7,7 @@ const Shipment = require("../Schema/ShipmentSchema");
 const os = require("os");
 const { shofipyOrders } = require("./connectionController");
 const moment = require("moment"); 
+const Order = require("../Schema/ShopifyOrderSchema");
 require("dotenv").config();
 
 // Verify eShipper Credentials
@@ -332,7 +333,7 @@ exports.getUnFullFillment = async (req, res) => {
         );
 
         const orders = responseId.data.orders.filter(order => order.fulfillment_status == null || fulfillments.length === 0);
-        console.log("ordersss" , orders)
+        // console.log("ordersss" , orders)
     
 
         if (!orders || orders.length === 0) {
@@ -356,7 +357,7 @@ exports.getUnFullFillment = async (req, res) => {
             );
 
             const fulfillmentOrders = response.data.fulfillment_orders;
-            console.log("ressponse datgaaaa" , response.data)
+            // console.log("ressponse datgaaaa" , response.data)
 
             // Filter fulfillment orders created in the last 6 days
             const recentFulfillmentOrders = fulfillmentOrders.filter((order) =>
@@ -434,7 +435,7 @@ exports.createFulfillment = async (req, res) => {
           {
             headers: {
               "Content-Type": "application/json",
-              "X-Shopify-Access-Token": apiKey, // Ensure the API key is included
+              // "X-Shopify-Access-Token": apiKey, // Ensure the API key is included
             },
           }
         );
@@ -476,3 +477,91 @@ exports.createFulfillment = async (req, res) => {
     res.status(500).json({ error: "Failed to create fulfillment" });
   }
 };
+
+// For future changes (Didn't use until)
+exports.sendDataToEShipperForFuture = async (req, res) => {
+  try {
+    const { extractedData, token } = req.body;
+
+    if (!Array.isArray(extractedData) || extractedData.length === 0) {
+      return res.status(400).json({ error: "No shipment data found to send." });
+    }
+
+    const eshipperApiUrl = "https://ww2.eshipper.com/api/v2/ship";
+    const successResponses = [];
+    const failedResponses = [];
+
+    for (const shipmentData of extractedData) {
+      try {
+        console.log("Payload sent to eShipper:", JSON.stringify(shipmentData, null, 2));
+
+        const response = await axios.put(eshipperApiUrl, shipmentData, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+
+        const shipmentResponseData = response.data;
+
+        // Create and save the shipment in MongoDB
+        const newShipment = new Shipment({
+          shipmentId: shipmentResponseData.order.id,
+          shopifyOrderId: shipmentResponseData.reference.name,
+          scheduledShipDate: shipmentData.scheduledShipDate,
+          from: shipmentData.from,
+          packagingUnit: shipmentData.packagingUnit,
+          packages: shipmentData.packages,
+          reference1: shipmentData.reference1,
+          reference2: shipmentData.reference2,
+          reference3: shipmentData.reference3,
+          pickup: shipmentData.pickup,
+        });
+
+        await newShipment.save();
+
+        // Push successful response to array
+        successResponses.push({ shipmentId: newShipment.shipmentId, response: shipmentResponseData });
+      } catch (error) {
+        console.error("Error sending data to eShipper:", error.response?.data || error);
+        failedResponses.push({ shipmentData, error: error.message });
+      }
+    }
+
+    res.status(200).json({
+      message: "Data successfully sent to eShipper!",
+      successResponses,
+      failedResponses,
+    });
+  } catch (error) {
+    console.error("Unexpected error:", error);
+    res.status(500).json({
+      error: "Failed to send data to eShipper",
+      details: error.message,
+    });
+  }
+};
+
+// store latest orders id in database
+// Create Shopify Order IDs
+exports.createShopifyOrdersId = async (req, res) => {
+  try {
+    const { orderIds } = req.body;
+
+    const bulkOperations = orderIds.map((id) => ({
+      updateOne: {
+        filter: { shopifyId: id },
+        update: { shopifyId: id },
+        upsert: true,
+      },
+    }));
+
+    await Order.bulkWrite(bulkOperations);
+
+    res.status(200).json({ message: "Order IDs saved successfully" });
+  } catch (error) {
+    console.error("Error saving order IDs:", error);
+    res.status(500).json({ message: "Error saving order IDs", error });
+  }
+};
+

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Summary.module.css";
-import { useAppContext } from "../Context/AppContext";
-import { useDispatch, useSelector } from "react-redux";
-import { verifyEShipperCredentials } from "../../Redux/Actions/SummaryActions";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import toast from "react-hot-toast";
+import "react-datepicker/dist/react-datepicker.css";
 import {
   faEllipsisV,
   faChevronDown,
@@ -12,30 +11,35 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { DotsModal } from "./DotsModal";
 import { PrintModal } from "./PrintModal";
-import { MockData } from "./MockData";
 import { ColumnManagementModal } from "./ColumnManagementModal";
 import { StatusPopup } from "./StatusPopup/StatusPopup";
 import { TimeRangeFilter } from "./AllTimePopup/TimeRangeFilter ";
 import { CustomPagination } from "./CustomPagination/CustomPagination";
-import "react-datepicker/dist/react-datepicker.css";
-import { getUser } from "../../storageUtils/storageUtils";
 import { url } from "../../api";
-import { PDFDocument, rgb } from "pdf-lib";
+import { PDFDocument } from "pdf-lib";
 import { ExportModal } from "./ExportModal/ExportModal";
 import { ConfirmCancelPopUp } from "../Common/ConfirmCancelPopUp/ConfirmCancelPopUp";
-import { useFetchXmlData } from "./hooks/useFetchXmlData";
 import { Spinner } from "../Spinner/Spinner";
-import { fetchConnections } from "../../Redux/Actions/ConnectionsActions";
-import toast from "react-hot-toast";
+import { verifyEShipperCredentials } from "../../Redux/Actions/SummaryActions";
+import { initialColumns } from "./ColumnsFields";
+import { getUser } from "../../storageUtils/storageUtils";
+import { useAppContext } from "../Context/AppContext";
+import { useDispatch, useSelector } from "react-redux";
+import { useFetchXmlData } from "./hooks/useFetchXmlData";
+import { useShopifyOrderIds } from "./hooks/useShopifyOrderIds";
+import { useFetchShopifyOrders } from "./hooks/useFetchShopifyOrders";
+import { useFetchShipmentDetails } from "./hooks/useFetchShipmentDetails";
+import { useFetchUnFulfillmentOrders } from "./hooks/useFetchUnFulfillmentOrders";
+import { useFetchAllShipments } from "./hooks/useFetchAllShipments";
+import { useMatchedFulfillments } from "./hooks/useMatchedFulfillments";
+import { useTimeRangeFilter } from "./hooks/useTimeRangeFilter";
+import { useResetFilters } from "./hooks/useResetFilters";
 
 export const Summary = () => {
   const { dashboardWidth } = useAppContext();
 
   const [searchTerm, setSearchTerm] = useState("");
-  const [customStartDate, setCustomStartDate] = useState(null);
-  const [customEndDate, setCustomEndDate] = useState(null);
   const [data, setData] = useState([]);
-  const [filteredClients, setFilteredClients] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [selectedRows, setSelectedRows] = useState([]);
   const token = useSelector((state) => state.eshipper.token);
@@ -45,68 +49,44 @@ export const Summary = () => {
   const [showExportModal, setShowExportModal] = useState(false);
   const [isColumnManagerVisible, setIsColumnManagerVisible] = useState(false);
   const [selectedStatuses, setSelectedStatuses] = useState([]);
-  const [timeRange, setTimeRange] = useState("allTime");
   const [showDialog, setShowDialog] = useState(false);
-  const [orders, setOrders] = useState([]);
-  const [allOrders,setAllOrders] = useState([])
-  const [shipmentData, setShipmentData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1); // Track the current page
   const [itemsPerPage, setItemsPerPage] = useState(20);
-  const [loading, setLoading] = useState(true);
   const [allShipmentData, setAllShipmentData] = useState([]);
   const [connectionsData , setConnectionsData ] = useState([])
-  const initialColumns = [
-    { name: "", key: "select", visible: true },
-    { name: "Order Number", key: "orderNumber", visible: true },
-    { name: "Platform", key: "platform", visible: true },
-    { name: "Shipment Status", key: "shipmentStatus", visible: true },
-    { name: "Carrier", key: "carrier", visible: true },
-    { name: "Client", key: "client", visible: true },
-    { name: "Customer", key: "customer", visible: true },
-    { name: "Address", key: "address", visible: true },
-    { name: "Tracking Number", key: "trackingNumber", visible: true },
-    { name: "Tracking URL", key: "trackingUrl", visible: true },
-    { name: "Created Date", key: "createdDate", visible: true },
-    { name: "Shipped Date", key: "shippedDate", visible: true },
-    { name: "Reference", key: "reference", visible: true },
-    { name: "Reference2", key: "reference2", visible: true },
-    { name: "Reference3", key: "reference3", visible: true },
-    { name: "Dimentions", key: "dimentions", visible: true },
-    { name: "Weight", key: "weight", visible: true },
-    { name: "Labels", key: "labels", visible: true },
-    { name: "Downloaded", key: "downloaded", visible: true },
-  ];
-  const [error, setError] = useState(null)
+
   const [columns, setColumns] = useState(initialColumns);
-  const [loadingOrders, setLoadingOrders] = useState(true);
-  const [loadingShipments, setLoadingShipments] = useState(true);
   const [loadingConnections, setLoadingConnections] = useState(true);
   const [isDownloading, setIsDownloading] = useState(false);
-  const [orderClientsId, setOrderClienetsId] = useState([])
-  const [shipmentsResponse,setShipmentsResponse] = useState([])
-   const [fullfillmentId, setFullfillmentId] = useState([]);
-   const [fulfillmentOrders, setFulfillmentOrders] = useState([]);
-   const [matchedFulfillments, setMatchedFulfillments] = useState([]);
   const dispatch = useDispatch();
 
   const eShipperUsername = process.env.REACT_APP_ESHIPPER_USERNAME;
   const eShipperPassword = process.env.REACT_APP_ESHIPPER_PASSWORD;
 
-  const { xmlData, formattedData, shipmentsId, setShipmentsId } =
-    useFetchXmlData();
+  // customs hooks
+  const {allOrders, orders, loadingOrders, filteredClients, orderClientsId } = useFetchShopifyOrders(connectionsData, url);
+  const { fulfillmentOrders, loading, error } = useFetchUnFulfillmentOrders(url, orders);
+  const { xmlData, formattedData, shipmentsId, setShipmentsId } = useFetchXmlData();
+  const shopifyOrderIds = useShopifyOrderIds(fulfillmentOrders, url);
+  const { shipmentData, loadingShipments } = useFetchShipmentDetails(url);
+  const { shipmentsResponse } = useFetchAllShipments(url);
+  const {matchedFulfillments} = useMatchedFulfillments(fulfillmentOrders, allShipmentData)
+  const { timeRange,customStartDate,customEndDate,setTimeRange,setCustomStartDate, setCustomEndDate,} = useTimeRangeFilter()
+ 
 
+  console.log("shopifyOrderId" , shopifyOrderIds)
+  console.log("shipmentData" , shipmentData)
+  console.log("orders" , orders)
   let userId = getUser();
   userId = userId?._id;
-
 
   const filterDataByTimeRange = (data) => {
     const today = new Date();
 
-    // Helper function to normalize dates to remove time components
     const normalizeDate = (date) =>
       new Date(date.getFullYear(), date.getMonth(), date.getDate());
 
-    console.log("Original data:", data); // Log the input data
+    console.log("Original data:", data);
 
     if (timeRange === "allTime") {
       return data;
@@ -150,8 +130,6 @@ export const Summary = () => {
         return isInCustomRange;
       });
     }
-
-
     return data;
   };
 
@@ -198,7 +176,7 @@ export const Summary = () => {
     let newItem = [];
     if (value.length > 3) {
       newItem = orders.filter((val, i) => {
-        return val.customer.toLowerCase().startsWith(value.toLowerCase());
+        return val.customer?.first_name.toLowerCase().startsWith(value.toLowerCase());
       });
       setFilteredData(newItem);
     } else {
@@ -214,7 +192,7 @@ export const Summary = () => {
         setConnectionsData(response.data);
         setClients(response.data);
       } catch (err) {
-        setError("Failed to fetch connections");
+        toast.error("Failed to fetch connections");
       } finally {
         setLoadingConnections(false); // Stop loading
       }
@@ -223,100 +201,8 @@ export const Summary = () => {
     fetchConnections();
   }, []);
   console.log("connectionsData" , connectionsData)
-  // const response = await axios.get(`${url}/summary/${id}/api/orders`);
 
-  const fetchShopifyOrders = async () => {
-    setLoadingOrders(true); // Start loading
-    try {
-      const response = await axios.get(`${url}/summary/api/orders`);
-      const orders = response.data.orders;
-      // Ensure connectionsData is available
-      if (!connectionsData || connectionsData.length === 0) {
-        console.error("No connections available.");
-        toast.error("No connections available.");
-        setLoadingOrders(false);
-        return;
-      }
-  
-      const allOrders = [];
-      const today = new Date();
-      const fiveDaysAgo = new Date();
-      fiveDaysAgo.setDate(today.getDate() - 5);
-  
-      // Set to track unique order IDs
-      const orderIds = new Set();
-  
-      // Loop through each connection and fetch its orders
-      for (const connection of connectionsData) {
-        const id = connection._id;
-        try {
-          // Fetch orders from the backend
-          const response = await axios.get(`${url}/summary/api/orders`);
-          const orders = response.data.orders;
-          setAllOrders(orders)
-          console.log("all orders", response.data);
-          setOrderClienetsId(response.data.orderSummary);
-  
-          // Filter orders created in the last five days
-          const recentOrders = orders.filter((order) => {
-            const orderDate = new Date(order.created_at);
-            return orderDate >= fiveDaysAgo && orderDate <= today;
-          });
-  
-          // Separate unfulfilled and fulfilled orders
-          const unfulfilledOrders = recentOrders.filter(
-            (order) => order.fulfillment_status !== "fulfilled"
-          );
-  
-          const fulfilledOrders = recentOrders.filter(
-            (order) => order.fulfillment_status === "fulfilled"
-          );
-  
-          // Map orders to include phone number and remove duplicates
-          const uniqueOrders = [...unfulfilledOrders, ...fulfilledOrders]
-            .map((order) => {
-              const phoneNumber = order.customer?.phone || "No phone provided";
-              return { ...order, customerPhone: phoneNumber };
-            })
-            .filter((order) => {
-              if (orderIds.has(order.id)) {
-                return false; // Skip duplicate orders
-              }
-              orderIds.add(order.id); // Add order ID to the set
-              return true;
-            });
-  
-          // Add these orders to the overall list
-          allOrders.push(...uniqueOrders);
-        } catch (error) {
-          console.error(`Error fetching orders for connection ID ${id}:`, error);
-          toast.error(`Error fetching orders for connection ID ${id}.`);
-        }
-      }
-  
-      // Update state with all fetched unique orders
-      setOrders(allOrders);
-      setFilteredClients(allOrders);
-      // toast.success("Orders fetched successfully!");
-    } catch (error) {
-      console.error("Error fetching all orders:", error);
-      toast.error("Failed to fetch orders.");
-    } finally {
-      setLoadingOrders(false); // Stop loading
-    }
-  };
-  
-  console.log("orders" , orders)
-  
-  
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      fetchShopifyOrders();
-    }, 3000);
-
-    return () => clearTimeout(timer);
-  }, [connectionsData]);
+  console.log("formatedData" , formattedData)
 
   const sendToEShipper = async () => {
     if (formattedData.length === 0) return;
@@ -371,23 +257,6 @@ export const Summary = () => {
 
     return () => clearInterval(intervalId); // Clear interval on component unmount
   }, [formattedData, token, shipmentsId]);
-
-  const fetchShipmentDetails = async () => {
-    setLoadingShipments(true); // Start loading
-    try {
-      const response = await axios.get(`${url}/summary/getShipments`);
-      console.log("response data" , response.data)
-      setShipmentData(response.data.shipments);
-    } catch (error) {
-      console.error("Error fetching shipment details:", error);
-    } finally {
-      setLoadingShipments(false); // Stop loading
-    }
-  };
-
-  useEffect(() => {
-    fetchShipmentDetails();
-  }, []); 
 
   const cleanShipmentData = (data) => {
     return data.map((item) => {
@@ -565,7 +434,6 @@ export const Summary = () => {
     setSelectedRows(updatedSelection);
   };
   
-
   // console.log("slectedRow" , selectedRows)
 
   const extractFields = (data) => {
@@ -613,6 +481,7 @@ const result = extractFields(selectedRows);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentOrders = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+  console.log("current orders" , currentOrders)
 
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
@@ -630,81 +499,12 @@ const result = extractFields(selectedRows);
   };
 
   console.log("allOrders" , allOrders)
-  console.log("orderClientsId" , orderClientsId)
-
-  const fetchShipmentsResponse = async () => {
-    try {
-      const response = await axios.get(`${url}/summary/getAllShipments`);
-      setShipmentsResponse(response.data);
-    } catch (error) {
-      console.error("Error fetching shipments:", error);
-      toast.error("Failed to fetch shipments");
-    }
-  };
-
-  useEffect(() => {
-    fetchShipmentsResponse();
-  }, []);
+  // console.log("orderClientsId" , orderClientsId)
   console.log("shipmentsResponse" , shipmentsResponse)
-
-
-// getting unfulfillment orders
-const getUnFulfillmentOrders = async () => {
-  try {
-    const response = await axios.get(`${url}/summary/get-fulfillment`);
-    if (response && response.data.fulfillmentOrders) {
-      setFulfillmentOrders(response.data.fulfillmentOrders);
-    }
-  } catch (error) {
-    setError("Failed to fetch fulfillment orders.");
-    console.log(
-      "Error fetching fulfillment orders:",
-      error.response ? error.response.data : error.message
-    );
-  } finally {
-    setLoading(false);
-  }
-};
-
-console.log("Fulfillment Orders:" , fulfillmentOrders)
-
-useEffect(() => {
-  getUnFulfillmentOrders();
-}, [orders]);
-
+  // console.log("Fulfillment Orders:" , fulfillmentOrders)
+  // console.log("Matched Fulfillment:" , matchedFulfillments)
+  
   // Match Fulfillment Orders with Shipment Data
-  const matchFulfillmentWithShipments = () => {
-    const shipmentMap = new Map(
-      allShipmentData.map((shipment) => [shipment.shopifyOrderId, shipment])
-    );
-    console.log("shipmentMap" , shipmentMap)
-
-    const matched = fulfillmentOrders
-      .map((fulfillment) => {
-        const matchingShipment = shipmentMap.get(fulfillment.order_id.toString());
-        if (matchingShipment) {
-          return {
-            fulfillment_order_id: fulfillment.id,
-            tracking_info: {
-              number: matchingShipment.trackingNumber,
-              url: matchingShipment.trackingUrl,
-            },
-          };
-        }
-        return null;
-      })
-      .filter(Boolean); // Remove null values
-
-    setMatchedFulfillments(matched);
-    console.log("Matched Fulfillments:", matched);
-  };
-
-    // useEffect to match fulfillments and prepare data
-    useEffect(() => {
-      if (fulfillmentOrders.length > 0 && allShipmentData.length > 0) {
-        matchFulfillmentWithShipments();
-      }
-    }, [fulfillmentOrders, allShipmentData]);
 
 // create fulfillment /
 const sendFulfillmentsWithDelay = async (fulfillments, delay = 2000) => {
@@ -861,7 +661,8 @@ const sendFulfillmentsWithDelay = async (fulfillments, delay = 2000) => {
         <Spinner isLoading={true} message="Loading data, please wait..." />
       )}
 
-        <table className={`${styles.table} mt-4`}>
+ 
+<table className={`${styles.table} mt-4`}>
   <thead>
     <tr>
       <th>
@@ -877,158 +678,155 @@ const sendFulfillmentsWithDelay = async (fulfillments, delay = 2000) => {
     </tr>
   </thead>
   <tbody>
-  {[
-    ...(orders || []),
+    {[...(currentOrders || []),
     ...allShipmentData.filter(
       (shipment) =>
-        !orders?.some((order) => order.id.toString() === shipment.shopifyOrderId)
-    ),
-  ].map((item, index) => {
-    console.log("orders inside map" , orders)
-    console.log("item inside map" , item)
-  
-    const isOrder = orders?.some((order) => order.id === item.id);
-    const order = isOrder ? item : null;
+        !currentOrders?.some((order) => order.id.toString() === shipment.shopifyOrderId)
+    )]
+      // Sort by creation date: most recent first
+      .sort((a, b) => {
+        const aOrderDate = new Date(a.created_at || a.scheduledShipDate);
+        const bOrderDate = new Date(b.created_at || b.scheduledShipDate);
+        return bOrderDate - aOrderDate; // Sort in descending order
+      })
+      .map((item, index) => {
+        // console.log("orders inside map", currentOrders);
+        console.log("item inside map", item);
 
-    const shipment = allShipmentData?.find(
-      (shipment) =>
-        shipment.shopifyOrderId === (order ? order.id.toString() : item.shopifyOrderId)
-    );
-    console.log("shipment" ,shipment)
+        const isOrder = currentOrders?.some((order) => order.id === item.id);
+        const order = isOrder ? item : null;
 
-    const scheduledShipDated = formattedData?.find(
-      (data) =>
-        data.reference1 === (order ? order.id.toString() : shipment?.shopifyOrderId)
-    );
+        const shipment = allShipmentData?.find(
+          (shipment) =>
+            shipment.shopifyOrderId === (order ? order.id.toString() : item.shopifyOrderId)
+        );
+        // console.log("shipment", shipment);
 
-    const newData = shipmentsResponse.find(
-      (data) => data.shopifyOrderId === (order ? order.id.toString() : shipment?.shopifyOrderId)
-    );
-    console.log("NewData" , newData)
-    const filterData = allOrders.find((order) => order.id.toString() == shipment?.shopifyOrderId
-  )
-  console.log("filterData" , filterData)
+        const newData = shipmentsResponse.find(
+          (data) => data.shopifyOrderId === (order ? order.id.toString() : shipment?.shopifyOrderId)
+        );
+        console.log("NewData", newData);
+        const filterData = allOrders.find((order) => order.id.toString() == shipment?.shopifyOrderId);
+        // console.log("filterData", filterData);
 
-    return (
-      <tr key={index}>
-        {columns.map((col, colIndex) => {
-          if (!col.visible) return null;
+        return (
+          <tr key={index}>
+            {columns.map((col, colIndex) => {
+              if (!col.visible) return null;
 
-          let value = "";
-          switch (col.key) {
-            case "select":
-              value = (
-                <input
-                  type="checkbox"
-                  checked={selectedRows.some((selected) => selected.rowData === item)}
-                  onChange={(e) =>
-                    handleRowSelect(e, index, item, scheduledShipDated)
-                  }
-                />
-              );
-              break;
-            case "orderNumber":
-              value = order ? order.id : shipment?.shopifyOrderId;
-              break;
-            case "platform":
-              value = order ? "Shopify" : "Shopify";
-              break;
-            case "shipmentStatus":
-              value = shipment ? "Ready for shipping" : "";
-              break;
-            case "carrier":
-              value = shipment?.carrier || "";
-              break;
-            case "client":
-              value = order
-                ? orderClientsId.find((client) => client.orderId === order.id)?.clientName || "Unknown Client"
-                : filterData?.clientName;
-              break;
+              let value = "";
+              switch (col.key) {
+                case "select":
+                  value = (
+                    <input
+                      type="checkbox"
+                      checked={selectedRows.some((selected) => selected.rowData === item)}
+                      onChange={(e) =>
+                        handleRowSelect(e, index, item, newData)
+                      }
+                    />
+                  );
+                  break;
+                case "orderNumber":
+                  value = order ? order.id : shipment?.shopifyOrderId;
+                  break;
+                case "platform":
+                  value = order ? "Shopify" : "Shopify";
+                  break;
+                case "shipmentStatus":
+                  value = shipment ? "Ready for shipping" : "";
+                  break;
+                case "carrier":
+                  value = shipment?.carrier || "";
+                  break;
+                case "client":
+                  value = order
+                    ? orderClientsId.find((client) => client.orderId === order.id)?.clientName || ""
+                    : filterData?.clientName || "";
+                  break;
 
-            case "customer":
-              value = order
-                ? `${order?.customer?.first_name || ''} ${order?.customer?.last_name || ''}`
-                : `${filterData?.customer?.first_name || " " }  ${filterData?.customer?.last_name || " " }` // Only show the order data in customer
-              break;
+                case "customer":
+                  value = order
+                    ? `${order?.customer?.first_name || ''} ${order?.customer?.last_name || ''}`
+                    : `${filterData?.customer?.first_name || " " }  ${filterData?.customer?.last_name || " " }`; // Only show the order data in customer
+                  break;
 
-              case "address":
-                value = order?.customer?.default_address?.address1 
-                        || filterData?.customer?.default_address?.address1 
-                        || order?.shipping_address?.address1
-                        || ""; // Leave it empty if no address exists
-                break;
+                case "address":
+                  value = order?.customer?.default_address?.address1
+                    || filterData?.customer?.default_address?.address1
+                    || order?.shipping_address?.address1
+                    || ""; // Leave it empty if no address exists
+                  break;
 
-            case "trackingNumber":
-              value = shipment?.trackingNumber || "";
-              break;
-            case "trackingUrl":
-              value = shipment?.trackingUrl ? (
-                <a
-                  href={shipment.trackingUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Url
-                </a>
-              ) : (
-                ""
-              );
-              break;
-            case "createdDate":
-              value = order
-                ? new Date(order.created_at).toISOString().split("T")[0]
-                : "-";
-              break;
-            case "shippedDate":
-              value =
-                newData?.scheduledShipDate?.split(" ")[0] || "";
-              break;
-            case "reference":
-              value = shipment?.reference || "";
-              break;
-            case "reference2":
-              value = shipment?.reference2 || "";
-              break;
-            case "reference3":
-              value = shipment?.reference3 || "";
-              break;
-            case "dimentions":
-              value = shipment?.dimentions || "";
-              break;
-            case "weight":
-              value = shipment?.weight || "";
-              break;
-            case "labels":
-              value = shipment ? "Label" : ""; // Placeholder
-              break;
-            case "downloaded":
-              value = shipment?.labels ? (
-                <button
-                  onClick={() =>
-                    handleDownloadClick(index, shipment.labels, shipment.trackingNumber)
-                  }
-                  disabled={isDownloading}
-                >
-                   {isDownloading ? 'Downloading...' : 'Download'}
-                </button>
-              ) : (
-                ""
-              );
-              break;
-            default:
-              value = " ";
-              break;
-          }
+                case "trackingNumber":
+                  value = shipment?.trackingNumber || "";
+                  break;
+                case "trackingUrl":
+                  value = shipment?.trackingUrl ? (
+                    <a
+                      href={shipment.trackingUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Url
+                    </a>
+                  ) : (
+                    ""
+                  );
+                  break;
+                case "createdDate":
+                  value = order
+                    ? new Date(order.created_at).toISOString().split("T")[0]
+                    : "";
+                  break;
+                case "shippedDate":
+                  value =
+                    newData?.scheduledShipDate?.split(" ")[0] || "";
+                  break;
+                case "reference":
+                  value = shipment?.reference || "";
+                  break;
+                case "reference2":
+                  value = shipment?.reference2 || "";
+                  break;
+                case "reference3":
+                  value = shipment?.reference3 || "";
+                  break;
+                case "dimentions":
+                  value = shipment?.dimentions || "";
+                  break;
+                case "weight":
+                  value = shipment?.weight || "";
+                  break;
+                case "labels":
+                  value = shipment ? "Label" : ""; // Placeholder
+                  break;
+                case "downloaded":
+                  value = shipment?.labels ? (
+                    <button
+                      onClick={() =>
+                        handleDownloadClick(index, shipment.labels, shipment.trackingNumber)
+                      }
+                      disabled={isDownloading}
+                    >
+                      {isDownloading ? 'Downloading...' : 'Download'}
+                    </button>
+                  ) : (
+                    ""
+                  );
+                  break;
+                default:
+                  value = " ";
+                  break;
+              }
 
-          return <td key={colIndex}>{value}</td>;
-        })}
-      </tr>
-    );
-  })}
-</tbody>
-
+              return <td key={colIndex}>{value}</td>;
+            })}
+          </tr>
+        );
+      })}
+  </tbody>
 </table>
-
 
       </div>
   

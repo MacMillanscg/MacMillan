@@ -132,7 +132,7 @@ export const IntegrationCanvas = () => {
         `${apiURL}/connections/${id}/api/orders`
       );
       const orders = response.data.orders;
-      console.log("all ordrsjsldfj" , orders)
+      console.log("all orders" , orders)
   
       // Filter orders where fulfillment_status is not "fulfilled"
       const unfulfilledOrders = orders.filter((order) => order.fulfillment_status !== "fulfilled");
@@ -182,11 +182,11 @@ export const IntegrationCanvas = () => {
   // console.log("shopifyOrderIds", shopifyOrderIds[0]);
 
   // Call fetchShopifyIds when orders are updated
-  useEffect(() => {
-    if (orders && orders.length > 0) {
-      fetchShopifyIds();
-    }
-  }, [orders]);
+  // useEffect(() => {
+  //   if (orders && orders.length > 0) {
+  //     fetchShopifyIds();
+  //   }
+  // }, [orders]);
 
   console.log("orders", orders);
 
@@ -465,12 +465,17 @@ export const IntegrationCanvas = () => {
     setXmlContents(xmlContent);
     setIsXmlPopup(true);
     closeConverterPopup();
+    console.log("tesing xml popup")
   };
   // console.log("xmlContents:", xmlContents);
 
   const closeXmlPopup = () => {
     setIsXmlPopup(false);
   };
+  const testing = () =>{
+    console.log("tesgintksadfja;ldfjaljsdljlfa")  
+  }
+  
 
   const closeFullfilmentPopup = () => {
     setIsFullfilmentPopup(false);
@@ -736,6 +741,8 @@ export const IntegrationCanvas = () => {
                         <FontAwesomeIcon
                           icon={faEdit}
                           className={styles.editDeleteIcon}
+                      
+                        
                         />
                       </div>
                     </div>
@@ -773,6 +780,7 @@ export const IntegrationCanvas = () => {
                       <FontAwesomeIcon
                         icon={faEdit}
                         className={styles.editDeleteIcon}
+                        onClick={() => setIsXmlPopup(true)}
                       />
                     </div>
                   </div>
