@@ -15,7 +15,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const fs = require("fs");
 
-// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 app.use("/public", express.static(path.join(__dirname, "public")));
 // app.use(express.static("public"));
