@@ -21,7 +21,7 @@ app.use("/public", express.static(path.join(__dirname, "public")));
 // app.use(express.static("public"));
 
 // const url = "mongodb://127.0.0.1:27017/mernapp";
-const url = process.env.MONGO_URI;
+const url = process.env.MONGO_URI_PROD;
 
 mongoose
   .connect(url, {
