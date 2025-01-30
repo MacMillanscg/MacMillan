@@ -39,6 +39,13 @@ app.use(cors());
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(cookieParser());
 
+
+app.use(express.static(path.join(__dirname, 'frontend/build')));
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+});
+
+
 const userAuth = require("./routes/auth");
 const support = require("./routes/supportRoute");
 const clientRoute = require("./routes/clientRoutes");
