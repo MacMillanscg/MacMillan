@@ -1,18 +1,42 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export const useShopifyOrderIds = (fulfillmentOrders, url, id) => {
-  const [shopifyOrderIds, setShopifyOrderIds] = useState([]);
-  console.log("fulfillmentOrders in hook" , fulfillmentOrders)
+export const useShopifyOrderIds = (currentOrders, fulfillmentOrders, url, id) => {
+  const [shopifyOrderData, setShopifyOrderData] = useState([]); // Store both orderId and details
+
+  console.log("fulfillmentOrders in hook", fulfillmentOrders);
+  console.log("currentOrders in hook", currentOrders);
 
   const fetchShopifyIds = async () => {
     try {
-      const orderIds = fulfillmentOrders.map((order) => order.order_id); // Extract order IDs
-      if (orderIds.length > 0) {
-        setShopifyOrderIds(orderIds);
-        console.log("orderIDs:", orderIds);
-        await axios.post(`${url}/summary/api/saveOrderIds`, { orderIds });
+      // Map currentOrders to extract necessary details and combine them with orderId
+      const combinedOrderData = currentOrders.map((order) => {
+        const orderId =  order.id.toString();
+        const customer = order.customer ? `${order.customer.first_name} ${order.customer.last_name}` : "Unknown";
+        const address = order.shipping_address ? order.shipping_address.address1 : "No address";
+        const platform = "Shopify"; 
+        const createdDate = order.created_at;
+        const clientName = order.clientName;
+
+        return { 
+          orderId, 
+          customer, 
+          address, 
+          platform,
+          createdDate, 
+          clientName,
+        };
+      });
+
+      // Set the combined data to the state
+      setShopifyOrderData(combinedOrderData);
+      console.log("Combined Order Data:", combinedOrderData);
+
+      // Optionally send combined data to backend
+      if (combinedOrderData.length > 0) {
+        await axios.post(`${url}/summary/api/saveOrderIds`, { combinedOrderData });
       }
+
     } catch (error) {
       console.error("Error while saving order IDs:", error);
     }
@@ -24,6 +48,5 @@ export const useShopifyOrderIds = (fulfillmentOrders, url, id) => {
     }
   }, [fulfillmentOrders]);
 
-  return shopifyOrderIds;
+  return shopifyOrderData; // Return the combined data array
 };
-

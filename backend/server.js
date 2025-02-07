@@ -15,7 +15,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const fs = require("fs");
 
-// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use("/public", express.static(path.join(__dirname, "public")));
 // app.use(express.static("public"));
@@ -38,13 +38,6 @@ mongoose
 app.use(cors());
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(cookieParser());
-
-
-app.use(express.static(path.join(__dirname, '../client/build')));  // Serving static files from client/build
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));  // Serving the index.html from client/build
-});
-
 
 const userAuth = require("./routes/auth");
 const support = require("./routes/supportRoute");

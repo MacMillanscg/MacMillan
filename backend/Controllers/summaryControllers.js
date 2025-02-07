@@ -5,7 +5,6 @@ const path = require("path");
 const xml2js = require("xml2js");
 const Shipment = require("../Schema/ShipmentSchema");
 const os = require("os");
-const { shofipyOrders } = require("./connectionController");
 const moment = require("moment"); 
 const Order = require("../Schema/ShopifyOrderSchema");
 require("dotenv").config();
@@ -102,8 +101,8 @@ exports.shofipyOrders = async (req, res) => {
 exports.convertXmlFilesToJson = async (req, res) => {
   try {
     
-    // const NETWORK_PATH = "\\\\DESKTOP-22QU5F1\\ShopifyOrders\\ACK_folder";
-    const NETWORK_PATH = "\\\\vm-mac-fs01\\Shared\\Interface\\Shopify\\ACK_eShipper";
+    const NETWORK_PATH = "\\\\DESKTOP-22QU5F1\\ShopifyOrders\\ACK_folder";
+    // const NETWORK_PATH = "\\\\vm-mac-fs01\\Shared\\Interface\\Shopify\\ACK_eShipper";
     const files = await fs.readdir(NETWORK_PATH);
     console.log("files", files);
 
@@ -151,7 +150,8 @@ exports.sendDataToEShipper = async (req, res) => {
     const firstIndexData = extractedData[0];
     console.log("Payload sent to eShipper:", JSON.stringify(firstIndexData, null, 2));
 
-    const eshipperApiUrl = "https://ww2.eshipper.com/api/v2/ship";
+    // const eshipperApiUrl = "https://ww2.eshipper.com/api/v2/ship";
+    const eshipperApiUrl = process.env.ESHIPPER_URL_SHIPMENT;
 
     const response = await axios.put(eshipperApiUrl, firstIndexData, {
       headers: {
@@ -160,6 +160,7 @@ exports.sendDataToEShipper = async (req, res) => {
       },
     });
 
+
     const shipmentResponseData = response.data;
 
     const newShipment = new Shipment({
@@ -167,14 +168,12 @@ exports.sendDataToEShipper = async (req, res) => {
       shopifyOrderId: shipmentResponseData.reference.name,
       scheduledShipDate: firstIndexData.scheduledShipDate,
       from: firstIndexData.from,
-      // to: firstIndexData.to,
+      to: firstIndexData.to,
       packagingUnit: firstIndexData.packagingUnit,
       packages: firstIndexData.packages,
       reference1: firstIndexData.reference1,
       reference2: firstIndexData.reference2,
       reference3: firstIndexData.reference3,
-      // signatureRequired: firstIndexData.signatureRequired,
-      // insuranceType: firstIndexData.insuranceType,
       pickup: firstIndexData.pickup,
     });
 
@@ -204,7 +203,7 @@ exports.getShipmentDetails = async (req, res) => {
     const shipments = await Shipment.find({}, "shipmentId shopifyOrderId");
     const shipmentIds = shipments.map((shipment) => shipment.shipmentId);
     const shopifyOrderIds = shipments.map((shipment) => shipment.shopifyOrderId);
-    console.log("shopifyOrderIds" , shopifyOrderIds)
+    console.log("shopifyOrderIds", shopifyOrderIds);
 
     console.log("Shipment IDs:", shipmentIds);
 
@@ -223,8 +222,8 @@ exports.getShipmentDetails = async (req, res) => {
         }
 
         try {
-          const shipmentApiUrl = `https://ww2.eshipper.com/api/v2/ship/${shipmentId}`;
-          const trackingApiUrl = `https://ww2.eshipper.com/api/v2/track/${shipmentId}`;
+          const shipmentApiUrl = `${process.env.SHIPMENT_API_URL}${shipmentId}`;
+          const trackingApiUrl = `${process.env.TRACKING_API_URL}${shipmentId}`;
 
           console.log("Fetching shipment details from:", shipmentApiUrl);
 
@@ -235,6 +234,8 @@ exports.getShipmentDetails = async (req, res) => {
             },
           });
 
+          console.log("shipmentResponse", shipmentResponse.data);
+
           console.log("Fetching tracking details from:", trackingApiUrl);
 
           const trackingResponse = await axios.get(trackingApiUrl, {
@@ -244,12 +245,35 @@ exports.getShipmentDetails = async (req, res) => {
             },
           });
 
-          return {
-            shipmentId,
-            shopifyOrderId: shopifyOrderIds[index],
-            shipmentData: shipmentResponse.data,
-            trackingData: trackingResponse.data,
-          };
+          // Check if the reference name exists in the shopifyOrderIds array
+          const referenceName = shipmentResponse.data.reference?.name; // Extract reference name
+          const trackingNumber = shipmentResponse.data.trackingNumber;
+          const trackingUrl = shipmentResponse.data.trackingUrl;
+          const data = shipmentResponse.data.labelData.label[0].data
+
+          if (shopifyOrderIds.includes(referenceName)) {
+            // If the reference name exists in shopifyOrderIds, save tracking data
+            const updatedShipment = await Shipment.findOneAndUpdate(
+              { shipmentId }, // Find the shipment by its shipmentId
+              { 
+                trackingNumber,  // Update the tracking number
+                trackingUrl ,     // Update the tracking URL
+                labelData: Buffer.from(data),
+              },
+              { new: true }  // Return the updated document
+            );
+
+            return {
+              shipmentId,
+              shopifyOrderId: shopifyOrderIds[index],
+              shipmentData: shipmentResponse.data,
+              trackingData: trackingResponse.data,
+              updatedShipment,  // Return the updated shipment data
+            };
+          } else {
+            console.warn(`Reference name ${referenceName} does not match any Shopify Order IDs.`);
+            return null; // Skip this shipment if the reference does not match
+          }
         } catch (error) {
           console.warn(
             `Failed to fetch details for shipmentId ${shipmentId}:`,
@@ -260,7 +284,7 @@ exports.getShipmentDetails = async (req, res) => {
       })
     );
 
-    // Filter out any null entries caused by errors
+    // Filter out any null entries caused by errors or non-matching reference names
     const validShipments = shipmentDetails.filter((details) => details !== null);
 
     res.status(200).json({
@@ -301,7 +325,6 @@ exports.getAllShipments = async (req, res) => {
 };
 
 // Get Unfulfilled Orders (need this one )
-
 exports.getUnFullFillment = async (req, res) => {
   try {
     const connections = await Connection.find(); // Get all connections
@@ -312,8 +335,8 @@ exports.getUnFullFillment = async (req, res) => {
 
     let allFulfillmentOrders = []; // Array to store all fulfillment order objects
 
-    // Calculate the date for 6 days ago
-    const sixDaysAgo = moment().subtract(6, "days").toISOString();
+    // Set the date for January 1, 2025
+    const startDate = moment("2025-01-01T00:00:00-05:00").toISOString(); 
 
     // Iterate through each connection
     for (const connection of connections) {
@@ -321,9 +344,9 @@ exports.getUnFullFillment = async (req, res) => {
       const { apiKey, storeUrl } = integration;
 
       try {
-        // Fetch orders created in the last 6 days from the Shopify API
+        // Fetch orders created on or after January 1, 2025
         const responseId = await axios.get(
-          `https://${storeUrl}/admin/api/2024-04/orders.json?created_at_min=${sixDaysAgo}`,
+          `https://${storeUrl}/admin/api/2024-04/orders.json?created_at_min=${startDate}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -332,9 +355,9 @@ exports.getUnFullFillment = async (req, res) => {
           }
         );
 
-        const orders = responseId.data.orders.filter(order => order.fulfillment_status == null || fulfillments.length === 0);
-        // console.log("ordersss" , orders)
-    
+        const orders = responseId.data.orders.filter(order => order.fulfillment_status == null || order.fulfillments.length === 0);
+        const allOrders = responseId.data.orders;
+        console.log("allorders", allOrders);
 
         if (!orders || orders.length === 0) {
           console.log(`No recent orders found for connection with store URL: ${storeUrl}`);
@@ -357,11 +380,9 @@ exports.getUnFullFillment = async (req, res) => {
             );
 
             const fulfillmentOrders = response.data.fulfillment_orders;
-            // console.log("ressponse datgaaaa" , response.data)
-
-            // Filter fulfillment orders created in the last 6 days
+            // Filter fulfillment orders created on or after January 1, 2025
             const recentFulfillmentOrders = fulfillmentOrders.filter((order) =>
-              moment(order.created_at).isAfter(sixDaysAgo)
+              moment(order.created_at).isSameOrAfter(startDate)
             );
 
             // Add full fulfillment order objects to the final list
@@ -382,6 +403,7 @@ exports.getUnFullFillment = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch fulfillment details" });
   }
 };
+
 
 
 // to create fulfillment form unfulfill
@@ -487,7 +509,7 @@ exports.sendDataToEShipperForFuture = async (req, res) => {
       return res.status(400).json({ error: "No shipment data found to send." });
     }
 
-    const eshipperApiUrl = "https://ww2.eshipper.com/api/v2/ship";
+    const eshipperApiUrl = process.env.SHIPMENT_API_URL;
     const successResponses = [];
     const failedResponses = [];
 
@@ -510,6 +532,7 @@ exports.sendDataToEShipperForFuture = async (req, res) => {
           shopifyOrderId: shipmentResponseData.reference.name,
           scheduledShipDate: shipmentData.scheduledShipDate,
           from: shipmentData.from,
+          to: shipmentData.to,
           packagingUnit: shipmentData.packagingUnit,
           packages: shipmentData.packages,
           reference1: shipmentData.reference1,
@@ -543,25 +566,48 @@ exports.sendDataToEShipperForFuture = async (req, res) => {
 };
 
 // store latest orders id in database
-// Create Shopify Order IDs
 exports.createShopifyOrdersId = async (req, res) => {
   try {
-    const { orderIds } = req.body;
+    const { combinedOrderData } = req.body; 
+    console.log("Received Order Data:", combinedOrderData);
 
-    const bulkOperations = orderIds.map((id) => ({
+    if (!Array.isArray(combinedOrderData) || combinedOrderData.length === 0) {
+      return res.status(400).json({ message: "Invalid or empty order data" });
+    }
+    const bulkOperations = combinedOrderData.map((order) => ({
       updateOne: {
-        filter: { shopifyId: id },
-        update: { shopifyId: id },
+        filter: { shopifyId: order.orderId }, 
+        update: {
+          $set: {
+            shopifyId: order.orderId,
+            customer: order.customer || "Unknown",
+            address: order.address || "No address",
+            platform: order.platform || "Shopify",
+            createdDate: new Date(order.createdDate), 
+            clientName: order.clientName,
+          },
+        },
         upsert: true,
       },
     }));
 
+    // Execute bulk operation
     await Order.bulkWrite(bulkOperations);
 
-    res.status(200).json({ message: "Order IDs saved successfully" });
+    res.status(200).json({ message: "Orders saved successfully" });
   } catch (error) {
-    console.error("Error saving order IDs:", error);
-    res.status(500).json({ message: "Error saving order IDs", error });
+    console.error("Error saving orders:", error);
+    res.status(500).json({ message: "Error saving orders", error });
   }
 };
 
+// Get all orders
+exports.getAllOrders = async (req, res) => {
+  try {
+    const orders = await Order.find().sort({ createdDate: -1 });
+    res.status(200).json(orders);
+  } catch (error) {
+    console.error("Error fetching orders:", error);
+    res.status(500).json({ message: "Error fetching orders", error });
+  }
+};

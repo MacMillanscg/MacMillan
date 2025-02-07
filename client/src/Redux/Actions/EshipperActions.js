@@ -1,5 +1,6 @@
 import axios from "axios";
 import { url } from "../../api";
+import { eShipperUrl } from "../../api";
 
 export const VERIFY_ESHIPPER_CREDENTIALS = "VERIFY_ESHIPPER_CREDENTIALS";
 export const VERIFY_ESHIPPER_CREDENTIALS_SUCCESS =
@@ -33,8 +34,8 @@ export const verifyEShipperCredentials = (
       const response = await axios.post(
         `${url}/connections/${id}/verify-eshipper`,
         {
-          // url:process.env.REACT_APP_ESHIPPER_API_URL
-          url: "https://ww2.eshipper.com/api/v2/authenticate",
+          url:eShipperUrl,
+          // url: "https://ww2.eshipper.com/api/v2/authenticate",
           principal,
           credential,
         }

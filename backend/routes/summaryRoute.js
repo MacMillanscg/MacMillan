@@ -11,9 +11,10 @@ router.get("/getShipments", summaryController.getShipmentDetails);
 router.get("/getShipmentsId", summaryController.getAllShipmentIds);
 router.get("/api/orders", summaryController.shofipyOrders);
 router.get("/", connectionController.getAllConnections);
-router.get("/getAllShipments", summaryController.getAllShipments); // Get all shipment
+router.get("/getAllShipments", summaryController.getAllShipments);
 router.get("/get-fulfillment", summaryController.getUnFullFillment);
 router.post("/create-fulfillment", summaryController.createFulfillment);
 router.post("/api/saveOrderIds", summaryController.createShopifyOrdersId);
+router.get("/latestOrders", summaryController.getAllOrders);
 
 module.exports = router;

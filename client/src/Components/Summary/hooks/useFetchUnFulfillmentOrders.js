@@ -10,6 +10,7 @@ export const useFetchUnFulfillmentOrders = (url, orders) => {
     setLoading(true); // Start loading
     try {
       const response = await axios.get(`${url}/summary/get-fulfillment`);
+      console.log("Response data" , response.data)
       if (response && response.data.fulfillmentOrders) {
         setFulfillmentOrders(response.data.fulfillmentOrders);
       }

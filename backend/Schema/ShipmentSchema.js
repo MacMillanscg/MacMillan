@@ -8,36 +8,13 @@ const shipmentSchema = new mongoose.Schema({
     attention: { type: String },
     company: { type: String },
     address1: { type: String },
-    // address2: { type: String },
-    // city: { type: String },
-    // province: { type: String },
-    // country: { type: String },
-    // zip: { type: String },
-    // email: { type: String },
-    // phone: { type: String },
-    // instructions: { type: String },
-    // residential: { type: Boolean },
-    // tailgateRequired: { type: Boolean },
-    // confirmDelivery: { type: Boolean },
-    // notifyRecipient: { type: Boolean },
   },
-  // to: {
-  //   attention: { type: String },
-  //   company: { type: String },
-  //   address1: { type: String },
-  //   address2: { type: String },
-  //   city: { type: String },
-  //   province: { type: String },
-  //   country: { type: String },
-  //   zip: { type: String },
-  //   email: { type: String },
-  //   phone: { type: String },
-  //   instructions: { type: String },
-  //   residential: { type: Boolean },
-  //   tailgateRequired: { type: Boolean },
-  //   confirmDelivery: { type: Boolean },
-  //   notifyRecipient: { type: Boolean },
-  // },
+  to :{
+    attention: { type: String },
+    company: { type: String },
+    address1: { type: String },
+  },
+
   packagingUnit: { type: String },
   packages: {
     type: { type: String },
@@ -68,6 +45,9 @@ const shipmentSchema = new mongoose.Schema({
     // location: { type: String },
     // instructions: { type: String },
   },
+  trackingNumber: { type: String },
+  trackingUrl: { type: String }, 
+  labelData: { type: Buffer } 
 });
 const Shipment = mongoose.model("Shipment", shipmentSchema);
 

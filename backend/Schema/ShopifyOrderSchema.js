@@ -5,13 +5,16 @@ const Schema = mongoose.Schema;
 const OrderSchema = new Schema({
   shopifyId: {
     type: String,
-    // required: true,
-    // unique: true,
   },
+  platform: { type: String, default: "Shopify" }, 
+  createdDate: { type: Date },
+  address: {type: String,},
+  customer: {type: String,},
   createdAt: {
     type: Date,
     default: Date.now,
   },
+  clientName: {type: String},
 });
 
 // Create the Order model

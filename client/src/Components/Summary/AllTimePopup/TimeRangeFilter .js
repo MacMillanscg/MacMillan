@@ -18,9 +18,9 @@ export const TimeRangeFilter = ({
   setCustomEndDate,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("allTime");
+  const [selectedOption, setSelectedOption] = useState(timeRange || "allTime");
 
-  console.log("timeRabge", timeRange);
+  console.log("timeRange", timeRange);
 
   const timeOptions = [
     { label: "All Time", value: "allTime" },
@@ -49,7 +49,11 @@ export const TimeRangeFilter = ({
   const handleSelectOption = (option) => {
     setSelectedOption(option);
     setTimeRange(option); // Function to set the time range in the parent component
+
+    // Reset custom dates if selecting a non-custom option
     if (option !== "custom") {
+      setCustomStartDate(null);
+      setCustomEndDate(null);
       setIsVisible(false); // Close the popup after selection if not custom
     }
   };

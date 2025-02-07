@@ -34,6 +34,7 @@ import { useFetchAllShipments } from "./hooks/useFetchAllShipments";
 import { useMatchedFulfillments } from "./hooks/useMatchedFulfillments";
 import { useTimeRangeFilter } from "./hooks/useTimeRangeFilter";
 import { useResetFilters } from "./hooks/useResetFilters";
+import { useFetchOrders } from "./hooks/useFetchOrders";
 
 export const Summary = () => {
   const { dashboardWidth } = useAppContext();
@@ -67,15 +68,18 @@ export const Summary = () => {
   const {allOrders, orders, loadingOrders, filteredClients, orderClientsId } = useFetchShopifyOrders(connectionsData, url);
   const { fulfillmentOrders, loading, error } = useFetchUnFulfillmentOrders(url, orders);
   const { xmlData, formattedData, shipmentsId, setShipmentsId } = useFetchXmlData();
-  const shopifyOrderIds = useShopifyOrderIds(fulfillmentOrders, url);
+ 
   const { shipmentData, loadingShipments } = useFetchShipmentDetails(url);
-  const { shipmentsResponse } = useFetchAllShipments(url);
+  const { shipmentsResponse } = useFetchAllShipments(url); // from database shipment data
   const {matchedFulfillments} = useMatchedFulfillments(fulfillmentOrders, allShipmentData)
   const { timeRange,customStartDate,customEndDate,setTimeRange,setCustomStartDate, setCustomEndDate,} = useTimeRangeFilter()
- 
-
-  console.log("shopifyOrderId" , shopifyOrderIds)
-  console.log("shipmentData" , shipmentData)
+  const {databaseOrders} = useFetchOrders(url); // all orders from database
+  
+  
+  // console.log("databaseOrders" , databaseOrders) // from database 
+  // console.log("shipmentsId" , shipmentsId) 
+  // console.log("shopifyOrderId" , shopifyOrderIds)
+  // console.log("shipmentData" , shipmentData)
   console.log("orders" , orders)
   let userId = getUser();
   userId = userId?._id;
@@ -86,7 +90,7 @@ export const Summary = () => {
     const normalizeDate = (date) =>
       new Date(date.getFullYear(), date.getMonth(), date.getDate());
 
-    console.log("Original data:", data);
+    // console.log("Original data:", data);
 
     if (timeRange === "allTime") {
       return data;
@@ -184,6 +188,7 @@ export const Summary = () => {
     }
   };
 
+ 
   useEffect(() => {
     const fetchConnections = async () => {
       setLoadingConnections(true); // Start loading
@@ -200,7 +205,7 @@ export const Summary = () => {
     
     fetchConnections();
   }, []);
-  console.log("connectionsData" , connectionsData)
+  // console.log("connectionsData" , connectionsData)
 
   console.log("formatedData" , formattedData)
 
@@ -248,21 +253,33 @@ export const Summary = () => {
       console.error("Error sending data to eShipper:", error);
     }
   };
-  console.log("shipmentsId" , shipmentsId)
+  // console.log("shipmentsId" , shipmentsId)
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       sendToEShipper();
     }, 50000);
 
-    return () => clearInterval(intervalId); // Clear interval on component unmount
+    return () => clearInterval(intervalId);
   }, [formattedData, token, shipmentsId]);
 
   const cleanShipmentData = (data) => {
     return data.map((item) => {
       const { shipmentData, trackingData, shopifyOrderId, shipmentId } = item;
-      const { dimensionUnit, height, length, weight, weightUnit, width } =
-        trackingData?.orderDetails?.packages?.packages[0];
+  
+      // Iterating over all packages in the packages array
+      const packages = trackingData?.orderDetails?.packages?.packages || [];
+  
+      // Mapping each package's details to an array of strings with necessary details
+      const cleanedPackages = packages.map((pkg) => {
+        const { dimensionUnit, height, length, weight, weightUnit, width } = pkg;
+  
+        return {
+          dimensions: `${width} x ${length} x ${height} ${dimensionUnit}`,
+          weight: `${weight} ${weightUnit}`,
+        };
+      });
+  
       // Extracting necessary fields from shipmentData
       const cleanedData = {
         carrier: shipmentData?.carrier?.carrierName || "",
@@ -274,23 +291,26 @@ export const Summary = () => {
         reference3: shipmentData?.reference3?.name || "",
         labels: shipmentData?.labelData?.label[0]?.data || "",
         shopifyOrderId: shopifyOrderId || "",
-
-        // Extracting necessary fields from trackingData
+        address: trackingData?.orderDetails?.to?.address1,
+        customer: trackingData?.orderDetails?.to?.attention,
         status: trackingData?.status || "",
-        dimentions: `${width} x ${length} x ${height} ${dimensionUnit}`,
-        weight: `${weight} ${weightUnit}`,
+  
+        // Adding the multiple packages information
+        packages: cleanedPackages,
       };
-
+  
       return cleanedData;
     });
   };
+  // These shipment data are comming from eshipper apis not from database:
+  
 
   useEffect(() => {
     const cleanData = cleanShipmentData(shipmentData);
     setAllShipmentData(cleanData);
   }, [shipmentData]);
 
-  console.log("allShipmentData", allShipmentData);
+  // console.log("allShipmentData", allShipmentData); // from eshipper apis
 
   const handleEShipperClick = () => {
     dispatch(verifyEShipperCredentials(eShipperUsername, eShipperPassword));
@@ -482,6 +502,7 @@ const result = extractFields(selectedRows);
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentOrders = filteredData.slice(indexOfFirstItem, indexOfLastItem);
   console.log("current orders" , currentOrders)
+  const shopifyOrderIds = useShopifyOrderIds(currentOrders,fulfillmentOrders, url);
 
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
@@ -498,9 +519,9 @@ const result = extractFields(selectedRows);
     setCurrentPage(1); // Reset to first page when items per page is changed
   };
 
-  console.log("allOrders" , allOrders)
+
   // console.log("orderClientsId" , orderClientsId)
-  console.log("shipmentsResponse" , shipmentsResponse)
+  // console.log("shipmentsResponse" , shipmentsResponse)
   // console.log("Fulfillment Orders:" , fulfillmentOrders)
   // console.log("Matched Fulfillment:" , matchedFulfillments)
   
@@ -662,171 +683,194 @@ const sendFulfillmentsWithDelay = async (fulfillments, delay = 2000) => {
       )}
 
  
-<table className={`${styles.table} mt-4`}>
-  <thead>
-    <tr>
-      <th>
-        <input
-          type="checkbox"
-          checked={selectedRows.length === currentOrders.length + allShipmentData.length}
-          onChange={(e) => handleSelectAll(e)}
-        />
-      </th>
-      {columns.map((col) =>
-        col.visible ? <th key={col.name}>{col.name}</th> : null
-      )}
-    </tr>
-  </thead>
-  <tbody>
-    {[...(currentOrders || []),
-    ...allShipmentData.filter(
-      (shipment) =>
-        !currentOrders?.some((order) => order.id.toString() === shipment.shopifyOrderId)
-    )]
-      // Sort by creation date: most recent first
-      .sort((a, b) => {
-        const aOrderDate = new Date(a.created_at || a.scheduledShipDate);
-        const bOrderDate = new Date(b.created_at || b.scheduledShipDate);
-        return bOrderDate - aOrderDate; // Sort in descending order
-      })
-      .map((item, index) => {
-        // console.log("orders inside map", currentOrders);
-        console.log("item inside map", item);
+        <table className={`${styles.table} mt-4`}>
+          <thead>
+            <tr>
+              <th>
+                <input
+                  type="checkbox"
+                  checked={selectedRows.length === currentOrders.length + allShipmentData.length}
+                  onChange={(e) => handleSelectAll(e)}
+                />
+              </th>
+              {columns.map((col) =>
+                col.visible ? <th key={col.name}>{col.name}</th> : null
+              )}
+            </tr>
+          </thead>
+          <tbody>
+          {[
+              // Step 1: Processed Shipments (Shipments that match an Order ID)
+              ...currentOrders
+                .map(order => {
+                  const shipment = allShipmentData.find(
+                    shipment => shipment.shopifyOrderId === order.id.toString()
+                  );
 
-        const isOrder = currentOrders?.some((order) => order.id === item.id);
-        const order = isOrder ? item : null;
+                  return shipment ? shipment : order; // If shipment exists, replace order with shipment
+                }),
 
-        const shipment = allShipmentData?.find(
-          (shipment) =>
-            shipment.shopifyOrderId === (order ? order.id.toString() : item.shopifyOrderId)
-        );
-        // console.log("shipment", shipment);
+              // Step 2: New WMS Shipments (Shipments that don't have a matching order)
+              ...allShipmentData.filter(
+                shipment => !currentOrders.some(order => order.id.toString() === shipment.shopifyOrderId)
+              ),
+            ]
+              .sort((a, b) => {
+                // Sorting by creation date (descending)
+                const aDate = new Date(a.created_at || a.scheduledShipDate);
+                const bDate = new Date(b.created_at || b.scheduledShipDate);
+                return bDate - aDate;
+              })
+              .map((item, index) => {
+                const isOrder = currentOrders.some(order => order.id === item.id);
+                const order = isOrder ? item : null;
 
-        const newData = shipmentsResponse.find(
-          (data) => data.shopifyOrderId === (order ? order.id.toString() : shipment?.shopifyOrderId)
-        );
-        console.log("NewData", newData);
-        const filterData = allOrders.find((order) => order.id.toString() == shipment?.shopifyOrderId);
-        // console.log("filterData", filterData);
+                const shipment = allShipmentData.find(shipment => shipment.shopifyOrderId === (order ? order.id.toString() : item.shopifyOrderId));
+                // console.log("shipment inside loop" , shipment)  // data from eshipper apis
 
-        return (
-          <tr key={index}>
-            {columns.map((col, colIndex) => {
-              if (!col.visible) return null;
+                const shipmentDatabaseData = shipmentsResponse.find(
+                  (data) => data.shopifyOrderId === (order ? order.id.toString() : shipment?.shopifyOrderId)
+                );
 
-              let value = "";
-              switch (col.key) {
-                case "select":
-                  value = (
-                    <input
-                      type="checkbox"
-                      checked={selectedRows.some((selected) => selected.rowData === item)}
-                      onChange={(e) =>
-                        handleRowSelect(e, index, item, newData)
+                // console.log("shipmentDatabaseData" , shipmentDatabaseData) //Data from database
+
+                // const filterData = allOrders.find((order) => order.id.toString() == shipment?.shopifyOrderId);
+                // console.log("filterData", filterData);
+
+                return (
+                  <tr key={index}>
+                    {columns.map((col, colIndex) => {
+                      if (!col.visible) return null;
+
+                      let value = "";
+                      switch (col.key) {
+                        case "select":
+                          value = (
+                            <input
+                              type="checkbox"
+                              checked={selectedRows.some((selected) => selected.rowData === item)}
+                              onChange={(e) =>
+                                handleRowSelect(e, index, item, shipment)
+                              }
+                            />
+                          );
+                          break;
+                        case "orderNumber":
+                          value = order ? order.id : shipment?.shopifyOrderId;
+                          break;
+                        case "platform":
+                          value = order ? "Shopify" : "WMS";
+                          break;
+                        case "shipmentStatus":
+                          value = shipment ? "Ready for shipping" : "";
+                          break;
+                        case "carrier":
+                          value = shipment?.carrier || "";
+                          break;
+                        case "client":
+                          value = order
+                            ? orderClientsId.find((client) => client.orderId === order.id)?.clientName : " "
+                          break;
+
+                        case "customer":
+                          value = shipment ? shipment?.customer  : `${order?.customer?.first_name || ''} ${order?.customer?.last_name || ''}` 
+                            
+                          break;
+
+                        case "address":
+                          value =shipment ? shipment?.address :  (order?.customer?.default_address?.address1 || order?.shipping_address.address1)
+                          break;
+
+                        case "trackingNumber":
+                          value = shipment?.trackingNumber || "";
+                          break;
+                        case "trackingUrl":
+                          value = shipment?.trackingUrl ? (
+                            <a
+                              href={shipment.trackingUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Url
+                            </a>
+                          ) : (
+                            ""
+                          );
+                          break;
+                        case "createdDate":
+                          value = order
+                            ? new Date(order.created_at).toISOString().split("T")[0]
+                            : "";
+                          break;
+                        case "shippedDate":
+                          value =
+                          shipmentDatabaseData?.scheduledShipDate?.split(" ")[0] || "";
+                          break;
+                        case "reference":
+                          value = shipment?.reference || "";
+                          break;
+                        case "reference2":
+                          value = shipment?.reference2 || "";
+                          break;
+                        case "reference3":
+                          value = shipment?.reference3 || "";
+                          break;
+                            case "dimentions":
+                  // If shipment has multiple packages, display all dimensions
+                  if (shipment?.packages) {
+                    value = shipment.packages
+                      .map(pkg => (
+                        <span className={styles.shipmentDimensions}>
+                          {pkg.dimensions}
+                          <br />
+                        </span>
+                      ))
+                  } else {
+                    value = shipment?.dimentions || "";
+                  }
+                  break;
+                  case "weight":
+                    // If shipment has multiple packages, display all weights
+                    if (shipment?.packages) {
+                      value = shipment.packages.map(pkg => (
+                        <span key={pkg._id} className={styles.shipmentDimensions}>
+                          {pkg.weight} {pkg.weightUnit}
+                          <br />
+                        </span>
+                      ));
+                    } else {
+                      value = shipment?.weight || "";
+                    }
+                    break;
+                        case "labels":
+                          value = shipment ? "Label" : ""; // Placeholder
+                          break;
+                        case "downloaded":
+                          value = shipment?.labels ? (
+                            <button
+                              onClick={() =>
+                                handleDownloadClick(index, shipment.labels, shipment.trackingNumber)
+                              }
+                              disabled={isDownloading}
+                            >
+                              {isDownloading ? 'Downloading...' : 'Download'}
+                            </button>
+                          ) : (
+                            ""
+                          );
+                          break;
+                        default:
+                          value = " ";
+                          break;
                       }
-                    />
-                  );
-                  break;
-                case "orderNumber":
-                  value = order ? order.id : shipment?.shopifyOrderId;
-                  break;
-                case "platform":
-                  value = order ? "Shopify" : "Shopify";
-                  break;
-                case "shipmentStatus":
-                  value = shipment ? "Ready for shipping" : "";
-                  break;
-                case "carrier":
-                  value = shipment?.carrier || "";
-                  break;
-                case "client":
-                  value = order
-                    ? orderClientsId.find((client) => client.orderId === order.id)?.clientName || ""
-                    : filterData?.clientName || "";
-                  break;
 
-                case "customer":
-                  value = order
-                    ? `${order?.customer?.first_name || ''} ${order?.customer?.last_name || ''}`
-                    : `${filterData?.customer?.first_name || " " }  ${filterData?.customer?.last_name || " " }`; // Only show the order data in customer
-                  break;
-
-                case "address":
-                  value = order?.customer?.default_address?.address1
-                    || filterData?.customer?.default_address?.address1
-                    || order?.shipping_address?.address1
-                    || ""; // Leave it empty if no address exists
-                  break;
-
-                case "trackingNumber":
-                  value = shipment?.trackingNumber || "";
-                  break;
-                case "trackingUrl":
-                  value = shipment?.trackingUrl ? (
-                    <a
-                      href={shipment.trackingUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Url
-                    </a>
-                  ) : (
-                    ""
-                  );
-                  break;
-                case "createdDate":
-                  value = order
-                    ? new Date(order.created_at).toISOString().split("T")[0]
-                    : "";
-                  break;
-                case "shippedDate":
-                  value =
-                    newData?.scheduledShipDate?.split(" ")[0] || "";
-                  break;
-                case "reference":
-                  value = shipment?.reference || "";
-                  break;
-                case "reference2":
-                  value = shipment?.reference2 || "";
-                  break;
-                case "reference3":
-                  value = shipment?.reference3 || "";
-                  break;
-                case "dimentions":
-                  value = shipment?.dimentions || "";
-                  break;
-                case "weight":
-                  value = shipment?.weight || "";
-                  break;
-                case "labels":
-                  value = shipment ? "Label" : ""; // Placeholder
-                  break;
-                case "downloaded":
-                  value = shipment?.labels ? (
-                    <button
-                      onClick={() =>
-                        handleDownloadClick(index, shipment.labels, shipment.trackingNumber)
-                      }
-                      disabled={isDownloading}
-                    >
-                      {isDownloading ? 'Downloading...' : 'Download'}
-                    </button>
-                  ) : (
-                    ""
-                  );
-                  break;
-                default:
-                  value = " ";
-                  break;
-              }
-
-              return <td key={colIndex}>{value}</td>;
-            })}
-          </tr>
-        );
-      })}
-  </tbody>
-</table>
+                      return <td key={colIndex}>{value}</td>;
+                    })}
+                  </tr>
+                );
+              })}
+          </tbody>
+        </table>
 
       </div>
   

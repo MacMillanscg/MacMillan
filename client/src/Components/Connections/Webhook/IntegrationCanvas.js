@@ -46,9 +46,9 @@ import { WebhookTriggerPopup } from "../Popups/WebhookTriggerPopup/WebhookTrigge
 import { fetchConnections } from "../../../Redux/Actions/ConnectionsActions";
 import { useSelector, useDispatch } from "react-redux";
 import toast from "react-hot-toast";
+import { CanvasFlowDetails } from "./CanvasFlows/CanvasFlowDetails";
 
 export const IntegrationCanvas = () => {
-  const [steps, setSteps] = useState([{ id: 1, title: "Step 1 of Rule 1" }]);
   const [connectionPopup, setConnectionPopup] = useState(false);
   const [clientPopup, setClientPopup] = useState(false);
   const [versionPopup, setVersionPopup] = useState(false);
@@ -75,7 +75,6 @@ export const IntegrationCanvas = () => {
   const [isOrderPopup, setIsOrderPopup] = useState(false);
   const [isFullfilmentPopup, setIsFullfilmentPopup] = useState(false);
   const [orders, setOrders] = useState([]);
-  // const [error, setError] = useState(null);
   const [shopifyDetails, setShopifyDetails] = useState(null);
   const [fetchTrigger, setFetchTrigger] = useState(false);
   const [fetchTriggerXml, setFetchTriggerXml] = useState(false);
@@ -91,8 +90,6 @@ export const IntegrationCanvas = () => {
   const [filteredConnection, setFilteredConnection] = useState(null);
   const [clientId, setClientId] = useState(null);
   const [integrationId, setIntegrationId] = useState(null);
-  const [shopifyOrderIds, setShopifyOrderIds] = useState([]);
-  const [fullfillmentId, setFullfillmentId] = useState([]);
   const [selectedStep, setSelectedStep] = useState("Rule 1");
   const [selectedStepId, setSelectedStepId] = useState(null);
   const [newRules, setNewRules] = useState(false);
@@ -132,7 +129,6 @@ export const IntegrationCanvas = () => {
         `${apiURL}/connections/${id}/api/orders`
       );
       const orders = response.data.orders;
-      console.log("all orders" , orders)
   
       // Filter orders where fulfillment_status is not "fulfilled"
       const unfulfilledOrders = orders.filter((order) => order.fulfillment_status !== "fulfilled");
@@ -161,108 +157,6 @@ export const IntegrationCanvas = () => {
     }
   };
   
-
-  const fetchShopifyIds = async () => {
-    try {
-      const orderIds = orders.map((order) => order.id); // Extract order IDs
-      if (orderIds) {
-        setShopifyOrderIds(orderIds);
-      }
-      console.log("orderIDs:", orderIds);
-
-      if (orderIds.length > 0) {
-        await axios.post(`${apiURL}/connections/${id}/api/saveOrderIds`, {
-          orderIds,
-        });
-      }
-    } catch (error) {
-      console.error("Error while saving order IDs:", error);
-    }
-  };
-  // console.log("shopifyOrderIds", shopifyOrderIds[0]);
-
-  // Call fetchShopifyIds when orders are updated
-  // useEffect(() => {
-  //   if (orders && orders.length > 0) {
-  //     fetchShopifyIds();
-  //   }
-  // }, [orders]);
-
-  console.log("orders", orders);
-
-  console.log("fullfillmentid", fullfillmentId);
-  const orderid = shopifyOrderIds[0];
-  console.log(orderid);
-
-  // To get id from from those unfullfill orders use this function
-  const getUnFulfillmentOrders = async () => {
-    try {
-      const response = await axios.get(
-        `${apiURL}/connections/${id}/get-fulfillment`
-      );
-      if (response) {
-        setFullfillmentId(response.data.fulfillmentOrderIds);
-        console.log("fulfillmentOrderIds", response.data.fulfillmentOrderIds);
-      }
-    } catch (error) {
-      console.log(
-        "Error fetching fulfillment orders:",
-        error.response ? error.response.data : error.message
-      );
-    }
-  };
-  useEffect(() => {
-    getUnFulfillmentOrders();
-  }, [orders]);
-
-  const sigleFilfullId = fullfillmentId[0];
-  console.log("sigleFilfullId", sigleFilfullId);
-
-  const sendFulfillmentsWithDelay = async (fulfillmentIds, delay = 2000) => {
-    for (let i = 0; i < fulfillmentIds.length; i++) {
-      const fulfillment_order_id = fulfillmentIds[i];
-      console.log(`Sending fulfillment for ID: ${fulfillment_order_id}`);
-
-      try {
-        const response = await axios.post(
-          `${apiURL}/connections/${id}/create-fulfillment`,
-          {
-            fulfillment_order_id: fulfillment_order_id, // Send the fulfillment order ID
-            message: "The package was shipped this morning.",
-            tracking_info: {
-              number: "1Z001985YW997441234111",
-              url: "https://www.ups.com/WebTracking?loc=en_US&requester=ST&trackNums=1Z001985YW997441234111",
-            },
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-
-        console.log(
-          "Fulfillment created for ID:",
-          fulfillment_order_id,
-          response.data
-        );
-      } catch (error) {
-        console.error(
-          `Error creating fulfillment for ID ${fulfillment_order_id}:`,
-          error.response ? error.response.data : error.message
-        );
-      }
-
-      // Wait for the specified delay before sending the next request
-      await new Promise((resolve) => setTimeout(resolve, delay));
-    }
-  };
-
-  // useEffect(() => {
-  //   if (fullfillmentId.length > 0) {
-  //     sendFulfillmentsWithDelay(fullfillmentId, 2000); // Delay of 2000ms (2 seconds) between requests
-  //   }
-  // }, [fullfillmentId]); // Runs when fullfillmentId array is updated
 
   useEffect(() => {
     // if (initialized) {
@@ -293,8 +187,6 @@ export const IntegrationCanvas = () => {
 
     fetchShopifyDetails();
   }, [id, fetchTrigger]);
-  // console.log("shopifyDetails", shopifyDetails);
-  // console.log("ordrs", orders);
 
   // Use useEffect to handle state updates when selectedStep or selectedStepId changes
   useEffect(() => {
@@ -307,22 +199,6 @@ export const IntegrationCanvas = () => {
     }
   }, [selectedStep, selectedStepId, id]); // This effect runs only when selectedStep, selectedStepId, or id changes
 
-  const addShopifyOrders = async () => {
-    try {
-      const transactionResponse = await axios.post(
-        `${apiURL}/connections/${id}/saveTransaction`,
-        {
-          clientId,
-          integrationId,
-          type: "order",
-          // data: shopifyId,
-        }
-      );
-      console.log("trasnaction", transactionResponse);
-    } catch (error) {
-      console.log("Error in shopify orders ", error);
-    }
-  };
 
   useEffect(() => {
     const fetchConversionDetails = async () => {
@@ -472,11 +348,7 @@ export const IntegrationCanvas = () => {
   const closeXmlPopup = () => {
     setIsXmlPopup(false);
   };
-  const testing = () =>{
-    console.log("tesgintksadfja;ldfjaljsdljlfa")  
-  }
-  
-
+ 
   const closeFullfilmentPopup = () => {
     setIsFullfilmentPopup(false);
   };
@@ -539,9 +411,6 @@ export const IntegrationCanvas = () => {
   const handleRunClick = () => {
     setShowTestResults(true);
     const startTime = Date.now();
-    // setIsExpanded(true);
-
-    // Simulating test run with a timeout
     setTimeout(() => {
       const endTime = Date.now();
       const duration = ((endTime - startTime) / 1000).toFixed(1); // duration in seconds
@@ -590,6 +459,8 @@ export const IntegrationCanvas = () => {
   console.log("isSelected", isSelected);
 
   console.log("selectedRULE", selectedStep);
+  console.log("selectedStep" , selectedStep)
+  console.log("selectedStepId" , selectedStepId)
 
   const handlePublish = async () => {
     try {
@@ -692,7 +563,6 @@ export const IntegrationCanvas = () => {
               scheduleIds={scheduleIds}
               setScheduleIds={setScheduleIds}
             />
-
             <div className={styles.webhook} onClick={openTriggerPopup}>
               <div className={styles.imageContainer}>
                 <div className={styles.imgWrapper}>
@@ -720,10 +590,17 @@ export const IntegrationCanvas = () => {
                 <p>{!isSelected ? "Universal webhook - webhook" : ""} </p>
               </div>
             </div>
+           {
+            selectedStep !== "Rule 1" &&
+            <CanvasFlowDetails 
+             selectedStep = {selectedStep}
+             selectedStepId = {selectedStepId}
+             filteredConnection={filteredConnection}
+            />
+           } 
             {/* from here the shopify started */}
             {shopifyDetails &&
-              (selectedStep === "Rule 1" ||
-                filteredConnection?.newRulesId.includes(selectedStepId)) && (
+              (selectedStep === "Rule 1") && (
                 <div className={styles.webhook}>
                   <div className={styles.imageContainer}>
                     <div className={styles.editDeleteWrap}>
@@ -740,9 +617,7 @@ export const IntegrationCanvas = () => {
                         />
                         <FontAwesomeIcon
                           icon={faEdit}
-                          className={styles.editDeleteIcon}
-                      
-                        
+                          className={styles.editDeleteIcon}    
                         />
                       </div>
                     </div>
