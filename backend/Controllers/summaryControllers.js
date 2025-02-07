@@ -101,8 +101,10 @@ exports.shofipyOrders = async (req, res) => {
 exports.convertXmlFilesToJson = async (req, res) => {
   try {
     
-    const NETWORK_PATH = "\\\\DESKTOP-22QU5F1\\ShopifyOrders\\ACK_folder";
-    // const NETWORK_PATH = "\\\\vm-mac-fs01\\Shared\\Interface\\Shopify\\ACK_eShipper";
+    // For my path just for testinng
+    // const NETWORK_PATH = "\\\\DESKTOP-22QU5F1\\ShopifyOrders\\ACK_folder";
+    // FOr client path
+    const NETWORK_PATH = "\\\\vm-mac-fs01\\Shared\\Interface\\Shopify\\ACK_eShipper";
     const files = await fs.readdir(NETWORK_PATH);
     console.log("files", files);
 
