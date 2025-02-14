@@ -14,7 +14,6 @@ export const ConnectionsTab = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { id } = useParams();
-  console.log("connectionTabId", id);
 
   useEffect(() => {
     const getConnections = async () => {
@@ -75,7 +74,7 @@ export const ConnectionsTab = () => {
             </button>
           </div>
         </div>
-        <div className={styles.cardSection}>
+        <div className={`${styles.cardSection} ${style.cardSection}`}>
           {loading ? (
             <div className={styles.loaderContainer}>
               <ClipLoader size={50} color={"#123abc"} loading={loading} />
@@ -97,10 +96,10 @@ export const ConnectionsTab = () => {
               return (
                 <Link
                   to={`/connections/connectionList`}
-                  className={styles.cardWrap}
+                  className={`${styles.cardWrap} ${style.cardWrap}`}
                   key={index}
                 >
-                  <div className={`card ${styles.connectionCard}`}>
+                  <div className={`card ${styles.connectionCard} ${style.connectionCard}`}>
                     <div className="card-body">
                       <h3 className={styles.cardTitle}>
                         {connection.shopifyDetails?.shopifyTitle}
@@ -125,7 +124,7 @@ export const ConnectionsTab = () => {
                           </li>
                         </ul>
                       </div>
-                      <div className={styles.popup}>Test Connection</div>
+                      <div className={`${styles.popup} mt-4`}>Test Connection</div>
                     </div>
                   </div>
                 </Link>

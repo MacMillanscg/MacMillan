@@ -148,8 +148,7 @@ export const DetailsTab = ({ clientId }) => {
   };
 
   return (
-    <div>
-      <div className={styles.profileDetails} style={{ maxWidth: "1025px" }}>
+      <div className={styles.profileDetails}>
         {showDialog && (
           <ConfirmCancelPopUp
             headerText="Warning"
@@ -245,6 +244,5 @@ export const DetailsTab = ({ clientId }) => {
           />
         </div>
       </div>
-    </div>
   );
 };

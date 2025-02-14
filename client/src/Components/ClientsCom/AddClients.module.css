@@ -96,7 +96,7 @@
 }
 
 .cancelButton {
-  background-color: #ccc;
+  background-color: #6c757d !important;
   color: #333;
   padding: 10px 20px;
   border: none;
@@ -106,7 +106,7 @@
 }
 
 .addButton {
-  background-color: #007bff;
+  background-color:#198754  !important;
   color: #fff;
   padding: 10px 20px;
   border: none;

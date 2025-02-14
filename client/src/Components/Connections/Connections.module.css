@@ -1,18 +1,4 @@
-/* .connectors{
-    background-color: #dee2e6;
-    width: 100%;
-    height: 100vh;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
 
-} */
-/* .heading2{
-    display: flex;
-    justify-content: center;;
-} */
 .connectionHeader{
     display: flex;
     justify-content: space-between;
@@ -56,6 +42,8 @@
 }
 .connectionCard{
     min-height: 259px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
 }
 .list{
     padding: 0 15px 0 0;
@@ -82,7 +70,7 @@
     margin-right: 10px;
 }
 .cardTitle{
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 500;
     margin-bottom: 15px;
   
@@ -119,15 +107,14 @@
 }
 .cardSection{
     display: flex;
-    /* justify-content: space-between; */
-    padding-top: 49px;
+    padding-top: 30px;
     flex-wrap: wrap;
     position: relative;
+    gap: 9px;
 }
 .cardWrap{
-    width: 32%;
+    min-width: 350px;
     padding-bottom: 20px;
-    margin-right: 15px;
 }
 .cardWrap:nth-child(3n) {
     margin-right: 0; /* Remove margin-right for every third card */

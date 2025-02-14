@@ -72,13 +72,12 @@
 }
 .cardSection{
     display: flex;
-    /* justify-content: space-between; */
-    padding-top: 16px;
+    padding-top: 30px;
     flex-wrap: wrap;
     position: relative;
+    gap: 6px;
 }
 .cardWrap{
-    /* width: 32%; */
     padding-bottom: 20px;
     margin-right: 15px;
 }
@@ -150,7 +149,7 @@
     margin-bottom: 16px;
 }
 .cardLink{
-    width: 33%;
+    min-width: 335px;
 }
 .cardLink:hover{
     text-decoration: none !important;
@@ -184,7 +183,8 @@
 .clientName{
     cursor: pointer;
     transition: color 0.2s ease-in-out;
-    /* color: #007bff; */
+    font-size: 24px;
+    font-weight: 500;
 }
 .clientName:hover{
     text-decoration: underline !important;
@@ -233,4 +233,10 @@
    opacity: 1;
    visibility:visible;
 }
+.cards{
+    min-height: 175px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
   

@@ -182,15 +182,12 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
         apiKey: shopifyFields.apiKey,
         userId: userId,
       };
-      console.log("newClinet", newClient);
 
       const response = await axios.post(
         `${url}/clients/addclients/${clientId}`,
         newClient
       );
       setFetchTrigger((prev) => !prev); // Toggle fetchTrigger to re-fetch clients
-
-      console.log("New integration created:", response.data);
       toast.success("New integration created successfully!");
       setIsDirty(false);
       closeModal();
@@ -256,8 +253,6 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
     closeModal(); // Proceed to close the modal
   };
   console.log("ISDirty", isDirty);
-
-  console.log("token", token);
 
   return (
     <div>
@@ -509,7 +504,7 @@ export const AddIntegration = ({ closeModal, clientId, setFetchTrigger }) => {
             <button className={styles.cancelButton} onClick={handleCancelModal}>
               Cancel
             </button>
-            <button onClick={handleSubmit} className={styles.addButton}>
+            <button onClick={handleSubmit} className={`${styles.addButton} btn btn-success`}>
               Add
             </button>
           </div>

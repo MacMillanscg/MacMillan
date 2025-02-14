@@ -196,7 +196,7 @@ export const ClientsCom = () => {
               key={client._id}
               className={styles.cardLink}
             >
-              <div className="card me-1 mb-2">
+              <div className={`card me-1 mb-2 ${styles.cards}`}>
                 <div className="card-body">
                   <div className={styles.cardTop}>
                     <h3 className={styles.clientName}>{client.clientName}</h3>
@@ -223,8 +223,8 @@ export const ClientsCom = () => {
                       </div>
                     </div>
                   </div>
-                  <h4 className={styles.heading4}>{client.email}</h4>
-                  <h4 className={styles.heading4}>{client.phone}</h4>
+                  <h4 className="fs-5 m-0 mb-2">{client.email}</h4>
+                  <h4 className="fs-6 m-0 mb-2">{client.phone}</h4>
                   <div>
                     <span
                       className={

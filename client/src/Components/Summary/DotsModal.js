@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, {  useEffect, useRef } from "react";
 import styles from "./DotsModal.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -30,7 +30,7 @@ export const DotsModal = ({
     };
   }, [popupRef]);
   return (
-    <div className={styles.menuIconContainer}>
+    <div className={styles.menuIconContainer} ref={popupRef}>
       <div className={styles.modal}>
         <div className={styles.modalHeader}>
           <FontAwesomeIcon icon={faSync} className={styles.icons} />

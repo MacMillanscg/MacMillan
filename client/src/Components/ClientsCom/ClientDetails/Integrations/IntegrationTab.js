@@ -16,15 +16,11 @@ import { IntegrationTabHeader } from "./IntegrationTabHeader";
 import { TestConnectionPopUp } from "./TestConnectionPopUp";
 import { ConfirmCancelPopUp } from "../../../Common/ConfirmCancelPopUp/ConfirmCancelPopUp";
 
-export const IntegrationTab = ({
-  clientId,
-  isModalOpen,
-  closeModal,
-  openModal,
-}) => {
+export const IntegrationTab = ({ clientId, isModalOpen, closeModal, openModal }) => {
   const [clients, setClients] = useState([]);
   const [fetchTrigger, setFetchTrigger] = useState(false);
-  const [selectedClient, setSelectedClient] = useState(null);
+  const [selectedClient, setSelectedClient] = useState(null); // This will persist
+  const [hoveredClient, setHoveredClient] = useState(null);  // This will track hover state
   const [showIntegration, setShowIntegration] = useState(false);
   const [testPopUp, setTestPopUp] = useState(false);
   const [errorResponse, setErrorResponse] = useState("");
@@ -41,7 +37,6 @@ export const IntegrationTab = ({
           setClients(response?.data.integrations);
           setResponseData(response);
         }
-        console.log("resintegr", response);
       } catch (error) {
         setErrorResponse(error);
         console.log(error);
@@ -61,11 +56,21 @@ export const IntegrationTab = ({
   };
 
   const handleDelete = () => {
-    setConfirmDelete(true);
+    // Ensure selectedClient is not null before showing the confirmation popup
+    if (selectedClient) {
+      setConfirmDelete(true);
+    }
   };
 
   const onConfirmDelete = async () => {
     setConfirmDelete(false);
+
+    // Ensure selectedClient is not null or undefined before performing delete
+    if (!selectedClient || !selectedClient._id) {
+      console.error("No client selected for deletion.");
+      return;
+    }
+
     try {
       await axios.delete(
         `${url}/clients/addclients/${clientId}/integrations/${selectedClient._id}`
@@ -106,23 +111,29 @@ export const IntegrationTab = ({
                   <h3 className="card-title">{client.platform}</h3>
                   <div
                     className={`${style.cardDetails} cardDetails`}
-                    onMouseEnter={() => setSelectedClient(client)}
-                    onMouseLeave={() => setSelectedClient(null)}
+                    onMouseEnter={() => setHoveredClient(client)} // Track hover state
+                    onMouseLeave={() => setHoveredClient(null)} // Reset hover state
                   >
                     <FontAwesomeIcon icon={faEllipsisV} />
 
                     {/* Popup menu that shows on hover */}
-                    {selectedClient === client && (
+                    {hoveredClient === client && (
                       <div className={style.popup}>
                         <button
                           className={`${styles.editIcon}`}
-                          onClick={handleEdit}
+                          onClick={() => {
+                            setSelectedClient(client);  // Set client for editing
+                            handleEdit();
+                          }}
                         >
                           <FontAwesomeIcon icon={faPencilAlt} />
                         </button>
                         <button
                           className={`${styles.deleteIcon}`}
-                          onClick={handleDelete}
+                          onClick={() => {
+                            setSelectedClient(client); // Ensure selectedClient is set before delete
+                            handleDelete();
+                          }}
                         >
                           <FontAwesomeIcon icon={faTrash} />
                         </button>

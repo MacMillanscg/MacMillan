@@ -1,15 +1,13 @@
 .cancel{
-    
-    color: black !important;
-    border: none;
-    background: transparent !important;
+    background: #6c757d !important;
+    padding: 9px 15px;
     margin-right: 10px;
 }
 
 .savebtn{
     background-color: green !important;
     opacity: .6;
-
+    padding: 6px 15px;
 }
 .profilebottom{
     display: flex;
