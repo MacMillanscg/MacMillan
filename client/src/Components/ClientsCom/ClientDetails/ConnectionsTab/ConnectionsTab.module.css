@@ -1,0 +1,17 @@
+.loaderContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+    width: 100%;
+  }
+  .cardSection{
+    min-height: 206px;
+  }
+  .cardWrap{
+    min-width: 333px;
+  }
+
+  .connectionCard{
+    min-height: 210px;
+  }

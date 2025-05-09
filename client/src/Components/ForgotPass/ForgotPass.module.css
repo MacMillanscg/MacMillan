@@ -1,0 +1,26 @@
+.forgot{
+    width: 400px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 4px;
+    padding: 18px 33px;
+    height: 350px;
+    padding-top: 50px;
+}
+.heading3{
+    margin: 15px 0 !important;
+    font-size: 30px !important;
+}
+.para{
+    font-size: 16px !important;
+    margin-bottom: 25px !important;
+}
+.input{
+    border: 1px solid #808080;
+}
+.resetPasword{
+    font-size: 18px !important;
+}
+.emailLabel{
+    font-size: 18px;
+}

@@ -1,0 +1,96 @@
+
+
+/* Global css start */
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  padding: 0;
+  margin: 0;
+  font-family: 'Calibri', sans-serif !important;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 16px !important;
+  font-family: 'Calibri', sans-serif !important;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+li,
+a {
+  padding: 0;
+  margin: 0;
+  text-decoration: none !important;
+}
+li {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+  display: inline-block;
+  color: #153359 !important;
+}
+span {
+  display: inline-block;
+}
+li:hover {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration:underline !important;
+}
+img {
+  width: 100%;
+}
+.container {
+  max-width: 1172px;
+  margin: 0 auto;
+}
+button{
+  background-color: #153359 !important;
+  color: #fff !important;
+}
+
+.authenticate{
+  background: #d4d1d1;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ul{
+  margin-bottom: 0 !important;
+}
+.home-section{
+  margin-left: auto;
+  background-color: #F7F8F9;
+  height: 100vh;
+  width: 80%;
+}
+.dashboard{
+  background:rgb(247, 248, 249);
+  width: 80%;
+  margin-left: auto;
+  height: 100vh;
+  padding: 20px 40px;
+}
+p{
+  word-break:break-word;
+}
+.react-datepicker{
+  margin-right: 16px !important;
+  border: none !important;
+}
+.react-datepicker__header{
+  background-color: unset !important;
+}
+.react-datepicker button{
+  color: gray;
+  background-color: unset !important;
+}

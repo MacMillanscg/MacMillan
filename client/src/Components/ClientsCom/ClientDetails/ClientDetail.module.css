@@ -1,0 +1,51 @@
+.client-detail-container {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .tabContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .tab {
+    padding: 10px 20px;
+    /* border: 1px solid #ccc; */
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
+  }
+  
+  .tab.active {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    font-weight: 600;
+  }
+  
+  .tabContent {
+    /* border: 1px solid #ccc; */
+    padding: 20px;
+    border-radius: 0 0 5px 5px;
+  }
+  .tabsHeaderSection{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    min-height: 67px;
+  }
+
+ 
+  .dashboardLog{
+    height: unset;
+    z-index: 999;
+  }
+  .clientDetailsName{
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+  }
+
+.clientDetailsName:hover{
+    text-decoration: underline !important;
+}

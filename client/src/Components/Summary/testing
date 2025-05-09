@@ -1,0 +1,318 @@
+[
+    {
+        "rowData": {
+            "carrier": "Canpar",
+            "shipmentId": "5000002925670",
+            "trackingNumber": "D420006850000093710001",
+            "trackingUrl": "https://www.canpar.com/en/track/TrackingAction.do?locale=en&type=0&reference=D420006850000093710001",
+            "reference": "5110930505805",
+            "reference2": "BKNC29906",
+            "reference3": "27018",
+            "labels": "iVBORw0KGgoAAAANSUhEUgAABmgEHqiDv0aXdEwcNOylS0wDpuAAAAABJRU5ErkJggg==",
+            "shopifyOrderId": "5110930505805",
+            "status": {
+                "cancelled": false,
+                "delivered": false,
+                "exception": false,
+                "inTransit": false,
+                "labelGenerated": true,
+                "pickup": false,
+                "returned": false,
+                "undelivered": false
+            },
+            "dimentions": "8 x 8 x 8 CM",
+            "weight": "1.61 KG"
+        },
+        "scheduledDate": {
+            "scheduledShipDate": "2024-12-31 14:10",
+            "from": {
+                "attention": "BeeKeeper Naturals",
+                "company": "MacMillan",
+                "address1": "3925 Steeles Ave E",
+                "address2": "Unit-1",
+                "city": "Brampton",
+                "province": "ON",
+                "country": "CA",
+                "zip": "L6T 5W5",
+                "email": "rdoolaege@live.ca",
+                "phone": "416-941-2759",
+                "instructions": "Shipping Office Between Door 3 &4",
+                "residential": false,
+                "tailgateRequired": false,
+                "confirmDelivery": true,
+                "notifyRecipient": true
+            },
+            "to": {
+                "attention": "Rayelle Dunstall",
+                "company": "Rayelle Dunstall",
+                "address1": "PO Box1591",
+                "address2": " ",
+                "city": "ONOWAY",
+                "province": "AB",
+                "country": "CA",
+                "zip": "T0E 1V0",
+                "email": "rdoolaege@live.ca",
+                "phone": "416-941-2759",
+                "instructions": "Need to add the instruction",
+                "residential": false,
+                "tailgateRequired": false,
+                "confirmDelivery": true,
+                "notifyRecipient": true
+            },
+            "packagingUnit": "Metric",
+            "packages": {
+                "type": "Package",
+                "packages": [
+                    {
+                        "height": "8.000000",
+                        "length": "8.000000",
+                        "width": "8.000000",
+                        "dimensionUnit": "in",
+                        "weight": "1.610000",
+                        "weightUnit": "lb",
+                        "insuranceAmount": "100",
+                        "description": ""
+                    }
+                ]
+            },
+            "reference1": "5110930505805",
+            "reference2": "BKNC29906",
+            "reference3": "27018",
+            "signatureRequired": "No",
+            "insuranceType": "none",
+            "pickup": {
+                "contactName": "MacMillan SCG",
+                "phoneNumber": "416-941-2759",
+                "pickupDate": "2024-12-30",
+                "pickupTime": "15:30",
+                "closingTime": "17:00",
+                "location": "Receiving",
+                "instructions": "Shipping Office Between Door 3 & 4"
+            }
+        }
+    },
+    {
+        "rowData": {
+            "carrier": "Canpar",
+            "shipmentId": "5000002933299",
+            "trackingNumber": "D420006850000093936001",
+            "trackingUrl": "https://www.canpar.com/en/track/TrackingAction.do?locale=en&type=0&reference=D420006850000093936001",
+            "reference": "5110930505809",
+            "reference2": "BKNC29909",
+            "reference3": "27019",
+            "labels": "iVBORw0KGgoA",
+             "shopifyOrderId": "5110930505809",
+            "status": {
+                "cancelled": false,
+                "delivered": false,
+                "exception": false,
+                "inTransit": false,
+                "labelGenerated": true,
+                "pickup": false,
+                "returned": false,
+                "undelivered": false
+            },
+            "dimentions": "10 x 10 x 10 CM",
+            "weight": "1.9 KG"
+        },
+        "scheduledDate": {
+            "scheduledShipDate": "2025-01-01 14:10",
+            "from": {
+                "attention": "BeeKeeper",
+                "company": "MacMillan",
+                "address1": "3925 Steeles Ave E",
+                "address2": "Unit-1",
+                "city": "Brampton",
+                "province": "ON",
+                "country": "CA",
+                "zip": "L6T 5W5",
+                "email": "rdoolaege@live.ca",
+                "phone": "416-941-2759",
+                "instructions": "Shipping Office Between Door 3 &4",
+                "residential": false,
+                "tailgateRequired": false,
+                "confirmDelivery": true,
+                "notifyRecipient": true
+            },
+            "to": {
+                "attention": "Rayelle Dunstall",
+                "company": "Rayelle Dunstall",
+                "address1": "PO Box1591",
+                "address2": " ",
+                "city": "ONOWAY",
+                "province": "AB",
+                "country": "CA",
+                "zip": "T0E 1V0",
+                "email": "rdoolaege@live.ca",
+                "phone": "416-941-2759",
+                "instructions": "Need to add the instruction",
+                "residential": false,
+                "tailgateRequired": false,
+                "confirmDelivery": true,
+                "notifyRecipient": true
+            },
+            "packagingUnit": "Metric",
+            "packages": {
+                "type": "Package",
+                "packages": [
+                    {
+                        "height": "10.000000",
+                        "length": "10.000000",
+                        "width": "10.000000",
+                        "dimensionUnit": "in",
+                        "weight": "1.900000",
+                        "weightUnit": "lb",
+                        "insuranceAmount": "200",
+                        "description": ""
+                    }
+                ]
+            },
+            "reference1": "5110930505809",
+            "reference2": "BKNC29909",
+            "reference3": "27019",
+            "signatureRequired": "No",
+            "insuranceType": "none",
+            "pickup": {
+                "contactName": "MacMillan SCG",
+                "phoneNumber": "416-941-2759",
+                "pickupDate": "2025-01-01",
+                "pickupTime": "15:30",
+                "closingTime": "17:00",
+                "location": "Receiving",
+                "instructions": "Shipping Office Between Door 3 & 4"
+            }
+        }
+    }
+]
+
+//  /////////////////// ////////////////////// ///////////
+
+{
+    "carrier": {
+        "carrierName": "Purolator",
+        "serviceName": "Purolator Ground"
+    },
+    "customsInvoice": null,
+    "labelData": {
+        "label": [
+           {"dfsdf"}
+        ]
+    },
+    "order": {
+        "id": "5000003051581",
+        "message": "Shipment created however pickup failed please try from tracking menu. The error is 4100699: You have tried to schedule a pickup after our pickup time has closed. Please adjust your pickup time or schedule your pickup for another date., Pickup Error"
+    },
+    "packages": [
+        {
+            "trackingNumber": "335204475693"
+        }
+    ],
+    "packingSlip": null,
+    "pickup": null,
+    "quote": {
+        "baseCharge": 18.92,
+        "carrierName": "Purolator",
+        "currency": "CAD",
+        "fuelSurcharge": 5.01,
+        "fuelSurchargePercentage": 26.5,
+        "modeTransport": "AIR",
+        "serviceId": 13,
+        "serviceName": "Purolator Ground",
+        "surcharges": null,
+        "taxes": [
+            {
+                "amount": 1.2,
+                "name": "GST"
+            }
+        ],
+        "totalCharge": 25.12,
+        "totalChargedAmount": 25.12,
+        "transitDays": "4"
+    },
+    "reference": {
+        "code": "5110930505809",
+        "name": "5110930505809"
+    },
+    "reference2": {
+        "code": "reference2",
+        "name": "BKNC29909"
+    },
+    "reference3": {
+        "code": "reference3",
+        "name": "27019"
+    },
+    "trackingNumber": "335204475693",
+    "trackingUrl": "https://www.purolator.com/en/shipping/tracker?pin=335204475693"
+}
+
+
+// /////////// ////////////// //////////////// 
+
+
+{
+    "scheduledShipDate": "2025-01-15 14:10",
+    "from": {
+        "attention": "BeeKeeper",
+        "company": "MacMillan",
+        "address1": "3925 Steeles Ave E",
+        "address2": "Unit-1",
+        "city": "Brampton",
+        "province": "ON",
+        "country": "CA",
+        "zip": "L6T 5W5",
+        "email": "rdoolaege@live.ca",
+        "phone": "416-941-2759",
+        "instructions": "Shipping Office Between Door 3 &4",
+        "residential": false,
+        "tailgateRequired": false,
+        "confirmDelivery": true,
+        "notifyRecipient": true
+    },
+    "to": {
+        "attention": "Rayelle Dunstall",
+        "company": "Rayelle Dunstall",
+        "address1": "PO Box1591",
+        "address2": " ",
+        "city": "ONOWAY",
+        "province": "AB",
+        "country": "CA",
+        "zip": "T0E 1V0",
+        "email": "rdoolaege@live.ca",
+        "phone": "416-941-2759",
+        "instructions": "Need to add the instruction",
+        "residential": false,
+        "tailgateRequired": false,
+        "confirmDelivery": true,
+        "notifyRecipient": true
+    },
+    "packagingUnit": "Metric",
+    "packages": {
+        "type": "Package",
+        "packages": [
+            {
+                "height": "10.000000",
+                "length": "10.000000",
+                "width": "10.000000",
+                "dimensionUnit": "in",
+                "weight": "1.900000",
+                "weightUnit": "lb",
+                "insuranceAmount": "200",
+                "description": ""
+            }
+        ]
+    },
+    "reference1": "5110930505809",
+    "reference2": "BKNC29909",
+    "reference3": "27019",
+    "signatureRequired": "No",
+    "insuranceType": "none",
+    "pickup": {
+        "contactName": "MacMillan SCG",
+        "phoneNumber": "416-941-2759",
+        "pickupDate": "2025-01-14",
+        "pickupTime": "18:30",
+        "closingTime": "20:00",
+        "location": "Receiving",
+        "instructions": "Shipping Office Between Door 3 & 4"
+    }
+}

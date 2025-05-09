@@ -1,0 +1,22 @@
+.cancel{
+    background: #6c757d !important;
+    padding: 9px 15px;
+    margin-right: 10px;
+}
+
+.savebtn{
+    background-color: green !important;
+    opacity: .6;
+    padding: 6px 15px;
+}
+.profilebottom{
+    display: flex;
+    justify-content: space-between;
+}
+.deleteIcon{
+    background:unset !important;
+    color: gray !important;
+    border: none;
+    padding: 10px 0 0 0 !important;
+    font-size: 17px;
+}

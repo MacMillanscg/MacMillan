@@ -1,0 +1,38 @@
+.logicDescription{
+    margin: 0;
+}
+.actionDescription{
+    border: 1px solid lightgray;
+    padding: 15px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.searchInput{
+    background: #f8f9fa;
+    height: 48px;
+}
+/* .loopOptionsWrap{
+    overflow-y: scroll;
+    height: 300px;
+} */
+
+.popupContent{
+    padding: 20px 0;
+}
+.exportBtn{
+    background: #e3e8ec !important;
+    color: black !important;
+    border: 1px solid #d3d3d3;
+}
+.exportBtn:hover{
+    border:1px solid #d3d3d3 !important;
+}
+.noFile{
+    background: transparent !important;
+    color: black !important;
+    border: 1px solid #d3d3d3;
+    width: 67%;
+    padding: 8px 0;
+    margin-left: -1px;
+}

@@ -1,0 +1,62 @@
+/* .menuIconContainer {
+    position: relative;
+    display: inline-block;
+  } */
+  
+  .menuButton {
+    background: none !important;
+    border: none !important;
+    cursor: pointer;
+    color: gray !important;
+  }
+  
+  .modal {
+    position: absolute;
+    top: 30px;
+    right: -1px;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    padding: 10px;
+    z-index: 1000;
+    width: 184px;
+  }
+  
+  .modal ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .modal li {
+    margin: 5px 0;
+  }
+  
+  .modal li button {
+    background: none !important;
+    border: none !important;
+    cursor: pointer;
+    padding: 5px 10px;
+    width: 100%;
+    text-align: left;
+    color: gray !important;
+    background: #f4f4f4 !important;
+  }
+  
+  .modal li button:hover {
+    background-color: #f0f0f0;
+  }
+  .icons{
+    margin-right: 15px;
+    color: gray;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .icon{
+    margin-right: 5px;
+  }
+  .modalHeader{
+    display: flex;
+    justify-content: end;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 15px;
+  }

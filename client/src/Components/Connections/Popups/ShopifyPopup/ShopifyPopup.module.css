@@ -1,0 +1,11 @@
+.popupContent{
+    padding-bottom: 30px;
+}
+
+.items{
+    border: 1px solid lightgray;
+    padding: 15px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}

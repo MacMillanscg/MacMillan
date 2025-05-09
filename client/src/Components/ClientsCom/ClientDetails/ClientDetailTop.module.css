@@ -1,0 +1,14 @@
+.clientName{
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+.clientName:hover{
+    text-decoration: underline !important;
+}
+.clients{
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+.clients:hover{
+    text-decoration: underline !important;
+}
